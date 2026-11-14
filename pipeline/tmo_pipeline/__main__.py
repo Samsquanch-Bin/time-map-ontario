@@ -23,7 +23,7 @@ from .overlays import load_overlays
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(prog="tmo_pipeline")
     sub = p.add_subparsers(dest="cmd", required=True)
-    sub.add_parser("validate")
+    sub.add_parser("validate")  # also validates data/places
     sm = sub.add_parser("sources-md")
     sm.add_argument("--check", action="store_true", help="fail if SOURCES.md is out of date")
     sub.add_parser("basemap")
@@ -50,7 +50,9 @@ def main(argv: list[str] | None = None) -> int:
     if args.cmd == "validate":
         for o in overlays.values():
             require_sources([o.source], sources)
-        print(f"ok: {len(sources)} sources, {len(overlays)} overlays")
+        from .places import load_places
+
+        print(f"ok: {len(sources)} sources, {len(overlays)} overlays, {len(load_places())} places")
     elif args.cmd == "sources-md":
         from .sources_md import render
 
@@ -81,7 +83,17 @@ def main(argv: list[str] | None = None) -> int:
     elif args.cmd == "catalog":
         from .catalog import build_catalog
 
+        from .places import build_places_json, load_places
+
         release = BUILD_DIR / "release"
+        release.mkdir(parents=True, exist_ok=True)
+        places = load_places()
+        places_path = release / "places.json"
+        if places:
+            places_path.write_text(json.dumps(build_places_json(places, release=args.release), ensure_ascii=False))
+            print(f"places: {len(places)}")
+        else:
+            places_path.unlink(missing_ok=True)
         catalog = build_catalog(release, BUILD_DIR / "overlay-meta", overlays, sources, release=args.release)
         release.mkdir(parents=True, exist_ok=True)
         (release / "catalog.json").write_text(json.dumps(catalog, indent=1))

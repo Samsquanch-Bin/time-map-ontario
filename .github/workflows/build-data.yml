@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ["pipeline/**", "schemas/**", ".github/workflows/build-data.yml"]
+    paths: ["pipeline/**", "schemas/**", "data/places/**", ".github/workflows/build-data.yml"]
 
 permissions:
   contents: write
@@ -74,7 +74,7 @@ jobs:
             gh release create data-latest --title "Map data (latest)" --notes "Data packs downloaded by the app. Don't download these by hand; use Settings & data in the app." --prerelease
           gh release upload data-latest build/release/* --clobber
           # remove packs the new catalogue no longer lists
-          keep=$(python -c "import json;print(' '.join(p['file'] for p in json.load(open('build/release/catalog.json'))['packs'])) + ' catalog.json'")
+          keep="$(python -c "import json;print(' '.join(p['file'] for p in json.load(open('build/release/catalog.json'))['packs']))") catalog.json"
           for old in $(gh release view data-latest --json assets --jq '.assets[].name'); do
             case " $keep " in *" $old "*) ;; *) gh release delete-asset data-latest "$old" --yes ;; esac
           done

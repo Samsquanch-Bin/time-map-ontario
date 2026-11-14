@@ -75,6 +75,7 @@ def build_catalog(
     sources: dict[str, Source],
     release: bool = False,
     now: dt.datetime | None = None,
+    places_sources: tuple[str, ...] = ("wikipedia", "wikidata"),
 ) -> dict[str, Any]:
     packs = []
     used_sources: set[str] = set(BASEMAP_SOURCES) | {"esri_world_imagery"}
@@ -97,6 +98,12 @@ def build_catalog(
         meta = json.loads(meta_path.read_text())
         overlay_entries.append(overlay_entry(ov, meta, src))
         packs.append(pack_entry(release_dir / meta["file"], "overlay"))
+
+    places = release_dir / "places.json"
+    if places.exists():
+        packs.append(pack_entry(places, "places"))
+        require_sources(list(places_sources), sources)
+        used_sources.update(places_sources)
 
     attributions = [
         {
