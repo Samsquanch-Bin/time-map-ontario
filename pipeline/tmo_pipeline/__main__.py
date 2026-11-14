@@ -35,7 +35,14 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("research-discover")
     sub.add_parser("research-fetch")
     sub.add_parser("maps-discover")
+    sub.add_parser("fetch-pages")
     args = p.parse_args(argv)
+
+    if args.cmd == "fetch-pages":
+        from .webfetch import run
+
+        run()
+        return 0
 
     if args.cmd == "maps-discover":
         from .map_discovery import discover

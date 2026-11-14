@@ -74,3 +74,13 @@ def test_tile_summary():
     assert tile_summary({}) == {"tiled": False}
     info = {"tileInfo": {"rows": 256, "spatialReference": {"wkid": 102100, "latestWkid": 3857}, "lods": [{"level": 0}, {"level": 19}]}, "minLOD": 13, "maxLOD": 19, "copyrightText": "TPL"}
     assert tile_summary(info) == {"tiled": True, "tile_wkid": 3857, "tile_size": 256, "min_lod": 13, "max_lod": 19, "copyright": "TPL"}
+
+
+def test_extract_links_resolves_and_finds_images():
+    from tmo_pipeline.webfetch import extract_links
+
+    html = '<a href="/maps/sheet-1">Sheet 1</a><img src="files/s1.jpg"><a href="/maps/sheet-1">dup</a>'
+    links = extract_links(html, "https://lib.example/maps/index")
+    urls = [l["url"] for l in links]
+    assert "https://lib.example/maps/sheet-1" in urls and "https://lib.example/maps/files/s1.jpg" in urls
+    assert len(urls) == 2
