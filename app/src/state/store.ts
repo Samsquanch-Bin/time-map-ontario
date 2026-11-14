@@ -24,8 +24,6 @@ type Persisted = {
   oldMapOn: boolean;
   overlayOpacity: number;
   coverageVisible: boolean;
-  /** Shade hills from the offline elevation pack. */
-  terrainOn: boolean;
   placesVisible: boolean;
   hiddenCategories: Category[];
   camera: { center: [number, number]; zoom: number };
@@ -34,6 +32,8 @@ type Persisted = {
 };
 
 type Transient = {
+  /** Shade hills from the offline elevation pack (off at every launch). */
+  terrainOn: boolean;
   compare: boolean;
   showUser: boolean;
   view: { bounds: [number, number, number, number]; zoom: number } | null;
@@ -66,11 +66,16 @@ export const useApp = create<Persisted & Transient>()(
     {
       name: "tmo-state-v1",
       // v2: old maps are chosen automatically; start with the outlines off and no hand-picked map.
-      version: 2,
-      migrate: (old) => ({ ...(old as object), coverageVisible: false, activeOverlayId: null, oldMapOn: true }) as never,
+      // v3: hill shading is no longer remembered between launches.
+      version: 3,
+      migrate: (old, from) => {
+        const o = { ...(old as Record<string, unknown>) };
+        delete o.terrainOn;
+        return (from < 2 ? { ...o, coverageVisible: false, activeOverlayId: null, oldMapOn: true } : o) as never;
+      },
       storage: createJSONStorage(() => AsyncStorage),
       // compare / showUser are per-session; location is never stored.
-      partialize: ({ compare: _c, showUser: _s, view: _v, set: _set, ...rest }) => rest,
+      partialize: ({ compare: _c, showUser: _s, view: _v, terrainOn: _t, set: _set, ...rest }) => rest,
     },
   ),
 );

@@ -75,18 +75,17 @@ export function MapContent({ labelLayerId, satelliteKey, overlay, overlayOpacity
 
       {terrainUrl ? (
         // Drawn over the base map and old map (under the labels) so hills show through both.
-        <RasterDEMSource id="terrain" url={terrainUrl} encoding="terrarium" tileSize={256} maxzoom={12}>
+        // Elevation is stored in Mapbox terrain-RGB encoding: with a url, MapLibre React
+        // Native (Android) ignores the encoding prop and always decodes it that way.
+        // Only paint properties that take single values here: the Android bridge expects
+        // arrays for illumination-direction, shadow and highlight colours and crashes on a
+        // single value, so those keep MapLibre's defaults.
+        <RasterDEMSource id="terrain" url={terrainUrl} tileSize={256} maxzoom={12}>
           <Layer
             type="hillshade"
             id="hillshade"
             beforeId={labelLayerId}
-            paint={{
-              "hillshade-exaggeration": ["interpolate", ["linear"], ["zoom"], 8, 0.35, 13, 0.6],
-              "hillshade-shadow-color": "#000000",
-              "hillshade-highlight-color": "#FFFFFF",
-              "hillshade-accent-color": "#000000",
-              "hillshade-illumination-direction": 315,
-            }}
+            paint={{ "hillshade-exaggeration": ["interpolate", ["linear"], ["zoom"], 8, 0.35, 13, 0.6] }}
           />
         </RasterDEMSource>
       ) : null}

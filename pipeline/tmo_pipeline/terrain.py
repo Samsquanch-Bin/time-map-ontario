@@ -1,8 +1,10 @@
-"""Offline elevation pack for hill shading (Terrarium-encoded PNG tiles).
+"""Offline elevation pack for hill shading.
 
 Copies the open Terrain Tiles from AWS for the focus area (Toronto, Hamilton,
-Niagara) up to zoom 12 (about 28 m per pixel there) into an MBTiles file, then
-converts it to PMTiles. The phone shades the hills itself from these.
+Niagara) up to zoom 12 (about 28 m per pixel there), re-encodes them from
+Terrarium to Mapbox terrain-RGB (the only encoding MapLibre React Native's
+Android bridge decodes for a url source), writes an MBTiles file and converts
+it to PMTiles. The phone shades the hills itself from these.
 """
 from __future__ import annotations
 
@@ -45,6 +47,26 @@ def tiles_for(bbox: tuple[float, float, float, float], max_zoom: int) -> list[tu
     return out
 
 
+def terrarium_to_terrain_rgb(png: bytes) -> bytes:
+    """Re-encode one Terrarium PNG as Mapbox terrain-RGB (0.1 m steps), losslessly as PNG.
+
+    Terrarium:   height = R * 256 + G + B / 256 - 32768
+    terrain-RGB: height = -10000 + (R * 65536 + G * 256 + B) * 0.1
+    """
+    import io
+
+    import numpy as np
+    from PIL import Image
+
+    rgb = np.asarray(Image.open(io.BytesIO(png)).convert("RGB"), dtype=np.float64)
+    height = rgb[..., 0] * 256 + rgb[..., 1] + rgb[..., 2] / 256 - 32768
+    code = np.clip(np.rint((height + 10000) * 10), 0, 256**3 - 1).astype(np.uint32)
+    out = np.stack([(code >> 16) & 255, (code >> 8) & 255, code & 255], axis=-1).astype(np.uint8)
+    buf = io.BytesIO()
+    Image.fromarray(out, "RGB").save(buf, format="PNG", optimize=True)
+    return buf.getvalue()
+
+
 def print_attribution_lines() -> None:
     """Print the joerd attribution lines for Canada and the USA into the build log."""
     import requests
@@ -81,7 +103,7 @@ def build_terrain(out_dir: Path = BUILD_DIR / "release", bbox=FOCUS_BBOX, max_zo
                 r.raise_for_status()
                 if not r.content.startswith(b"\x89PNG"):
                     raise ValueError("not a PNG")
-                return t, r.content
+                return t, terrarium_to_terrain_rgb(r.content)
             except Exception as exc:  # noqa: BLE001
                 if attempt == 3:
                     raise RuntimeError(f"terrain tile {z}/{x}/{y}: {exc}") from exc
@@ -94,7 +116,7 @@ def build_terrain(out_dir: Path = BUILD_DIR / "release", bbox=FOCUS_BBOX, max_zo
     db.execute("CREATE TABLE tiles (zoom_level INTEGER, tile_column INTEGER, tile_row INTEGER, tile_data BLOB)")
     w, s, e, n = bbox
     for k, v in {
-        "name": "Terrain (Terrarium)",
+        "name": "Terrain (Mapbox terrain-RGB encoding)",
         "format": "png",
         "type": "baselayer",
         "minzoom": "0",
