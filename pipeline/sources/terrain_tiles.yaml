@@ -1,0 +1,18 @@
+id: terrain_tiles
+name: Terrain Tiles (elevation) on the Registry of Open Data on AWS
+provider: Tilezen / Mapzen terrain tiles, built from public elevation data; for Ontario mainly Natural Resources Canada's Canadian Digital Elevation Model, and USGS data across the border
+homepage: https://registry.opendata.aws/terrain-tiles/
+data_url: https://s3.amazonaws.com/elevation-tiles-prod/terrarium/
+licence: Mixed open licences by source (Open Government Licence – Canada for Canadian data; public domain USGS data)
+licence_url: https://github.com/tilezen/joerd/blob/master/docs/attribution.md
+attribution: "Elevation: Terrain Tiles (Tilezen); contains information licensed under the Open Government Licence – Canada; USGS 3DEP, GMTED2010 and SRTM data courtesy of the U.S. Geological Survey"
+used_for: [terrain]
+terms_notes: >
+  Elevation tiles (Terrarium PNG encoding) are copied into an offline pack for the
+  Toronto–Hamilton–Niagara area and shaded into hills on the phone. The joerd
+  attribution document asks users to credit each underlying data provider; the
+  data build downloads that document and prints the lines for Canada and the USA.
+licence_check:
+  status: unconfirmed
+  method: Search summary of tilezen/joerd docs/attribution.md (the Canada line was cut off); the data build prints the full lines so they can be checked
+  checked_on: "2026-11-14"

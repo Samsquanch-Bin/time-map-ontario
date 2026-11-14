@@ -49,6 +49,9 @@ jobs:
       - name: Basemap (Southern Ontario, OpenStreetMap via Protomaps)
         run: python -m tmo_pipeline basemap
 
+      - name: Terrain (elevation for hill shading)
+        run: python -m tmo_pipeline terrain
+
       - name: Historical overlays
         run: python -m tmo_pipeline overlay all
 

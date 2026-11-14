@@ -24,6 +24,8 @@ type Persisted = {
   oldMapOn: boolean;
   overlayOpacity: number;
   coverageVisible: boolean;
+  /** Shade hills from the offline elevation pack. */
+  terrainOn: boolean;
   placesVisible: boolean;
   hiddenCategories: Category[];
   camera: { center: [number, number]; zoom: number };
@@ -50,6 +52,7 @@ export const useApp = create<Persisted & Transient>()(
       lockedOverlayId: null,
       overlayOpacity: 0.8,
       coverageVisible: false,
+      terrainOn: false,
       placesVisible: true,
       hiddenCategories: [],
       camera: { center: START_VIEW.center, zoom: START_VIEW.zoom },

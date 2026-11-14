@@ -4,6 +4,7 @@ Commands
   validate          check all manifests and overlay definitions
   sources-md        regenerate SOURCES.md from the manifests
   basemap           extract the Southern Ontario basemap (needs pmtiles CLI + network)
+  terrain           copy the elevation tiles for hill shading (needs pmtiles CLI + network)
   overlay ID|all    build historical overlay(s) (needs GDAL + pmtiles CLI + network)
   catalog           write build/release/catalog.json from what has been built
   research-discover list candidate places in the focus area from Wikidata (needs network)
@@ -29,6 +30,7 @@ def main(argv: list[str] | None = None) -> int:
     sm = sub.add_parser("sources-md")
     sm.add_argument("--check", action="store_true", help="fail if SOURCES.md is out of date")
     sub.add_parser("basemap")
+    sub.add_parser("terrain")
     ov = sub.add_parser("overlay")
     ov.add_argument("id")
     cat = sub.add_parser("catalog")
@@ -92,6 +94,10 @@ def main(argv: list[str] | None = None) -> int:
         else:
             path.write_text(text)
             print(f"wrote {path}")
+    elif args.cmd == "terrain":
+        from .terrain import build_terrain
+
+        print(build_terrain())
     elif args.cmd == "basemap":
         from .basemap import build_basemap
 

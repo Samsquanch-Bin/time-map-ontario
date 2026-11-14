@@ -21,6 +21,7 @@ import { SearchBar, type SearchTarget } from "./SearchBar";
 import { SwipeCompare } from "./SwipeCompare";
 
 const BASEMAP_FILE = "basemap-south.pmtiles";
+const TERRAIN_FILE = "terrain-focus.pmtiles";
 const SNAP_POINTS = ["17%", "50%", "85%"]; // never covers the whole map
 
 export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
@@ -79,6 +80,8 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
   );
   const placesGeoJSON = useMemo(() => (shownPlaces.length ? placesToGeoJSON(shownPlaces) : null), [shownPlaces]);
   const comparing = s.compare && !!activeOverlay;
+  const terrainReady = hasPack(catalog, s.installed, TERRAIN_FILE);
+  const terrainUrl = s.terrainOn && terrainReady ? pmtilesUrl(TERRAIN_FILE) : null;
   // While comparing, the "Today" side is satellite whenever there's a key for it.
   const satelliteKey = (s.basemap === "satellite" || comparing) && s.esriKey ? s.esriKey : null;
 
@@ -171,6 +174,7 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
           satelliteKey={satelliteKey}
           overlay={comparing ? null : activeOverlay}
           overlayOpacity={s.overlayOpacity}
+          terrainUrl={terrainUrl}
           coverage={coverage}
           onCoveragePress={(id) => go({ name: "overlay", id })}
           places={placesGeoJSON}
@@ -190,7 +194,7 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
       </Map>
 
       {comparing && activeOverlay ? (
-        <SwipeCompare ref={compareCameraRef} mapStyle={mapStyle as never} labelLayerId={labelLayerId} overlay={activeOverlay} initial={s.camera} />
+        <SwipeCompare ref={compareCameraRef} mapStyle={mapStyle as never} labelLayerId={labelLayerId} overlay={activeOverlay} terrainUrl={terrainUrl} initial={s.camera} />
       ) : null}
 
       {!basemapUrl ? (
@@ -212,6 +216,23 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
           onPress={onLocate}
           style={styles.fab}
           variant={track ? "primary" : "surface"}
+        />
+        <FAB
+          icon="terrain"
+          accessibilityLabel={s.terrainOn ? "Hide hills" : "Show hills"}
+          onPress={() => {
+            if (!terrainReady) {
+              Alert.alert(
+                "Hills need the elevation data",
+                "Open Settings & data and tap Check for data, then Download (about 80 MB). Hills cover Toronto, Hamilton and Niagara.",
+                [{ text: "Not now" }, { text: "Settings & data", onPress: () => go({ name: "data" }) }],
+              );
+              return;
+            }
+            s.set({ terrainOn: !s.terrainOn });
+          }}
+          style={styles.fab}
+          variant={terrainUrl ? "primary" : "surface"}
         />
         {activeOverlay ? (
           <FAB

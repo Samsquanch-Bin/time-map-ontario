@@ -98,3 +98,11 @@ def test_failed_imageserver_overlay_falls_back_to_live(tmp_path):
     assert "noData=255" in entry["tiles"]
     assert entry["minzoom"] == 12 and entry["maxzoom"] == 18
     assert "needs internet" in entry["description"]
+
+
+def test_terrain_pack_listed_with_attribution(tmp_path):
+    release, meta, ovs = _setup(tmp_path)
+    (release / "terrain-focus.pmtiles").write_bytes(b"t" * 10)
+    cat = build_catalog(release, meta, ovs, load_manifests())
+    assert "terrain" in [p["kind"] for p in cat["packs"]]
+    assert "terrain_tiles" in {a["source_id"] for a in cat["attributions"]}

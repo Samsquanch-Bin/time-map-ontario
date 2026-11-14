@@ -119,6 +119,11 @@ def build_catalog(
     basemap = release_dir / "basemap-south.pmtiles"
     if basemap.exists():
         packs.append(pack_entry(basemap, "basemap"))
+    terrain = release_dir / "terrain-focus.pmtiles"
+    if terrain.exists():
+        packs.append(pack_entry(terrain, "terrain"))
+        require_sources(["terrain_tiles"], sources)
+        used_sources.add("terrain_tiles")
 
     overlay_entries = []
     for ov in sorted(overlays.values(), key=lambda o: (o.year, o.id)):

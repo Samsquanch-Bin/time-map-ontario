@@ -15,10 +15,11 @@ type Props = {
   mapStyle: StyleSpecification;
   labelLayerId?: string;
   overlay: Overlay;
+  terrainUrl?: string | null;
   initial: { center: [number, number]; zoom: number };
 };
 
-export const SwipeCompare = forwardRef<CameraRef, Props>(function SwipeCompare({ mapStyle, labelLayerId, overlay, initial }, cameraRef) {
+export const SwipeCompare = forwardRef<CameraRef, Props>(function SwipeCompare({ mapStyle, labelLayerId, overlay, terrainUrl, initial }, cameraRef) {
   const { width } = useWindowDimensions();
   const theme = useTheme();
   const insets = useSafeAreaInsets();
@@ -51,7 +52,7 @@ export const SwipeCompare = forwardRef<CameraRef, Props>(function SwipeCompare({
           touchPitch={false}
         >
           <Camera ref={cameraRef} initialViewState={{ center: initial.center, zoom: initial.zoom }} />
-          <MapContent labelLayerId={labelLayerId} satelliteKey={null} overlay={overlay} overlayOpacity={1} coverage={null} />
+          <MapContent labelLayerId={labelLayerId} satelliteKey={null} overlay={overlay} overlayOpacity={1} terrainUrl={terrainUrl} coverage={null} />
         </Map>
       </View>
       <View style={[styles.divider, { left: x - 1, backgroundColor: theme.colors.primary }]} pointerEvents="none" />

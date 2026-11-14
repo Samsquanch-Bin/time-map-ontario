@@ -1,6 +1,6 @@
 // Everything drawn on top of the base style: satellite, the active old map,
 // and the coverage outlines. Shared by the main map and the swipe-compare map.
-import { GeoJSONSource, Layer, RasterSource } from "@maplibre/maplibre-react-native";
+import { GeoJSONSource, Layer, RasterDEMSource, RasterSource } from "@maplibre/maplibre-react-native";
 import type { FeatureCollection } from "geojson";
 
 import { useMemo } from "react";
@@ -16,13 +16,15 @@ type Props = {
   satelliteKey: string | null; // null = satellite off
   overlay: Overlay | null;
   overlayOpacity: number;
+  /** pmtiles:// URL of the elevation pack, or null when hill shading is off. */
+  terrainUrl?: string | null;
   coverage: Overlay[] | null; // overlays to outline, or null when coverage view is off
   onCoveragePress?: (overlayId: string) => void;
   places?: FeatureCollection | null;
   onPlacePress?: (placeId: string) => void;
 };
 
-export function MapContent({ labelLayerId, satelliteKey, overlay, overlayOpacity, coverage, onCoveragePress, places, onPlacePress }: Props) {
+export function MapContent({ labelLayerId, satelliteKey, overlay, overlayOpacity, terrainUrl, coverage, onCoveragePress, places, onPlacePress }: Props) {
   const coverageData = useMemo<FeatureCollection | null>(
     () =>
       coverage && {
@@ -69,6 +71,24 @@ export function MapContent({ labelLayerId, satelliteKey, overlay, overlayOpacity
             paint={{ "raster-opacity": overlayOpacity, "raster-fade-duration": 0 }}
           />
         </RasterSource>
+      ) : null}
+
+      {terrainUrl ? (
+        // Drawn over the base map and old map (under the labels) so hills show through both.
+        <RasterDEMSource id="terrain" url={terrainUrl} encoding="terrarium" tileSize={256} maxzoom={12}>
+          <Layer
+            type="hillshade"
+            id="hillshade"
+            beforeId={labelLayerId}
+            paint={{
+              "hillshade-exaggeration": ["interpolate", ["linear"], ["zoom"], 8, 0.35, 13, 0.6],
+              "hillshade-shadow-color": "#000000",
+              "hillshade-highlight-color": "#FFFFFF",
+              "hillshade-accent-color": "#000000",
+              "hillshade-illumination-direction": 315,
+            }}
+          />
+        </RasterDEMSource>
       ) : null}
 
       {coverageData ? (
