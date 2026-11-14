@@ -1,0 +1,13 @@
+id: niagara-air-1934
+title: "Niagara air photos, 1934"
+year: 1934
+source: brock_early_niagara
+fetch:
+  method: live_tiles
+  service: https://terra.library.brocku.ca/arcgis/rest/services/AirPhotos/Niagara1934Mosaic2018_2/MapServer
+  url: "https://terra.library.brocku.ca/arcgis/rest/services/AirPhotos/Niagara1934Mosaic2018_2/MapServer/export?bbox={bbox-epsg-3857}&bboxSR=3857&imageSR=3857&size=256,256&format=png32&transparent=true&f=image"
+bounds: [-79.76, 42.83, -78.9, 43.27]
+minzoom: 11
+maxzoom: 19
+description: "Air photo mosaic of the Niagara Region from Grimsby to the Niagara River: every farm, house and orchard in 1934. Brock licence: No restrictions (streamed because of its size)."
+accuracy_note: "Air photo mosaic georeferenced by Brock University's Map, Data & GIS Library. Photo mosaics usually line up with today's roads to within several metres, less well on steep ground like the escarpment face."

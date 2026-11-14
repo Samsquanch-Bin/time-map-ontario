@@ -1,0 +1,11 @@
+id: grantham-1897
+title: "Map of the Township of Grantham, 1897"
+year: 1897
+source: brock_early_niagara
+fetch:
+  method: arcgis_imageserver
+  url: https://terra.library.brocku.ca/arcgis/rest/services/EarlyNiagara/StCatharinesGrantham1897/ImageServer
+minzoom: 10
+maxzoom: 15
+description: "Grantham Township around St. Catharines, 1897. Brock University Map, Data & GIS Library; licence No restrictions."
+accuracy_note: "Georeferenced by Brock University's Map, Data & GIS Library; error figures are not published. Check a few streets against today's map before trusting a spot."

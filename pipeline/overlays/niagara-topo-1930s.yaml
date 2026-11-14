@@ -1,0 +1,14 @@
+id: niagara-topo-1930s
+title: "Niagara topographic maps, 1930s"
+year: 1930
+year_end: 1939
+source: brock_early_niagara
+fetch:
+  method: live_tiles
+  service: https://terra.library.brocku.ca/arcgis/rest/services/NiagaraTopos/NTS1930s/MapServer
+  url: "https://terra.library.brocku.ca/arcgis/rest/services/NiagaraTopos/NTS1930s/MapServer/export?bbox={bbox-epsg-3857}&bboxSR=3857&imageSR=3857&size=256,256&format=png32&transparent=true&f=image"
+bounds: [-80.03, 42.68, -78.89, 43.28]
+minzoom: 10
+maxzoom: 16
+description: "Federal 1:50,000 topographic maps of the 1930s: roads, buildings, orchards, woods and the escarpment. No licence text on Brock's record, so it is viewed online only."
+accuracy_note: "Georeferenced by Brock University's Map, Data & GIS Library; error figures are not published. Check a few streets against today's map before trusting a spot."

@@ -1,0 +1,11 @@
+id: notl-st-catharines-1937
+title: "Niagara-on-the-Lake & St. Catharines topographic map, 1937"
+year: 1937
+source: brock_early_niagara
+fetch:
+  method: arcgis_imageserver
+  url: https://terra.library.brocku.ca/arcgis/rest/services/NiagaraTopos/NOTLStC25k1937/ImageServer
+minzoom: 10
+maxzoom: 16
+description: "1:25,000 topographic map, 1937: buildings, orchards, roads and the escarpment between St. Catharines and the Niagara River. Brock University Map, Data & GIS Library; licence No restrictions."
+accuracy_note: "Georeferenced by Brock University's Map, Data & GIS Library; error figures are not published. Check a few streets against today's map before trusting a spot."

@@ -1,0 +1,13 @@
+id: grantham-1876
+title: "Grantham Township, 1876"
+year: 1876
+source: brock_early_niagara
+fetch:
+  method: live_tiles
+  service: https://terra.library.brocku.ca/arcgis/rest/services/EarlyNiagara/Grantham1876/ImageServer
+  url: "https://terra.library.brocku.ca/arcgis/rest/services/EarlyNiagara/Grantham1876/ImageServer/exportImage?bbox={bbox-epsg-3857}&bboxSR=3857&imageSR=3857&size=256,256&format=png32&interpolation=RSP_BilinearInterpolation&f=image"
+bounds: [-79.29, 43.1, -79.15, 43.25]
+minzoom: 11
+maxzoom: 17
+description: "Grantham Township (today's St. Catharines) from the 1876 county atlas, with farm lots. No licence text on Brock's record, so it is viewed online only."
+accuracy_note: "Georeferenced by Brock University's Map, Data & GIS Library; error figures are not published. Check a few streets against today's map before trusting a spot."
