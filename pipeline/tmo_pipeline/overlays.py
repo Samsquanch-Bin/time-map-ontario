@@ -158,17 +158,35 @@ def _require_tools(*names: str) -> None:
         raise OverlayError(f"missing tools on PATH: {', '.join(missing)} (run inside the data workflow)")
 
 
+def _get(url: str, params: dict[str, Any], timeout: int, attempts: int = 5, want_json: bool = False):
+    """GET with retries: library map servers are sometimes slow or briefly down."""
+    import time
+
+    import requests
+
+    last: Exception | None = None
+    for i in range(attempts):
+        try:
+            r = requests.get(url, params=params, timeout=timeout)
+            r.raise_for_status()
+            return r.json() if want_json else r
+        except (requests.RequestException, ValueError) as exc:
+            last = exc
+            wait = 10 * (i + 1)
+            print(f"retry {i + 1}/{attempts} for {url} in {wait}s: {exc}", flush=True)
+            time.sleep(wait)
+    raise OverlayError(f"giving up on {url}: {last}")
+
+
 def fetch_arcgis_imageserver(ov: OverlayDef, workdir: Path) -> tuple[Path, dict[str, Any]]:
     """Download an ArcGIS ImageServer at native resolution as a georeferenced VRT."""
-    import requests  # local import keeps unit tests light
-
     url = ov.fetch["url"].rstrip("/")
-    info = requests.get(url, params={"f": "json"}, timeout=60).json()
+    info = _get(url, {"f": "json"}, 60, want_json=True)
     if "error" in info:
         raise OverlayError(f"{ov.id}: ImageServer error {info['error']}")
     item = {}
     try:
-        item = requests.get(f"{url}/info/iteminfo", params={"f": "json"}, timeout=60).json()
+        item = _get(f"{url}/info/iteminfo", {"f": "json"}, 60, attempts=2, want_json=True)
     except Exception as exc:  # noqa: BLE001 - metadata is informative only
         print(f"warning: could not read iteminfo: {exc}")
     ext = info["extent"]
@@ -194,8 +212,7 @@ def fetch_arcgis_imageserver(ov: OverlayDef, workdir: Path) -> tuple[Path, dict[
             "interpolation": "RSP_BilinearInterpolation",
             "f": "image",
         }
-        resp = requests.get(f"{url}/exportImage", params=params, timeout=600)
-        resp.raise_for_status()
+        resp = _get(f"{url}/exportImage", params, 600)
         if "image" not in resp.headers.get("content-type", "") and not resp.content[:4] in (b"II*\x00", b"MM\x00*"):
             raise OverlayError(f"{ov.id}: exportImage did not return an image: {resp.text[:300]}")
         raw.write_bytes(resp.content)
