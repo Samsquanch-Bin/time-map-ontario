@@ -1,0 +1,16 @@
+id: mcmaster_goad_hamilton_1898
+name: Goad's Insurance Plan of the City of Hamilton, January 1898 (McMaster University Library)
+provider: McMaster University Library (facsimile of the British Library copy)
+homepage: https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1898
+data_url: https://expo.mcmaster.ca/api/items?fulltext_search=Insurance%20plan%20of%20the%20city%20of%20Hamilton
+licence: Public domain ("Copyright, public domain" in McMaster's item records)
+attribution: "Chas. E. Goad, Insurance Plan of the City of Hamilton (1898); facsimile courtesy of McMaster University Library; georeferenced for this app"
+used_for: [overlays]
+terms_notes: >
+  McMaster's rights statement: "Copyright, public domain: McMaster University owns the
+  rights to the archival copy of the digital image in TIFF format." The plan itself is
+  public domain; we derive tiles from the image and credit McMaster.
+licence_check:
+  status: confirmed
+  method: Rights field read from McMaster expo API item records by the GitHub research run
+  checked_on: "2026-11-14"

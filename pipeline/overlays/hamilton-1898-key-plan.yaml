@@ -1,0 +1,28 @@
+id: hamilton-1898-key-plan
+title: "Hamilton, 1898 – Goad's key plan (every block by building type)"
+year: 1898
+source: mcmaster_goad_hamilton_1898
+fetch:
+  method: gcp_sheets
+  service: https://expo.mcmaster.ca/s/3el3-013/item/161
+  max_rmse_m: 15
+  sheets:
+    - label: key-plan
+      url: https://expo.mcmaster.ca/files/original/e5a4af2d3f953a2f0b85b8ee5976b73a11b782be.tiff
+      # map body only (drops the far-left legend strip); pixels in the original TIFF
+      crop: [1250, 950, 7000, 8100]
+      # [pixel x, pixel y, lon, lat, modern intersection (OpenStreetMap)]
+      gcps:
+      - [3683, 3339, -79.8653955, 43.2650794, "James Street North & Murray Street East"]
+      - [3683, 3594, -79.865813, 43.2641092, "Barton Street East & James Street North"]
+      - [3688, 2895, -79.8645719, 43.2669566, "James Street North & Strachan Street East"]
+      - [5447, 3616, -79.8558865, 43.2616479, "Barton Street East & Wellington Street North"]
+      - [1976, 6137, -79.8802052, 43.2557841, "Hunter Street West & Queen Street South"]
+      - [1976, 5827, -79.8797596, 43.256901, "Jackson Street West & Queen Street South"]
+      - [1990, 7160, -79.8820352, 43.2512608, "Herkimer Street & Queen Street South"]
+      - [2823, 7213, -79.8771689, 43.2499962, "Bay Street South & Herkimer Street"]
+      - [5443, 5520, -79.859264, 43.2535268, "King Street East & Wellington Street North"]
+minzoom: 12
+maxzoom: 18
+description: "Key plan of Hamilton, Volume I, January 1898, by Chas. E. Goad: every block of the old city coloured by building material (pink = brick, yellow = wooden, blue = stone) with the numbers of the detailed sheets. Facsimile photographed from the British Library copy; McMaster University Library."
+accuracy_note: "Georeferenced for this app from 9 street corners matched to today's OpenStreetMap intersections with an affine fit. Streets renamed or moved since 1898 couldn't be used."
