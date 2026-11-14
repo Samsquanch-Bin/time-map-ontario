@@ -105,3 +105,56 @@ export function hasPack(catalog: Catalog | null, installed: Installed, file: str
   const p = catalog?.packs.find((x) => x.file === file);
   return !!p && installed[file] === p.sha256;
 }
+
+// ------------------------------------------------------------ automatic map choice
+
+/** Below this zoom the app shows no old map on its own: at region scale they'd just pile up. */
+export const AUTO_MIN_ZOOM = 11;
+
+type Ring = number[][];
+
+function inRing([x, y]: [number, number], ring: Ring): boolean {
+  let inside = false;
+  for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+    const [xi, yi] = ring[i];
+    const [xj, yj] = ring[j];
+    if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) inside = !inside;
+  }
+  return inside;
+}
+
+/** Is the point on the scanned part of this map (not just inside its bounding box)? */
+export function covers(o: Overlay, pt: [number, number]): boolean {
+  const [w, s, e, n] = o.bounds;
+  if (pt[0] < w || pt[0] > e || pt[1] < s || pt[1] > n) return false;
+  const polys: Ring[][] = o.footprint.type === "Polygon" ? [o.footprint.coordinates] : o.footprint.coordinates;
+  return polys.some(([outer, ...holes]) => inRing(pt, outer) && !holes.some((h) => inRing(pt, h)));
+}
+
+/**
+ * How "local" a map is. Maps that show individual houses and lots (fire insurance
+ * plans, town plans) are both the most zoomable and cover the smallest area, so
+ * score = deepest zoom + half a point for every halving of the area covered.
+ */
+export function detailScore(o: Overlay): number {
+  const [w, s, e, n] = o.bounds;
+  const area = Math.max(1e-9, (e - w) * (n - s));
+  return o.maxzoom - 0.5 * Math.log2(area);
+}
+
+/** Maps covering this spot that can be drawn at this zoom, most local first. */
+export function mapsHere(overlays: Overlay[], center: [number, number], zoom: number): Overlay[] {
+  return overlays
+    .filter((o) => zoom >= o.minzoom && covers(o, center))
+    .sort((a, b) => detailScore(b) - detailScore(a) || a.year - b.year);
+}
+
+/**
+ * The map to show: the one the person picked if it still covers this spot,
+ * otherwise the most local one (nothing when zoomed out to region scale).
+ */
+export function chooseOverlay(here: Overlay[], pickedId: string | null, zoom: number): Overlay | null {
+  const picked = pickedId ? here.find((o) => o.id === pickedId) : undefined;
+  if (picked) return picked;
+  return zoom >= AUTO_MIN_ZOOM ? (here[0] ?? null) : null;
+}

@@ -1,6 +1,6 @@
 import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import { Camera, type CameraRef, Map, type TrackUserLocation, UserLocation } from "@maplibre/maplibre-react-native";
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Alert, Linking, StyleSheet, View } from "react-native";
 import { Button, FAB, IconButton, Surface, Text, useTheme } from "react-native-paper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -10,7 +10,7 @@ import { pmtilesUrl } from "../data/packs";
 import { setMapStatus, startDiagnostics } from "../diagnostics";
 import { usePlaces } from "../data/usePlaces";
 import { placesToGeoJSON, visiblePlaces } from "../logic/places";
-import { hasPack, overlayAvailable } from "../logic/catalog";
+import { AUTO_MIN_ZOOM, chooseOverlay, hasPack, mapsHere, type Overlay, overlayAvailable } from "../logic/catalog";
 import { overlaps } from "../logic/era";
 import { requestForegroundLocation } from "../location";
 import { buildBaseStyle, firstLabelLayerId, type MapTheme } from "../map/baseStyle";
@@ -20,7 +20,7 @@ import { CreditsPanel, DataPanel, LayersPanel, OverlayPanel, PlacePanel, type Sh
 import { SwipeCompare } from "./SwipeCompare";
 
 const BASEMAP_FILE = "basemap-south.pmtiles";
-const SNAP_POINTS = ["16%", "50%", "85%"]; // never covers the whole map
+const SNAP_POINTS = ["17%", "50%", "85%"]; // never covers the whole map
 
 export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
   const theme = useTheme();
@@ -41,10 +41,25 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
   const labelLayerId = useMemo(() => (offlineStyle ? firstLabelLayerId(offlineStyle) : undefined), [offlineStyle]);
   useMemo(() => startDiagnostics(), []);
 
-  const activeOverlay = useMemo(() => {
-    const o = catalog?.overlays.find((x) => x.id === s.activeOverlayId);
-    return o && overlaps(o.era, s.era) && overlayAvailable(catalog, s.installed, o) ? o : null;
-  }, [catalog, s.activeOverlayId, s.era, s.installed]);
+  // Old maps covering the middle of the screen, most local first; show the picked one or the best.
+  const usable = useMemo(
+    () => (catalog?.overlays ?? []).filter((o) => overlaps(o.era, s.era) && overlayAvailable(catalog, s.installed, o)),
+    [catalog, s.era, s.installed],
+  );
+  const here = useMemo(() => {
+    if (!s.view) return [];
+    const [w, so, e, n] = s.view.bounds;
+    return mapsHere(usable, [(w + e) / 2, (so + n) / 2], s.view.zoom);
+  }, [usable, s.view]);
+  const activeOverlay = s.oldMapOn ? chooseOverlay(here, s.activeOverlayId, s.view?.zoom ?? 0) : null;
+  // A hand-picked map is let go once you move somewhere it doesn't cover
+  // (but not while the camera is still flying to it).
+  const flyingTo = useRef<string | null>(null);
+  useEffect(() => {
+    if (!s.view || !s.activeOverlayId) return;
+    if (here.some((o) => o.id === s.activeOverlayId)) flyingTo.current = null;
+    else if (flyingTo.current !== s.activeOverlayId) s.set({ activeOverlayId: null });
+  }, [here, s.view, s.activeOverlayId]);
   const coverage = useMemo(
     () => (s.coverageVisible ? (catalog?.overlays ?? []).filter((o) => overlaps(o.era, s.era)) : null),
     [catalog, s.coverageVisible, s.era],
@@ -62,6 +77,17 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
     setView(v);
     sheetRef.current?.snapToIndex(1);
   }, []);
+
+  // Fly to a map, close enough in that it's drawn there.
+  const zoomTo = (o: Overlay) => {
+    flyingTo.current = o.id;
+    const [w, so, e, n] = o.bounds;
+    const inside = (w + e) / 2;
+    const mid = (so + n) / 2;
+    const big = Math.max(e - w, n - so) > 0.15;
+    if (big) cameraRef.current?.flyTo({ center: [inside, mid], zoom: Math.max(o.minzoom, AUTO_MIN_ZOOM), duration: 900 });
+    else cameraRef.current?.fitBounds([w, so, e, n], { padding: { top: 40, right: 40, bottom: 200, left: 40 }, duration: 800 });
+  };
 
   const onLocate = async () => {
     const ok = await requestForegroundLocation();
@@ -102,7 +128,10 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
           const { center, zoom, bearing, pitch, userInteraction, bounds } = e.nativeEvent;
           if (comparing) compareCameraRef.current?.jumpTo({ center, zoom, bearing, pitch });
           s.set({ view: { bounds: bounds as [number, number, number, number], zoom } });
-          if (userInteraction) s.set({ camera: { center: center as [number, number], zoom } });
+          if (userInteraction) {
+            flyingTo.current = null;
+            s.set({ camera: { center: center as [number, number], zoom } });
+          }
         }}
       >
         <Camera
@@ -171,7 +200,7 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
           {view.name !== "layers" ? (
             <IconButton icon="arrow-left" accessibilityLabel="Back" onPress={() => setView({ name: "layers" })} style={styles.back} />
           ) : null}
-          {view.name === "layers" ? <LayersPanel go={go} placeCount={shownPlaces.length} /> : null}
+          {view.name === "layers" ? <LayersPanel go={go} placeCount={shownPlaces.length} here={here} shown={activeOverlay} /> : null}
           {view.name === "place" && placeForView ? (
             <PlacePanel
               place={placeForView}
@@ -184,13 +213,19 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
           {view.name === "overlay" && overlayForView ? (
             <OverlayPanel
               overlay={overlayForView}
+              isShown={activeOverlay?.id === overlayForView.id}
+              onShow={() => {
+                s.set({ activeOverlayId: overlayForView.id, oldMapOn: true, compare: false });
+                if (!here.some((o) => o.id === overlayForView.id)) zoomTo(overlayForView);
+                sheetRef.current?.snapToIndex(0);
+              }}
               onCompare={() => {
-                s.set({ activeOverlayId: overlayForView.id, compare: true });
+                s.set({ activeOverlayId: overlayForView.id, oldMapOn: true, compare: true });
+                if (!here.some((o) => o.id === overlayForView.id)) zoomTo(overlayForView);
                 sheetRef.current?.snapToIndex(0);
               }}
               onZoom={() => {
-                const [w, so, e, n] = overlayForView.bounds;
-                cameraRef.current?.fitBounds([w, so, e, n], { padding: { top: 40, right: 40, bottom: 200, left: 40 }, duration: 800 });
+                zoomTo(overlayForView);
                 sheetRef.current?.snapToIndex(0);
               }}
             />

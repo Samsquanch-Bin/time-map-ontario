@@ -83,23 +83,8 @@ export function MapContent({ labelLayerId, satelliteKey, overlay, overlayOpacity
             }
           }}
         >
-          <Layer type="fill" id="coverage-fill" paint={{ "fill-color": AMBER, "fill-opacity": 0.12 }} />
-          <Layer
-            type="line"
-            id="coverage-line"
-            paint={{ "line-color": AMBER, "line-width": 2, "line-dasharray": [2, 1.5] }}
-          />
-          <Layer
-            type="symbol"
-            id="coverage-label"
-            layout={{
-              "text-field": ["concat", ["get", "title"]],
-              "text-font": ["NotoSansMedium"],
-              "text-size": 13,
-              "symbol-placement": "point",
-            }}
-            paint={{ "text-color": AMBER, "text-halo-color": "#0E1116", "text-halo-width": 1.5 }}
-          />
+          <Layer type="fill" id="coverage-fill" paint={{ "fill-color": AMBER, "fill-opacity": 0.04 }} />
+          <Layer type="line" id="coverage-line" paint={{ "line-color": AMBER, "line-width": 1, "line-opacity": 0.6 }} />
         </GeoJSONSource>
       ) : null}
 

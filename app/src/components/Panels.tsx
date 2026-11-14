@@ -1,14 +1,14 @@
 // Bottom-sheet panels: layers, overlay details, settings/data, attributions.
 import { useRef, useState } from "react";
-import { Linking, StyleSheet, View } from "react-native";
-import { Button, Chip, Divider, List, ProgressBar, SegmentedButtons, Switch, Text, TextInput, useTheme } from "react-native-paper";
+import { Linking, Pressable, StyleSheet, View } from "react-native";
+import { Button, Chip, Divider, IconButton, List, ProgressBar, SegmentedButtons, Switch, Text, TextInput, useTheme } from "react-native-paper";
 
 import { fetchRemoteCatalog, freeSpaceBytes, type Progress, syncPacks } from "../data/packs";
 import { useDiagnostics } from "../diagnostics";
-import { type Catalog, formatBytes, hasPack, type Overlay, overlaysInView, packsToDownload, totalBytes } from "../logic/catalog";
-import { formatRange, overlaps } from "../logic/era";
+import { AUTO_MIN_ZOOM, type Catalog, formatBytes, hasPack, type Overlay, packsToDownload, totalBytes } from "../logic/catalog";
+import { formatRange } from "../logic/era";
 import { CATEGORIES, type Place, precisionText } from "../logic/places";
-import { ISSUES_EMAIL_SUBJECT } from "../config";
+import { ERA_MAX, ERA_MIN, ISSUES_EMAIL_SUBJECT } from "../config";
 import { useApp } from "../state/store";
 import { EraSlider } from "./EraSlider";
 import { OpacitySlider } from "./OpacitySlider";
@@ -16,40 +16,91 @@ import { OpacitySlider } from "./OpacitySlider";
 
 export type SheetView = { name: "layers" } | { name: "overlay"; id: string } | { name: "place"; id: string } | { name: "data" } | { name: "credits" };
 
-export function LayersPanel({ go, placeCount }: { go: (v: SheetView) => void; placeCount: number }) {
+type LayersProps = {
+  go: (v: SheetView) => void;
+  placeCount: number;
+  /** Maps covering the centre of the screen at this zoom, most local first. */
+  here: Overlay[];
+  /** The map being drawn now (picked by hand or chosen automatically), if any. */
+  shown: Overlay | null;
+};
+
+export function LayersPanel({ go, placeCount, here, shown }: LayersProps) {
   const theme = useTheme();
   const s = useApp();
+  const [more, setMore] = useState(false);
   const catalog = s.catalog;
-  const inEra = (catalog?.overlays ?? []).filter((o) => overlaps(o.era, s.era));
-  // Until the map reports its first view, list everything.
-  const overlays = s.view ? overlaysInView(inEra, s.view.bounds) : inEra;
-  const hidden = (catalog?.overlays.length ?? 0) - inEra.length;
-  const elsewhere = inEra.length - overlays.length;
   const zoom = s.view?.zoom ?? 0;
-  const active = catalog?.overlays.find((o) => o.id === s.activeOverlayId) ?? null;
-  const activeHidden = active && !overlaps(active.era, s.era);
+  const idx = shown ? here.findIndex((o) => o.id === shown.id) : -1;
+  const allYears = s.era[0] <= ERA_MIN && s.era[1] >= ERA_MAX;
+
+  const step = (d: number) => {
+    if (here.length === 0) return;
+    const next = here[(Math.max(idx, 0) + d + here.length) % here.length];
+    s.set({ activeOverlayId: next.id, oldMapOn: true, compare: false });
+  };
+
+  let headline: string;
+  let detail: string;
+  if (!catalog) {
+    headline = "No map data yet";
+    detail = "Download the map data to see old maps.";
+  } else if (!s.oldMapOn) {
+    headline = "Old maps are off";
+    detail = "Turn them on to see the old map for wherever you zoom in.";
+  } else if (shown) {
+    headline = shown.title;
+    detail = [
+      `${shown.year}`,
+      shown.tiles ? "needs internet" : "",
+      here.length > 1 ? `${idx + 1} of ${here.length} maps here` : "only map here",
+    ]
+      .filter(Boolean)
+      .join(" · ");
+  } else if (zoom < AUTO_MIN_ZOOM) {
+    headline = "Zoom in on a town";
+    detail = "The best old map for that spot appears by itself.";
+  } else {
+    headline = "No old map of this spot";
+    detail = allYears ? "Try a town centre nearby." : `None from ${formatRange(s.era)}. Widen the years under More.`;
+  }
 
   return (
     <View style={styles.gap}>
-      <EraSlider value={s.era} onChange={(era) => s.set({ era })} />
-
-      {active ? (
-        <View style={[styles.card, { borderColor: theme.colors.primary }]}>
-          <View style={styles.row}>
-            <Text variant="titleSmall" style={{ flex: 1 }}>
-              {active.title}
+      <View style={[styles.card, { borderColor: theme.colors.primary }]}>
+        <View style={styles.nowRow}>
+          <IconButton icon="chevron-left" accessibilityLabel="Previous map here" disabled={here.length < 2 || !s.oldMapOn} onPress={() => step(-1)} />
+          <Pressable style={{ flex: 1 }} disabled={!shown} onPress={() => shown && go({ name: "overlay", id: shown.id })}>
+            <Text variant="titleMedium" numberOfLines={2}>
+              {headline}
             </Text>
-            <Button compact onPress={() => go({ name: "overlay", id: active.id })}>
-              Details
+            <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>
+              {detail}
+            </Text>
+          </Pressable>
+          <IconButton icon="chevron-right" accessibilityLabel="Next map here" disabled={here.length < 2 || !s.oldMapOn} onPress={() => step(1)} />
+        </View>
+        {!catalog ? (
+          <Button mode="contained" icon="download" onPress={() => go({ name: "data" })} style={{ alignSelf: "flex-start" }}>
+            Download map data
+          </Button>
+        ) : null}
+      </View>
+
+      {catalog ? (
+        <View style={styles.row}>
+          <Text variant="titleSmall" style={{ flex: 1 }}>
+            Old maps
+          </Text>
+          {s.activeOverlayId ? (
+            <Button compact onPress={() => s.set({ activeOverlayId: null })}>
+              Back to automatic
             </Button>
-          </View>
-          {activeHidden ? (
-            <Text style={{ color: theme.colors.onSurfaceVariant }}>Hidden: {active.year} is outside the selected years.</Text>
-          ) : (
-            <OpacitySlider value={s.overlayOpacity} onChange={(overlayOpacity) => s.set({ overlayOpacity })} />
-          )}
+          ) : null}
+          <Switch value={s.oldMapOn} onValueChange={(oldMapOn) => s.set({ oldMapOn, compare: false })} />
         </View>
       ) : null}
+      {shown ? <OpacitySlider value={s.overlayOpacity} onChange={(overlayOpacity) => s.set({ overlayOpacity })} /> : null}
 
       <Text variant="titleSmall">Base map</Text>
       <SegmentedButtons
@@ -69,81 +120,90 @@ export function LayersPanel({ go, placeCount }: { go: (v: SheetView) => void; pl
 
       <View style={styles.row}>
         <Text variant="titleSmall" style={{ flex: 1 }}>
-          Old maps here
-        </Text>
-        <Text>Coverage</Text>
-        <Switch value={s.coverageVisible} onValueChange={(coverageVisible) => s.set({ coverageVisible })} />
-      </View>
-      {!catalog ? (
-        <Button mode="contained" icon="download" onPress={() => go({ name: "data" })} style={{ alignSelf: "flex-start" }}>
-          Download map data
-        </Button>
-      ) : overlays.length === 0 ? (
-        <Text style={{ color: theme.colors.onSurfaceVariant }}>
-          No old maps for this area in {formatRange(s.era)}. Move the map, or widen the years above. Turn on Coverage to see where maps exist.
-        </Text>
-      ) : (
-        overlays.map((o) => (
-          <List.Item
-            key={o.id}
-            title={o.title}
-            description={`${o.year}${o.tiles ? " · online only" : ""}${zoom < o.minzoom ? " · zoom in to see" : ""}${o.sample ? " · SAMPLE DATA" : ""}`}
-            onPress={() => s.set({ activeOverlayId: s.activeOverlayId === o.id ? null : o.id, compare: false })}
-            left={(p) => <List.Icon {...p} icon={s.activeOverlayId === o.id ? "checkbox-marked" : "checkbox-blank-outline"} color={theme.colors.primary} />}
-            right={(p) => <List.Icon {...p} icon="information-outline" />}
-            style={styles.item}
-          />
-        ))
-      )}
-      {elsewhere > 0 || hidden > 0 ? (
-        <Text style={{ color: theme.colors.onSurfaceVariant }}>
-          {[elsewhere > 0 ? `${elsewhere} more elsewhere on the map` : "", hidden > 0 ? `${hidden} outside the selected years` : ""].filter(Boolean).join(" · ")}.
-        </Text>
-      ) : null}
-
-      <View style={styles.row}>
-        <Text variant="titleSmall" style={{ flex: 1 }}>
           Places of interest
         </Text>
         <Switch value={s.placesVisible} onValueChange={(placesVisible) => s.set({ placesVisible })} />
       </View>
-      {s.placesVisible ? (
-        <View style={styles.row}>
-          {CATEGORIES.map((c) => {
-            const on = !s.hiddenCategories.includes(c.id);
-            return (
-              <Chip
-                key={c.id}
-                icon={c.icon}
-                selected={on}
-                showSelectedCheck={false}
-                selectedColor={on ? c.color : undefined}
-                onPress={() =>
-                  s.set({ hiddenCategories: on ? [...s.hiddenCategories, c.id] : s.hiddenCategories.filter((x) => x !== c.id) })
-                }
-                style={{ minHeight: 40 }}
-              >
-                {c.label}
-              </Chip>
-            );
-          })}
-        </View>
-      ) : null}
-      <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>
-        {placeCount > 0 ? `${placeCount} place(s) shown for these years.` : "No researched places on this phone yet."} Coming next: terrain and trails.
-      </Text>
 
       <Divider />
+      <List.Item
+        title="More"
+        description={allYears ? "Years, place types, every map here" : `Years: ${formatRange(s.era)}`}
+        left={(p) => <List.Icon {...p} icon="tune-variant" />}
+        right={(p) => <List.Icon {...p} icon={more ? "chevron-up" : "chevron-down"} />}
+        onPress={() => setMore(!more)}
+        style={styles.item}
+      />
+      {more ? (
+        <View style={styles.gap}>
+          <Text variant="titleSmall">Only maps and places from these years</Text>
+          <EraSlider value={s.era} onChange={(era) => s.set({ era })} />
+
+          {s.placesVisible ? (
+            <>
+              <Text variant="titleSmall">Place types</Text>
+              <View style={styles.row}>
+                {CATEGORIES.map((c) => {
+                  const on = !s.hiddenCategories.includes(c.id);
+                  return (
+                    <Chip
+                      key={c.id}
+                      icon={c.icon}
+                      selected={on}
+                      showSelectedCheck={false}
+                      selectedColor={on ? c.color : undefined}
+                      onPress={() =>
+                        s.set({ hiddenCategories: on ? [...s.hiddenCategories, c.id] : s.hiddenCategories.filter((x) => x !== c.id) })
+                      }
+                      style={{ minHeight: 40 }}
+                    >
+                      {c.label}
+                    </Chip>
+                  );
+                })}
+              </View>
+              <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>
+                {placeCount > 0 ? `${placeCount} place(s) shown for these years.` : "No researched places on this phone yet."}
+              </Text>
+            </>
+          ) : null}
+
+          <View style={styles.row}>
+            <Text variant="titleSmall" style={{ flex: 1 }}>
+              Outline where old maps exist
+            </Text>
+            <Switch value={s.coverageVisible} onValueChange={(coverageVisible) => s.set({ coverageVisible })} />
+          </View>
+
+          {here.length > 0 ? (
+            <>
+              <Text variant="titleSmall">Every map of this spot</Text>
+              {here.map((o) => (
+                <List.Item
+                  key={o.id}
+                  title={o.title}
+                  description={`${o.year}${o.tiles ? " · needs internet" : ""}${o.sample ? " · SAMPLE DATA" : ""}`}
+                  onPress={() => s.set({ activeOverlayId: o.id, oldMapOn: true, compare: false })}
+                  left={(p) => (
+                    <List.Icon {...p} icon={shown?.id === o.id ? "radiobox-marked" : "radiobox-blank"} color={theme.colors.primary} />
+                  )}
+                  right={(p) => <IconButton {...p} icon="information-outline" onPress={() => go({ name: "overlay", id: o.id })} />}
+                  style={styles.item}
+                />
+              ))}
+            </>
+          ) : null}
+        </View>
+      ) : null}
+
       <List.Item title="Settings & data" left={(p) => <List.Icon {...p} icon="cog-outline" />} onPress={() => go({ name: "data" })} style={styles.item} />
       <List.Item title="Sources & credits" left={(p) => <List.Icon {...p} icon="book-open-outline" />} onPress={() => go({ name: "credits" })} style={styles.item} />
     </View>
   );
 }
 
-export function OverlayPanel({ overlay, onCompare, onZoom }: { overlay: Overlay; onCompare: () => void; onZoom: () => void }) {
+export function OverlayPanel({ overlay, isShown, onShow, onCompare, onZoom }: { overlay: Overlay; isShown: boolean; onShow: () => void; onCompare: () => void; onZoom: () => void }) {
   const theme = useTheme();
-  const s = useApp();
-  const isActive = s.activeOverlayId === overlay.id;
   return (
     <View style={styles.gap}>
       <Text variant="headlineSmall">{overlay.title}</Text>
@@ -153,9 +213,11 @@ export function OverlayPanel({ overlay, onCompare, onZoom }: { overlay: Overlay;
       </Text>
       {overlay.description ? <Text>{overlay.description}</Text> : null}
       <View style={styles.row}>
-        <Button mode={isActive ? "outlined" : "contained"} onPress={() => s.set({ activeOverlayId: isActive ? null : overlay.id })}>
-          {isActive ? "Hide" : "Show"}
-        </Button>
+        {isShown ? null : (
+          <Button mode="contained" onPress={onShow}>
+            Show
+          </Button>
+        )}
         <Button mode="outlined" icon="arrow-split-vertical" onPress={onCompare}>
           Compare
         </Button>
@@ -413,6 +475,7 @@ const styles = StyleSheet.create({
   gap: { gap: 10 },
   row: { flexDirection: "row", alignItems: "center", gap: 8, flexWrap: "wrap" },
   card: { borderWidth: 1, borderRadius: 8, padding: 10, gap: 6 },
+  nowRow: { flexDirection: "row", alignItems: "center", marginHorizontal: -8 },
   item: { minHeight: 52, paddingHorizontal: 0 },
   credit: { gap: 2, paddingVertical: 4 },
   story: { fontSize: 16, lineHeight: 24 },

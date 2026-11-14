@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
-import { type Catalog, formatBytes, hasPack, packsToDownload, parseCatalog, staleFiles, totalBytes } from "../src/logic/catalog";
+import { type Catalog, chooseOverlay, covers, formatBytes, mapsHere, type Overlay, hasPack, packsToDownload, parseCatalog, staleFiles, totalBytes } from "../src/logic/catalog";
 
 const catalog: Catalog = {
   version: 1,
@@ -59,4 +59,39 @@ test("overlaysInView lists maps covering the view, most detailed first", async (
   const hamilton: [number, number, number, number] = [-79.9, 43.22, -79.85, 43.27];
   assert.deepEqual(overlaysInView([county, far, city], hamilton).map((o) => o.id), ["city", "county"]);
   assert.deepEqual(overlaysInView([county], null), []);
+});
+
+const box = (id: string, b: [number, number, number, number], maxzoom: number, minzoom = 10, year = 1900) =>
+  ({
+    id, title: id, year, era: [year, year], accuracy_note: "", minzoom, maxzoom, bounds: b,
+    footprint: { type: "Polygon", coordinates: [[[b[0], b[1]], [b[2], b[1]], [b[2], b[3]], [b[0], b[3]], [b[0], b[1]]]] },
+    source_id: "x", licence: "", licence_status: "confirmed", attribution: "x", sample: false,
+  }) as Overlay;
+
+test("auto choice prefers the local, detailed map over county maps and air photos", () => {
+  const county = box("county", [-80.2, 43.0, -79.6, 43.5], 16);
+  const air = box("air", [-79.9, 43.1, -79.5, 43.4], 19, 11);
+  const fip = box("fip", [-79.88, 43.25, -79.85, 43.27], 20, 14);
+  const pt: [number, number] = [-79.87, 43.26];
+  assert.deepEqual(mapsHere([county, air, fip], pt, 15).map((o) => o.id), ["fip", "air", "county"]);
+  // too far out for the fire plan: next best
+  assert.deepEqual(mapsHere([county, air, fip], pt, 12).map((o) => o.id), ["air", "county"]);
+});
+
+test("nothing is picked automatically at region scale, and a picked map sticks while it covers the spot", () => {
+  const a = box("a", [-80, 43, -79, 44], 16);
+  const b = box("b", [-79.6, 43.4, -79.4, 43.6], 18);
+  const here = mapsHere([a, b], [-79.5, 43.5], 12);
+  assert.equal(chooseOverlay(here, null, 12)?.id, "b");
+  assert.equal(chooseOverlay(here, "a", 12)?.id, "a");
+  assert.equal(chooseOverlay(here, "gone", 12)?.id, "b");
+  assert.equal(chooseOverlay(mapsHere([a, b], [-79.5, 43.5], 10), null, 10), null);
+});
+
+test("covers uses the scanned footprint, not the bounding box", () => {
+  const o = box("l", [0, 0, 2, 2], 16);
+  o.footprint = { type: "MultiPolygon", coordinates: [[[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]], [[[1.5, 1.5], [2, 1.5], [2, 2], [1.5, 2], [1.5, 1.5]]]] };
+  assert.equal(covers(o, [0.5, 0.5]), true);
+  assert.equal(covers(o, [1.2, 1.2]), false);
+  assert.equal(covers(o, [1.8, 1.8]), true);
 });

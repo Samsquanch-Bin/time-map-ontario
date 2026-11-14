@@ -16,7 +16,10 @@ type Persisted = {
   basemap: Basemap;
   esriKey: string;
   era: Range;
+  /** A map the person picked by hand; otherwise the most local map here is shown. */
   activeOverlayId: string | null;
+  /** Old maps on or off altogether. */
+  oldMapOn: boolean;
   overlayOpacity: number;
   coverageVisible: boolean;
   placesVisible: boolean;
@@ -41,6 +44,7 @@ export const useApp = create<Persisted & Transient>()(
       esriKey: "",
       era: [ERA_MIN, ERA_MAX],
       activeOverlayId: null,
+      oldMapOn: true,
       overlayOpacity: 0.8,
       coverageVisible: false,
       placesVisible: true,
@@ -55,6 +59,9 @@ export const useApp = create<Persisted & Transient>()(
     }),
     {
       name: "tmo-state-v1",
+      // v2: old maps are chosen automatically; start with the outlines off and no hand-picked map.
+      version: 2,
+      migrate: (old) => ({ ...(old as object), coverageVisible: false, activeOverlayId: null, oldMapOn: true }) as never,
       storage: createJSONStorage(() => AsyncStorage),
       // compare / showUser are per-session; location is never stored.
       partialize: ({ compare: _c, showUser: _s, view: _v, set: _set, ...rest }) => rest,
