@@ -2,268 +2,11 @@
  "retrieved": "2026-11-14",
  "pages": [
   {
-   "url": "https://mdl.library.utoronto.ca/collections/geospatial-data/digital-air-photographs-southern-ontario-1954",
-   "status": 200,
-   "content_type": "text/html; charset=UTF-8",
-   "bytes": 34786,
-   "file": "mdl-library-utoronto-ca-collections-geospatial-data-digital-air-photographs-sout.html",
-   "links": [
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/geospatial-data/digital-air-photographs-southern-ontario-1954#main-content",
-     "text": "Skip to main content"
-    },
-    {
-     "url": "https://library.utoronto.ca/library/mdl",
-     "text": "Visit the new site →"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/",
-     "text": "Map and Data Library Map and Data Library"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/research",
-     "text": "Collections"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/geospatial-data-2",
-     "text": "Geospatial Data"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/numeric-data",
-     "text": "Numeric data"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/maps-atlases",
-     "text": "Maps and atlases"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/air-photos",
-     "text": "Air photos"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/toronto-data",
-     "text": "Toronto data"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/mdl-projects",
-     "text": "MDL data creation projects"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/technology/support",
-     "text": "Technology"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/technology/gis-software",
-     "text": "GIS software"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/about/arcgis-online-data-retention-policy",
-     "text": "ArcGIS Online Data Retention Policy"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/technology/statistical-software",
-     "text": "Statistical software"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/technology/nvivo-software",
-     "text": "Qualitative analysis software"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/dataviz/tools-tutorials",
-     "text": "Data visualization software"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/technology/text-and-data-mining-software/text-and-data-mining-tools-overview",
-     "text": "Text and data mining software"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/technology/computing-facilities-equipment",
-     "text": "MDL computing facilities & equipment"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/get-help-mdl",
-     "text": "Support"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/support/guides",
-     "text": "Guides"
-    },
-    {
-     "url": "https://mdlutoronto.github.io/tutorials-search/",
-     "text": "Learning Materials"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/support/workshops-and-training",
-     "text": "Workshops and Training"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/about",
-     "text": "About"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/about/contact",
-     "text": "Contact us"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/about/hours",
-     "text": "Hours"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/about/listservs",
-     "text": "Listservs"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/mdl-blog",
-     "text": "MDL blog"
-    },
-    {
-     "url": "https://librarysearch.library.utoronto.ca/discovery/login?vid=01UTORONTO_INST%3AUTORONTO&lang=en",
-     "text": "My Account"
-    },
-    {
-     "url": "https://library.utoronto.ca",
-     "text": "UTL"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/covid-19/resources",
-     "text": "COVID-19 resources"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/data-portals/remote-sensing",
-     "text": "Remote sensing resources"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/sites/default/public/styles/medium/public/geospatial-thumbnails/1954c.jpg?itok=Dk6mUfym",
-     "text": "<img src>"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/geospatial-data-type/raster",
-     "text": "Raster"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/subjects-geospatial-data/air-photos",
-     "text": "AIR PHOTOS"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/subjects-geospatial-data/air-photos-black-and-white",
-     "text": "AIR PHOTOS - BLACK AND WHITE"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/geography-geospatial-data/toronto",
-     "text": "TORONTO"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/open-data/openut",
-     "text": "OPEN_UT"
-    },
-    {
-     "url": "https://maps.library.utoronto.ca/APS_1954_2/index.html",
-     "text": "https://maps.library.utoronto.ca/APS_1954_2/index.html"
-    },
-    {
-     "url": "https://onesearch.library.utoronto.ca",
-     "text": "U of T Libraries Home"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/search",
-     "text": "Search"
-    },
-    {
-     "url": "https://library.utoronto.ca/library-hours",
-     "text": "Library hours"
-    },
-    {
-     "url": "https://onesearch.library.utoronto.ca/ask",
-     "text": "Ask Chat"
-    },
-    {
-     "url": "https://q.utoronto.ca/",
-     "text": "Quercus"
-    },
-    {
-     "url": "https://library.utoronto.ca/library-info/ROBARTS",
-     "text": "Robarts"
-    },
-    {
-     "url": "https://gerstein.library.utoronto.ca/",
-     "text": "Gerstein"
-    },
-    {
-     "url": "https://oise.library.utoronto.ca/",
-     "text": "OISE"
-    },
-    {
-     "url": "https://engineering.library.utoronto.ca/",
-     "text": "Engineering"
-    },
-    {
-     "url": "https://library.utm.utoronto.ca/",
-     "text": "UT Mississauga Library"
-    },
-    {
-     "url": "https://utsc.library.utoronto.ca/",
-     "text": "UT Scarborough Library"
-    },
-    {
-     "url": "https://onesearch.library.utoronto.ca/ic-home",
-     "text": "Information Commons"
-    },
-    {
-     "url": "https://library.utoronto.ca/visit",
-     "text": "All libraries"
-    },
-    {
-     "url": "http://mdl.library.utoronto.ca",
-     "text": "Map & Data Library"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/about/contact-form",
-     "text": "Contact us"
-    },
-    {
-     "url": "https://maps.google.ca/maps?f=q&source=s_q&hl=en&geocode=&q=130+St+George+St,+Toronto,+ON&sll=43.662749,-79.395962&sspn=0.012962,0.018454&ie=UTF8&z=17&iwloc=addr",
-     "text": "Map"
-    },
-    {
-     "url": "https://onesearch.library.utoronto.ca/university-toronto-libraries-and-online-accessibility",
-     "text": "web accessibility"
-    },
-    {
-     "url": "https://onesearch.library.utoronto.ca/report-online-resource-problem",
-     "text": "web accessibility problem"
-    },
-    {
-     "url": "https://onesearch.library.utoronto.ca/online-privacy-and-data-collection",
-     "text": "online privacy and data collection"
-    },
-    {
-     "url": "https://www.utoronto.ca/",
-     "text": "University of Toronto"
-    },
-    {
-     "url": "https://twitter.com/MDL_UofT",
-     "text": "Twitter"
-    },
-    {
-     "url": "https://www.instagram.com/mdl_uoft",
-     "text": "Instagram"
-    },
-    {
-     "url": "https://www.linkedin.com/company/mdl-university-of-toronto",
-     "text": "Linkedin"
-    },
-    {
-     "url": "https://library.utoronto.ca/ask",
-     "text": "More Social Media"
-    }
-   ]
-  },
-  {
    "url": "https://mdl.library.utoronto.ca/collections/geospatial-data/historical-air-photos-highway-401-and-queen-elizabeth-way-qew",
    "status": 200,
    "content_type": "text/html; charset=UTF-8",
    "bytes": 36092,
-   "file": "mdl-library-utoronto-ca-collections-geospatial-data-historical-air-photos-highwa.html",
+   "file": "mdl-library-utoronto-ca-collections-geospatial-data-historical-air-photos-highwa-2c3a5f5a.html",
    "links": [
     {
      "url": "https://mdl.library.utoronto.ca/collections/geospatial-data/historical-air-photos-highway-401-and-queen-elizabeth-way-qew#main-content",
@@ -520,7 +263,7 @@
    "status": 200,
    "content_type": "text/html; charset=UTF-8",
    "bytes": 35440,
-   "file": "mdl-library-utoronto-ca-collections-geospatial-data-historical-air-photos-highwa.html",
+   "file": "mdl-library-utoronto-ca-collections-geospatial-data-historical-air-photos-highwa-d922b644.html",
    "links": [
     {
      "url": "https://mdl.library.utoronto.ca/collections/geospatial-data/historical-air-photos-highway-401#main-content",
@@ -777,14 +520,14 @@
    ]
   },
   {
-   "url": "https://mdl.library.utoronto.ca/collections/geospatial-data/1950-halton-hills-air-photos",
+   "url": "https://mdl.library.utoronto.ca/collections/geospatial-data/digital-air-photographs-southern-ontario-1954",
    "status": 200,
    "content_type": "text/html; charset=UTF-8",
-   "bytes": 35068,
-   "file": "mdl-library-utoronto-ca-collections-geospatial-data-1950-halton-hills-air-photos.html",
+   "bytes": 34786,
+   "file": "mdl-library-utoronto-ca-collections-geospatial-data-digital-air-photographs-sout-dbe96b1c.html",
    "links": [
     {
-     "url": "https://mdl.library.utoronto.ca/collections/geospatial-data/1950-halton-hills-air-photos#main-content",
+     "url": "https://mdl.library.utoronto.ca/collections/geospatial-data/digital-air-photographs-southern-ontario-1954#main-content",
      "text": "Skip to main content"
     },
     {
@@ -908,540 +651,10 @@
      "text": "Remote sensing resources"
     },
     {
-     "url": "https://utoronto.maps.arcgis.com/apps/Embed/index.html?webmap=3fd0178b1373472eae2fe21af2d0733c&extent=-80.053,43.5285,-79.7825,43.6794&home=true&zoom=true&scale=true&details=true&legendlayers=true&active_panel=details&basemap_gallery=true&disable_scroll=false&theme=light",
-     "text": "View larger map"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/geospatial-data-type/raster",
-     "text": "Raster"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/subjects-geospatial-data/air-photos",
-     "text": "AIR PHOTOS"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/subjects-geospatial-data/air-photos-black-and-white",
-     "text": "AIR PHOTOS - BLACK AND WHITE"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/geography-geospatial-data/georgetown",
-     "text": "GEORGETOWN"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/geography-geospatial-data/halton-hills",
-     "text": "HALTON HILLS"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/open-data/open",
-     "text": "OPEN"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/air-photos/1950-halton-hills-air-photos/index",
-     "text": "1950 Halton Hills Air Photo Index"
-    },
-    {
-     "url": "https://onesearch.library.utoronto.ca",
-     "text": "U of T Libraries Home"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/search",
-     "text": "Search"
-    },
-    {
-     "url": "https://library.utoronto.ca/library-hours",
-     "text": "Library hours"
-    },
-    {
-     "url": "https://onesearch.library.utoronto.ca/ask",
-     "text": "Ask Chat"
-    },
-    {
-     "url": "https://q.utoronto.ca/",
-     "text": "Quercus"
-    },
-    {
-     "url": "https://library.utoronto.ca/library-info/ROBARTS",
-     "text": "Robarts"
-    },
-    {
-     "url": "https://gerstein.library.utoronto.ca/",
-     "text": "Gerstein"
-    },
-    {
-     "url": "https://oise.library.utoronto.ca/",
-     "text": "OISE"
-    },
-    {
-     "url": "https://engineering.library.utoronto.ca/",
-     "text": "Engineering"
-    },
-    {
-     "url": "https://library.utm.utoronto.ca/",
-     "text": "UT Mississauga Library"
-    },
-    {
-     "url": "https://utsc.library.utoronto.ca/",
-     "text": "UT Scarborough Library"
-    },
-    {
-     "url": "https://onesearch.library.utoronto.ca/ic-home",
-     "text": "Information Commons"
-    },
-    {
-     "url": "https://library.utoronto.ca/visit",
-     "text": "All libraries"
-    },
-    {
-     "url": "http://mdl.library.utoronto.ca",
-     "text": "Map & Data Library"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/about/contact-form",
-     "text": "Contact us"
-    },
-    {
-     "url": "https://maps.google.ca/maps?f=q&source=s_q&hl=en&geocode=&q=130+St+George+St,+Toronto,+ON&sll=43.662749,-79.395962&sspn=0.012962,0.018454&ie=UTF8&z=17&iwloc=addr",
-     "text": "Map"
-    },
-    {
-     "url": "https://onesearch.library.utoronto.ca/university-toronto-libraries-and-online-accessibility",
-     "text": "web accessibility"
-    },
-    {
-     "url": "https://onesearch.library.utoronto.ca/report-online-resource-problem",
-     "text": "web accessibility problem"
-    },
-    {
-     "url": "https://onesearch.library.utoronto.ca/online-privacy-and-data-collection",
-     "text": "online privacy and data collection"
-    },
-    {
-     "url": "https://www.utoronto.ca/",
-     "text": "University of Toronto"
-    },
-    {
-     "url": "https://twitter.com/MDL_UofT",
-     "text": "Twitter"
-    },
-    {
-     "url": "https://www.instagram.com/mdl_uoft",
-     "text": "Instagram"
-    },
-    {
-     "url": "https://www.linkedin.com/company/mdl-university-of-toronto",
-     "text": "Linkedin"
-    },
-    {
-     "url": "https://library.utoronto.ca/ask",
-     "text": "More Social Media"
-    }
-   ]
-  },
-  {
-   "url": "https://mdl.library.utoronto.ca/collections/geospatial-data/toronto-air-photos-1967-1968",
-   "status": 200,
-   "content_type": "text/html; charset=UTF-8",
-   "bytes": 34456,
-   "file": "mdl-library-utoronto-ca-collections-geospatial-data-toronto-air-photos-1967-1968.html",
-   "links": [
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/geospatial-data/toronto-air-photos-1967-1968#main-content",
-     "text": "Skip to main content"
-    },
-    {
-     "url": "https://library.utoronto.ca/library/mdl",
-     "text": "Visit the new site →"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/",
-     "text": "Map and Data Library Map and Data Library"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/research",
-     "text": "Collections"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/geospatial-data-2",
-     "text": "Geospatial Data"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/numeric-data",
-     "text": "Numeric data"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/maps-atlases",
-     "text": "Maps and atlases"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/air-photos",
-     "text": "Air photos"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/toronto-data",
-     "text": "Toronto data"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/mdl-projects",
-     "text": "MDL data creation projects"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/technology/support",
-     "text": "Technology"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/technology/gis-software",
-     "text": "GIS software"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/about/arcgis-online-data-retention-policy",
-     "text": "ArcGIS Online Data Retention Policy"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/technology/statistical-software",
-     "text": "Statistical software"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/technology/nvivo-software",
-     "text": "Qualitative analysis software"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/dataviz/tools-tutorials",
-     "text": "Data visualization software"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/technology/text-and-data-mining-software/text-and-data-mining-tools-overview",
-     "text": "Text and data mining software"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/technology/computing-facilities-equipment",
-     "text": "MDL computing facilities & equipment"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/get-help-mdl",
-     "text": "Support"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/support/guides",
-     "text": "Guides"
-    },
-    {
-     "url": "https://mdlutoronto.github.io/tutorials-search/",
-     "text": "Learning Materials"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/support/workshops-and-training",
-     "text": "Workshops and Training"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/about",
-     "text": "About"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/about/contact",
-     "text": "Contact us"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/about/hours",
-     "text": "Hours"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/about/listservs",
-     "text": "Listservs"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/mdl-blog",
-     "text": "MDL blog"
-    },
-    {
-     "url": "https://librarysearch.library.utoronto.ca/discovery/login?vid=01UTORONTO_INST%3AUTORONTO&lang=en",
-     "text": "My Account"
-    },
-    {
-     "url": "https://library.utoronto.ca",
-     "text": "UTL"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/covid-19/resources",
-     "text": "COVID-19 resources"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/data-portals/remote-sensing",
-     "text": "Remote sensing resources"
-    },
-    {
-     "url": "https://utoronto.maps.arcgis.com/apps/Embed/index.html?webmap=e9ebcd01fec142c98c6b1b82b838cbac&extent=-79.5454,43.5936,-79.2064,43.745&home=true&zoom=true&scale=true&search=true&searchextent=true&details=true&legendlayers=true&active_panel=details&basemap_gallery=true&disable_scroll=false&theme=light",
-     "text": "View larger map"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/subjects-geospatial-data/air-photos",
-     "text": "AIR PHOTOS"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/subjects-geospatial-data/air-photos-black-and-white",
-     "text": "AIR PHOTOS - BLACK AND WHITE"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/geography-geospatial-data/toronto",
-     "text": "TORONTO"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/open-data/not-open",
-     "text": "Not Open"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/air-photos/1967-68-toronto-air-photos/index",
-     "text": "https://mdl.library.utoronto.ca/collections/air-photos/1967-68-toronto-air-phot…"
-    },
-    {
-     "url": "https://onesearch.library.utoronto.ca",
-     "text": "U of T Libraries Home"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/search",
-     "text": "Search"
-    },
-    {
-     "url": "https://library.utoronto.ca/library-hours",
-     "text": "Library hours"
-    },
-    {
-     "url": "https://onesearch.library.utoronto.ca/ask",
-     "text": "Ask Chat"
-    },
-    {
-     "url": "https://q.utoronto.ca/",
-     "text": "Quercus"
-    },
-    {
-     "url": "https://library.utoronto.ca/library-info/ROBARTS",
-     "text": "Robarts"
-    },
-    {
-     "url": "https://gerstein.library.utoronto.ca/",
-     "text": "Gerstein"
-    },
-    {
-     "url": "https://oise.library.utoronto.ca/",
-     "text": "OISE"
-    },
-    {
-     "url": "https://engineering.library.utoronto.ca/",
-     "text": "Engineering"
-    },
-    {
-     "url": "https://library.utm.utoronto.ca/",
-     "text": "UT Mississauga Library"
-    },
-    {
-     "url": "https://utsc.library.utoronto.ca/",
-     "text": "UT Scarborough Library"
-    },
-    {
-     "url": "https://onesearch.library.utoronto.ca/ic-home",
-     "text": "Information Commons"
-    },
-    {
-     "url": "https://library.utoronto.ca/visit",
-     "text": "All libraries"
-    },
-    {
-     "url": "http://mdl.library.utoronto.ca",
-     "text": "Map & Data Library"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/about/contact-form",
-     "text": "Contact us"
-    },
-    {
-     "url": "https://maps.google.ca/maps?f=q&source=s_q&hl=en&geocode=&q=130+St+George+St,+Toronto,+ON&sll=43.662749,-79.395962&sspn=0.012962,0.018454&ie=UTF8&z=17&iwloc=addr",
-     "text": "Map"
-    },
-    {
-     "url": "https://onesearch.library.utoronto.ca/university-toronto-libraries-and-online-accessibility",
-     "text": "web accessibility"
-    },
-    {
-     "url": "https://onesearch.library.utoronto.ca/report-online-resource-problem",
-     "text": "web accessibility problem"
-    },
-    {
-     "url": "https://onesearch.library.utoronto.ca/online-privacy-and-data-collection",
-     "text": "online privacy and data collection"
-    },
-    {
-     "url": "https://www.utoronto.ca/",
-     "text": "University of Toronto"
-    },
-    {
-     "url": "https://twitter.com/MDL_UofT",
-     "text": "Twitter"
-    },
-    {
-     "url": "https://www.instagram.com/mdl_uoft",
-     "text": "Instagram"
-    },
-    {
-     "url": "https://www.linkedin.com/company/mdl-university-of-toronto",
-     "text": "Linkedin"
-    },
-    {
-     "url": "https://library.utoronto.ca/ask",
-     "text": "More Social Media"
-    }
-   ]
-  },
-  {
-   "url": "https://mdl.library.utoronto.ca/collections/geospatial-data/toronto-aerial-photographs-1947-black-and-white-and-colourized",
-   "status": 200,
-   "content_type": "text/html; charset=UTF-8",
-   "bytes": 38008,
-   "file": "mdl-library-utoronto-ca-collections-geospatial-data-toronto-aerial-photographs-1.html",
-   "links": [
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/geospatial-data/toronto-aerial-photographs-1947-black-and-white-and-colourized#main-content",
-     "text": "Skip to main content"
-    },
-    {
-     "url": "https://library.utoronto.ca/library/mdl",
-     "text": "Visit the new site →"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/",
-     "text": "Map and Data Library Map and Data Library"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/research",
-     "text": "Collections"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/geospatial-data-2",
-     "text": "Geospatial Data"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/numeric-data",
-     "text": "Numeric data"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/maps-atlases",
-     "text": "Maps and atlases"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/air-photos",
-     "text": "Air photos"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/toronto-data",
-     "text": "Toronto data"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/mdl-projects",
-     "text": "MDL data creation projects"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/technology/support",
-     "text": "Technology"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/technology/gis-software",
-     "text": "GIS software"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/about/arcgis-online-data-retention-policy",
-     "text": "ArcGIS Online Data Retention Policy"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/technology/statistical-software",
-     "text": "Statistical software"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/technology/nvivo-software",
-     "text": "Qualitative analysis software"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/dataviz/tools-tutorials",
-     "text": "Data visualization software"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/technology/text-and-data-mining-software/text-and-data-mining-tools-overview",
-     "text": "Text and data mining software"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/technology/computing-facilities-equipment",
-     "text": "MDL computing facilities & equipment"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/get-help-mdl",
-     "text": "Support"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/support/guides",
-     "text": "Guides"
-    },
-    {
-     "url": "https://mdlutoronto.github.io/tutorials-search/",
-     "text": "Learning Materials"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/support/workshops-and-training",
-     "text": "Workshops and Training"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/about",
-     "text": "About"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/about/contact",
-     "text": "Contact us"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/about/hours",
-     "text": "Hours"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/about/listservs",
-     "text": "Listservs"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/mdl-blog",
-     "text": "MDL blog"
-    },
-    {
-     "url": "https://librarysearch.library.utoronto.ca/discovery/login?vid=01UTORONTO_INST%3AUTORONTO&lang=en",
-     "text": "My Account"
-    },
-    {
-     "url": "https://library.utoronto.ca",
-     "text": "UTL"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/covid-19/resources",
-     "text": "COVID-19 resources"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/data-portals/remote-sensing",
-     "text": "Remote sensing resources"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/sites/default/public/styles/medium/public/geospatial-thumbnails/1947_air_photos.jpg?itok=gDissIVW",
+     "url": "https://mdl.library.utoronto.ca/sites/default/public/styles/medium/public/geospatial-thumbnails/1954c.jpg?itok=Dk6mUfym",
      "text": "<img src>"
     },
     {
-     "url": "https://www.toronto.ca/city-government/accountability-operations-customer-service/access-city-information-or-records/city-of-toronto-archives/",
-     "text": "City of Toronto archives"
-    },
-    {
-     "url": "https://www.esri.com/arcgis-blog/products/arcgis-pro/design-planning/colorizing-historic-black-and-white-aerial-imagery-using-deep-learning/",
-     "text": "deep learning"
-    },
-    {
-     "url": "https://maps.library.utoronto.ca/tiles1947/index.html",
-     "text": "https://maps.library.utoronto.ca/tiles1947/index.html"
-    },
-    {
-     "url": "https://utoronto.maps.arcgis.com/apps/Embed/index.html?webmap=53bcf3e19d8a421498ad9be889656967&extent=-79.696,43.5708,-79.0447,43.8477&home=true&zoom=true&scale=true&search=true&searchextent=true&details=true&legendlayers=true&active_panel=details&basemap_gallery=true&disable_scroll=false&theme=light",
-     "text": "View larger map"
-    },
-    {
      "url": "https://mdl.library.utoronto.ca/geospatial-data-type/raster",
      "text": "Raster"
     },
@@ -1452,10 +665,6 @@
     {
      "url": "https://mdl.library.utoronto.ca/subjects-geospatial-data/air-photos-black-and-white",
      "text": "AIR PHOTOS - BLACK AND WHITE"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/subjects-geospatial-data/geospatial-data-sets",
-     "text": "GEOSPATIAL DATA SETS"
     },
     {
      "url": "https://mdl.library.utoronto.ca/geography-geospatial-data/toronto",
@@ -1466,594 +675,8 @@
      "text": "OPEN_UT"
     },
     {
-     "url": "https://mdl.library.utoronto.ca/collections/air-photos/toronto-aerial-photographs-1947/index",
-     "text": "Index"
-    },
-    {
-     "url": "https://onesearch.library.utoronto.ca",
-     "text": "U of T Libraries Home"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/search",
-     "text": "Search"
-    },
-    {
-     "url": "https://library.utoronto.ca/library-hours",
-     "text": "Library hours"
-    },
-    {
-     "url": "https://onesearch.library.utoronto.ca/ask",
-     "text": "Ask Chat"
-    },
-    {
-     "url": "https://q.utoronto.ca/",
-     "text": "Quercus"
-    },
-    {
-     "url": "https://library.utoronto.ca/library-info/ROBARTS",
-     "text": "Robarts"
-    },
-    {
-     "url": "https://gerstein.library.utoronto.ca/",
-     "text": "Gerstein"
-    },
-    {
-     "url": "https://oise.library.utoronto.ca/",
-     "text": "OISE"
-    },
-    {
-     "url": "https://engineering.library.utoronto.ca/",
-     "text": "Engineering"
-    },
-    {
-     "url": "https://library.utm.utoronto.ca/",
-     "text": "UT Mississauga Library"
-    },
-    {
-     "url": "https://utsc.library.utoronto.ca/",
-     "text": "UT Scarborough Library"
-    },
-    {
-     "url": "https://onesearch.library.utoronto.ca/ic-home",
-     "text": "Information Commons"
-    },
-    {
-     "url": "https://library.utoronto.ca/visit",
-     "text": "All libraries"
-    },
-    {
-     "url": "http://mdl.library.utoronto.ca",
-     "text": "Map & Data Library"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/about/contact-form",
-     "text": "Contact us"
-    },
-    {
-     "url": "https://maps.google.ca/maps?f=q&source=s_q&hl=en&geocode=&q=130+St+George+St,+Toronto,+ON&sll=43.662749,-79.395962&sspn=0.012962,0.018454&ie=UTF8&z=17&iwloc=addr",
-     "text": "Map"
-    },
-    {
-     "url": "https://onesearch.library.utoronto.ca/university-toronto-libraries-and-online-accessibility",
-     "text": "web accessibility"
-    },
-    {
-     "url": "https://onesearch.library.utoronto.ca/report-online-resource-problem",
-     "text": "web accessibility problem"
-    },
-    {
-     "url": "https://onesearch.library.utoronto.ca/online-privacy-and-data-collection",
-     "text": "online privacy and data collection"
-    },
-    {
-     "url": "https://www.utoronto.ca/",
-     "text": "University of Toronto"
-    },
-    {
-     "url": "https://twitter.com/MDL_UofT",
-     "text": "Twitter"
-    },
-    {
-     "url": "https://www.instagram.com/mdl_uoft",
-     "text": "Instagram"
-    },
-    {
-     "url": "https://www.linkedin.com/company/mdl-university-of-toronto",
-     "text": "Linkedin"
-    },
-    {
-     "url": "https://library.utoronto.ca/ask",
-     "text": "More Social Media"
-    }
-   ]
-  },
-  {
-   "url": "https://mdl.library.utoronto.ca/subjects-geospatial-data/air-photos?page=1",
-   "status": 200,
-   "content_type": "text/html; charset=UTF-8",
-   "bytes": 37037,
-   "file": "mdl-library-utoronto-ca-subjects-geospatial-data-air-photos-page-1.html",
-   "links": [
-    {
-     "url": "https://mdl.library.utoronto.ca/subjects-geospatial-data/air-photos?page=1#main-content",
-     "text": "Skip to main content"
-    },
-    {
-     "url": "https://library.utoronto.ca/library/mdl",
-     "text": "Visit the new site →"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/",
-     "text": "Map and Data Library Map and Data Library"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/research",
-     "text": "Collections"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/geospatial-data-2",
-     "text": "Geospatial Data"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/numeric-data",
-     "text": "Numeric data"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/maps-atlases",
-     "text": "Maps and atlases"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/air-photos",
-     "text": "Air photos"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/toronto-data",
-     "text": "Toronto data"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/mdl-projects",
-     "text": "MDL data creation projects"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/technology/support",
-     "text": "Technology"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/technology/gis-software",
-     "text": "GIS software"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/about/arcgis-online-data-retention-policy",
-     "text": "ArcGIS Online Data Retention Policy"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/technology/statistical-software",
-     "text": "Statistical software"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/technology/nvivo-software",
-     "text": "Qualitative analysis software"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/dataviz/tools-tutorials",
-     "text": "Data visualization software"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/technology/text-and-data-mining-software/text-and-data-mining-tools-overview",
-     "text": "Text and data mining software"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/technology/computing-facilities-equipment",
-     "text": "MDL computing facilities & equipment"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/get-help-mdl",
-     "text": "Support"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/support/guides",
-     "text": "Guides"
-    },
-    {
-     "url": "https://mdlutoronto.github.io/tutorials-search/",
-     "text": "Learning Materials"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/support/workshops-and-training",
-     "text": "Workshops and Training"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/about",
-     "text": "About"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/about/contact",
-     "text": "Contact us"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/about/hours",
-     "text": "Hours"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/about/listservs",
-     "text": "Listservs"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/mdl-blog",
-     "text": "MDL blog"
-    },
-    {
-     "url": "https://librarysearch.library.utoronto.ca/discovery/login?vid=01UTORONTO_INST%3AUTORONTO&lang=en",
-     "text": "My Account"
-    },
-    {
-     "url": "https://library.utoronto.ca",
-     "text": "UTL"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/geospatial-data/halton-hills-air-photos",
-     "text": "Halton Hills Air Photos"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/geospatial-data/aerial-photographs-valley-lands-toronto",
-     "text": "Aerial Photographs of Valley Lands (Toronto)"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/geospatial-data/toronto-orthophotos-2018",
-     "text": "Toronto Orthophotos 2018"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/geospatial-data/toronto-orthophotos-2015",
-     "text": "Toronto Orthophotos 2015"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/geospatial-data/city-mississauga-colour-orthomosaic-2004",
-     "text": "City of Mississauga Colour Orthomosaic - 2004"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/air-photos/historical-air-photos-ontario-archives-ontario",
-     "text": "Historical Air Photos of Ontario, Archives of Ontario"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/air-photos/toronto-orthophotos-2011",
-     "text": "Toronto Orthophotos 2011"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/air-photos/toronto-orthophotos-2009",
-     "text": "Toronto Orthophotos 2009"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/air-photos/satellite-streetview",
-     "text": "Satellite Streetview"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/air-photos/historical-air-photos-oshawa-newcastle",
-     "text": "Historical Air Photos of Oshawa to Newcastle"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/subjects-geospatial-data/air-photos?page=0",
-     "text": "first First page"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/subjects-geospatial-data/air-photos?page=2",
-     "text": "3"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/subjects-geospatial-data/air-photos?page=3",
-     "text": "4"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/subjects-geospatial-data/air-photos?page=4",
-     "text": "5"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/subjects-geospatial-data/air-photos?page=5",
-     "text": "6"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/subjects-geospatial-data/air-photos?page=6",
-     "text": "7"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/subjects-geospatial-data/air-photos?page=7",
-     "text": "8"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/taxonomy/term/2523/feed",
-     "text": "Subscribe to AIR PHOTOS"
-    },
-    {
-     "url": "https://onesearch.library.utoronto.ca",
-     "text": "U of T Libraries Home"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/search",
-     "text": "Search"
-    },
-    {
-     "url": "https://library.utoronto.ca/library-hours",
-     "text": "Library hours"
-    },
-    {
-     "url": "https://onesearch.library.utoronto.ca/ask",
-     "text": "Ask Chat"
-    },
-    {
-     "url": "https://q.utoronto.ca/",
-     "text": "Quercus"
-    },
-    {
-     "url": "https://library.utoronto.ca/library-info/ROBARTS",
-     "text": "Robarts"
-    },
-    {
-     "url": "https://gerstein.library.utoronto.ca/",
-     "text": "Gerstein"
-    },
-    {
-     "url": "https://oise.library.utoronto.ca/",
-     "text": "OISE"
-    },
-    {
-     "url": "https://engineering.library.utoronto.ca/",
-     "text": "Engineering"
-    },
-    {
-     "url": "https://library.utm.utoronto.ca/",
-     "text": "UT Mississauga Library"
-    },
-    {
-     "url": "https://utsc.library.utoronto.ca/",
-     "text": "UT Scarborough Library"
-    },
-    {
-     "url": "https://onesearch.library.utoronto.ca/ic-home",
-     "text": "Information Commons"
-    },
-    {
-     "url": "https://library.utoronto.ca/visit",
-     "text": "All libraries"
-    },
-    {
-     "url": "http://mdl.library.utoronto.ca",
-     "text": "Map & Data Library"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/about/contact-form",
-     "text": "Contact us"
-    },
-    {
-     "url": "https://maps.google.ca/maps?f=q&source=s_q&hl=en&geocode=&q=130+St+George+St,+Toronto,+ON&sll=43.662749,-79.395962&sspn=0.012962,0.018454&ie=UTF8&z=17&iwloc=addr",
-     "text": "Map"
-    },
-    {
-     "url": "https://onesearch.library.utoronto.ca/university-toronto-libraries-and-online-accessibility",
-     "text": "web accessibility"
-    },
-    {
-     "url": "https://onesearch.library.utoronto.ca/report-online-resource-problem",
-     "text": "web accessibility problem"
-    },
-    {
-     "url": "https://onesearch.library.utoronto.ca/online-privacy-and-data-collection",
-     "text": "online privacy and data collection"
-    },
-    {
-     "url": "https://www.utoronto.ca/",
-     "text": "University of Toronto"
-    },
-    {
-     "url": "https://twitter.com/MDL_UofT",
-     "text": "Twitter"
-    },
-    {
-     "url": "https://www.instagram.com/mdl_uoft",
-     "text": "Instagram"
-    },
-    {
-     "url": "https://www.linkedin.com/company/mdl-university-of-toronto",
-     "text": "Linkedin"
-    },
-    {
-     "url": "https://library.utoronto.ca/ask",
-     "text": "More Social Media"
-    }
-   ]
-  },
-  {
-   "url": "https://mdl.library.utoronto.ca/subjects-geospatial-data/air-photos?page=2",
-   "status": 200,
-   "content_type": "text/html; charset=UTF-8",
-   "bytes": 36857,
-   "file": "mdl-library-utoronto-ca-subjects-geospatial-data-air-photos-page-2.html",
-   "links": [
-    {
-     "url": "https://mdl.library.utoronto.ca/subjects-geospatial-data/air-photos?page=2#main-content",
-     "text": "Skip to main content"
-    },
-    {
-     "url": "https://library.utoronto.ca/library/mdl",
-     "text": "Visit the new site →"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/",
-     "text": "Map and Data Library Map and Data Library"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/research",
-     "text": "Collections"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/geospatial-data-2",
-     "text": "Geospatial Data"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/numeric-data",
-     "text": "Numeric data"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/maps-atlases",
-     "text": "Maps and atlases"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/air-photos",
-     "text": "Air photos"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/toronto-data",
-     "text": "Toronto data"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/mdl-projects",
-     "text": "MDL data creation projects"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/technology/support",
-     "text": "Technology"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/technology/gis-software",
-     "text": "GIS software"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/about/arcgis-online-data-retention-policy",
-     "text": "ArcGIS Online Data Retention Policy"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/technology/statistical-software",
-     "text": "Statistical software"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/technology/nvivo-software",
-     "text": "Qualitative analysis software"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/dataviz/tools-tutorials",
-     "text": "Data visualization software"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/technology/text-and-data-mining-software/text-and-data-mining-tools-overview",
-     "text": "Text and data mining software"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/technology/computing-facilities-equipment",
-     "text": "MDL computing facilities & equipment"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/get-help-mdl",
-     "text": "Support"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/support/guides",
-     "text": "Guides"
-    },
-    {
-     "url": "https://mdlutoronto.github.io/tutorials-search/",
-     "text": "Learning Materials"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/support/workshops-and-training",
-     "text": "Workshops and Training"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/about",
-     "text": "About"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/about/contact",
-     "text": "Contact us"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/about/hours",
-     "text": "Hours"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/about/listservs",
-     "text": "Listservs"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/mdl-blog",
-     "text": "MDL blog"
-    },
-    {
-     "url": "https://librarysearch.library.utoronto.ca/discovery/login?vid=01UTORONTO_INST%3AUTORONTO&lang=en",
-     "text": "My Account"
-    },
-    {
-     "url": "https://library.utoronto.ca",
-     "text": "UTL"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/geospatial-data/prince-edward-island-gis-data-catalogue",
-     "text": "Prince Edward Island GIS Data Catalogue"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/air-photos/historical-air-photos-oshawa-newcastle",
-     "text": "Historical Air Photos of Oshawa to Newcastle"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/geospatial-data/north-vancouver-open-data",
-     "text": "North Vancouver Open Data"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/air-photos/drape-eastern-ontario-orthophotography-project",
-     "text": "DRAPE - Eastern Ontario Orthophotography Project"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/air-photos/orthophotos-peel-region-area-not-mississauga",
-     "text": "Orthophotos of the Peel Region Area (not Mississauga)"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/geospatial-data/orthophotos-oakville",
-     "text": "Orthophotos of Oakville"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/air-photos/city-toronto-digital-air-photos",
-     "text": "City of Toronto Digital Air Photos"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/geospatial-data/vancouver-open-data-catalogue",
-     "text": "Vancouver Open Data Catalogue"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/air-photos/muskoka-and-simcoe-county-digital-orthophotos",
-     "text": "Muskoka and Simcoe County Digital Orthophotos"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/collections/air-photos/city-mississauga-orthophotos-2009",
-     "text": "City of Mississauga Orthophotos - 2009"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/subjects-geospatial-data/air-photos?page=0",
-     "text": "first First page"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/subjects-geospatial-data/air-photos?page=1",
-     "text": "previous Previous page"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/subjects-geospatial-data/air-photos?page=3",
-     "text": "4"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/subjects-geospatial-data/air-photos?page=4",
-     "text": "5"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/subjects-geospatial-data/air-photos?page=5",
-     "text": "6"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/subjects-geospatial-data/air-photos?page=6",
-     "text": "7"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/subjects-geospatial-data/air-photos?page=7",
-     "text": "8"
-    },
-    {
-     "url": "https://mdl.library.utoronto.ca/taxonomy/term/2523/feed",
-     "text": "Subscribe to AIR PHOTOS"
+     "url": "https://maps.library.utoronto.ca/APS_1954_2/index.html",
+     "text": "https://maps.library.utoronto.ca/APS_1954_2/index.html"
     },
     {
      "url": "https://onesearch.library.utoronto.ca",
@@ -2158,7 +781,7 @@
    "status": 200,
    "content_type": "text/html; charset=UTF-8",
    "bytes": 35553,
-   "file": "mdl-library-utoronto-ca-geography-geospatial-data-mississauga.html",
+   "file": "mdl-library-utoronto-ca-geography-geospatial-data-mississauga-720fd816.html",
    "links": [
     {
      "url": "https://mdl.library.utoronto.ca/geography-geospatial-data/mississauga#main-content",
@@ -2423,14 +1046,14 @@
    ]
   },
   {
-   "url": "https://mdl.library.utoronto.ca/open-data/openut",
+   "url": "https://mdl.library.utoronto.ca/geography-geospatial-data/oakville",
    "status": 200,
    "content_type": "text/html; charset=UTF-8",
-   "bytes": 37116,
-   "file": "mdl-library-utoronto-ca-open-data-openut.html",
+   "bytes": 28945,
+   "file": "mdl-library-utoronto-ca-geography-geospatial-data-oakville-90679abe.html",
    "links": [
     {
-     "url": "https://mdl.library.utoronto.ca/open-data/openut#main-content",
+     "url": "https://mdl.library.utoronto.ca/geography-geospatial-data/oakville#main-content",
      "text": "Skip to main content"
     },
     {
@@ -2546,56 +1169,245 @@
      "text": "UTL"
     },
     {
-     "url": "https://mdl.library.utoronto.ca/collections/geospatial-data/toronto-streetcar-routes-1961",
-     "text": "Toronto streetcar routes to 1961"
+     "url": "https://mdl.library.utoronto.ca/collections/geospatial-data/greater-toronto-area-topographic-data",
+     "text": "Greater Toronto Area Topographic Data"
     },
     {
-     "url": "https://mdl.library.utoronto.ca/collections/geospatial-data/china-historical-roads-and-rail",
-     "text": "China Historical Roads and Rail"
+     "url": "https://mdl.library.utoronto.ca/collections/air-photos/greater-toronto-and-golden-horseshoe-colour-digital-orthophotos",
+     "text": "Greater Toronto and Golden Horseshoe Colour Digital Orthophotos"
     },
     {
-     "url": "https://mdl.library.utoronto.ca/collections/geospatial-data/historical-hydrography-toronto",
-     "text": "Historical Hydrography of Toronto"
+     "url": "https://mdl.library.utoronto.ca/taxonomy/term/795/feed",
+     "text": "Subscribe to OAKVILLE"
     },
     {
-     "url": "https://mdl.library.utoronto.ca/collections/geospatial-data/air-photos-southern-ontario",
-     "text": "Air Photos of Southern Ontario 1954"
+     "url": "https://onesearch.library.utoronto.ca",
+     "text": "U of T Libraries Home"
     },
     {
-     "url": "https://mdl.library.utoronto.ca/collections/geospatial-data/toronto-community-and-allotment-gardens",
-     "text": "Toronto Community and Allotment Gardens"
+     "url": "https://mdl.library.utoronto.ca/search",
+     "text": "Search"
     },
     {
-     "url": "https://mdl.library.utoronto.ca/collections/geospatial-data/digital-air-photographs-southern-ontario-1954",
-     "text": "Digital Air Photographs, Southern Ontario 1954"
+     "url": "https://library.utoronto.ca/library-hours",
+     "text": "Library hours"
     },
     {
-     "url": "https://mdl.library.utoronto.ca/collections/geospatial-data/toronto-aerial-photographs-1947-black-and-white-and-colourized",
-     "text": "Toronto Aerial Photographs 1947 (black and white and colourized)"
+     "url": "https://onesearch.library.utoronto.ca/ask",
+     "text": "Ask Chat"
     },
     {
-     "url": "https://mdl.library.utoronto.ca/collections/geospatial-data/historical-air-photos-highway-401",
-     "text": "Historical Air Photos of Highway 401"
+     "url": "https://q.utoronto.ca/",
+     "text": "Quercus"
     },
     {
-     "url": "https://mdl.library.utoronto.ca/collections/geospatial-data/canadian-weather-stations",
-     "text": "Canadian Weather Stations"
+     "url": "https://library.utoronto.ca/library-info/ROBARTS",
+     "text": "Robarts"
     },
     {
-     "url": "https://mdl.library.utoronto.ca/collections/geospatial-data/census-canada-population-and-housing-characteristics-census-tracts",
-     "text": "CENSUS OF CANADA POPULATION AND HOUSING CHARACTERISTICS BY CENSUS TRACTS - TORONTO"
+     "url": "https://gerstein.library.utoronto.ca/",
+     "text": "Gerstein"
     },
     {
-     "url": "https://mdl.library.utoronto.ca/open-data/openut?page=1",
-     "text": "2"
+     "url": "https://oise.library.utoronto.ca/",
+     "text": "OISE"
     },
     {
-     "url": "https://mdl.library.utoronto.ca/open-data/openut?page=2",
-     "text": "3"
+     "url": "https://engineering.library.utoronto.ca/",
+     "text": "Engineering"
     },
     {
-     "url": "https://mdl.library.utoronto.ca/taxonomy/term/3382/feed",
-     "text": "Subscribe to OPEN_UT"
+     "url": "https://library.utm.utoronto.ca/",
+     "text": "UT Mississauga Library"
+    },
+    {
+     "url": "https://utsc.library.utoronto.ca/",
+     "text": "UT Scarborough Library"
+    },
+    {
+     "url": "https://onesearch.library.utoronto.ca/ic-home",
+     "text": "Information Commons"
+    },
+    {
+     "url": "https://library.utoronto.ca/visit",
+     "text": "All libraries"
+    },
+    {
+     "url": "http://mdl.library.utoronto.ca",
+     "text": "Map & Data Library"
+    },
+    {
+     "url": "https://mdl.library.utoronto.ca/about/contact-form",
+     "text": "Contact us"
+    },
+    {
+     "url": "https://maps.google.ca/maps?f=q&source=s_q&hl=en&geocode=&q=130+St+George+St,+Toronto,+ON&sll=43.662749,-79.395962&sspn=0.012962,0.018454&ie=UTF8&z=17&iwloc=addr",
+     "text": "Map"
+    },
+    {
+     "url": "https://onesearch.library.utoronto.ca/university-toronto-libraries-and-online-accessibility",
+     "text": "web accessibility"
+    },
+    {
+     "url": "https://onesearch.library.utoronto.ca/report-online-resource-problem",
+     "text": "web accessibility problem"
+    },
+    {
+     "url": "https://onesearch.library.utoronto.ca/online-privacy-and-data-collection",
+     "text": "online privacy and data collection"
+    },
+    {
+     "url": "https://www.utoronto.ca/",
+     "text": "University of Toronto"
+    },
+    {
+     "url": "https://twitter.com/MDL_UofT",
+     "text": "Twitter"
+    },
+    {
+     "url": "https://www.instagram.com/mdl_uoft",
+     "text": "Instagram"
+    },
+    {
+     "url": "https://www.linkedin.com/company/mdl-university-of-toronto",
+     "text": "Linkedin"
+    },
+    {
+     "url": "https://library.utoronto.ca/ask",
+     "text": "More Social Media"
+    }
+   ]
+  },
+  {
+   "url": "https://mdl.library.utoronto.ca/geography-geospatial-data/burlington",
+   "status": 200,
+   "content_type": "text/html; charset=UTF-8",
+   "bytes": 28328,
+   "file": "mdl-library-utoronto-ca-geography-geospatial-data-burlington-44f91cf9.html",
+   "links": [
+    {
+     "url": "https://mdl.library.utoronto.ca/geography-geospatial-data/burlington#main-content",
+     "text": "Skip to main content"
+    },
+    {
+     "url": "https://library.utoronto.ca/library/mdl",
+     "text": "Visit the new site →"
+    },
+    {
+     "url": "https://mdl.library.utoronto.ca/",
+     "text": "Map and Data Library Map and Data Library"
+    },
+    {
+     "url": "https://mdl.library.utoronto.ca/research",
+     "text": "Collections"
+    },
+    {
+     "url": "https://mdl.library.utoronto.ca/collections/geospatial-data-2",
+     "text": "Geospatial Data"
+    },
+    {
+     "url": "https://mdl.library.utoronto.ca/collections/numeric-data",
+     "text": "Numeric data"
+    },
+    {
+     "url": "https://mdl.library.utoronto.ca/collections/maps-atlases",
+     "text": "Maps and atlases"
+    },
+    {
+     "url": "https://mdl.library.utoronto.ca/collections/air-photos",
+     "text": "Air photos"
+    },
+    {
+     "url": "https://mdl.library.utoronto.ca/collections/toronto-data",
+     "text": "Toronto data"
+    },
+    {
+     "url": "https://mdl.library.utoronto.ca/collections/mdl-projects",
+     "text": "MDL data creation projects"
+    },
+    {
+     "url": "https://mdl.library.utoronto.ca/technology/support",
+     "text": "Technology"
+    },
+    {
+     "url": "https://mdl.library.utoronto.ca/technology/gis-software",
+     "text": "GIS software"
+    },
+    {
+     "url": "https://mdl.library.utoronto.ca/about/arcgis-online-data-retention-policy",
+     "text": "ArcGIS Online Data Retention Policy"
+    },
+    {
+     "url": "https://mdl.library.utoronto.ca/technology/statistical-software",
+     "text": "Statistical software"
+    },
+    {
+     "url": "https://mdl.library.utoronto.ca/technology/nvivo-software",
+     "text": "Qualitative analysis software"
+    },
+    {
+     "url": "https://mdl.library.utoronto.ca/dataviz/tools-tutorials",
+     "text": "Data visualization software"
+    },
+    {
+     "url": "https://mdl.library.utoronto.ca/technology/text-and-data-mining-software/text-and-data-mining-tools-overview",
+     "text": "Text and data mining software"
+    },
+    {
+     "url": "https://mdl.library.utoronto.ca/technology/computing-facilities-equipment",
+     "text": "MDL computing facilities & equipment"
+    },
+    {
+     "url": "https://mdl.library.utoronto.ca/get-help-mdl",
+     "text": "Support"
+    },
+    {
+     "url": "https://mdl.library.utoronto.ca/support/guides",
+     "text": "Guides"
+    },
+    {
+     "url": "https://mdlutoronto.github.io/tutorials-search/",
+     "text": "Learning Materials"
+    },
+    {
+     "url": "https://mdl.library.utoronto.ca/support/workshops-and-training",
+     "text": "Workshops and Training"
+    },
+    {
+     "url": "https://mdl.library.utoronto.ca/about",
+     "text": "About"
+    },
+    {
+     "url": "https://mdl.library.utoronto.ca/about/contact",
+     "text": "Contact us"
+    },
+    {
+     "url": "https://mdl.library.utoronto.ca/about/hours",
+     "text": "Hours"
+    },
+    {
+     "url": "https://mdl.library.utoronto.ca/about/listservs",
+     "text": "Listservs"
+    },
+    {
+     "url": "https://mdl.library.utoronto.ca/mdl-blog",
+     "text": "MDL blog"
+    },
+    {
+     "url": "https://librarysearch.library.utoronto.ca/discovery/login?vid=01UTORONTO_INST%3AUTORONTO&lang=en",
+     "text": "My Account"
+    },
+    {
+     "url": "https://library.utoronto.ca",
+     "text": "UTL"
+    },
+    {
+     "url": "https://mdl.library.utoronto.ca/collections/air-photos/greater-toronto-and-golden-horseshoe-colour-digital-orthophotos",
+     "text": "Greater Toronto and Golden Horseshoe Colour Digital Orthophotos"
+    },
+    {
+     "url": "https://mdl.library.utoronto.ca/taxonomy/term/792/feed",
+     "text": "Subscribe to BURLINGTON"
     },
     {
      "url": "https://onesearch.library.utoronto.ca",
