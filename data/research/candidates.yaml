@@ -1,2 +1,55 @@
-# Items to retrieve sources for. Filled in from discovered.json.
-candidates: []
+# Items to retrieve sources for (picked from discovered.json, plus a few known
+# Wikipedia titles the Wikidata class search missed). Burial sites/ossuaries are
+# deliberately left out: the layer is about settlements.
+candidates:
+  # --- battles (War of 1812, 1837 rebellion, 1866 Fenian raids) ---
+  - {id: battle-of-beaver-dams, qid: Q365640, category: battle}
+  - {id: battle-of-chippawa, qid: Q1793109, category: battle}
+  - {id: battle-of-cooks-mills, qid: Q2888338, category: battle}
+  - {id: battle-of-fort-george, qid: Q3636438, category: battle}
+  - {id: battle-of-frenchmans-creek, qid: Q1390639, category: battle}
+  - {id: battle-of-lundys-lane, qid: Q364322, category: battle}
+  - {id: battle-of-montgomerys-tavern, qid: Q4449390, category: battle}
+  - {id: battle-of-queenston-heights, qid: Q200682, category: battle}
+  - {id: battle-of-ridgeway, qid: Q2889791, category: battle}
+  - {id: battle-of-fort-erie-1866, qid: Q4871043, category: battle}
+  - {id: battle-of-stoney-creek, qid: Q177470, category: battle}
+  - {id: battle-of-york, qid: Q388689, category: battle}
+  - {id: siege-of-fort-erie, qid: Q7510006, category: battle}
+  # --- forts and trading posts ---
+  - {id: fort-erie, qid: Q1099589, category: battle}
+  - {id: fort-george, qid: Q912646, category: battle}
+  - {id: fort-mississauga, qid: Q5471687, category: battle}
+  - {id: fort-york, qid: Q204083, category: battle}
+  - {id: fort-rouille, qid: Q3078009, category: settlers}
+  - {id: fort-toronto, qid: Q3077982, category: settlers}
+  - {id: magasin-royal, qid: Q3077852, category: settlers}
+  # --- Indigenous settlements ---
+  - {id: aurora-site, qid: Q4822607, category: indigenous}
+  - {id: bead-hill, qid: Q16208778, category: indigenous}
+  - {id: draper-site, qid: Q5305861, category: indigenous}
+  - {id: mantle-site, qid: Q1891309, category: indigenous}
+  - {id: ratcliff-site, qid: Q7295512, category: indigenous}
+  - {id: teiaiagon, wikipedia: Teiaiagon, category: indigenous}
+  - {id: ganatsekwyagon, wikipedia: Ganatsekwyagon, category: indigenous}
+  - {id: parsons-site, wikipedia: Parsons Site, category: indigenous}
+  - {id: crawford-lake, wikipedia: Crawford Lake (Ontario), category: indigenous}
+  # --- mills ---
+  - {id: morningstar-mill, qid: Q99978138, category: mill}
+  - {id: cream-of-barley-mill, qid: Q16952566, category: mill}
+  - {id: secord-mill, qid: Q113264137, category: mill}
+  - {id: welland-mills, qid: Q114447930, category: mill}
+  - {id: todmorden-mills, wikipedia: Todmorden Mills, category: mill}
+  - {id: old-mill-toronto, wikipedia: Old Mill (Toronto), category: mill}
+  - {id: balls-falls, wikipedia: Ball's Falls, category: mill}
+  # --- early settlers ---
+  - {id: black-creek-pioneer-village, qid: Q4920603, category: settlers}
+  - {id: westfield-heritage-centre, qid: Q7988688, category: settlers}
+  - {id: scadding-cabin, wikipedia: Scadding Cabin, category: settlers}
+  - {id: laura-secord-homestead, wikipedia: Laura Secord Homestead, category: settlers}
+  - {id: battlefield-house, wikipedia: Battlefield House, category: settlers}
+  - {id: butler-homestead-site, qid: Q113264125, category: settlers}
+  # --- lost villages ---
+  - {id: crooks-hollow, wikipedia: Crooks' Hollow, category: lost-village}
+  - {id: st-johns-ontario, wikipedia: "St. Johns, Ontario", category: lost-village}
+  - {id: elmbank, qid: Q17018764, category: lost-village}

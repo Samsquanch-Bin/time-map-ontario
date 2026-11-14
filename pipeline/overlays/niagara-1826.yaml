@@ -1,16 +1,23 @@
 id: niagara-1826
-title: Niagara Peninsula, 1826
+title: Welland Canal plan & Niagara Peninsula, 1826
 year: 1826
 source: brock_early_niagara
 fetch:
   method: arcgis_imageserver
   url: https://terra.library.brocku.ca/arcgis/rest/services/EarlyNiagara/NiagaraPeninsula1826NMC3005/ImageServer
+  # pure white is the scan border around the sheet; the paper itself is grey
+  nodata: 255
 minzoom: 8
 description: >
-  Early survey map of the Niagara Peninsula (Library and Archives Canada,
-  National Map Collection item NMC 3005), georeferenced by Brock University's
-  Map, Data & GIS Library.
+  "A Plan of the Erie and Ontario Junction, or Welland Canal, for the purpose of
+  uniting the great Lakes in Canada by a navigable communication round the Falls of
+  Niagara, with a Map of the adjacent territory. Compiled from actual survey by
+  Mr. George Keefer, Junior." (title as printed on the map). Shows the townships of
+  the Niagara Peninsula, the proposed canal routes, Fort George and Fort Niagara.
+  Library and Archives Canada, National Map Collection NMC 3005; georeferenced by
+  Brock University's Map, Data & GIS Library.
 accuracy_note: >
   Brock does not publish error figures for this georeferencing, and it has not
-  been measured here yet. Treat positions as approximate: compare shorelines
-  and river mouths with the modern map before trusting a location.
+  been measured here yet. This is a small-scale compiled map, so treat positions as
+  approximate: compare shorelines and river mouths with the modern map before
+  trusting a location.
