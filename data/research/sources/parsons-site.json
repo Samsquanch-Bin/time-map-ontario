@@ -1,8 +1,21 @@
 {
  "candidate": {
   "id": "parsons-site",
-  "wikipedia": "Parsons Site",
+  "wikipedia": "Parsons site Huron village Toronto",
   "category": "indigenous"
  },
- "retrieved": "2026-11-14"
+ "retrieved": "2026-11-14",
+ "wikipedia_search": {
+  "query": "Parsons site Huron village Toronto",
+  "used_title": "Timeline of Toronto history"
+ },
+ "wikipedia": {
+  "title": "Timeline of Toronto history",
+  "revid": 1362669573,
+  "timestamp": "2026-07-05T14:34:15Z",
+  "url": "https://en.wikipedia.org/w/index.php?title=Timeline_of_Toronto_history&oldid=1362669573",
+  "licence": "CC BY-SA 4.0",
+  "coordinates": [],
+  "text": "This timeline of the history of Toronto documents all events that occurred in Toronto, Ontario, Canada, including historical events in the former cities of East York, Etobicoke, North York, Toronto, Scarborough, and York. Events date back to the early-17th century and continue until the present in chronological order. The timeline also includes events taken place in municipalities bordering Toronto.In this timeline, the name Toronto refers to Old Toronto in events listed before 1998.\n\n\n== Pre-founding of Toronto ==\n\n\n== 19th century ==\n\n\n== 20th century ==\n\n\n== 21st century ==\n\n\n== See also ==\nList of years in Canada\n\n\n== References =="
+ }
 }

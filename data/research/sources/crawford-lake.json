@@ -1,8 +1,24 @@
 {
  "candidate": {
   "id": "crawford-lake",
-  "wikipedia": "Crawford Lake (Ontario)",
+  "wikipedia": "Crawford Lake Conservation Area",
   "category": "indigenous"
  },
- "retrieved": "2026-11-14"
+ "retrieved": "2026-11-14",
+ "wikipedia": {
+  "title": "Crawford Lake Conservation Area",
+  "revid": 1384024515,
+  "timestamp": "2026-11-06T05:33:39Z",
+  "url": "https://en.wikipedia.org/w/index.php?title=Crawford_Lake_Conservation_Area&oldid=1384024515",
+  "licence": "CC BY-SA 4.0",
+  "coordinates": [
+   {
+    "lat": 43.46694444,
+    "lon": -79.95333333,
+    "primary": true,
+    "globe": "earth"
+   }
+  ],
+  "text": "Crawford Lake Conservation Area is a conservation area owned and operated by Conservation Halton near the community of Campbellville in Milton, Halton, Ontario, Canada. It is categorized as a regional environmentally sensitive area, an Ontario Area of Natural and Scientific Interest, and part of the Niagara Escarpment world biosphere reserve. The conservation area contains Crawford Lake, a reconstructed Iroquoian village, and several hiking trails.\nA study conducted in 1971 determined that the lake is meromictic, which makes the lake a prime site for archaeological and geochemical studies.  Using pollen analysis, reconstruction of the history of the area over several hundred years was possible. Geochemical analysis of sediment cores has allowed for the reconstruction of the pollution history of the area. This analysis revealed the trends and sources of air pollution over approximately 150 years.  Crawford Lake is unusual in that its monimolimnion contains dissolved oxygen, in contrast to the anoxic basin waters typical of meromictic lakes.\nThe pollen analysis revealed corn pollen, indicating a possible Iroquoian settlement nearby, as corn was a staple of their agriculture. A search of the surrounding area found a grindstone, which would have been used in such a village. Digs of the area just south of the grindstone revealed the foundations of an eleven-longhouse village. The village, thought to be inhabited by either the Wendat (Huron) or Neutral Confederacy peoples, has been reconstructed in the conservation area and is based on many years of research by archaeologists, who continue to study the site. The reconstructed fifteenth century Iroquoian village is open seasonally and for special events. The site offers interpretive programs of Iroquoian life and culture and has three reconstructed longhouses and a palisade, although the original village did not have a palisade. One longhouse is used to display contemporary indigenous art and artifacts recovered from past digs. The longhouses are representative of life in the village at the time, with fireplaces, fur-lined bunk beds, and various items used at the time.\n\nThe lake is named after the Crawford family, who lived on the site and donated the land to the conservation authority. Their house remained there until it burned down. All that survived was the front porch that was constructed of cement. Photographs of the original house and members of the Crawford family exist. The Crawford family also owned a cedar tree farm on the opposite side of the lake.\nThe conservation area also has 19 kilometres (12 mi) of hiking and cross-country skiing and snowshoeing trails with connections to Bruce Trail. A boardwalk trail circles the lake, protecting the environment while allowing access. The trail is decorated with various sculptures and artistic benches. Another trail leads to the escarpment, and another connects to nearby Rattlesnake Point Conservation Area.\n\n\n== Anthropocene epoch marker ==\nIn July 2023, Crawford Lake was chosen as the \"golden spike\" by the Anthropocene Working Group as the clear marker for the beginning of the Anthropocene epoch. The unique conditions of the lake preserves layers of sediment similar to tree rings used in dendrochronology; the presence of plutonium in the layer of lake mud dated to 1950 has been set as the beginning of the new proposed epoch.\n\n\n== See also ==\nConservation authority\nRattlesnake Point\n\n\n== References ==\n\n\n== External links ==\n\nOfficial website"
+ }
 }
