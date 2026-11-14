@@ -45,9 +45,15 @@ def mercator_to_lonlat(x: float, y: float) -> tuple[float, float]:
 
 def service_urls(directory: dict[str, Any], base: str) -> tuple[list[str], list[str]]:
     """(folder URLs, service URLs) listed in an ArcGIS services directory JSON."""
+    if not isinstance(directory, dict):
+        return [], []
     root = base.split("/rest/services")[0] + "/rest/services"
-    folders = [f"{root}/{f}" for f in directory.get("folders", [])]
-    services = [f"{root}/{s['name']}/{s['type']}" for s in directory.get("services", []) if s.get("type") in ("ImageServer", "MapServer")]
+    folders = [f"{root}/{f}" for f in directory.get("folders") or [] if isinstance(f, str)]
+    services = []
+    for svc in directory.get("services") or []:
+        if not isinstance(svc, dict) or svc.get("type") not in ("ImageServer", "MapServer"):
+            continue
+        services.append(svc.get("url") or f"{root}/{svc['name']}/{svc['type']}")
     return folders, services
 
 
@@ -57,7 +63,8 @@ def _get(s, url: str, params: dict[str, Any] | None = None) -> dict[str, Any]:
         try:
             r = s.get(url, params={"f": "json", **(params or {})}, timeout=60)
             r.raise_for_status()
-            return r.json()
+            data = r.json()
+            return data if isinstance(data, dict) else {"_list": data}
         except Exception as exc:  # noqa: BLE001
             last = exc
     print(f"failed {url}: {last}")

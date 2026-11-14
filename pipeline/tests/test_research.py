@@ -58,3 +58,11 @@ def test_service_urls_and_mercator():
     assert services == ["https://h/arcgis/rest/services/EarlyNiagara/Map1826/ImageServer"]
     lon, lat = mercator_to_lonlat(-8_870_000, 5_350_000)
     assert -80 < lon < -79.5 and 43 < lat < 44
+
+
+def test_service_urls_tolerates_odd_directories():
+    from tmo_pipeline.map_discovery import service_urls
+
+    assert service_urls([], "https://h/arcgis/rest/services") == ([], [])
+    d = {"folders": None, "services": [{"name": "Toronto1858", "type": "MapServer", "url": "https://t/Toronto1858/MapServer"}]}
+    assert service_urls(d, "https://t/arcgis/rest/services") == ([], ["https://t/Toronto1858/MapServer"])
