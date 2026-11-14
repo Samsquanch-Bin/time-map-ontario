@@ -16,7 +16,6 @@ and the attribution text the app displays. **Licence check** says how sure we ar
 | [Brock University Map, Data & GIS Library — Early Niagara georeferenced maps](https://brocku.ca/library/collections-research-resources/maps-data-gis/) | overlays | No restrictions (Brock item metadata for NMC 3005; underlying 1826 map is public domain) | confirmed (2026-11-14) | Map scan: Library and Archives Canada; georeferencing: Brock University Map, Data & GIS Library |
 | [Esri World Imagery (satellite / aerial basemap)](https://developers.arcgis.com/) | satellite | [Esri ArcGIS Location Platform terms (free tier; requires the user's own API key)](https://www.esri.com/en-us/legal/terms/full-master-agreement) | unconfirmed (2026-11-14) | Powered by Esri · Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community |
 | [Goad's Insurance Plan of the City of Hamilton, January 1898 (McMaster University Library)](https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1898) | overlays | Public domain ("Copyright, public domain" in McMaster's item records) | confirmed (2026-11-14) | Chas. E. Goad, Insurance Plan of the City of Hamilton (1898); facsimile courtesy of McMaster University Library; georeferenced for this app |
-| [Historical Topographic Map Digitization Project (Ontario Council of University Libraries)](https://ocul.on.ca/topomaps/) | overlays | Public domain | confirmed (2026-11-14) | Historical topographic maps of Canada (1:63,360 and 1:25,000), digitized and georeferenced by the OCUL Historical Topographic Map Digitization Project; files from McMaster University Library |
 | [OpenFreeMap (online preview map before the offline download)](https://openfreemap.org) | basemap | [Free public instance, no key; map data ODbL (OpenStreetMap), OpenMapTiles schema CC-BY 4.0](https://github.com/hyperknot/openfreemap#attribution) | confirmed (2026-11-14) | OpenFreeMap © OpenMapTiles © OpenStreetMap contributors |
 | [OpenStreetMap data](https://www.openstreetmap.org) | basemap, trails | [Open Database License (ODbL) 1.0](https://www.openstreetmap.org/copyright) | confirmed (2026-11-14) | © OpenStreetMap contributors |
 | [Noto Sans glyphs and map sprites (basemaps-assets)](https://github.com/protomaps/basemaps-assets) | basemap | [Fonts SIL Open Font License 1.1; sprites derived from MIT-licensed tangrams/icons](https://github.com/protomaps/basemaps-assets#license) | confirmed (2026-11-14) | Noto Sans (SIL OFL 1.1); icons from tangrams/icons (MIT) |
@@ -51,13 +50,6 @@ and the attribution text the app displays. **Licence check** says how sure we ar
 - Data: https://expo.mcmaster.ca/api/items?fulltext_search=Insurance%20plan%20of%20the%20city%20of%20Hamilton
 - Licence check: **confirmed** — Rights field read from McMaster expo API item records by the GitHub research run
 - Terms notes: McMaster's rights statement: "Copyright, public domain: McMaster University owns the rights to the archival copy of the digital image in TIFF format." The plan itself is public domain; we derive tiles from the image and credit McMaster.
-
-### Historical Topographic Map Digitization Project (Ontario Council of University Libraries) (`ocul_historical_topos`)
-
-- Provider: OCUL Geo Community / Scholars Portal; scans of federal topographic maps (Department of Militia and Defence, Department of National Defence, Energy, Mines and Resources), files hosted by McMaster University Library
-- Data: https://github.com/scholarsportal/historical-topos/blob/main/static/combined_namesort.json
-- Licence check: **confirmed** — Project FAQ (ocul.on.ca/topomaps/faq) read by the GitHub research run
-- Terms notes: The project FAQ: "These maps are completely open access and in the public domain, you are free to adapt and re-use them in a publication of any medium. Please be sure to properly cite the maps, and acknowledge their source." Each overlay names its sheets, editions and years. The GeoTIFF links come from the project's own published collection list (scholarsportal/historical-topos, static/combined_namesort.json).
 
 ### OpenFreeMap (online preview map before the offline download) (`openfreemap`)
 
