@@ -1,0 +1,17 @@
+id: openfreemap
+name: OpenFreeMap (online preview map before the offline download)
+provider: OpenFreeMap public instance
+homepage: https://openfreemap.org
+data_url: https://tiles.openfreemap.org/styles/dark
+licence: Free public instance, no key; map data ODbL (OpenStreetMap), OpenMapTiles schema CC-BY 4.0
+licence_url: https://github.com/hyperknot/openfreemap#attribution
+attribution: "OpenFreeMap © OpenMapTiles © OpenStreetMap contributors"
+used_for: [basemap]
+terms_notes: >
+  Only used online until the offline basemap pack is downloaded. README: "no limits
+  on the number of map views or requests ... no API keys"; attribution required
+  (added automatically by MapLibre from the style).
+licence_check:
+  status: confirmed
+  method: Read README.md of github.com/hyperknot/openfreemap and openfreemap-styles
+  checked_on: "2026-11-14"

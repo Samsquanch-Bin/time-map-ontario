@@ -78,7 +78,7 @@ def build_catalog(
     places_sources: tuple[str, ...] = ("wikipedia", "wikidata"),
 ) -> dict[str, Any]:
     packs = []
-    used_sources: set[str] = set(BASEMAP_SOURCES) | {"esri_world_imagery"}
+    used_sources: set[str] = set(BASEMAP_SOURCES) | {"esri_world_imagery", "openfreemap"}
     require_sources(sorted(used_sources), sources)
 
     basemap = release_dir / "basemap-south.pmtiles"

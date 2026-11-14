@@ -2,10 +2,12 @@ import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import { Camera, type CameraRef, Map, type TrackUserLocation, UserLocation } from "@maplibre/maplibre-react-native";
 import { useCallback, useMemo, useRef, useState } from "react";
 import { Alert, Linking, StyleSheet, View } from "react-native";
-import { Banner, FAB, IconButton, useTheme } from "react-native-paper";
+import { Button, FAB, IconButton, Surface, Text, useTheme } from "react-native-paper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
+import { ONLINE_STYLE } from "../config";
 import { pmtilesUrl } from "../data/packs";
+import { setMapStatus, startDiagnostics } from "../diagnostics";
 import { usePlaces } from "../data/usePlaces";
 import { placesToGeoJSON, visiblePlaces } from "../logic/places";
 import { hasPack } from "../logic/catalog";
@@ -33,8 +35,11 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
 
   const catalog = s.catalog;
   const basemapUrl = hasPack(catalog, s.installed, BASEMAP_FILE) ? pmtilesUrl(BASEMAP_FILE) : null;
-  const mapStyle = useMemo(() => buildBaseStyle(mapTheme, basemapUrl), [mapTheme, basemapUrl]);
-  const labelLayerId = useMemo(() => firstLabelLayerId(mapStyle), [mapStyle]);
+  // Until the offline basemap is on the phone, show an online map so there's always something to see.
+  const offlineStyle = useMemo(() => (basemapUrl ? buildBaseStyle(mapTheme, basemapUrl) : null), [mapTheme, basemapUrl]);
+  const mapStyle = offlineStyle ?? ONLINE_STYLE[mapTheme];
+  const labelLayerId = useMemo(() => (offlineStyle ? firstLabelLayerId(offlineStyle) : undefined), [offlineStyle]);
+  useMemo(() => startDiagnostics(), []);
 
   const activeOverlay = useMemo(() => {
     const o = catalog?.overlays.find((x) => x.id === s.activeOverlayId);
@@ -85,6 +90,9 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
         logo={false}
         compassPosition={{ top: insets.top + 64, right: 12 }}
         tintColor={theme.colors.primary}
+        onWillStartLoadingMap={() => setMapStatus(`loading ${offlineStyle ? "offline basemap" : "online preview map"}`)}
+        onDidFinishLoadingMap={() => setMapStatus(`${offlineStyle ? "offline basemap" : "online preview map"} loaded`)}
+        onDidFailLoadingMap={() => setMapStatus(`FAILED to load ${offlineStyle ? "offline basemap" : "online preview map"}`)}
         onRegionIsChanging={(e) => {
           if (!comparing) return;
           const { center, zoom, bearing, pitch } = e.nativeEvent;
@@ -116,18 +124,19 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
       </Map>
 
       {comparing && activeOverlay ? (
-        <SwipeCompare ref={compareCameraRef} mapStyle={mapStyle} labelLayerId={labelLayerId} overlay={activeOverlay} initial={s.camera} />
+        <SwipeCompare ref={compareCameraRef} mapStyle={mapStyle as never} labelLayerId={labelLayerId} overlay={activeOverlay} initial={s.camera} />
       ) : null}
 
-      {!catalog ? (
-        <Banner
-          visible
-          style={[styles.banner, { top: insets.top }]}
-          icon="download"
-          actions={[{ label: "Get map data", onPress: () => go({ name: "data" }) }]}
-        >
-          Map data isn't on this phone yet. Download it once on Wi-Fi and it works offline.
-        </Banner>
+      {!basemapUrl ? (
+        <Surface style={[styles.banner, { top: insets.top + 8, backgroundColor: theme.colors.surface }]} elevation={3}>
+          <Text variant="titleSmall">Online preview map</Text>
+          <Text variant="bodyMedium" style={{ color: theme.colors.onSurfaceVariant }}>
+            Download the map data (about 1.2 GB, use Wi-Fi) to get the full map, old maps and places, working offline.
+          </Text>
+          <Button mode="contained" icon="download" onPress={() => go({ name: "data" })} style={{ alignSelf: "flex-start", marginTop: 6 }}>
+            Download map data
+          </Button>
+        </Surface>
       ) : null}
 
       <View style={[styles.fabs, { top: insets.top + 120 }]}>
@@ -195,7 +204,7 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
 
 const styles = StyleSheet.create({
   fill: { flex: 1 },
-  banner: { position: "absolute", left: 0, right: 0 },
+  banner: { position: "absolute", left: 12, right: 76, padding: 12, borderRadius: 12, gap: 4 },
   fabs: { position: "absolute", right: 12, gap: 12 },
   fab: {},
   sheet: { paddingHorizontal: 16, paddingBottom: 48, gap: 8 },

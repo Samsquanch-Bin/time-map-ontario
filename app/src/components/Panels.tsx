@@ -4,6 +4,7 @@ import { Linking, StyleSheet, View } from "react-native";
 import { Button, Chip, Divider, List, ProgressBar, SegmentedButtons, Switch, Text, TextInput, useTheme } from "react-native-paper";
 
 import { fetchRemoteCatalog, freeSpaceBytes, type Progress, syncPacks } from "../data/packs";
+import { useDiagnostics } from "../diagnostics";
 import { type Catalog, formatBytes, hasPack, type Overlay, packsToDownload, totalBytes } from "../logic/catalog";
 import { formatRange, overlaps } from "../logic/era";
 import { CATEGORIES, type Place, precisionText } from "../logic/places";
@@ -70,7 +71,9 @@ export function LayersPanel({ go, placeCount }: { go: (v: SheetView) => void; pl
         <Switch value={s.coverageVisible} onValueChange={(coverageVisible) => s.set({ coverageVisible })} />
       </View>
       {!catalog ? (
-        <Text style={{ color: theme.colors.onSurfaceVariant }}>No map data on this phone yet. Open Settings & data to download it.</Text>
+        <Button mode="contained" icon="download" onPress={() => go({ name: "data" })} style={{ alignSelf: "flex-start" }}>
+          Download map data
+        </Button>
       ) : overlays.length === 0 ? (
         <Text style={{ color: theme.colors.onSurfaceVariant }}>No old maps in {formatRange(s.era)}. Widen the years above.</Text>
       ) : (
@@ -330,9 +333,33 @@ export function DataPanel() {
           { value: "system", label: "Auto" },
         ]}
       />
+      <Divider />
+      <Diagnostics />
       <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>
         Privacy: no accounts, no analytics. Your location is only used to draw the dot and never leaves the phone.
       </Text>
+    </View>
+  );
+}
+
+function Diagnostics() {
+  const theme = useTheme();
+  const s = useApp();
+  const d = useDiagnostics();
+  const files = Object.keys(s.installed);
+  return (
+    <View style={styles.gap}>
+      <Text variant="titleSmall">Diagnostics</Text>
+      <Text variant="bodySmall">Map: {d.mapStatus}</Text>
+      <Text variant="bodySmall">Files on phone: {files.length ? files.join(", ") : "none"}</Text>
+      {d.entries
+        .filter((e) => e.level !== "info")
+        .slice(0, 8)
+        .map((e, i) => (
+          <Text key={i} variant="bodySmall" style={{ color: e.level === "error" ? theme.colors.error : theme.colors.onSurfaceVariant }}>
+            {e.time} {e.level}: {e.message}
+          </Text>
+        ))}
     </View>
   );
 }
