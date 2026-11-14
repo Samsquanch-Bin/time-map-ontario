@@ -1,0 +1,1676 @@
+{
+ "retrieved": "2026-11-14",
+ "bbox": [
+  -80.3,
+  42.8,
+  -78.6,
+  44.5
+ ],
+ "items": [
+  {
+   "qid": "Q365640",
+   "label": "Battle of Beaver Dams",
+   "description": "war of 1812 battle",
+   "lon": -79.185388888,
+   "lat": 43.117583333,
+   "topic": "battle",
+   "wikipedia": "https://en.wikipedia.org/wiki/Battle_of_Beaver_Dams"
+  },
+  {
+   "qid": "Q4870537",
+   "label": "Battle of Bowmanville",
+   "description": "1942 POW prison revolt",
+   "lon": -78.666667,
+   "lat": 43.926944,
+   "topic": "battle",
+   "wikipedia": "https://en.wikipedia.org/wiki/Battle_of_Bowmanville"
+  },
+  {
+   "qid": "Q4870585",
+   "label": "Battle of Buffalo",
+   "description": "battle during the War of 1812",
+   "lon": -78.8978,
+   "lat": 42.9364,
+   "topic": "battle",
+   "wikipedia": "https://en.wikipedia.org/wiki/Battle_of_Buffalo"
+  },
+  {
+   "qid": "Q1793109",
+   "label": "Battle of Chippawa",
+   "description": "war of 1812 battle",
+   "lon": -79.024722222,
+   "lat": 43.052222222,
+   "topic": "battle",
+   "wikipedia": "https://en.wikipedia.org/wiki/Battle_of_Chippawa"
+  },
+  {
+   "qid": "Q55138522",
+   "label": "Battle of Conjocta Creek",
+   "description": "1814 battle of the War of 1812",
+   "lon": -78.889083333,
+   "lat": 42.937316666,
+   "topic": "battle",
+   "wikipedia": "https://en.wikipedia.org/wiki/Battle_of_Conjocta_Creek"
+  },
+  {
+   "qid": "Q2888338",
+   "label": "Battle of Cook's Mills",
+   "description": "battle in Ontario, Canada between American and British forces during the War of 1812",
+   "lon": -79.17491,
+   "lat": 42.99789,
+   "topic": "battle",
+   "wikipedia": "https://en.wikipedia.org/wiki/Battle_of_Cook%27s_Mills"
+  },
+  {
+   "qid": "Q2890829",
+   "label": "Battle of Devil's Hole",
+   "description": "1763 battle of Pontiac's Rebellion",
+   "lon": -79.04555556,
+   "lat": 43.13388889,
+   "topic": "battle",
+   "wikipedia": "https://en.wikipedia.org/wiki/Battle_of_Devil%27s_Hole"
+  },
+  {
+   "qid": "Q4871043",
+   "label": "Battle of Fort Erie",
+   "description": "1866 skirmish during the Fenian Raids",
+   "lon": -78.92515,
+   "lat": 42.89667,
+   "topic": "battle",
+   "wikipedia": "https://en.wikipedia.org/wiki/Battle_of_Fort_Erie_(1866)"
+  },
+  {
+   "qid": "Q3636438",
+   "label": "Battle of Fort George",
+   "description": "war of 1812 battle",
+   "lon": -79.061111,
+   "lat": 43.250752,
+   "topic": "battle",
+   "wikipedia": "https://en.wikipedia.org/wiki/Battle_of_Fort_George"
+  },
+  {
+   "qid": "Q2888557",
+   "label": "Battle of Fort Niagara",
+   "description": "1759 siege late in the French and Indian War",
+   "lon": -79.06331,
+   "lat": 43.26269,
+   "topic": "battle",
+   "wikipedia": "https://en.wikipedia.org/wiki/Battle_of_Fort_Niagara"
+  },
+  {
+   "qid": "Q1390639",
+   "label": "Battle of Frenchman's Creek",
+   "description": "battle of the War of 1812",
+   "lon": -78.92645,
+   "lat": 42.94227,
+   "topic": "battle",
+   "wikipedia": "https://en.wikipedia.org/wiki/Battle_of_Frenchman%27s_Creek"
+  },
+  {
+   "qid": "Q328447",
+   "label": "Battle of La Belle-Famille",
+   "description": "1759 battle",
+   "lon": -79.05075,
+   "lat": 43.2417,
+   "topic": "battle",
+   "wikipedia": "https://en.wikipedia.org/wiki/Battle_of_La_Belle-Famille"
+  },
+  {
+   "qid": "Q113954164",
+   "label": "Battle of Lewiston",
+   "description": "military action during the War of 1812",
+   "lon": -79.044444444,
+   "lat": 43.173055555,
+   "topic": "battle",
+   "wikipedia": "https://en.wikipedia.org/wiki/Battle_of_Lewiston"
+  },
+  {
+   "qid": "Q364322",
+   "label": "Battle of Lundy's Lane",
+   "description": "1814 battle of the War of 1812",
+   "lon": -79.095456,
+   "lat": 43.089152,
+   "topic": "battle",
+   "wikipedia": "https://en.wikipedia.org/wiki/Battle_of_Lundy%27s_Lane"
+  },
+  {
+   "qid": "Q4449390",
+   "label": "Battle of Montgomery's Tavern",
+   "description": "1837 part of the Upper Canada Rebellion",
+   "lon": -79.399,
+   "lat": 43.7095,
+   "topic": "battle",
+   "wikipedia": "https://en.wikipedia.org/wiki/Battle_of_Montgomery%27s_Tavern"
+  },
+  {
+   "qid": "Q121879076",
+   "label": "Battle of Nanticoke Creek",
+   "description": "1813 Skirmish of the War of 1812",
+   "lon": -80.079,
+   "lat": 42.809,
+   "topic": "battle",
+   "wikipedia": "https://en.wikipedia.org/wiki/Battle_of_Nanticoke_Creek"
+  },
+  {
+   "qid": "Q200682",
+   "label": "Battle of Queenston Heights",
+   "description": "war of 1812 battle",
+   "lon": -79.050555555,
+   "lat": 43.161944444,
+   "topic": "battle",
+   "wikipedia": "https://en.wikipedia.org/wiki/Battle_of_Queenston_Heights"
+  },
+  {
+   "qid": "Q2889791",
+   "label": "Battle of Ridgeway",
+   "description": "1866 battle between the Fenian Brotherhood and the Province of Canada; Fenian victory",
+   "lon": -79.041666666,
+   "lat": 42.904444444,
+   "topic": "battle",
+   "wikipedia": "https://en.wikipedia.org/wiki/Battle_of_Ridgeway"
+  },
+  {
+   "qid": "Q177470",
+   "label": "Battle of Stoney Creek",
+   "description": "war of 1812 battle",
+   "lon": -79.764166666,
+   "lat": 43.218333333,
+   "topic": "battle",
+   "wikipedia": "https://en.wikipedia.org/wiki/Battle_of_Stoney_Creek"
+  },
+  {
+   "qid": "Q388689",
+   "label": "Battle of York",
+   "description": "war of 1812 battle",
+   "lon": -79.40403,
+   "lat": 43.63887,
+   "topic": "battle",
+   "wikipedia": "https://en.wikipedia.org/wiki/Battle_of_York"
+  },
+  {
+   "qid": "Q7283734",
+   "label": "Raid on Black Rock",
+   "description": "1813 battle",
+   "lon": -78.898058,
+   "lat": 42.928117,
+   "topic": "battle",
+   "wikipedia": "https://en.wikipedia.org/wiki/Raid_on_Black_Rock"
+  },
+  {
+   "qid": "Q7510006",
+   "label": "Siege of Fort Erie",
+   "description": "1814 immediately following the Capture of Fort Erie",
+   "lon": -78.923969,
+   "lat": 42.893351,
+   "topic": "battle",
+   "wikipedia": "https://en.wikipedia.org/wiki/Siege_of_Fort_Erie"
+  },
+  {
+   "qid": "Q5470974",
+   "label": "Fort Conti",
+   "description": "demolished fort near Lake Ontario",
+   "lon": -79.063055555,
+   "lat": 43.262777777,
+   "topic": "fort",
+   "wikipedia": "https://en.wikipedia.org/wiki/Fort_Conti"
+  },
+  {
+   "qid": "Q5471092",
+   "label": "Fort Drummond",
+   "description": "in Ontario, Canada",
+   "lon": -79.0522,
+   "lat": 43.1601,
+   "topic": "fort",
+   "wikipedia": "https://en.wikipedia.org/wiki/Fort_Drummond_(Queenston_Heights)"
+  },
+  {
+   "qid": "Q1099589",
+   "label": "Fort Erie",
+   "description": "former fortification in Ontario",
+   "lon": -78.923816666,
+   "lat": 42.89325,
+   "topic": "fort",
+   "wikipedia": "https://en.wikipedia.org/wiki/Old_Fort_Erie"
+  },
+  {
+   "qid": "Q912646",
+   "label": "Fort George",
+   "description": "fort in Ontario, Canada",
+   "lon": -79.061111111,
+   "lat": 43.250833333,
+   "topic": "fort",
+   "wikipedia": "https://en.wikipedia.org/wiki/Fort_George,_Ontario"
+  },
+  {
+   "qid": "Q112118632",
+   "label": "Fort George blockhouse 2",
+   "description": "blockhouse in Niagara-on-the-Lake, Ontario, Canada",
+   "lon": -79.061013,
+   "lat": 43.251162,
+   "topic": "fort",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q112118637",
+   "label": "Fort George blockhouse 3",
+   "description": "blockhouse in Niagara-on-the-Lake, Ontario, Canada",
+   "lon": -79.06133,
+   "lat": 43.251414,
+   "topic": "fort",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q112118658",
+   "label": "Fort George octagonal blockhouse",
+   "description": "blockhouse in Niagara-on-the-Lake, Ontario, Canada",
+   "lon": -79.059737,
+   "lat": 43.24956,
+   "topic": "fort",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q5471687",
+   "label": "Fort Mississauga",
+   "description": "historic British fort in the town of Niagara-on-the-Lake, Ontario, Canada",
+   "lon": -79.076944444,
+   "lat": 43.261111111,
+   "topic": "fort",
+   "wikipedia": "https://en.wikipedia.org/wiki/Fort_Mississauga"
+  },
+  {
+   "qid": "Q362553",
+   "label": "Fort Niagara",
+   "description": "fort",
+   "lon": -79.063611,
+   "lat": 43.261667,
+   "topic": "fort",
+   "wikipedia": "https://en.wikipedia.org/wiki/Fort_Niagara"
+  },
+  {
+   "qid": "Q5471868",
+   "label": "Fort Porter",
+   "description": "fort in New York",
+   "lon": -78.8967,
+   "lat": 42.9006,
+   "topic": "fort",
+   "wikipedia": "https://en.wikipedia.org/wiki/Fort_Porter"
+  },
+  {
+   "qid": "Q3078009",
+   "label": "Fort Rouillé",
+   "description": "French fort in Canada",
+   "lon": -79.423611111,
+   "lat": 43.630555555,
+   "topic": "fort",
+   "wikipedia": "https://en.wikipedia.org/wiki/Fort_Rouill%C3%A9"
+  },
+  {
+   "qid": "Q5471993",
+   "label": "Fort Schlosser",
+   "description": "",
+   "lon": -79.01556111,
+   "lat": 43.07753889,
+   "topic": "fort",
+   "wikipedia": "https://en.wikipedia.org/wiki/Fort_Schlosser"
+  },
+  {
+   "qid": "Q5472179",
+   "label": "Fort Tompkins",
+   "description": "fort in Buffalo, New York State",
+   "lon": -78.900183333,
+   "lat": 42.910666666,
+   "topic": "fort",
+   "wikipedia": "https://en.wikipedia.org/wiki/Fort_Tompkins_(Buffalo,_New_York)"
+  },
+  {
+   "qid": "Q3077982",
+   "label": "Fort Toronto",
+   "description": "historic French trading port in now Toronto, Ontario, Canada",
+   "lon": -79.4716,
+   "lat": 43.6331,
+   "topic": "fort",
+   "wikipedia": "https://en.wikipedia.org/wiki/Fort_Toronto"
+  },
+  {
+   "qid": "Q204083",
+   "label": "Fort York",
+   "description": "historic site in Toronto, Canada",
+   "lon": -79.403611111,
+   "lat": 43.638888888,
+   "topic": "fort",
+   "wikipedia": "https://en.wikipedia.org/wiki/Fort_York"
+  },
+  {
+   "qid": "Q3077852",
+   "label": "Magasin Royal",
+   "description": "colonial French trading post",
+   "lon": -79.497,
+   "lat": 43.655,
+   "topic": "fort",
+   "wikipedia": "https://en.wikipedia.org/wiki/Magasin_Royal"
+  },
+  {
+   "qid": "Q23504812",
+   "label": "Vrooman's Battery",
+   "description": "battery in Niagara-on-the-Lake, Ontario",
+   "lon": -79.058347,
+   "lat": 43.178267,
+   "topic": "fort",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q4822607",
+   "label": "Aurora Site, Wendat (Huron) Ancestral Village",
+   "description": "archaeological site in Ontario, Canada",
+   "lon": -79.3378,
+   "lat": 44.0078,
+   "topic": "indigenous-site",
+   "wikipedia": "https://en.wikipedia.org/wiki/Aurora_Site"
+  },
+  {
+   "qid": "Q18572454",
+   "label": "Battle of Beaver Dams National Historic Site",
+   "description": "",
+   "lon": -79.201547,
+   "lat": 43.122722,
+   "topic": "indigenous-site",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q18517359",
+   "label": "Battle of Chippawa National Historic Site",
+   "description": "",
+   "lon": -79.02472,
+   "lat": 43.052127,
+   "topic": "indigenous-site",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q18520158",
+   "label": "Battle of Cook's Mills National Historic Site",
+   "description": "",
+   "lon": -79.17491,
+   "lat": 42.99789,
+   "topic": "indigenous-site",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q18572014",
+   "label": "Battle of Lundy's Lane National Historic Site",
+   "description": "",
+   "lon": -79.095767,
+   "lat": 43.089279,
+   "topic": "indigenous-site",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q18571986",
+   "label": "Battle of Stoney Creek National Historic Site",
+   "description": "",
+   "lon": -79.766232,
+   "lat": 43.217257,
+   "topic": "indigenous-site",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q23504916",
+   "label": "Battlefield of Fort George",
+   "description": "battlefield in Niagara-on-the-Lake",
+   "lon": -79.084517,
+   "lat": 43.262033,
+   "topic": "indigenous-site",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q16208778",
+   "label": "Bead Hill archaeological site",
+   "description": "archeological site in Toronto",
+   "lon": -79.140111,
+   "lat": 43.804102,
+   "topic": "indigenous-site",
+   "wikipedia": "https://en.wikipedia.org/wiki/Bead_Hill"
+  },
+  {
+   "qid": "Q113264125",
+   "label": "Butler Homestead Site",
+   "description": "archaeological site in Niagara-on-the-Lake, Ontario, Canada",
+   "lon": -79.088643,
+   "lat": 43.250896,
+   "topic": "indigenous-site",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q5305861",
+   "label": "Draper Site, Wendat (Huron) Ancestral Village",
+   "description": "archaeological site in Ontario, Canada",
+   "lon": -79.1756,
+   "lat": 43.9283,
+   "topic": "indigenous-site",
+   "wikipedia": "https://en.wikipedia.org/wiki/Draper_Site"
+  },
+  {
+   "qid": "Q23643172",
+   "label": "Etharita Site",
+   "description": "archeological site in Clearview",
+   "lon": -80.200839,
+   "lat": 44.451612,
+   "topic": "indigenous-site",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q19593657",
+   "label": "Frenchman's Creek",
+   "description": "",
+   "lon": -78.92645,
+   "lat": 42.94227,
+   "topic": "indigenous-site",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q23505265",
+   "label": "Hamilton and Scourge",
+   "description": "shipwecks in Ontario",
+   "lon": -79.297944,
+   "lat": 43.2962,
+   "topic": "indigenous-site",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q1891309",
+   "label": "Mantle Site, Wendat (Huron) Ancestral Village",
+   "description": "Remains of an indigenous village",
+   "lon": -79.2369,
+   "lat": 43.9636,
+   "topic": "indigenous-site",
+   "wikipedia": "https://en.wikipedia.org/wiki/Mantle_Site"
+  },
+  {
+   "qid": "Q23643173",
+   "label": "Middleport Site",
+   "description": "archeological site in Six Nations",
+   "lon": -80.067828,
+   "lat": 43.098336,
+   "topic": "indigenous-site",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q6886513",
+   "label": "Moatfield Ossuary",
+   "description": "archaeological site in Ontario, Canada",
+   "lon": -79.4156,
+   "lat": 43.7797,
+   "topic": "indigenous-site",
+   "wikipedia": "https://en.wikipedia.org/wiki/Moatfield_Ossuary"
+  },
+  {
+   "qid": "Q3593151",
+   "label": "Navy Island",
+   "description": "Uninhabited island in the Niagara River",
+   "lon": -79.01167,
+   "lat": 43.056876,
+   "topic": "indigenous-site",
+   "wikipedia": "https://en.wikipedia.org/wiki/Navy_Island"
+  },
+  {
+   "qid": "Q14875347",
+   "label": "Niagara Scow",
+   "description": "shipwreck upstream of Niagara Falls",
+   "lon": -79.070833333,
+   "lat": 43.073055555,
+   "topic": "indigenous-site",
+   "wikipedia": "https://en.wikipedia.org/wiki/Niagara_Scow"
+  },
+  {
+   "qid": "Q7138915",
+   "label": "Parliament Interpretive Centre",
+   "description": "archeological site in Toronto, Canada",
+   "lon": -79.363498888,
+   "lat": 43.651043888,
+   "topic": "indigenous-site",
+   "wikipedia": "https://en.wikipedia.org/wiki/Parliament_Interpretive_Centre"
+  },
+  {
+   "qid": "Q7271089",
+   "label": "Queenston Heights National Historic Site of Canada",
+   "description": "urban park and heritage site in Niagara-on-the-Lake, Ontario, Canada",
+   "lon": -79.052777777,
+   "lat": 43.158333333,
+   "topic": "indigenous-site",
+   "wikipedia": "https://en.wikipedia.org/wiki/Queenston_Heights"
+  },
+  {
+   "qid": "Q7295512",
+   "label": "Ratcliff Site, Wendat (Huron) Ancestral Village",
+   "description": "archaeological site in Ontario, Canada",
+   "lon": -79.285,
+   "lat": 43.9967,
+   "topic": "indigenous-site",
+   "wikipedia": "https://en.wikipedia.org/wiki/Ratcliff_Site"
+  },
+  {
+   "qid": "Q19593653",
+   "label": "Ridgeway Battlefield",
+   "description": "site of the Battle of Ridgeway",
+   "lon": -79.04164,
+   "lat": 42.90434,
+   "topic": "indigenous-site",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q180100",
+   "label": "Taber Hill",
+   "description": "cemetery",
+   "lon": -79.235,
+   "lat": 43.759,
+   "topic": "indigenous-site",
+   "wikipedia": "https://en.wikipedia.org/wiki/Taber_Hill"
+  },
+  {
+   "qid": "Q23643174",
+   "label": "Walker Site",
+   "description": "archeological site in Brant County",
+   "lon": -80.116667,
+   "lat": 43.116667,
+   "topic": "indigenous-site",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q100363095",
+   "label": "Woodbridge Mackenzie Site",
+   "description": "archeological site in Vaughan, Ontario, Canada",
+   "lon": -79.585609,
+   "lat": 43.78754,
+   "topic": "indigenous-site",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q43160312",
+   "label": "Acton Syndicate Housing Heritage Conservation District",
+   "description": "historic district in Halton Hills, Ontario",
+   "lon": -80.03996,
+   "lat": 43.632718,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q4732064",
+   "label": "Allentown Historic District",
+   "description": "historic district in Buffalo, New York, United States",
+   "lon": -78.879722,
+   "lat": 42.899444,
+   "topic": "lost-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/Allentown_Historic_District_(Buffalo,_New_York)"
+  },
+  {
+   "qid": "Q43160235",
+   "label": "Beech Avenue Heritage Conservation District",
+   "description": "ensemble of buildings in Clarington, Ontario",
+   "lon": -78.687016,
+   "lat": 43.916353,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q43160839",
+   "label": "Blythwood Road Heritage Conservation District",
+   "description": "historic district in Toronto, Ontario, Canada",
+   "lon": -79.395339,
+   "lat": 43.71762,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q43160195",
+   "label": "Brant Avenue Heritage Conservation District",
+   "description": "historic district in Brantford, Ontario, Canada",
+   "lon": -80.273924,
+   "lat": 43.144098,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q23091440",
+   "label": "Broadway Historic District",
+   "description": "historic district in Lancaster, New York",
+   "lon": -78.67027778,
+   "lat": 42.9,
+   "topic": "lost-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/Broadway_Historic_District_(Lancaster,_New_York)"
+  },
+  {
+   "qid": "Q43160983",
+   "label": "Brooklin Heritage Conservation District",
+   "description": "historic district in Whitby, Ontario",
+   "lon": -78.960618,
+   "lat": 43.957356,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q43160306",
+   "label": "Brooklyn and College Hill Heritage Conservation District",
+   "description": "historic district in Guelph, Ontario, Canada",
+   "lon": -80.241823,
+   "lat": 43.536485,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q43160492",
+   "label": "Buttonville Heritage Conservation District",
+   "description": "historic district in Markham, Ontario",
+   "lon": -79.361093,
+   "lat": 43.861259,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q43160847",
+   "label": "Cabbagetown North Heritage Conservation District",
+   "description": "historic district in Toronto, Ontario, Canada",
+   "lon": -79.363496,
+   "lat": 43.668189,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q43160852",
+   "label": "Cabbagetown Northwest Heritage Conservation District",
+   "description": "historic district in Toronto, Ontario, Canada",
+   "lon": -79.371409,
+   "lat": 43.665782,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q43160858",
+   "label": "Cabbagetown South Heritage Conservation District",
+   "description": "historic district in Toronto, Ontario, Canada",
+   "lon": -79.362026,
+   "lat": 43.66439,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q43160864",
+   "label": "Cabbagetown-Metcalfe Heritage Conservation District",
+   "description": "historic district in Toronto, Ontario, Canada",
+   "lon": -79.366887,
+   "lat": 43.666245,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q5031019",
+   "label": "Canal Street",
+   "description": "human settlement in Buffalo, New York, United States of America",
+   "lon": -78.8725,
+   "lat": 42.891389,
+   "topic": "lost-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/Canal_Street,_Buffalo"
+  },
+  {
+   "qid": "Q22060948",
+   "label": "Central Avenue Historic District",
+   "description": "historic district in Lancaster, New York",
+   "lon": -78.67277778,
+   "lat": 42.90083333,
+   "topic": "lost-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/Central_Avenue_Historic_District_(Lancaster,_New_York)"
+  },
+  {
+   "qid": "Q5099220",
+   "label": "Chilton Avenue-Orchard Parkway Historic District",
+   "description": "historic district in New York, United States",
+   "lon": -79.054722,
+   "lat": 43.100556,
+   "topic": "lost-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/Chilton_Avenue%E2%80%93Orchard_Parkway_Historic_District"
+  },
+  {
+   "qid": "Q43160263",
+   "label": "Collingwood Downtown Heritage Conservation District",
+   "description": "historic district in Collingwood, Ontario",
+   "lon": -80.216653,
+   "lat": 44.49885,
+   "topic": "lost-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/Collingwood_downtown_heritage_conservation_district"
+  },
+  {
+   "qid": "Q43160383",
+   "label": "Cookstown Heritage Conservation District",
+   "description": "historic district in Innisfil, Ontario",
+   "lon": -79.701616,
+   "lat": 44.189878,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q43160317",
+   "label": "Cross-Melville Area Heritage Conservation District",
+   "description": "historic district in Hamilton, Ontario, Canada",
+   "lon": -79.953727,
+   "lat": 43.268501,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q5253229",
+   "label": "Delaware Avenue Historic District",
+   "description": "historic district in New York, United States",
+   "lon": -78.873056,
+   "lat": 42.905556,
+   "topic": "lost-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/Delaware_Avenue_Historic_District_(Buffalo,_New_York)"
+  },
+  {
+   "qid": "Q5253332",
+   "label": "Delaware Park–Front Park System",
+   "description": "historic district in New York, United States of America",
+   "lon": -78.879722,
+   "lat": 42.919444,
+   "topic": "lost-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/Delaware_Park%E2%80%93Front_Park_System"
+  },
+  {
+   "qid": "Q5266637",
+   "label": "Deveaux School Historic District",
+   "description": "historic district in New York, United States",
+   "lon": -79.06,
+   "lat": 43.12,
+   "topic": "lost-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/Deveaux_School_Historic_District"
+  },
+  {
+   "qid": "Q43160576",
+   "label": "Downtown Heritage Conservation District",
+   "description": "historic district in Oakville, Ontario",
+   "lon": -79.669547,
+   "lat": 43.445121,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q43160613",
+   "label": "Downtown Heritage Conservation District",
+   "description": "historic district in Orangeville, Ontario",
+   "lon": -80.095417,
+   "lat": 43.919654,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q104763875",
+   "label": "Downtown Lindsay Heritage Conservation District",
+   "description": "heritage district in Kawartha Lakes, Ontario, Canada",
+   "lon": -78.738569,
+   "lat": 44.354644,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q43160870",
+   "label": "Draper Street Heritage Conservation District",
+   "description": "historic district in Toronto, Ontario, Canada",
+   "lon": -79.39781,
+   "lat": 43.642293,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q43160327",
+   "label": "Durand-Markland Area Heritage Conservation District",
+   "description": "historic district in Hamilton, Ontario, Canada",
+   "lon": -79.875573,
+   "lat": 43.248598,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q5316491",
+   "label": "Durham County",
+   "description": "former county in British North America",
+   "lon": -78.6,
+   "lat": 44.0833,
+   "topic": "lost-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/Durham_County,_Ontario"
+  },
+  {
+   "qid": "Q43160875",
+   "label": "East Annex Heritage Conservation District",
+   "description": "historic district in Toronto, Ontario, Canada",
+   "lon": -79.397571,
+   "lat": 43.672504,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q17018764",
+   "label": "Elmbank",
+   "description": "human settlement in Canada",
+   "lon": -79.62583333,
+   "lat": 43.67416667,
+   "topic": "lost-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/Elmbank,_Ontario"
+  },
+  {
+   "qid": "Q25346035",
+   "label": "Elmwood Historic District–East",
+   "description": "historic district in Buffalo, New York",
+   "lon": -78.875277777,
+   "lat": 42.9175,
+   "topic": "lost-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/Elmwood_Historic_District%E2%80%93East"
+  },
+  {
+   "qid": "Q17065043",
+   "label": "Elmwood Historic District–West",
+   "description": "historic district in New York, United States",
+   "lon": -78.87861111,
+   "lat": 42.91861111,
+   "topic": "lost-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/Elmwood_Historic_District%E2%80%93West"
+  },
+  {
+   "qid": "Q24693663",
+   "label": "Fargo Estate Historic District",
+   "description": "national historic district located at Buffalo, Erie County, New York",
+   "lon": -78.89055556,
+   "lat": 42.90083333,
+   "topic": "lost-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/Fargo_Estate_Historic_District"
+  },
+  {
+   "qid": "Q43160588",
+   "label": "First and Second Streets Heritage Conservation District",
+   "description": "historic district in Oakville, Ontario",
+   "lon": -79.662359,
+   "lat": 43.44886,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q5566597",
+   "label": "Glanbrook Township",
+   "description": "district in Hamilton, Ontario, Canada",
+   "lon": -79.932,
+   "lat": 43.178,
+   "topic": "lost-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/Glanbrook,_Hamilton,_Ontario"
+  },
+  {
+   "qid": "Q5586104",
+   "label": "Gore District, Upper Canada",
+   "description": "Historic district in Upper Canada",
+   "lon": -79.866666666,
+   "lat": 43.25,
+   "topic": "lost-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/Gore_District,_Upper_Canada"
+  },
+  {
+   "qid": "Q43160777",
+   "label": "Gormley Heritage Conservation District",
+   "description": "historic district in Richmond Hill, Ontario",
+   "lon": -79.398129,
+   "lat": 43.937515,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q14875161",
+   "label": "Halton County",
+   "description": "former county in the Canadian province of Ontario",
+   "lon": -79.9167,
+   "lat": 43.5833,
+   "topic": "lost-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/Halton_County"
+  },
+  {
+   "qid": "Q22060986",
+   "label": "Hamlin Park Historic District",
+   "description": "historic district in Buffalo, New York",
+   "lon": -78.84805556,
+   "lat": 42.92027778,
+   "topic": "lost-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/Hamlin_Park_Historic_District"
+  },
+  {
+   "qid": "Q43160878",
+   "label": "Harbord Village Phase I Heritage Conservation District",
+   "description": "historic district in Toronto, Ontario, Canada",
+   "lon": -79.404695,
+   "lat": 43.659012,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q43160882",
+   "label": "Harbord Village Phase II Heritage Conservation District",
+   "description": "historic district in Toronto, Ontario, Canada",
+   "lon": -79.403354,
+   "lat": 43.661505,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q22060987",
+   "label": "High and Locust Streets Historic District",
+   "description": "national historic district located at Lockport in Niagara County, New York",
+   "lon": -78.68777778,
+   "lat": 43.16416667,
+   "topic": "lost-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/High_and_Locust_Streets_Historic_District"
+  },
+  {
+   "qid": "Q5888328",
+   "label": "Home District",
+   "description": "former district in Upper Canada",
+   "lon": -79.5,
+   "lat": 44.0,
+   "topic": "lost-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/Home_District"
+  },
+  {
+   "qid": "Q6104242",
+   "label": "J.N. Adam-AM&A Historic District",
+   "description": "historic district in Buffalo, New York, United States",
+   "lon": -78.873792,
+   "lat": 42.884097,
+   "topic": "lost-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/J._N._Adam%E2%80%93AM%26A_Historic_District"
+  },
+  {
+   "qid": "Q113714745",
+   "label": "Joseph Ellicott Historic District",
+   "description": "historic district in Buffalo, New York, United States",
+   "lon": -78.878055555,
+   "lat": 42.884166666,
+   "topic": "lost-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/Joseph_Ellicott_Historic_District"
+  },
+  {
+   "qid": "Q43160947",
+   "label": "Kleinburg-Nashville Heritage Conservation District",
+   "description": "historic district in Vaughan, Ontario",
+   "lon": -79.628778,
+   "lat": 43.844238,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q6550599",
+   "label": "Lincoln County",
+   "description": "historic county in Ontario, Canada",
+   "lon": -79.3333,
+   "lat": 43.1667,
+   "topic": "lost-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/Lincoln_County,_Ontario"
+  },
+  {
+   "qid": "Q5348082",
+   "label": "Little Jamaica",
+   "description": "neighbourhood in Toronto, Canada",
+   "lon": -79.4553,
+   "lat": 43.69454,
+   "topic": "lost-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/Little_Jamaica"
+  },
+  {
+   "qid": "Q6665745",
+   "label": "Lockport Industrial District",
+   "description": "historic district in New York, United States",
+   "lon": -78.691944,
+   "lat": 43.173333,
+   "topic": "lost-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/Lockport_Industrial_District"
+  },
+  {
+   "qid": "Q43160545",
+   "label": "Lower Main Street South Heritage Conservation District",
+   "description": "historic district in Newmarket, Ontario",
+   "lon": -79.457095,
+   "lat": 44.052857,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q14706835",
+   "label": "Lowertown Historic District",
+   "description": "historic district in Lockport, New York",
+   "lon": -78.6783,
+   "lat": 43.1797,
+   "topic": "lost-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/Lowertown_Historic_District_(Lockport,_New_York)"
+  },
+  {
+   "qid": "Q43160889",
+   "label": "Lyall Avenue Heritage Conservation District",
+   "description": "historic district in Toronto, Ontario, Canada",
+   "lon": -79.29569,
+   "lat": 43.681024,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q43160337",
+   "label": "MacNab-Charles Street Area Heritage Conservation District",
+   "description": "historic district in Hamilton, Ontario, Canada",
+   "lon": -79.872698,
+   "lat": 43.253613,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q124326199",
+   "label": "Main Street Historic District",
+   "description": "historic district in Niagara Falls, New York, United States",
+   "lon": -79.053333333,
+   "lat": 43.105833333,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q43160953",
+   "label": "Maple Heritage Conservation District",
+   "description": "historic district in Vaughan, Ontario",
+   "lon": -79.511232,
+   "lat": 43.8498,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q22061007",
+   "label": "Market Square Historic District",
+   "description": "national historic district located in the Black Rock neighborhood of Buffalo in Erie County, New York",
+   "lon": -78.90055556,
+   "lat": 42.935,
+   "topic": "lost-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/Market_Square_Historic_District_(Buffalo,_New_York)"
+  },
+  {
+   "qid": "Q43160500",
+   "label": "Markham Village Heritage Conservation District",
+   "description": "historic district in Markham, Ontario",
+   "lon": -79.260929,
+   "lat": 43.878584,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q43160345",
+   "label": "Mill Street Heritage Conservation District",
+   "description": "historic district in Hamilton, Ontario, Canada",
+   "lon": -79.894788,
+   "lat": 43.336563,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q16933558",
+   "label": "Niagara District",
+   "description": "historic district in Upper Canada",
+   "lon": -79.716666666,
+   "lat": 42.966666666,
+   "topic": "lost-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/Niagara_District"
+  },
+  {
+   "qid": "Q23649544",
+   "label": "Niagara-on-the-Lake",
+   "description": "historic district in Niagara-on-the-Lake",
+   "lon": -79.071833,
+   "lat": 43.255006,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q43160898",
+   "label": "North Rosedale Heritage Conservation District",
+   "description": "historic district in Toronto, Ontario, Canada",
+   "lon": -79.374826,
+   "lat": 43.683739,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q43160177",
+   "label": "Northeast Old Aurora Heritage Conservation District",
+   "description": "historic district in Aurora, Ontario",
+   "lon": -79.465753,
+   "lat": 44.001809,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q43160598",
+   "label": "Old Oakville Heritage Conservation District",
+   "description": "historic district in Oakville, Ontario",
+   "lon": -79.665277,
+   "lat": 43.444778,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q43160530",
+   "label": "Old Port Credit Village Heritage Conservation District",
+   "description": "historic district in Mississauga, Ontario",
+   "lon": -79.586356,
+   "lat": 43.548197,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q7094641",
+   "label": "Ontario County",
+   "description": "former county of Ontario, Canada",
+   "lon": -79.0,
+   "lat": 44.25,
+   "topic": "lost-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/Ontario_County,_Ontario"
+  },
+  {
+   "qid": "Q7137931",
+   "label": "Park Place Historic District",
+   "description": "historic district in Niagara Falls, New York",
+   "lon": -79.056944,
+   "lat": 43.095556,
+   "topic": "lost-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/Park_Place_Historic_District_(Niagara_Falls,_New_York)"
+  },
+  {
+   "qid": "Q7138703",
+   "label": "Parkside East Historic District",
+   "description": "historic district in New York, United States",
+   "lon": -78.849722,
+   "lat": 42.935833,
+   "topic": "lost-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/Parkside_East_Historic_District"
+  },
+  {
+   "qid": "Q7138717",
+   "label": "Parkside West Historic District",
+   "description": "historic district in New York, United States",
+   "lon": -78.866944,
+   "lat": 42.9375,
+   "topic": "lost-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/Parkside_West_Historic_District"
+  },
+  {
+   "qid": "Q7160206",
+   "label": "Peel County",
+   "description": "former County in Ontario, Canada",
+   "lon": -79.7575,
+   "lat": 43.685,
+   "topic": "lost-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/Peel_County,_Ontario"
+  },
+  {
+   "qid": "Q43160170",
+   "label": "Pickering Village Heritage Conservation District",
+   "description": "historic district in Ajax, Ontario",
+   "lon": -79.059559,
+   "lat": 43.8543,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q7191774",
+   "label": "Pierce Arrow Factory Complex",
+   "description": "historic district in New York, United States of America",
+   "lon": -78.873889,
+   "lat": 42.942778,
+   "topic": "lost-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/Pierce_Arrow_Factory_Complex"
+  },
+  {
+   "qid": "Q43160788",
+   "label": "Port Dalhousie Heritage Conservation District",
+   "description": "historic district in St. Catharines, Ontario",
+   "lon": -79.267087,
+   "lat": 43.202524,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q43160781",
+   "label": "Port Perry Downtown Heritage Conservation District",
+   "description": "historic district in Scugog, Ontario",
+   "lon": -78.9446,
+   "lat": 44.104605,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q43160794",
+   "label": "Power Glen Heritage Conservation District",
+   "description": "historic district in St. Catharines, Ontario",
+   "lon": -79.268289,
+   "lat": 43.117391,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q43160798",
+   "label": "Queen Street Heritage Conservation District",
+   "description": "historic district in St. Catharines, Ontario",
+   "lon": -79.251873,
+   "lat": 43.159855,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q20726625",
+   "label": "Queen Street West Heritage Conservation District",
+   "description": "heritage conservations district in Toronto, Ontario, Canada",
+   "lon": -79.395661,
+   "lat": 43.648939,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q43160555",
+   "label": "Queen and Picton Streets Heritage Conservation District",
+   "description": "historic district in Niagara-on-the-Lake, Ontario",
+   "lon": -79.070921,
+   "lat": 43.254759,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q43160908",
+   "label": "Riverdale Heritage Conservation District",
+   "description": "historic district in Toronto, Ontario, Canada",
+   "lon": -79.346309,
+   "lat": 43.66588,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q43160353",
+   "label": "St. Clair Avenue Heritage Conservation District",
+   "description": "historic district in Hamilton, Ontario, Canada",
+   "lon": -79.841605,
+   "lat": 43.247019,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q43160360",
+   "label": "St. Clair Boulevard Heritage Conservation District",
+   "description": "historic district in Hamilton, Ontario, Canada",
+   "lon": -79.842453,
+   "lat": 43.245003,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q43160368",
+   "label": "The Beach Heritage Conservation District",
+   "description": "historic district in Hamilton, Ontario, Canada",
+   "lon": -79.79059,
+   "lat": 43.289537,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q43160961",
+   "label": "Thornhill Heritage Conservation District",
+   "description": "historic district in Vaughan, Ontario",
+   "lon": -79.425874,
+   "lat": 43.816034,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q43160508",
+   "label": "Thornhill Heritage Conservation District",
+   "description": "historic district in Markham, Ontario",
+   "lon": -79.417012,
+   "lat": 43.815344,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q43160605",
+   "label": "Trafalgar Road Heritage Conservation District",
+   "description": "historic district in Oakville, Ontario",
+   "lon": -79.672186,
+   "lat": 43.450745,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q43160916",
+   "label": "Union Station Heritage Conservation District",
+   "description": "historic district in Toronto, Ontario, Canada",
+   "lon": -79.380963,
+   "lat": 43.64321,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q26266304",
+   "label": "Unionville Heritage Conservation District",
+   "description": "historic district in Markham, Ontario",
+   "lon": -79.311719,
+   "lat": 43.866696,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q7887667",
+   "label": "United Counties of Northumberland and Durham",
+   "description": "dissolved county in Canada",
+   "lon": -78.6,
+   "lat": 44.0,
+   "topic": "lost-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/United_Counties_of_Northumberland_and_Durham,_Ontario"
+  },
+  {
+   "qid": "Q7894863",
+   "label": "University Park Historic District",
+   "description": "historic district in Buffalo, New York, USA",
+   "lon": -78.825,
+   "lat": 42.956667,
+   "topic": "lost-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/University_Park_Historic_District_(Buffalo,_New_York)"
+  },
+  {
+   "qid": "Q795427",
+   "label": "Upper Canada",
+   "description": "former British colony in North America",
+   "lon": -80.0,
+   "lat": 44.0,
+   "topic": "lost-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/Upper_Canada"
+  },
+  {
+   "qid": "Q43160199",
+   "label": "Victoria Park and Square Heritage Conservation District",
+   "description": "historic district in Brantford, Ontario, Canada",
+   "lon": -80.263227,
+   "lat": 43.141346,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q43160203",
+   "label": "Village of Bolton Heritage Conservation District",
+   "description": "historic district in Caledon, Ontario",
+   "lon": -79.739199,
+   "lat": 43.88029,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q43160191",
+   "label": "Village of Churchville Heritage Conservation District",
+   "description": "historic district in Brampton, Ontario",
+   "lon": -79.758811,
+   "lat": 43.632237,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q7981153",
+   "label": "Welland County",
+   "description": "historic county in Ontario, Canada",
+   "lon": -79.0833,
+   "lat": 43.0,
+   "topic": "lost-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/Welland_County"
+  },
+  {
+   "qid": "Q7983017",
+   "label": "Wentworth County",
+   "description": "human settlement in Ontario, Canada",
+   "lon": -80.0,
+   "lat": 43.25,
+   "topic": "lost-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/Wentworth_County,_Ontario"
+  },
+  {
+   "qid": "Q7986795",
+   "label": "West Village Historic District",
+   "description": "listed on the NRHP in Erie County, New York",
+   "lon": -78.880556,
+   "lat": 42.891944,
+   "topic": "lost-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/West_Village_Historic_District_(Buffalo,_New_York)"
+  },
+  {
+   "qid": "Q43160923",
+   "label": "Weston Heritage Conservation District",
+   "description": "historic district in Toronto, Ontario, Canada",
+   "lon": -79.522959,
+   "lat": 43.703564,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q43160760",
+   "label": "Whitevale Heritage Conservation District",
+   "description": "historic district in Pickering, Ontario",
+   "lon": -79.157503,
+   "lat": 43.888389,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q43160968",
+   "label": "Woodbridge Heritage Conservation District",
+   "description": "historic district in Vaughan, Ontario",
+   "lon": -79.593501,
+   "lat": 43.787375,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q43160930",
+   "label": "Wychwood Park Heritage Conservation District",
+   "description": "historic district in Toronto, Ontario, Canada",
+   "lon": -79.420488,
+   "lat": 43.677629,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q43160804",
+   "label": "Yates Street Heritage Conservation District",
+   "description": "historic district in St. Catharines, Ontario",
+   "lon": -79.250286,
+   "lat": 43.15483,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q8055421",
+   "label": "York County",
+   "description": "Place in Ontario, Canada",
+   "lon": -79.423,
+   "lat": 43.857,
+   "topic": "lost-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/York_County,_Ontario"
+  },
+  {
+   "qid": "Q43160940",
+   "label": "Yorkville-Hazelton Heritage Conservation District",
+   "description": "historic district in Toronto, Ontario, Canada",
+   "lon": -79.393194,
+   "lat": 43.672873,
+   "topic": "lost-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q87158637",
+   "label": "Bell Grist Mill (Utopia Conservation Area)",
+   "description": "grist mill in Essa, Ontario, Canada",
+   "lon": -79.834839,
+   "lat": 44.326826,
+   "topic": "mill",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q5019389",
+   "label": "Caledonia Mill",
+   "description": "historic mill building in Caledonia, Ontario, Canada",
+   "lon": -79.9586,
+   "lat": 43.0718,
+   "topic": "mill",
+   "wikipedia": "https://en.wikipedia.org/wiki/Caledonia_Mill"
+  },
+  {
+   "qid": "Q16952566",
+   "label": "Cream of Barley Mill",
+   "description": "watermill in Clarington, Ontario, Canada",
+   "lon": -78.671204,
+   "lat": 43.904546,
+   "topic": "mill",
+   "wikipedia": "https://en.wikipedia.org/wiki/Cream_of_Barley_Mill"
+  },
+  {
+   "qid": "Q99978138",
+   "label": "Morningstar Mill",
+   "description": "Heritage flour mill in St. Catharines, Ontario",
+   "lon": -79.264504,
+   "lat": 43.110231,
+   "topic": "mill",
+   "wikipedia": "https://en.wikipedia.org/wiki/Morningstar_Mill"
+  },
+  {
+   "qid": "Q97656811",
+   "label": "Peers Udora Mill Complex",
+   "description": "grist mill in Georgina, Ontario, Canada",
+   "lon": -79.18467,
+   "lat": 44.260191,
+   "topic": "mill",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q113264137",
+   "label": "Secord Mill",
+   "description": "grist mill in Niagara-on-the-Lake, Ontario, Canada",
+   "lon": -79.104015,
+   "lat": 43.15263,
+   "topic": "mill",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q106833669",
+   "label": "Smith/Anema Mill",
+   "description": "watermill in Norfolk County, Ontario, Canada",
+   "lon": -80.28016,
+   "lat": 42.81375,
+   "topic": "mill",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q97656809",
+   "label": "Sutton (Grist) Mill",
+   "description": "grist mill in Georgina, Ontario, Canada",
+   "lon": -79.360502,
+   "lat": 44.305178,
+   "topic": "mill",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q114447930",
+   "label": "Welland Mills/Millstone Monument",
+   "description": "grist mill in Thorold, Ontario, Canada",
+   "lon": -79.202864,
+   "lat": 43.125723,
+   "topic": "mill",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q1795131",
+   "label": "Al Green Sculpture Park",
+   "description": "sculpture park in Toronto, Canada",
+   "lon": -79.386703,
+   "lat": 43.700371,
+   "topic": "pioneer-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q4920603",
+   "label": "Black Creek Pioneer Village",
+   "description": "open-air historical village museum in Toronto, Ontario, Canada",
+   "lon": -79.516666666,
+   "lat": 43.773333333,
+   "topic": "pioneer-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/The_Village_at_Black_Creek"
+  },
+  {
+   "qid": "Q4985797",
+   "label": "Buffalo Niagara Heritage Village",
+   "description": "open-air museum in Amherst, New York USA",
+   "lon": -78.7283,
+   "lat": 43.0842,
+   "topic": "pioneer-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/Buffalo_Niagara_Heritage_Village"
+  },
+  {
+   "qid": "Q124683276",
+   "label": "Dante Garden",
+   "description": "sculpture garden in Toronto",
+   "lon": -79.390833333,
+   "lat": 43.665138888,
+   "topic": "pioneer-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/Dante_Garden"
+  },
+  {
+   "qid": "Q97656808",
+   "label": "Georgina Pioneer Village",
+   "description": "open air museum in Georgina, Ontario, Canada",
+   "lon": -79.434087,
+   "lat": 44.294704,
+   "topic": "pioneer-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q110270456",
+   "label": "McMurtry Gardens of Justice",
+   "description": "sculpture garden in Toronto, Ontario, Canada",
+   "lon": -79.38597,
+   "lat": 43.65265,
+   "topic": "pioneer-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q112341904",
+   "label": "School House, Fry House and Haines Cemetery",
+   "description": "open-air museum in Lincoln, Ontario, Canada",
+   "lon": -79.370789,
+   "lat": 43.147456,
+   "topic": "pioneer-village",
+   "wikipedia": ""
+  },
+  {
+   "qid": "Q7568501",
+   "label": "South Simcoe Railway",
+   "description": "Heritage railway in Ontario, Canada",
+   "lon": -79.80806,
+   "lat": 44.02286,
+   "topic": "pioneer-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/South_Simcoe_Railway"
+  },
+  {
+   "qid": "Q7988688",
+   "label": "Westfield Heritage Centre",
+   "description": "open-air museum in Ontario, Canada.",
+   "lon": -80.1452,
+   "lat": 43.32,
+   "topic": "pioneer-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/Westfield_Heritage_Village"
+  },
+  {
+   "qid": "Q8055825",
+   "label": "York–Durham Heritage Railway",
+   "description": "railway in two regions of Ontario, Canada",
+   "lon": -79.1247,
+   "lat": 44.1103,
+   "topic": "pioneer-village",
+   "wikipedia": "https://en.wikipedia.org/wiki/York%E2%80%93Durham_Heritage_Railway"
+  }
+ ]
+}
