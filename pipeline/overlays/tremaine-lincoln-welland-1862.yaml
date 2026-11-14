@@ -1,0 +1,11 @@
+id: tremaine-lincoln-welland-1862
+title: "Tremaine's map of Lincoln & Welland Counties, 1862"
+year: 1862
+source: brock_early_niagara
+fetch:
+  method: arcgis_imageserver
+  url: https://terra.library.brocku.ca/arcgis/rest/services/EarlyNiagara/NiagaraRegion1862NMC19014/ImageServer
+minzoom: 10
+maxzoom: 15
+description: "County map with farm lots and landowner names (Library and Archives Canada NMC 19014). Brock University Map, Data & GIS Library item; licence No restrictions."
+accuracy_note: "Georeferenced by Brock University's Map, Data & GIS Library; error figures are not published and haven't been measured here. Check streets and shorelines against today's map before trusting a spot."

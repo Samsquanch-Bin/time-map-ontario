@@ -1,0 +1,13 @@
+id: toronto-1947
+title: "Toronto aerial photos, 1947"
+year: 1947
+source: toronto_historical_maps
+fetch:
+  method: live_tiles
+  service: https://tiles.arcgis.com/tiles/jIL9msH9OI208GCb/arcgis/rest/services/Toronto1947/MapServer
+  url: "https://tiles.arcgis.com/tiles/jIL9msH9OI208GCb/arcgis/rest/services/Toronto1947/MapServer/tile/{z}/{y}/{x}"
+bounds: [-79.661, 43.56, -79.109, 43.867]
+minzoom: 10
+maxzoom: 19
+description: "Air photo mosaic of Toronto in 1947. Credit on the service: University of Toronto."
+accuracy_note: "Air photos georeferenced by the University of Toronto; error isn't published, but photo mosaics usually line up with today's streets to within a few metres."

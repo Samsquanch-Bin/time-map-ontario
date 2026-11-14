@@ -1,0 +1,13 @@
+id: toronto-1818
+title: "Toronto (York), 1818"
+year: 1818
+source: toronto_historical_maps
+fetch:
+  method: live_tiles
+  service: https://tiles.arcgis.com/tiles/jIL9msH9OI208GCb/arcgis/rest/services/Toronto1818/MapServer
+  url: "https://tiles.arcgis.com/tiles/jIL9msH9OI208GCb/arcgis/rest/services/Toronto1818/MapServer/tile/{z}/{y}/{x}"
+bounds: [-79.438, 43.602, -79.333, 43.672]
+minzoom: 12
+maxzoom: 17
+description: "Plan of the town of York (Toronto) in 1818. Credit on the service: City of Toronto Archives."
+accuracy_note: "Georeferenced by the map's publisher; error isn't published. City plans at this scale generally line up with today's streets, but check a few corners before trusting a building's exact spot."

@@ -1,0 +1,13 @@
+id: ontario-county-1860
+title: "Ontario County, 1860"
+year: 1860
+source: uoft_county_maps
+fetch:
+  method: live_tiles
+  service: https://tiles.arcgis.com/tiles/9NvE8jKNWWlDGsUJ/arcgis/rest/services/Ontario_Clipped/MapServer
+  url: "https://tiles.arcgis.com/tiles/9NvE8jKNWWlDGsUJ/arcgis/rest/services/Ontario_Clipped/MapServer/tile/{z}/{y}/{x}"
+bounds: [-79.333, 43.771, -78.784, 44.396]
+minzoom: 10
+maxzoom: 18
+description: "County map of Ontario County (Pickering, Whitby, Uxbridge area) with farm lots and landowner names."
+accuracy_note: "Georeferenced by the University of Toronto's Ontario Historical County Maps Project; error isn't published. County maps of this era were compiled from township surveys, so lot lines and roads usually line up well, but buildings are drawn as symbols in roughly the right place."

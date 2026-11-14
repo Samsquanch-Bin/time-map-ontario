@@ -1,0 +1,13 @@
+id: durham-1861
+title: "Durham County, 1861"
+year: 1861
+source: uoft_county_maps
+fetch:
+  method: live_tiles
+  service: https://tiles.arcgis.com/tiles/9NvE8jKNWWlDGsUJ/arcgis/rest/services/Durham_Clipped/MapServer
+  url: "https://tiles.arcgis.com/tiles/9NvE8jKNWWlDGsUJ/arcgis/rest/services/Durham_Clipped/MapServer/tile/{z}/{y}/{x}"
+bounds: [-78.903, 43.853, -78.246, 44.297]
+minzoom: 10
+maxzoom: 18
+description: "County map of Durham (Clarington area) with farm lots and landowner names."
+accuracy_note: "Georeferenced by the University of Toronto's Ontario Historical County Maps Project; error isn't published. County maps of this era were compiled from township surveys, so lot lines and roads usually line up well, but buildings are drawn as symbols in roughly the right place."

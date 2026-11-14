@@ -99,8 +99,9 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
           compareCameraRef.current?.jumpTo({ center, zoom, bearing, pitch });
         }}
         onRegionDidChange={(e) => {
-          const { center, zoom, bearing, pitch, userInteraction } = e.nativeEvent;
+          const { center, zoom, bearing, pitch, userInteraction, bounds } = e.nativeEvent;
           if (comparing) compareCameraRef.current?.jumpTo({ center, zoom, bearing, pitch });
+          s.set({ view: { bounds: bounds as [number, number, number, number], zoom } });
           if (userInteraction) s.set({ camera: { center: center as [number, number], zoom } });
         }}
       >

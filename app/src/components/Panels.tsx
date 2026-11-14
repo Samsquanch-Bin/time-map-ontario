@@ -5,7 +5,7 @@ import { Button, Chip, Divider, List, ProgressBar, SegmentedButtons, Switch, Tex
 
 import { fetchRemoteCatalog, freeSpaceBytes, type Progress, syncPacks } from "../data/packs";
 import { useDiagnostics } from "../diagnostics";
-import { type Catalog, formatBytes, hasPack, type Overlay, packsToDownload, totalBytes } from "../logic/catalog";
+import { type Catalog, formatBytes, hasPack, type Overlay, overlaysInView, packsToDownload, totalBytes } from "../logic/catalog";
 import { formatRange, overlaps } from "../logic/era";
 import { CATEGORIES, type Place, precisionText } from "../logic/places";
 import { ISSUES_EMAIL_SUBJECT } from "../config";
@@ -20,8 +20,12 @@ export function LayersPanel({ go, placeCount }: { go: (v: SheetView) => void; pl
   const theme = useTheme();
   const s = useApp();
   const catalog = s.catalog;
-  const overlays = (catalog?.overlays ?? []).filter((o) => overlaps(o.era, s.era));
-  const hidden = (catalog?.overlays.length ?? 0) - overlays.length;
+  const inEra = (catalog?.overlays ?? []).filter((o) => overlaps(o.era, s.era));
+  // Until the map reports its first view, list everything.
+  const overlays = s.view ? overlaysInView(inEra, s.view.bounds) : inEra;
+  const hidden = (catalog?.overlays.length ?? 0) - inEra.length;
+  const elsewhere = inEra.length - overlays.length;
+  const zoom = s.view?.zoom ?? 0;
   const active = catalog?.overlays.find((o) => o.id === s.activeOverlayId) ?? null;
   const activeHidden = active && !overlaps(active.era, s.era);
 
@@ -65,7 +69,7 @@ export function LayersPanel({ go, placeCount }: { go: (v: SheetView) => void; pl
 
       <View style={styles.row}>
         <Text variant="titleSmall" style={{ flex: 1 }}>
-          Old maps
+          Old maps here
         </Text>
         <Text>Coverage</Text>
         <Switch value={s.coverageVisible} onValueChange={(coverageVisible) => s.set({ coverageVisible })} />
@@ -75,13 +79,15 @@ export function LayersPanel({ go, placeCount }: { go: (v: SheetView) => void; pl
           Download map data
         </Button>
       ) : overlays.length === 0 ? (
-        <Text style={{ color: theme.colors.onSurfaceVariant }}>No old maps in {formatRange(s.era)}. Widen the years above.</Text>
+        <Text style={{ color: theme.colors.onSurfaceVariant }}>
+          No old maps for this area in {formatRange(s.era)}. Move the map, or widen the years above. Turn on Coverage to see where maps exist.
+        </Text>
       ) : (
         overlays.map((o) => (
           <List.Item
             key={o.id}
             title={o.title}
-            description={`${o.year}${o.tiles ? " · online only" : ""}${o.sample ? " · SAMPLE DATA" : ""}`}
+            description={`${o.year}${o.tiles ? " · online only" : ""}${zoom < o.minzoom ? " · zoom in to see" : ""}${o.sample ? " · SAMPLE DATA" : ""}`}
             onPress={() => s.set({ activeOverlayId: s.activeOverlayId === o.id ? null : o.id, compare: false })}
             left={(p) => <List.Icon {...p} icon={s.activeOverlayId === o.id ? "checkbox-marked" : "checkbox-blank-outline"} color={theme.colors.primary} />}
             right={(p) => <List.Icon {...p} icon="information-outline" />}
@@ -89,7 +95,11 @@ export function LayersPanel({ go, placeCount }: { go: (v: SheetView) => void; pl
           />
         ))
       )}
-      {hidden > 0 ? <Text style={{ color: theme.colors.onSurfaceVariant }}>{hidden} more outside the selected years.</Text> : null}
+      {elsewhere > 0 || hidden > 0 ? (
+        <Text style={{ color: theme.colors.onSurfaceVariant }}>
+          {[elsewhere > 0 ? `${elsewhere} more elsewhere on the map` : "", hidden > 0 ? `${hidden} outside the selected years` : ""].filter(Boolean).join(" · ")}.
+        </Text>
+      ) : null}
 
       <View style={styles.row}>
         <Text variant="titleSmall" style={{ flex: 1 }}>

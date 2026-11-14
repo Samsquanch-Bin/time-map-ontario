@@ -1,0 +1,13 @@
+id: toronto-1880
+title: "Toronto, 1880 (Goad fire insurance atlas)"
+year: 1880
+source: toronto_historical_maps
+fetch:
+  method: live_tiles
+  service: https://tiles.arcgis.com/tiles/jIL9msH9OI208GCb/arcgis/rest/services/Toronto1880/MapServer
+  url: "https://tiles.arcgis.com/tiles/jIL9msH9OI208GCb/arcgis/rest/services/Toronto1880/MapServer/tile/{z}/{y}/{x}"
+bounds: [-79.436, 43.626, -79.341, 43.682]
+minzoom: 13
+maxzoom: 19
+description: "Fire insurance plan showing every building. Credit on the service: Toronto Public Library."
+accuracy_note: "Georeferenced by the map's publisher; error isn't published. City plans at this scale generally line up with today's streets, but check a few corners before trusting a building's exact spot."

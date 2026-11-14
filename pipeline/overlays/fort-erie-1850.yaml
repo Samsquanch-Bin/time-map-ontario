@@ -1,0 +1,11 @@
+id: fort-erie-1850
+title: "Fort Erie military reserve showing all the houses, 1850"
+year: 1850
+source: brock_early_niagara
+fetch:
+  method: arcgis_imageserver
+  url: https://terra.library.brocku.ca/arcgis/rest/services/EarlyNiagara/FortErie1850NMC22343/ImageServer
+minzoom: 10
+maxzoom: 17
+description: "\"Fort Erie, C.W. Plan of the military reserve showing all the houses thereon\" (LAC NMC 22343). Brock University Map, Data & GIS Library item; licence No restrictions."
+accuracy_note: "Georeferenced by Brock University's Map, Data & GIS Library; error figures are not published and haven't been measured here. Check streets and shorelines against today's map before trusting a spot."

@@ -1,0 +1,11 @@
+id: hamilton-port-dalhousie-1863
+title: "Military sketch, Hamilton to Port Dalhousie, 1863"
+year: 1863
+source: brock_early_niagara
+fetch:
+  method: arcgis_imageserver
+  url: https://terra.library.brocku.ca/arcgis/rest/services/EarlyNiagara/HamiltonPortDalhousie1863NMC21066/ImageServer
+minzoom: 10
+maxzoom: 15
+description: "Military survey of the Lake Ontario shore between Hamilton and Port Dalhousie (LAC NMC 21066). Brock University Map, Data & GIS Library item; licence No restrictions."
+accuracy_note: "Georeferenced by Brock University's Map, Data & GIS Library; error figures are not published and haven't been measured here. Check streets and shorelines against today's map before trusting a spot."

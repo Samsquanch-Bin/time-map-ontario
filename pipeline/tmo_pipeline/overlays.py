@@ -272,6 +272,10 @@ def build_overlay(ov: OverlayDef, out_dir: Path = BUILD_DIR / "release") -> dict
     cmd = ["gdalwarp", "-q", "-overwrite", "-t_srs", "EPSG:3857", "-r", "bilinear", "-dstalpha", "-co", "COMPRESS=DEFLATE", "-co", "TILED=YES", "-co", "BIGTIFF=IF_SAFER"]
     if nodata is not None:
         cmd += ["-srcnodata", str(nodata)]
+    if ov.maxzoom is not None:
+        # cap detail: resample to the web-mercator resolution of maxzoom (keeps packs small)
+        res = WEB_MERCATOR_WORLD_M / 256 / 2**ov.maxzoom
+        cmd += ["-tr", f"{res:.6f}", f"{res:.6f}"]
     _run(cmd + [str(src), str(warped)])
 
     mbtiles = work / f"{ov.id}.mbtiles"

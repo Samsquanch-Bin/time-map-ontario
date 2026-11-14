@@ -29,6 +29,7 @@ type Persisted = {
 type Transient = {
   compare: boolean;
   showUser: boolean;
+  view: { bounds: [number, number, number, number]; zoom: number } | null;
   set: (patch: Partial<Persisted & Omit<Transient, "set">>) => void;
 };
 
@@ -49,13 +50,14 @@ export const useApp = create<Persisted & Transient>()(
       catalog: null,
       compare: false,
       showUser: false,
+      view: null,
       set: (patch) => set(patch),
     }),
     {
       name: "tmo-state-v1",
       storage: createJSONStorage(() => AsyncStorage),
       // compare / showUser are per-session; location is never stored.
-      partialize: ({ compare: _c, showUser: _s, set: _set, ...rest }) => rest,
+      partialize: ({ compare: _c, showUser: _s, view: _v, set: _set, ...rest }) => rest,
     },
   ),
 );

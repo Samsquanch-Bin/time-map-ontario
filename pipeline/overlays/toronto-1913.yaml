@@ -1,0 +1,13 @@
+id: toronto-1913
+title: "Toronto, 1913 (Goad)"
+year: 1913
+source: toronto_historical_maps
+fetch:
+  method: live_tiles
+  service: https://tiles.arcgis.com/tiles/jIL9msH9OI208GCb/arcgis/rest/services/Toronto1913/MapServer
+  url: "https://tiles.arcgis.com/tiles/jIL9msH9OI208GCb/arcgis/rest/services/Toronto1913/MapServer/tile/{z}/{y}/{x}"
+bounds: [-79.557, 43.571, -79.214, 43.773]
+minzoom: 11
+maxzoom: 19
+description: "Goad fire insurance plans of Toronto. Credit on the service: Toronto Public Library, Library and Archives Canada and City of Toronto Archives."
+accuracy_note: "Georeferenced by the map's publisher; error isn't published. City plans at this scale generally line up with today's streets, but check a few corners before trusting a building's exact spot."

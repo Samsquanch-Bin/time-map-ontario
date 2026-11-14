@@ -88,6 +88,19 @@ export function overlayAvailable(catalog: Catalog | null, installed: Installed, 
   return o.tiles ? true : !!o.file && hasPack(catalog, installed, o.file);
 }
 
+export type Bounds = [number, number, number, number];
+
+function intersects(a: Bounds, b: Bounds): boolean {
+  return a[0] <= b[2] && b[0] <= a[2] && a[1] <= b[3] && b[1] <= a[3];
+}
+
+/** Overlays covering the current view, most detailed (smallest area) first. */
+export function overlaysInView(overlays: Overlay[], view: Bounds | null): Overlay[] {
+  if (!view) return [];
+  const area = (b: Bounds) => (b[2] - b[0]) * (b[3] - b[1]);
+  return overlays.filter((o) => intersects(o.bounds, view)).sort((a, b) => area(a.bounds) - area(b.bounds));
+}
+
 export function hasPack(catalog: Catalog | null, installed: Installed, file: string): boolean {
   const p = catalog?.packs.find((x) => x.file === file);
   return !!p && installed[file] === p.sha256;

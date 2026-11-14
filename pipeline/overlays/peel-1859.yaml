@@ -1,0 +1,13 @@
+id: peel-1859
+title: "Peel County, 1859 (Tremaine)"
+year: 1859
+source: uoft_county_maps
+fetch:
+  method: live_tiles
+  service: https://tiles.arcgis.com/tiles/9NvE8jKNWWlDGsUJ/arcgis/rest/services/PeelCounty/MapServer
+  url: "https://tiles.arcgis.com/tiles/9NvE8jKNWWlDGsUJ/arcgis/rest/services/PeelCounty/MapServer/tile/{z}/{y}/{x}"
+bounds: [-80.152, 43.478, -79.532, 43.992]
+minzoom: 10
+maxzoom: 17
+description: "Tremaine's map of Peel County (Brampton, Mississauga area) with farm lots and landowner names."
+accuracy_note: "Georeferenced by the University of Toronto's Ontario Historical County Maps Project; error isn't published. County maps of this era were compiled from township surveys, so lot lines and roads usually line up well, but buildings are drawn as symbols in roughly the right place."

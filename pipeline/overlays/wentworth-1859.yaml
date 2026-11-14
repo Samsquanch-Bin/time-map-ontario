@@ -1,0 +1,13 @@
+id: wentworth-1859
+title: "Wentworth County (Hamilton area), 1859"
+year: 1859
+source: uoft_county_maps
+fetch:
+  method: live_tiles
+  service: https://tiles.arcgis.com/tiles/9NvE8jKNWWlDGsUJ/arcgis/rest/services/Wentworth/MapServer
+  url: "https://tiles.arcgis.com/tiles/9NvE8jKNWWlDGsUJ/arcgis/rest/services/Wentworth/MapServer/tile/{z}/{y}/{x}"
+bounds: [-80.424, 42.648, -79.131, 43.578]
+minzoom: 10
+maxzoom: 14
+description: "County map of Wentworth (Hamilton and surrounding townships) with farm lots and landowner names."
+accuracy_note: "Georeferenced by the University of Toronto's Ontario Historical County Maps Project; error isn't published. County maps of this era were compiled from township surveys, so lot lines and roads usually line up well, but buildings are drawn as symbols in roughly the right place."

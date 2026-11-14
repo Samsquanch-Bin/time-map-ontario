@@ -1,0 +1,13 @@
+id: toronto-1856
+title: "City of Toronto, 1856"
+year: 1856
+source: toronto_historical_maps
+fetch:
+  method: live_tiles
+  service: https://tiles.arcgis.com/tiles/wjcPoefzjpzCgffS/arcgis/rest/services/City_of_Toronto_1856/MapServer
+  url: "https://tiles.arcgis.com/tiles/wjcPoefzjpzCgffS/arcgis/rest/services/City_of_Toronto_1856/MapServer/tile/{z}/{y}/{x}"
+bounds: [-79.692, 43.552, -79.44, 43.785]
+minzoom: 11
+maxzoom: 17
+description: "Map of the city and its western surroundings with property lines and owners. Credit on the service: Charles Unwin, compiler and surveyor."
+accuracy_note: "Georeferenced by the map's publisher; error isn't published. City plans at this scale generally line up with today's streets, but check a few corners before trusting a building's exact spot."

@@ -1,0 +1,11 @@
+id: town-of-niagara-1817
+title: "Town of Niagara (Niagara-on-the-Lake), 1817"
+year: 1817
+source: brock_early_niagara
+fetch:
+  method: arcgis_imageserver
+  url: https://terra.library.brocku.ca/arcgis/rest/services/EarlyNiagara/NiagaraontheLake1817NMC19556/ImageServer
+minzoom: 10
+maxzoom: 17
+description: "Plan of the Town of Niagara (LAC NMC 19556). Brock University Map, Data & GIS Library item; licence No restrictions."
+accuracy_note: "Georeferenced by Brock University's Map, Data & GIS Library; error figures are not published and haven't been measured here. Check streets and shorelines against today's map before trusting a spot."

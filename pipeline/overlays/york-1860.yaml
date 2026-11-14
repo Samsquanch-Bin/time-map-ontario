@@ -1,0 +1,13 @@
+id: york-1860
+title: "York County, 1860 (Tremaine)"
+year: 1860
+source: uoft_county_maps
+fetch:
+  method: live_tiles
+  service: https://tiles.arcgis.com/tiles/9NvE8jKNWWlDGsUJ/arcgis/rest/services/York_Clipped/MapServer
+  url: "https://tiles.arcgis.com/tiles/9NvE8jKNWWlDGsUJ/arcgis/rest/services/York_Clipped/MapServer/tile/{z}/{y}/{x}"
+bounds: [-79.786, 43.569, -79.115, 44.368]
+minzoom: 10
+maxzoom: 18
+description: "Tremaine's map of York County (Toronto, Etobicoke, Scarborough, Vaughan, Markham and north) with farm lots and landowner names."
+accuracy_note: "Georeferenced by the University of Toronto's Ontario Historical County Maps Project; error isn't published. County maps of this era were compiled from township surveys, so lot lines and roads usually line up well, but buildings are drawn as symbols in roughly the right place."

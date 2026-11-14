@@ -1,0 +1,11 @@
+id: st-catharines-1899
+title: "Map of the City of St. Catharines, 1899"
+year: 1899
+source: brock_early_niagara
+fetch:
+  method: arcgis_imageserver
+  url: https://terra.library.brocku.ca/arcgis/rest/services/EarlyNiagara/StCatharines1899/ImageServer
+minzoom: 10
+maxzoom: 17
+description: "City map of St. Catharines. Brock University Map, Data & GIS Library item; licence No restrictions."
+accuracy_note: "Georeferenced by Brock University's Map, Data & GIS Library; error figures are not published and haven't been measured here. Check streets and shorelines against today's map before trusting a spot."

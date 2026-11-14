@@ -1,0 +1,11 @@
+id: stamford-1876
+title: "Township of Stamford, 1876"
+year: 1876
+source: brock_early_niagara
+fetch:
+  method: arcgis_imageserver
+  url: https://terra.library.brocku.ca/arcgis/rest/services/EarlyNiagara/NiagaraFallsStamford1876/ImageServer
+minzoom: 10
+maxzoom: 16
+description: "Stamford Township (today's Niagara Falls area), 1876. Brock University Map, Data & GIS Library item; licence No restrictions."
+accuracy_note: "Georeferenced by Brock University's Map, Data & GIS Library; error figures are not published and haven't been measured here. Check streets and shorelines against today's map before trusting a spot."

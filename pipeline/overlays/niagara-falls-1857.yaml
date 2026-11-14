@@ -1,0 +1,11 @@
+id: niagara-falls-1857
+title: "Map of the vicinity of Niagara Falls, 1857"
+year: 1857
+source: brock_early_niagara
+fetch:
+  method: arcgis_imageserver
+  url: https://terra.library.brocku.ca/arcgis/rest/services/EarlyNiagara/NiagaraFallsTunis1857/ImageServer
+minzoom: 10
+maxzoom: 16
+description: "\"A map of the vicinity of Niagara Falls. 1857\". Brock University Map, Data & GIS Library item; licence No restrictions."
+accuracy_note: "Georeferenced by Brock University's Map, Data & GIS Library; error figures are not published and haven't been measured here. Check streets and shorelines against today's map before trusting a spot."

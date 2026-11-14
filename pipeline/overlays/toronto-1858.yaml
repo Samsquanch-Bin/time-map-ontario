@@ -1,0 +1,13 @@
+id: toronto-1858
+title: "Toronto, 1858 (Boulton atlas)"
+year: 1858
+source: toronto_historical_maps
+fetch:
+  method: live_tiles
+  service: https://tiles.arcgis.com/tiles/jIL9msH9OI208GCb/arcgis/rest/services/Toronto1858/MapServer
+  url: "https://tiles.arcgis.com/tiles/jIL9msH9OI208GCb/arcgis/rest/services/Toronto1858/MapServer/tile/{z}/{y}/{x}"
+bounds: [-79.441, 43.625, -79.338, 43.686]
+minzoom: 13
+maxzoom: 17
+description: "Large-scale city atlas with streets, lots and buildings. Credit on the service: Toronto Public Library."
+accuracy_note: "Georeferenced by the map's publisher; error isn't published. City plans at this scale generally line up with today's streets, but check a few corners before trusting a building's exact spot."

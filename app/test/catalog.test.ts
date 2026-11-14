@@ -50,3 +50,13 @@ test("online overlays are available without a pack; offline ones need theirs", a
   assert.equal(overlayAvailable(catalog, { "overlay-niagara-1826.pmtiles": "b".repeat(64) }, o), true);
   assert.equal(overlayAvailable(catalog, {}, { tiles: "https://x/{z}/{y}/{x}" } as any), true);
 });
+
+test("overlaysInView lists maps covering the view, most detailed first", async () => {
+  const { overlaysInView } = await import("../src/logic/catalog");
+  const county = { id: "county", bounds: [-80.4, 42.6, -79.1, 43.6] } as any;
+  const city = { id: "city", bounds: [-79.9, 43.2, -79.8, 43.3] } as any;
+  const far = { id: "far", bounds: [-79.4, 43.6, -79.3, 43.7] } as any;
+  const hamilton: [number, number, number, number] = [-79.9, 43.22, -79.85, 43.27];
+  assert.deepEqual(overlaysInView([county, far, city], hamilton).map((o) => o.id), ["city", "county"]);
+  assert.deepEqual(overlaysInView([county], null), []);
+});
