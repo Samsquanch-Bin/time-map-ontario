@@ -11,14 +11,30 @@ from __future__ import annotations
 import datetime as dt
 import json
 import math
+import re
 from pathlib import Path
 from typing import Any
 
 from .research import RESEARCH_DIR, USER_AGENT
 
+# Server roots that allow folder listing (Brock's top level returns 403, so list folders).
 ROOTS = [
-    "https://terra.library.brocku.ca/arcgis/rest/services",
+    "https://terra.library.brocku.ca/arcgis/rest/services/EarlyNiagara",
+    "https://terra.library.brocku.ca/arcgis/rest/services/NiagaraTopos",
+    "https://terra.library.brocku.ca/arcgis/rest/services/AirPhotos",
+    "https://tiles.arcgis.com/tiles/jIL9msH9OI208GCb/arcgis/rest/services",
+    "https://tiles.arcgis.com/tiles/wjcPoefzjpzCgffS/arcgis/rest/services",
+    "https://ww2.yorkmaps.ca/arcgis/rest/services/CacheMaps",
 ]
+# ArcGIS Online public search: finds georeferenced map layers others have published.
+AGOL_SEARCH = "https://www.arcgis.com/sharing/rest/search"
+AGOL_QUERIES = [
+    "Hamilton 1859", "Hamilton historical map", "Hamilton fire insurance plan", "Wentworth County 1859",
+    "Wentworth County 1875 atlas", "Surtees Wentworth", "Barton Township historical", "Ancaster historical map",
+    "Dundas Ontario historical map", "Halton County 1858 Tremaine", "Peel County 1859 Tremaine",
+    "Ontario Historical County Maps", "Tremaine map", "Toronto Goad", "Hamilton Goad",
+]
+LAYER_TYPES = ("Map Service", "Image Service", "Tile Layer", "WMS", "WMTS")
 
 
 def mercator_to_lonlat(x: float, y: float) -> tuple[float, float]:
@@ -35,10 +51,11 @@ def service_urls(directory: dict[str, Any], base: str) -> tuple[list[str], list[
     return folders, services
 
 
-def _get(s, url: str) -> dict[str, Any]:
+def _get(s, url: str, params: dict[str, Any] | None = None) -> dict[str, Any]:
+    last: Exception | None = None
     for attempt in range(3):
         try:
-            r = s.get(url, params={"f": "json"}, timeout=60)
+            r = s.get(url, params={"f": "json", **(params or {})}, timeout=60)
             r.raise_for_status()
             return r.json()
         except Exception as exc:  # noqa: BLE001
@@ -116,7 +133,48 @@ def discover(roots: list[str] = ROOTS, out: Path = RESEARCH_DIR / "map-services.
                 }
             )
             print(f"{svc}: {results[-1]['item_title'] or results[-1]['name']}")
+    online = search_arcgis_online(s)
+    for it in online:
+        if it.get("url") and it["url"] not in {r["url"] for r in results} and ("MapServer" in it["url"] or "ImageServer" in it["url"]):
+            info = _get(s, it["url"])
+            it["pixel_size"] = [info.get("pixelSizeX"), info.get("pixelSizeY")]
+            it["bounds_wgs84_service"] = _wgs84_bounds(s, info, it["url"]) if info else None
+            it["tiled"] = bool(info.get("tileInfo"))
+            it["export_tiles_allowed"] = info.get("exportTilesAllowed")
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps({"retrieved": dt.date.today().isoformat(), "roots": roots, "services": results}, indent=1, ensure_ascii=False))
+    out.write_text(json.dumps({"retrieved": dt.date.today().isoformat(), "roots": roots, "services": results, "arcgis_online": online}, indent=1, ensure_ascii=False))
     print(f"{len(results)} services")
     return results
+
+
+def search_arcgis_online(s, queries: list[str] = AGOL_QUERIES) -> list[dict[str, Any]]:
+    """Public ArcGIS Online items (layers and web maps) matching the queries."""
+    found: dict[str, dict[str, Any]] = {}
+    for q in queries:
+        d = _get(s, AGOL_SEARCH, {"q": q, "num": 50})
+        for it in d.get("results", []):
+            if it["id"] in found or it.get("access") != "public":
+                continue
+            if it.get("type") not in LAYER_TYPES + ("Web Map", "Web Mapping Application"):
+                continue
+            ext = it.get("extent") or []
+            bounds = [ext[0][0], ext[0][1], ext[1][0], ext[1][1]] if len(ext) == 2 else None
+            found[it["id"]] = {
+                "id": it["id"],
+                "title": it.get("title", ""),
+                "type": it.get("type"),
+                "owner": it.get("owner"),
+                "url": it.get("url") or "",
+                "bounds_wgs84": bounds,
+                "snippet": (it.get("snippet") or "")[:300],
+                "licence": re.sub("<[^>]+>", " ", it.get("licenseInfo") or "")[:400].strip(),
+                "access_information": (it.get("accessInformation") or "")[:200],
+                "query": q,
+            }
+        print(f"AGOL '{q}': {len(d.get('results', []))} results")
+    # web maps: list their operational layer URLs
+    for it in list(found.values()):
+        if it["type"] == "Web Map":
+            data = _get(s, f"https://www.arcgis.com/sharing/rest/content/items/{it['id']}/data")
+            it["layers"] = [{"title": l.get("title"), "url": l.get("url")} for l in data.get("operationalLayers", []) if l.get("url")][:40]
+    return sorted(found.values(), key=lambda x: x["title"])
