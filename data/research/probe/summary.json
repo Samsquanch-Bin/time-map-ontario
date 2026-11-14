@@ -1,0 +1,378 @@
+[
+ {
+  "url": "https://maps.library.utoronto.ca/datapub/Ontario/APS_1954/georeferenced/zipped/434.793.zip",
+  "status": 200,
+  "bytes": 37541730,
+  "zip": [
+   {
+    "name": "434.793.jp2",
+    "bytes": 27625099
+   },
+   {
+    "name": "434.793.jp2.aux.xml",
+    "bytes": 8981
+   },
+   {
+    "name": "434.793.jp2.ovr",
+    "bytes": 6678619
+   },
+   {
+    "name": "434.793.org.jpg",
+    "bytes": 4410174
+   },
+   {
+    "name": "434.793.txt",
+    "bytes": 3377
+   }
+  ],
+  "rasters": [
+   {
+    "size": [
+     4729,
+     6315
+    ],
+    "bands": [
+     {
+      "type": "UInt16",
+      "colour": "Red",
+      "nodata": 256
+     },
+     {
+      "type": "UInt16",
+      "colour": "Green",
+      "nodata": 256
+     },
+     {
+      "type": "UInt16",
+      "colour": "Blue",
+      "nodata": 256
+     }
+    ],
+    "crs": "PROJCRS[\"NAD83 / UTM zone 17N\",\n    BASEGEOGCRS[\"NAD83\",\n        DATUM[\"North American Datum 1983\",\n            ELLIPSOI",
+    "geotransform": [
+     600821.0327288344,
+     2.724717,
+     0.0,
+     4817619.889061991,
+     0.0,
+     -2.724717
+    ],
+    "wgs84_extent": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        -79.7528075,
+        43.5047096
+       ],
+       [
+        -79.7559842,
+        43.349811
+       ],
+       [
+        -79.5970399,
+        43.3479714
+       ],
+       [
+        -79.5934577,
+        43.5028601
+       ],
+       [
+        -79.7528075,
+        43.5047096
+       ]
+      ]
+     ]
+    },
+    "metadata": {
+     "Corder": "PCRL"
+    },
+    "file": "434.793.jp2"
+   },
+   {
+    "size": [
+     4740,
+     6300
+    ],
+    "bands": [
+     {
+      "type": "Byte",
+      "colour": "Red",
+      "nodata": null
+     },
+     {
+      "type": "Byte",
+      "colour": "Green",
+      "nodata": null
+     },
+     {
+      "type": "Byte",
+      "colour": "Blue",
+      "nodata": null
+     }
+    ],
+    "crs": "",
+    "geotransform": null,
+    "wgs84_extent": null,
+    "metadata": {},
+    "file": "434.793.org.jpg"
+   }
+  ]
+ },
+ {
+  "url": "https://maps.library.utoronto.ca/datapub/Ontario/APS_1954/georeferenced/zipped/433.794.zip",
+  "status": 200,
+  "bytes": 77520157,
+  "zip": [
+   {
+    "name": "433.794.jp2",
+    "bytes": 55742407
+   },
+   {
+    "name": "433.794.jp2.aux.xml",
+    "bytes": 15930
+   },
+   {
+    "name": "433.794.jp2.ovr",
+    "bytes": 13601795
+   },
+   {
+    "name": "433.794.org.jpg",
+    "bytes": 9617492
+   },
+   {
+    "name": "433.794.txt",
+    "bytes": 16448
+   }
+  ],
+  "rasters": [
+   {
+    "size": [
+     7621,
+     5354
+    ],
+    "bands": [
+     {
+      "type": "UInt16",
+      "colour": "Red",
+      "nodata": 256
+     },
+     {
+      "type": "UInt16",
+      "colour": "Green",
+      "nodata": 256
+     },
+     {
+      "type": "UInt16",
+      "colour": "Blue",
+      "nodata": 256
+     }
+    ],
+    "crs": "PROJCRS[\"NAD83 / UTM zone 17N\",\n    BASEGEOGCRS[\"NAD83\",\n        DATUM[\"North American Datum 1983\",\n            ELLIPSOI",
+    "geotransform": [
+     580885.1196127394,
+     2.733422,
+     0.0,
+     4803467.21489202,
+     0.0,
+     -2.7334219999999285
+    ],
+    "wgs84_extent": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        -80.0014784,
+        43.3797168
+       ],
+       [
+        -80.0036335,
+        43.2479569
+       ],
+       [
+        -79.7470801,
+        43.2454344
+       ],
+       [
+        -79.7443704,
+        43.3771827
+       ],
+       [
+        -80.0014784,
+        43.3797168
+       ]
+      ]
+     ]
+    },
+    "metadata": {
+     "DataType": "Generic"
+    },
+    "file": "433.794.jp2"
+   },
+   {
+    "size": [
+     7700,
+     5300
+    ],
+    "bands": [
+     {
+      "type": "Byte",
+      "colour": "Red",
+      "nodata": null
+     },
+     {
+      "type": "Byte",
+      "colour": "Green",
+      "nodata": null
+     },
+     {
+      "type": "Byte",
+      "colour": "Blue",
+      "nodata": null
+     }
+    ],
+    "crs": "",
+    "geotransform": null,
+    "wgs84_extent": null,
+    "metadata": {},
+    "file": "433.794.org.jpg"
+   }
+  ]
+ },
+ {
+  "url": "https://maps.library.utoronto.ca/datapub/Ontario/AP1954_2/TIF/cl_r/A17179-165.zip",
+  "status": 200,
+  "bytes": 12667349,
+  "zip": [
+   {
+    "name": "A17179-165.tfwx",
+    "bytes": 129
+   },
+   {
+    "name": "A17179-165.tif",
+    "bytes": 29582520
+   },
+   {
+    "name": "A17179-165.tif.aux.xml",
+    "bytes": 13507
+   }
+  ],
+  "rasters": [
+   {
+    "size": [
+     6258,
+     4725
+    ],
+    "bands": [
+     {
+      "type": "Byte",
+      "colour": "Gray",
+      "nodata": null
+     }
+    ],
+    "crs": "",
+    "geotransform": null,
+    "wgs84_extent": null,
+    "metadata": {
+     "TIFFTAG_XRESOLUTION": "800",
+     "TIFFTAG_YRESOLUTION": "800",
+     "TIFFTAG_RESOLUTIONUNIT": "2 (pixels/inch)"
+    },
+    "file": "A17179-165.tif"
+   }
+  ]
+ },
+ {
+  "url": "http://maps.library.utoronto.ca/datapub/Ontario/New_TorontoAP/Scan2190_crop.zip",
+  "status": 200,
+  "bytes": 2237114,
+  "zip": [
+   {
+    "name": "Scan2190_crop.jpg",
+    "bytes": 2250640
+   },
+   {
+    "name": "Scan2190_crop.jpg.aux.xml",
+    "bytes": 1285
+   },
+   {
+    "name": "Scan2190_crop.jgw",
+    "bytes": 127
+   }
+  ],
+  "rasters": [
+   {
+    "size": [
+     2148,
+     2762
+    ],
+    "bands": [
+     {
+      "type": "Byte",
+      "colour": "Red",
+      "nodata": null
+     },
+     {
+      "type": "Byte",
+      "colour": "Green",
+      "nodata": null
+     },
+     {
+      "type": "Byte",
+      "colour": "Blue",
+      "nodata": null
+     }
+    ],
+    "crs": "PROJCRS[\"NAD83 / UTM zone 17N\",\n    BASEGEOGCRS[\"NAD83\",\n        DATUM[\"North_American_Datum_1983\",\n            ELLIPSOI",
+    "geotransform": [
+     614386.4945625361,
+     -1.3823690174905205,
+     -0.025774515988715,
+     4825158.555907468,
+     -0.0227574100067171,
+     1.3869439539012607
+    ],
+    "wgs84_extent": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        -79.5834573,
+        43.5706155
+       ],
+       [
+        -79.5835301,
+        43.6051085
+       ],
+       [
+        -79.6203221,
+        43.6051184
+       ],
+       [
+        -79.6202283,
+        43.5706251
+       ],
+       [
+        -79.5834573,
+        43.5706155
+       ]
+      ]
+     ]
+    },
+    "metadata": {
+     "EXIF_ColorSpace": "65535",
+     "EXIF_DateTime": "2008:09:24 16:27:01",
+     "EXIF_Orientation": "1",
+     "EXIF_PixelXDimension": "2148",
+     "EXIF_PixelYDimension": "2762",
+     "EXIF_ResolutionUnit": "2",
+     "EXIF_Software": "Adobe Photoshop Elements 2.0",
+     "EXIF_XResolution": "(300)",
+     "EXIF_YResolution": "(300)",
+     "PyramidResamplingType": "NEAREST"
+    },
+    "file": "Scan2190_crop.jpg"
+   }
+  ]
+ }
+]

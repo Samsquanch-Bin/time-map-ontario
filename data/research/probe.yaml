@@ -1,0 +1,13 @@
+# Files inspected by the "Research sources" workflow (step: probe). See tmo_pipeline/probe.py.
+files:
+  # U of T "Air Photos of Southern Ontario 1954" (2.5 m): Oakville and Burlington photos
+  - url: https://maps.library.utoronto.ca/datapub/Ontario/APS_1954/georeferenced/zipped/434.793.zip
+    crops: [[-79.6687, 43.4475, 700]]
+  - url: https://maps.library.utoronto.ca/datapub/Ontario/APS_1954/georeferenced/zipped/433.794.zip
+    crops: [[-79.7990, 43.3245, 700]]
+  # U of T "Digital Air Photographs, Southern Ontario 1954" (0.6-1.5 m): Etobicoke
+  - url: https://maps.library.utoronto.ca/datapub/Ontario/AP1954_2/TIF/cl_r/A17179-165.zip
+    crops: [[-79.548, 43.686, 400]]
+  # U of T 1946 New Toronto / Port Credit
+  - url: http://maps.library.utoronto.ca/datapub/Ontario/New_TorontoAP/Scan2190_crop.zip
+    crops: [[-79.60, 43.588, 400]]
