@@ -70,8 +70,9 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
     [allPlaces, s.placesVisible, s.era, s.hiddenCategories],
   );
   const placesGeoJSON = useMemo(() => (shownPlaces.length ? placesToGeoJSON(shownPlaces) : null), [shownPlaces]);
-  const satelliteKey = s.basemap === "satellite" && s.esriKey ? s.esriKey : null;
   const comparing = s.compare && !!activeOverlay;
+  // While comparing, the "Today" side is satellite whenever there's a key for it.
+  const satelliteKey = (s.basemap === "satellite" || comparing) && s.esriKey ? s.esriKey : null;
 
   const go = useCallback((v: SheetView) => {
     setView(v);

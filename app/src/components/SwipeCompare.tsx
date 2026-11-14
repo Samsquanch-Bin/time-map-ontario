@@ -35,6 +35,9 @@ export const SwipeCompare = forwardRef<CameraRef, Props>(function SwipeCompare({
     <>
       <View pointerEvents="none" style={[StyleSheet.absoluteFill, { width: x, overflow: "hidden" }]}>
         <Map
+          // A SurfaceView ignores the parent's clipping on Android and would cover the
+          // whole screen; a TextureView is clipped to the left of the divider.
+          androidView="texture"
           style={{ width, height: "100%" }}
           mapStyle={mapStyle}
           attribution={false}
