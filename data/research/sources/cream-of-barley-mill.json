@@ -1,0 +1,39 @@
+{
+ "candidate": {
+  "id": "cream-of-barley-mill",
+  "qid": "Q16952566",
+  "category": "mill"
+ },
+ "retrieved": "2026-11-14",
+ "wikidata": {
+  "label": "Cream of Barley Mill",
+  "description": "watermill in Clarington, Ontario, Canada",
+  "coordinates": [
+   {
+    "lon": -78.671204,
+    "lat": 43.904546,
+    "precision_deg": 1e-06
+   }
+  ],
+  "dates": {},
+  "enwiki": "Cream of Barley Mill",
+  "url": "https://www.wikidata.org/wiki/Q16952566",
+  "licence": "CC0 1.0"
+ },
+ "wikipedia": {
+  "title": "Cream of Barley Mill",
+  "revid": 1355298204,
+  "timestamp": "2026-05-21T01:50:16Z",
+  "url": "https://en.wikipedia.org/w/index.php?title=Cream_of_Barley_Mill&oldid=1355298204",
+  "licence": "CC BY-SA 4.0",
+  "coordinates": [
+   {
+    "lat": 43.904553,
+    "lon": -78.671152,
+    "primary": true,
+    "globe": "earth"
+   }
+  ],
+  "text": "The Cream of Barley Mill is a historic mill in the town of Bowmanville, Municipality of Clarington, Ontario, Canada.\nScottish immigrant John MacKay created a new hot cereal product called \"cream of barley\".  In 1884 he bought the preexisting Caledonia Mill, situated on the banks of Soper Creek on the outskirts of the town of Bowmanville, to manufacture his product.  The mill was originally built in 1805 by Leonard Soper as a grist mill, and was owned and operated by several others before being bought by McKay. McKay designed and installed new equipment for the milling of barley.\nThe cereal became popular, and MacKay's company shipped Cream of Barley throughout Canada and the British Empire.\nIn 1904 the mill burned, and a new brick mill was built to continue manufacturing the cream of barley cereal.\nA campground and park, aptly named \"The Cream of Barley Campground\", was developed on land to the north of the millhouse.  In about 1922 a petting zoo was added to the park. By 1928 the mill, camp and park (which now included tourist cabins) were owned James Morden and operated by Alfred Shrubb, formerly a world-renowned long distance runner. By 1946 the park included tennis courts.\nIn the 1950s, with the business under Shrubb's ownership, Cream of Barley began to lose market share to the new cold breakfast cereals.  The mill was sold, and over the years the Cream of Barley Mill tourist park and campground were absorbed into what is now the Bowmanville Zoo.\nIn 1973 the Cream of Barley millhouse was purchased by the town of Bowmanville, and since that time has housed the Visual Arts Centre of Clarington, a not-for-profit artistic and cultural centre. The mill building has been designated by the municipality as an architecturally protected historical building under the Ontario Heritage Act.\n\n\n== Notes ==\n\n\n== References ==\nCherry, Maralyn et al. Recollections: 100 Years in the Life of the Cream of Barley Mill. Visual Arts Centre of Clarington.\nFischer, George and Harris, Mark. Ontario's Historic Mills. Firefly Books, 2007.\n\n\n== External links ==\nOfficial website of the Visual Arts Centre of Clarington"
+ }
+}

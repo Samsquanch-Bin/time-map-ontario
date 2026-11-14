@@ -1,0 +1,43 @@
+{
+ "candidate": {
+  "id": "magasin-royal",
+  "qid": "Q3077852",
+  "category": "settlers"
+ },
+ "retrieved": "2026-11-14",
+ "wikidata": {
+  "label": "Magasin Royal",
+  "description": "colonial French trading post",
+  "coordinates": [
+   {
+    "lon": -79.497,
+    "lat": 43.655,
+    "precision_deg": 0.001
+   }
+  ],
+  "dates": {
+   "inception": [
+    "+1720-00-00T00:00:00Z"
+   ]
+  },
+  "enwiki": "Magasin Royal",
+  "url": "https://www.wikidata.org/wiki/Q3077852",
+  "licence": "CC0 1.0"
+ },
+ "wikipedia": {
+  "title": "Magasin Royal",
+  "revid": 1329471638,
+  "timestamp": "2025-12-26T06:58:10Z",
+  "url": "https://en.wikipedia.org/w/index.php?title=Magasin_Royal&oldid=1329471638",
+  "licence": "CC BY-SA 4.0",
+  "coordinates": [
+   {
+    "lat": 43.655,
+    "lon": -79.497,
+    "primary": true,
+    "globe": "earth"
+   }
+  ],
+  "text": "Magasin royal (French for 'royal store') was the generic name given to a trading post under the purview of the King of France. The name also applied specifically to two trading posts that were built during the 18th century for French fur trading near the Humber River in the Pays d'en Haut region of New France, in present-day Toronto, Ontario, Canada.  According to Ron Brown, author of From Queenston to Kingston: The Hidden Heritage of Lake Ontario's Shoreline, the fort was \"little more than a log cabin\", and archeologists considered it \"the first non-aboriginal building in the Toronto area\".\n\n\n== Fort Douville ==\nThe first trading post was built in 1720 near present-day Baby Point along the Humber River at Old Mill. It was built by Philippe Dagneau dit Douville, sieur de la Saussaye, and it is commonly known as Fort Douville. The wooden magazine was similar to the one built in Lewiston, New York (likely the French forts or trading post located now in Fort Niagara). The trading post was abandoned sometime after the British Fort Oswego was completed in 1727. The lack of other records suggests that there was no permanent settlement in the Toronto area between 1730 and 1750.\n\n\n== Fort Toronto ==\n\nIn April 1750, Antoine Louis Rouillé gave permission to build a small, fortified, trading post on the east bank of the Rivière Toronto (now the Humber River), near its mouth on Lake Ontario. This post was meant to divert trade from the British Fort Oswego. It is commonly referred to as Fort Portneuf after the French military officer who had been instructed to build it, Pierre Robineau de Portneuf (1708–1761). This post is also known as Fort Toronto, and it was immediately successful in trading with the First Nations. \nGiven the success of Fort Toronto, plans were made in August 1750 to build a larger trading post nearby. From the autumn of 1750 to April 1751, the larger trading post was built to the east of the Humber River. The new post was named Fort Rouillé and was in operation until 1759; Portneuf was the first commandant of Fort Rouillé. The subsequent two trading forts were later destroyed by the French forces withdrawing from the area, during the Seven Years' War.\nFor a time after the defeat of the French, Canadian-born French Canadian fur trader Jean-Baptiste Rousseau (1758–1812) lived in a house near Fort Portneuf from 1792. After the establishment of Upper Canada in 1793, the land along the east bank of the Humber River was reserved for timber for a saw mill. Rousseau accepted a land grant at Head of the Lake  near Ancaster in 1795, and he moved his family there to continue his trading with the First Nations peoples.\n\n\n== See also ==\n\nHistory of Toronto\nList of French forts in North America\nList of lost buildings and structures in Toronto\nNorth American fur trade\nToronto Carrying-Place Trail\n\n\n== References =="
+ }
+}

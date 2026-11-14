@@ -1,0 +1,27 @@
+{
+ "candidate": {
+  "id": "welland-mills",
+  "qid": "Q114447930",
+  "category": "mill"
+ },
+ "retrieved": "2026-11-14",
+ "wikidata": {
+  "label": "Welland Mills/Millstone Monument",
+  "description": "grist mill in Thorold, Ontario, Canada",
+  "coordinates": [
+   {
+    "lon": -79.202864,
+    "lat": 43.125723,
+    "precision_deg": 1e-05
+   }
+  ],
+  "dates": {
+   "inception": [
+    "+1847-00-00T00:00:00Z"
+   ]
+  },
+  "enwiki": "",
+  "url": "https://www.wikidata.org/wiki/Q114447930",
+  "licence": "CC0 1.0"
+ }
+}

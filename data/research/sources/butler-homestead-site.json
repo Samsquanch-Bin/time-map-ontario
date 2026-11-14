@@ -1,0 +1,23 @@
+{
+ "candidate": {
+  "id": "butler-homestead-site",
+  "qid": "Q113264125",
+  "category": "settlers"
+ },
+ "retrieved": "2026-11-14",
+ "wikidata": {
+  "label": "Butler Homestead Site",
+  "description": "archaeological site in Niagara-on-the-Lake, Ontario, Canada",
+  "coordinates": [
+   {
+    "lon": -79.088643,
+    "lat": 43.250896,
+    "precision_deg": 1e-05
+   }
+  ],
+  "dates": {},
+  "enwiki": "",
+  "url": "https://www.wikidata.org/wiki/Q113264125",
+  "licence": "CC0 1.0"
+ }
+}

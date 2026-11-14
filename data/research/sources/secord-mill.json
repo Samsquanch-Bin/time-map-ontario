@@ -1,0 +1,27 @@
+{
+ "candidate": {
+  "id": "secord-mill",
+  "qid": "Q113264137",
+  "category": "mill"
+ },
+ "retrieved": "2026-11-14",
+ "wikidata": {
+  "label": "Secord Mill",
+  "description": "grist mill in Niagara-on-the-Lake, Ontario, Canada",
+  "coordinates": [
+   {
+    "lon": -79.104015,
+    "lat": 43.15263,
+    "precision_deg": 1e-05
+   }
+  ],
+  "dates": {
+   "inception": [
+    "+1783-00-00T00:00:00Z"
+   ]
+  },
+  "enwiki": "",
+  "url": "https://www.wikidata.org/wiki/Q113264137",
+  "licence": "CC0 1.0"
+ }
+}

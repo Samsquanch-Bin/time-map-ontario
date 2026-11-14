@@ -1,0 +1,39 @@
+{
+ "candidate": {
+  "id": "fort-toronto",
+  "qid": "Q3077982",
+  "category": "settlers"
+ },
+ "retrieved": "2026-11-14",
+ "wikidata": {
+  "label": "Fort Toronto",
+  "description": "historic French trading port in now Toronto, Ontario, Canada",
+  "coordinates": [
+   {
+    "lon": -79.4716,
+    "lat": 43.6331,
+    "precision_deg": 0.0001
+   }
+  ],
+  "dates": {},
+  "enwiki": "Fort Toronto",
+  "url": "https://www.wikidata.org/wiki/Q3077982",
+  "licence": "CC0 1.0"
+ },
+ "wikipedia": {
+  "title": "Fort Toronto",
+  "revid": 1362240242,
+  "timestamp": "2026-07-02T18:28:06Z",
+  "url": "https://en.wikipedia.org/w/index.php?title=Fort_Toronto&oldid=1362240242",
+  "licence": "CC BY-SA 4.0",
+  "coordinates": [
+   {
+    "lat": 43.6331,
+    "lon": -79.4716,
+    "primary": true,
+    "globe": "earth"
+   }
+  ],
+  "text": "Fort Toronto, also known as Fort Portneuf, was a French trading post that was located near the mouth of the Humber River in what is now Toronto, Ontario, Canada. It was constructed in 1750 by French military officer Pierre Robineau de Portneuf, who had been instructed to build it to facilitate trade with First Nations in the Pays d'en Haut region of New France.\nFort Toronto was the second French trading post established in the Humber River area. The first one (known as Magasin Royal or Fort Douville) had been built in 1720 by order of the Governor General of New France at that time (Philippe de Rigaud, Marquis de Vaudreuil) near today's Baby Point, about 2 kilometres (1.2 mi) north of the mouth of the Humber River (then known as the Tanaovate River). The French abandoned Magasin Royal by the end of the 1720s, and they did not establish another trading post in the area until the construction of Fort Toronto. \nFort Toronto's immediate success in attracting First Nations traders led to the establishment of nearby Fort Rouillé in the following year. These forts existed mainly to facilitate trade between the French and the indigenous peoples.\nDuring the Seven Years' War, both forts were abandoned by the French, with Fort Rouillé being razed to prevent its capture by the advancing British forces. Following the war, Fort Toronto was renovated and repurposed as a fur trading post by Jean-Bonaventure Rousseau, after Great Britain captured Quebec City and the entire French colony of New France. \n\n\n== See also ==\nHistory of Toronto\nList of French forts in North America\nList of lost buildings and structures in Toronto\nNorth American fur trade\nToronto Carrying-Place Trail\n\n\n== References =="
+ }
+}

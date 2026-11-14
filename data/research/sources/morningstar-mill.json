@@ -1,0 +1,43 @@
+{
+ "candidate": {
+  "id": "morningstar-mill",
+  "qid": "Q99978138",
+  "category": "mill"
+ },
+ "retrieved": "2026-11-14",
+ "wikidata": {
+  "label": "Morningstar Mill",
+  "description": "Heritage flour mill in St. Catharines, Ontario",
+  "coordinates": [
+   {
+    "lon": -79.264504,
+    "lat": 43.110231,
+    "precision_deg": 1e-05
+   }
+  ],
+  "dates": {
+   "inception": [
+    "+1872-00-00T00:00:00Z"
+   ]
+  },
+  "enwiki": "Morningstar Mill",
+  "url": "https://www.wikidata.org/wiki/Q99978138",
+  "licence": "CC0 1.0"
+ },
+ "wikipedia": {
+  "title": "Morningstar Mill",
+  "revid": 1334711249,
+  "timestamp": "2026-01-25T05:50:05Z",
+  "url": "https://en.wikipedia.org/w/index.php?title=Morningstar_Mill&oldid=1334711249",
+  "licence": "CC BY-SA 4.0",
+  "coordinates": [
+   {
+    "lat": 43.11024,
+    "lon": -79.26454,
+    "primary": true,
+    "globe": "earth"
+   }
+  ],
+  "text": "Morningstar Mill is a 2.98-acre (1.21 ha) heritage site located in St. Catharines, Ontario, Canada. The site includes the Morningstar Mill, a sawmill, the home of the Morningstar family, a barn used for blacksmith demonstrations, and the Decew Falls gorge along the Niagara Escarpment. The site is operated by the volunteer group Friends of Morningstar Mill and owned by the City of St. Catharines. The gristmill was restored to working condition in 1992.\n\n\n== Early history ==\nAfter the War of 1812, landowner John DeCou built a stone-grist mill with an overhead waterwheel at Decew Falls. The property was sold in 1894, after the first Welland Canal was constructed, as the mill no longer had an adequate water supply. In 1872, a new mill was built on the foundation of the former DeCou Mill. This new mill, called Mountain Mills, was built by Robert Chappel. The new stone-grist mill was turbine-powered instead of water-powered. Mountain Mills was purchased by the St. Catharines Waterworks in 1875 to prevent claims of water loss supply when the Beverdams Creek above Decew Falls was dammed. The mill was sold to Wilson Morningstar after water supply was restored.\nMorningstar would receive 1/12 of the flour or feed produced by the gristmill as payment. Morningstar also operated a blacksmith and carpentry shop on the property. In 1895, Morningstar rebuilt after a fire destroyed everything except the stone structure.\n\n\n== Later history ==\nThe location was reopened as a tourist attraction in 1962. Morningstar died in 1933 and his family operated the mill after his death. In 1983, the property was purchased by the City of St. Catharines. In 1992, Friends of Morningstar Mill was founded by volunteers with the intention of restoring the gristmill to working order, successfully completing the project within that same year.\nIn 2020, the Morningstar Mill was closed to the public due to the COVID-19 pandemic in Canada. In 2024, the city rejected a proposal that would transfer ownership of the property to the Niagara Peninsula Conservation Authority. The mill was also closed that year to complete extensive renovations worth two million dollars, with plans to reopen in 2025.\n\n\n== See also ==\nDeCew House\nThorold\nLake Gibson (Ontario)\nBruce Trail\nLaura Secord Legacy Trail\nList of waterfalls in Canada\n\n\n== References ==\n\n\n== External links ==\nMorningstar Mill"
+ }
+}
