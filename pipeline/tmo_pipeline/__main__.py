@@ -40,9 +40,11 @@ def main(argv: list[str] | None = None) -> int:
     args = p.parse_args(argv)
 
     if args.cmd == "fip-prepare":
+        import os
+
         from .fip import prepare
 
-        prepare()
+        prepare({x for x in os.environ.get("FIP_HALF", "").split(",") if x})
         return 0
 
     if args.cmd == "fetch-pages":

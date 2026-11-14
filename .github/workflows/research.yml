@@ -5,6 +5,10 @@ name: Research sources
 on:
   workflow_dispatch:
     inputs:
+      half:
+        description: "fip step: comma-separated sheet labels to save at half resolution (e.g. sheet-03)"
+        required: false
+        default: ""
       step:
         description: "discover (list candidate places), fetch (retrieve candidates.yaml), or maps (list map services)"
         required: true
@@ -31,6 +35,10 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -e pipeline
+      - name: Restore earlier research outputs
+        run: |
+          git fetch origin research-cache && git checkout origin/research-cache -- data/research/hamilton-fip 2>/dev/null || true
+          git reset -q
       - name: Run
         working-directory: pipeline
         run: |
@@ -39,7 +47,7 @@ jobs:
           case "$STEP" in
             maps) python -m tmo_pipeline maps-discover ;;
             pages) python -m tmo_pipeline fetch-pages ;;
-            fip) pip install -q pillow shapely && python -m tmo_pipeline fip-prepare ;;
+            fip) pip install -q pillow shapely && FIP_HALF="${{ github.event.inputs.half }}" python -m tmo_pipeline fip-prepare ;;
             *) python -m tmo_pipeline research-$STEP ;;
           esac
       - name: Commit results to research-cache branch
@@ -55,6 +63,7 @@ jobs:
           else
             git checkout --orphan research-cache && git rm -rqf .
           fi
+          # previously prepared FIP previews live only on research-cache: keep them
           mkdir -p data && rm -rf data/research.new && cp -r /tmp/research data/research.new
           # keep previously fetched sources, add/overwrite new ones
           mkdir -p data/research && cp -r data/research.new/. data/research/ && rm -rf data/research.new

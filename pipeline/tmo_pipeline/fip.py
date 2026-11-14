@@ -51,14 +51,19 @@ def grid_step(width: int) -> int:
 
 
 def list_sheets(s) -> list[dict[str, Any]]:
-    sheets, page = [], 1
-    while True:
-        r = s.get(f"{EXPO_API}/items", params={"item_set_id": ITEM_SET, "per_page": 100, "page": page}, timeout=60)
+    """Every item titled 'Insurance plan of the city of Hamilton' (the item-set
+    filter misses most of them)."""
+    sheets, page, seen = [], 1, set()
+    while page < 20:
+        r = s.get(f"{EXPO_API}/items", params={"fulltext_search": "Insurance plan of the city of Hamilton", "per_page": 100, "page": page}, timeout=60)
         r.raise_for_status()
         batch = r.json()
         if not batch:
             break
         for it in batch:
+            if "Insurance plan of the city of Hamilton" not in it.get("o:title", "") or it["o:id"] in seen:
+                continue
+            seen.add(it["o:id"])
             media_id = (it.get("o:primary_media") or (it.get("o:media") or [{}])[0]).get("o:id")
             rights = " ".join(e.get("@value", "") for e in it.get("dcterms:rights", []))
             sheets.append({"item_id": it["o:id"], "title": it["o:title"], "label": sheet_label(it["o:title"]), "media_id": media_id, "rights": rights})
@@ -71,12 +76,14 @@ def media_url(s, media_id: int) -> str:
     return m.get("o:original_url") or m.get("o:source") or ""
 
 
-def make_preview(data: bytes, out: Path) -> dict[str, Any]:
+def make_preview(data: bytes, out: Path, half: Path | None = None) -> dict[str, Any]:
     from PIL import Image, ImageDraw
 
     Image.MAX_IMAGE_PIXELS = None
     im = Image.open(io.BytesIO(data)).convert("RGB")
     w, h = im.size
+    if half is not None:
+        im.resize((w // 2, h // 2)).save(half, quality=82)
     scale = min(1.0, PREVIEW_MAX / max(w, h))
     pv = im.resize((round(w * scale), round(h * scale)))
     d = ImageDraw.Draw(pv)
@@ -128,28 +135,40 @@ out geom;"""
     return out
 
 
-def prepare() -> None:
+def prepare(half_labels: set[str] | None = None) -> None:
     import requests
 
     s = requests.Session()
     s.headers["User-Agent"] = USER_AGENT
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "previews").mkdir(exist_ok=True)
+    (OUT / "half").mkdir(exist_ok=True)
+    done = {p.stem for p in (OUT / "previews").glob("*.jpg")}
     sheets = list_sheets(s)
     print(f"{len(sheets)} sheets")
     for sh in sheets:
         try:
+            want_half = half_labels is not None and sh["label"] in half_labels
+            if sh["label"] in done and not want_half:
+                continue
             url = media_url(s, sh["media_id"])
             sh["original_url"] = url
             data = s.get(url, timeout=300).content
-            sh.update(make_preview(data, OUT / "previews" / f"{sh['label']}.jpg"))
+            sh.update(make_preview(data, OUT / "previews" / f"{sh['label']}.jpg", OUT / "half" / f"{sh['label']}.jpg" if want_half else None))
             sh["bytes"] = len(data)
             print(f"{sh['label']}: {sh['width']}x{sh['height']} {url}")
         except Exception as exc:  # noqa: BLE001
             sh["error"] = str(exc)[:300]
             print(f"{sh['label']}: ERROR {exc}")
         time.sleep(1)
-    (OUT / "sheets.json").write_text(json.dumps(sheets, indent=1, ensure_ascii=False))
+    # keep metadata from earlier runs for sheets not re-downloaded this time
+    old = {x["label"]: x for x in json.loads((OUT / "sheets.json").read_text())} if (OUT / "sheets.json").exists() else {}
+    for sh in sheets:
+        for k, v in old.get(sh["label"], {}).items():
+            sh.setdefault(k, v)
+    (OUT / "sheets.json").write_text(json.dumps(sorted(sheets, key=lambda x: x["label"]), indent=1, ensure_ascii=False))
+    if (OUT / "intersections.json").exists():
+        return
     try:
         inter = street_intersections(s)
         (OUT / "intersections.json").write_text(json.dumps(inter, indent=0, ensure_ascii=False, sort_keys=True))
