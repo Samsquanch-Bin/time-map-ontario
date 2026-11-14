@@ -61,7 +61,7 @@ def list_sheets(s) -> list[dict[str, Any]]:
         if not batch:
             break
         for it in batch:
-            if "Insurance plan of the city of Hamilton" not in it.get("o:title", "") or it["o:id"] in seen:
+            if "Insurance plan of the city of Hamilton" not in (it.get("o:title") or "") or it["o:id"] in seen:
                 continue
             seen.add(it["o:id"])
             media_id = (it.get("o:primary_media") or (it.get("o:media") or [{}])[0]).get("o:id")
