@@ -42,6 +42,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898299+github-actions[bot]@users.noreply.github.com"
           cp -r data/research /tmp/research
+          # clear the working copy so switching branches can't collide with new files
+          rm -rf data/research && git checkout -- . 2>/dev/null || true
           git fetch origin research-cache || true
           if git rev-parse --verify origin/research-cache >/dev/null 2>&1; then
             git checkout -B research-cache origin/research-cache
