@@ -82,12 +82,22 @@ def main(argv: list[str] | None = None) -> int:
         from .overlays import build_overlay
 
         ids = [o for o in overlays if not overlays[o].live] if args.id == "all" else [args.id]
+        failed: list[str] = []
         for oid in ids:
             if oid not in overlays:
                 print(f"unknown overlay {oid}", file=sys.stderr)
                 return 2
             require_sources([overlays[oid].source], sources)
-            build_overlay(overlays[oid])
+            try:
+                build_overlay(overlays[oid])
+            except Exception as exc:  # one bad map shouldn't sink the whole data build
+                if args.id != "all":
+                    raise
+                failed.append(oid)
+                print(f"::warning::overlay {oid} failed and is skipped: {exc}", flush=True)
+        if failed and len(failed) == len(ids):
+            print("every overlay failed", file=sys.stderr)
+            return 1
     elif args.cmd == "catalog":
         from .catalog import build_catalog
 

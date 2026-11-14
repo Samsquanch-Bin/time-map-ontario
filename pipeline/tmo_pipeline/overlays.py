@@ -229,8 +229,8 @@ def fetch_arcgis_imageserver(ov: OverlayDef, workdir: Path) -> tuple[Path, dict[
             "f": "image",
         }
         resp = _get(f"{url}/exportImage", params, 600)
-        if "image" not in resp.headers.get("content-type", "") and not resp.content[:4] in (b"II*\x00", b"MM\x00*"):
-            raise OverlayError(f"{ov.id}: exportImage did not return an image: {resp.text[:300]}")
+        if not looks_like_image(resp.content):
+            raise OverlayError(f"{ov.id}: exportImage did not return an image ({resp.headers.get('content-type')}): {resp.content[:200]!r}")
         raw.write_bytes(resp.content)
         xmin, ymin, xmax, ymax = win["bbox"]
         _run(["gdal_translate", "-q", "-a_srs", f"EPSG:{wkid}", "-a_ullr", str(xmin), str(ymax), str(xmax), str(ymin), str(raw), str(geo)])
@@ -305,6 +305,11 @@ def build_overlay(ov: OverlayDef, out_dir: Path = BUILD_DIR / "release") -> dict
     (out_dir.parent / "overlay-meta").mkdir(parents=True, exist_ok=True)
     (out_dir.parent / "overlay-meta" / f"{ov.id}.json").write_text(json.dumps(meta, indent=2))
     return meta
+
+
+def looks_like_image(data: bytes) -> bool:
+    """TIFF/BigTIFF/PNG/JPEG magic bytes (servers vary in the content-type they send)."""
+    return data[:4] in (b"II*\x00", b"MM\x00*", b"II+\x00", b"MM\x00+") or data[:8] == b"\x89PNG\r\n\x1a\n" or data[:3] == b"\xff\xd8\xff"
 
 
 def rgb_band_args(bands: list[dict[str, Any]]) -> list[str] | None:

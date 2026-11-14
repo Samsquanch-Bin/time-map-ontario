@@ -89,3 +89,11 @@ def test_rgb_band_args():
     assert rgb_band_args([{}, {}, {}]) is None
     with pytest.raises(OverlayError):
         rgb_band_args([{}] * 5)
+
+
+def test_looks_like_image():
+    from tmo_pipeline.overlays import looks_like_image
+
+    assert looks_like_image(b"II*\x00rest") and looks_like_image(b"II+\x00big")
+    assert looks_like_image(b"\x89PNG\r\n\x1a\nxx") and looks_like_image(b"\xff\xd8\xff\xe0")
+    assert not looks_like_image(b'{"error": {"code": 500}}')
