@@ -7,6 +7,8 @@ fetch:
   method: arcgis_imageserver
   url: https://terra.library.brocku.ca/arcgis/rest/services/EarlyNiagara/NiagaraFalls1900s/ImageServer
 minzoom: 10
+# extent from Brock's service listing; used if the map has to stream live instead
+bounds: [-79.12403, 43.04491, -79.04014, 43.13468]
 maxzoom: 17
 description: "City map of Niagara Falls from the early 1900s (Brock's record gives no exact year). Brock University Map, Data & GIS Library; licence No restrictions."
 accuracy_note: "Georeferenced by Brock University's Map, Data & GIS Library; error figures are not published. Check a few streets against today's map before trusting a spot."

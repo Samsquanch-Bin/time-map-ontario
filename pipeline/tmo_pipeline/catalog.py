@@ -14,7 +14,7 @@ from typing import Any
 
 from .config import DATA_RELEASE_BASE_URL, FOCUS_BBOX, MAX_RELEASE_ASSET_BYTES, SCHEMAS_DIR, SOUTH_BBOX
 from .manifests import Source, require_sources
-from .overlays import OverlayDef
+from .overlays import OverlayDef, live_fallback_url
 
 CATALOG_VERSION = 1
 BASEMAP_SOURCES = ["openstreetmap", "protomaps_basemap", "protomaps_assets"]
@@ -45,12 +45,19 @@ def pack_entry(path: Path, kind: str) -> dict[str, Any]:
     }
 
 
-def live_meta(ov: OverlayDef) -> dict[str, Any]:
+FALLBACK_MAXZOOM = 18
+FALLBACK_NOTE = (
+    " This copy streams from the library's server because the latest data build couldn't"
+    " download it, so it needs internet; a later build will package it for offline use."
+)
+
+
+def live_meta(ov: OverlayDef, tiles: str | None = None) -> dict[str, Any]:
     w, s, e, n = ov.bounds  # type: ignore[misc]
     return {
-        "tiles": ov.fetch["url"],
+        "tiles": tiles or ov.fetch["url"],
         "minzoom": ov.minzoom,
-        "maxzoom": ov.maxzoom,
+        "maxzoom": ov.maxzoom if ov.maxzoom is not None else FALLBACK_MAXZOOM,
         "bounds": [w, s, e, n],
         "footprint": {"type": "Polygon", "coordinates": [[[w, s], [e, s], [e, n], [w, n], [w, s]]]},
         "source_url": ov.fetch.get("service", ov.fetch["url"]),
@@ -63,7 +70,7 @@ def overlay_entry(ov: OverlayDef, meta: dict[str, Any], src: Source) -> dict[str
         "title": ov.title,
         "year": ov.year,
         "era": list(ov.era),
-        "description": ov.description,
+        "description": ov.description + (FALLBACK_NOTE if meta.get("fallback") else ""),
         "accuracy_note": ov.accuracy_note
         + (
             f" Measured: the sheets' control points fit today's street corners to within about {meta['measured_rmse_m']} m (RMSE)."
@@ -82,7 +89,7 @@ def overlay_entry(ov: OverlayDef, meta: dict[str, Any], src: Source) -> dict[str
         "attribution": src.attribution,
         "sample": ov.sample,
     }
-    if ov.live:
+    if "tiles" in meta:
         entry["tiles"] = meta["tiles"]
         entry["tile_size"] = int(ov.fetch.get("tile_size", 256))
     else:
@@ -98,7 +105,13 @@ def build_catalog(
     release: bool = False,
     now: dt.datetime | None = None,
     places_sources: tuple[str, ...] = ("wikipedia", "wikidata"),
+    previous: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
+    """``previous`` is the catalogue currently published. A packaged overlay that
+    failed to build keeps its published pack from there; failing that, an
+    ImageServer map is listed as live tiles so it isn't dropped from the app."""
+    prev_overlays = {o["id"]: o for o in (previous or {}).get("overlays", [])}
+    prev_packs = {p["file"]: p for p in (previous or {}).get("packs", [])}
     packs = []
     used_sources: set[str] = set(BASEMAP_SOURCES) | {"esri_world_imagery", "openfreemap"}
     require_sources(sorted(used_sources), sources)
@@ -118,6 +131,25 @@ def build_catalog(
             continue
         meta_path = meta_dir / f"{ov.id}.json"
         if not meta_path.exists():
+            (src,) = require_sources([ov.source], sources)
+            old = prev_overlays.get(ov.id)
+            if old and old.get("file") in prev_packs:
+                print(f"overlay {ov.id}: not built; keeping the published {old['file']}")
+                used_sources.add(src.id)
+                keep = {k: old[k] for k in ("file", "minzoom", "maxzoom", "bounds", "footprint")}
+                keep["source_item_licence"] = old.get("source_item_licence", "")
+                if old.get("source_url"):
+                    keep["source_url"] = old["source_url"]
+                overlay_entries.append(overlay_entry(ov, keep, src))
+                packs.append(dict(prev_packs[old["file"]]))
+                continue
+            tiles = live_fallback_url(ov)
+            if tiles:
+                print(f"overlay {ov.id}: not built; streaming it live from {ov.fetch['url']}")
+                used_sources.add(src.id)
+                meta = live_meta(ov, tiles) | {"source_url": ov.fetch["url"], "fallback": True}
+                overlay_entries.append(overlay_entry(ov, meta, src))
+                continue
             print(f"skipping overlay {ov.id}: not built")
             continue
         if release and ov.sample:

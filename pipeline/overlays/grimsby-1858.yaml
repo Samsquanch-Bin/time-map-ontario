@@ -6,6 +6,8 @@ fetch:
   method: arcgis_imageserver
   url: https://terra.library.brocku.ca/arcgis/rest/services/EarlyNiagara/Grimsby1858NMC3622/ImageServer
 minzoom: 10
+# extent from Brock's service listing; used if the map has to stream live instead
+bounds: [-79.71945, 43.06464, -79.45466, 43.20049]
 maxzoom: 16
 description: "Map of the Grimsby area (LAC NMC 3622). Brock University Map, Data & GIS Library item; licence No restrictions."
 accuracy_note: "Georeferenced by Brock University's Map, Data & GIS Library; error figures are not published and haven't been measured here. Check streets and shorelines against today's map before trusting a spot."

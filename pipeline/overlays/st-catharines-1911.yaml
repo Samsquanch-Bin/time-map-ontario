@@ -6,6 +6,8 @@ fetch:
   method: arcgis_imageserver
   url: https://terra.library.brocku.ca/arcgis/rest/services/EarlyNiagara/StCatharines1911/ImageServer
 minzoom: 10
+# extent from Brock's service listing; used if the map has to stream live instead
+bounds: [-79.26931, 43.14335, -79.20948, 43.18129]
 maxzoom: 17
 description: "City map of St. Catharines, 1911. Brock University Map, Data & GIS Library; licence No restrictions."
 accuracy_note: "Georeferenced by Brock University's Map, Data & GIS Library; error figures are not published. Check a few streets against today's map before trusting a spot."

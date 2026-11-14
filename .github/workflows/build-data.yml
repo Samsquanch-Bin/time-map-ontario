@@ -53,7 +53,12 @@ jobs:
         run: python -m tmo_pipeline overlay all
 
       - name: Catalogue
-        run: python -m tmo_pipeline catalog --release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # the published catalogue: maps that failed to download this time keep their old pack
+          gh release download data-latest --pattern catalog.json --output build/previous-catalog.json --clobber || echo "no previous catalogue"
+          python -m tmo_pipeline catalog --release --previous build/previous-catalog.json
 
       - name: Summary
         run: |

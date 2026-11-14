@@ -185,6 +185,24 @@ def _require_tools(*names: str) -> None:
         raise OverlayError(f"missing tools on PATH: {', '.join(missing)} (run inside the data workflow)")
 
 
+USER_AGENT = "TimeMapOntario-personal-map-build/0.2 (https://github.com/Samsquanch-Bin/time-map-ontario)"
+
+
+def live_fallback_url(ov: OverlayDef) -> str | None:
+    """Tile URL that streams a packaged ImageServer map straight from its server.
+
+    Used when the build can't download the map (server down or refusing the build
+    machine), so the app still has it while online instead of losing it."""
+    if ov.fetch.get("method") != "arcgis_imageserver" or ov.bounds is None:
+        return None
+    url = ov.fetch["url"].rstrip("/")
+    tail = f"&noData={ov.fetch['nodata']}" if ov.fetch.get("nodata") is not None else ""
+    return (
+        f"{url}/exportImage?bbox={{bbox-epsg-3857}}&bboxSR=3857&imageSR=3857&size=256,256"
+        f"&format=png32&interpolation=RSP_BilinearInterpolation{tail}&f=image"
+    )
+
+
 def _get(url: str, params: dict[str, Any], timeout: int, attempts: int = 5, want_json: bool = False):
     """GET with retries: library map servers are sometimes slow or briefly down."""
     import time
@@ -194,7 +212,7 @@ def _get(url: str, params: dict[str, Any], timeout: int, attempts: int = 5, want
     last: Exception | None = None
     for i in range(attempts):
         try:
-            r = requests.get(url, params=params, timeout=timeout)
+            r = requests.get(url, params=params, timeout=timeout, headers={"User-Agent": USER_AGENT})
             r.raise_for_status()
             return r.json() if want_json else r
         except (requests.RequestException, ValueError) as exc:

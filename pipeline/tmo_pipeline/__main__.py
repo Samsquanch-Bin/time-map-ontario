@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import argparse
 import json
+from pathlib import Path
 import sys
 
 from .config import BUILD_DIR, REPO_DIR
@@ -32,6 +33,7 @@ def main(argv: list[str] | None = None) -> int:
     ov.add_argument("id")
     cat = sub.add_parser("catalog")
     cat.add_argument("--release", action="store_true", help="refuse sample data")
+    cat.add_argument("--previous", type=Path, help="the published catalog.json: overlays that failed to build keep their pack from it")
     sub.add_parser("research-discover")
     sub.add_parser("research-fetch")
     sub.add_parser("maps-discover")
@@ -128,7 +130,10 @@ def main(argv: list[str] | None = None) -> int:
             print(f"places: {len(places)}")
         else:
             places_path.unlink(missing_ok=True)
-        catalog = build_catalog(release, BUILD_DIR / "overlay-meta", overlays, sources, release=args.release)
+        previous = None
+        if args.previous and args.previous.exists():
+            previous = json.loads(args.previous.read_text())
+        catalog = build_catalog(release, BUILD_DIR / "overlay-meta", overlays, sources, release=args.release, previous=previous)
         release.mkdir(parents=True, exist_ok=True)
         (release / "catalog.json").write_text(json.dumps(catalog, indent=1))
         print(f"catalog: {len(catalog['packs'])} packs, {len(catalog['overlays'])} overlays")

@@ -6,6 +6,8 @@ fetch:
   method: arcgis_imageserver
   url: https://terra.library.brocku.ca/arcgis/rest/services/EarlyNiagara/FortErie1850NMC22343/ImageServer
 minzoom: 10
+# extent from Brock's service listing; used if the map has to stream live instead
+bounds: [-78.94466, 42.87795, -78.89844, 42.90969]
 maxzoom: 17
 description: "\"Fort Erie, C.W. Plan of the military reserve showing all the houses thereon\" (LAC NMC 22343). Brock University Map, Data & GIS Library item; licence No restrictions."
 accuracy_note: "Georeferenced by Brock University's Map, Data & GIS Library; error figures are not published and haven't been measured here. Check streets and shorelines against today's map before trusting a spot."

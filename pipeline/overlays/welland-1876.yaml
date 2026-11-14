@@ -6,6 +6,8 @@ fetch:
   method: arcgis_imageserver
   url: https://terra.library.brocku.ca/arcgis/rest/services/EarlyNiagara/Welland1876/ImageServer
 minzoom: 10
+# extent from Brock's service listing; used if the map has to stream live instead
+bounds: [-79.26174, 42.97848, -79.23510, 43.00507]
 maxzoom: 17
 description: "Village plan of Welland. Brock University Map, Data & GIS Library item; licence No restrictions."
 accuracy_note: "Georeferenced by Brock University's Map, Data & GIS Library; error figures are not published and haven't been measured here. Check streets and shorelines against today's map before trusting a spot."

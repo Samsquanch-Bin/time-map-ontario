@@ -6,6 +6,8 @@ fetch:
   method: arcgis_imageserver
   url: https://terra.library.brocku.ca/arcgis/rest/services/EarlyNiagara/NiagaraFallsTunis1857/ImageServer
 minzoom: 10
+# extent from Brock's service listing; used if the map has to stream live instead
+bounds: [-79.10080, 43.04915, -78.96269, 43.12881]
 maxzoom: 16
 description: "\"A map of the vicinity of Niagara Falls. 1857\". Brock University Map, Data & GIS Library item; licence No restrictions."
 accuracy_note: "Georeferenced by Brock University's Map, Data & GIS Library; error figures are not published and haven't been measured here. Check streets and shorelines against today's map before trusting a spot."

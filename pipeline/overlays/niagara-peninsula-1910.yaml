@@ -6,6 +6,8 @@ fetch:
   method: arcgis_imageserver
   url: https://terra.library.brocku.ca/arcgis/rest/services/EarlyNiagara/NiagaraPeninsula1910/ImageServer
 minzoom: 10
+# extent from Brock's service listing; used if the map has to stream live instead
+bounds: [-79.91001, 42.79703, -78.83818, 43.34201]
 maxzoom: 15
 description: "\"Map of Niagara Peninsula, Province of Ontario\", 1910: roads, rail lines, towns and farms from Hamilton to the Niagara River. Brock University Map, Data & GIS Library; licence No restrictions."
 accuracy_note: "Georeferenced by Brock University's Map, Data & GIS Library; error figures are not published. Check a few streets against today's map before trusting a spot."

@@ -6,6 +6,8 @@ fetch:
   method: arcgis_imageserver
   url: https://terra.library.brocku.ca/arcgis/rest/services/EarlyNiagara/Drummondville1838NMC3790/ImageServer
 minzoom: 10
+# extent from Brock's service listing; used if the map has to stream live instead
+bounds: [-79.09614, 43.07419, -79.07700, 43.09085]
 maxzoom: 17
 description: "\"Sketch of Drummondville shewing in red the houses etc. hired for the accommodation of troops\" (LAC NMC 3790), in today's Niagara Falls. Brock University Map, Data & GIS Library item; licence No restrictions."
 accuracy_note: "Georeferenced by Brock University's Map, Data & GIS Library; error figures are not published and haven't been measured here. Check streets and shorelines against today's map before trusting a spot."

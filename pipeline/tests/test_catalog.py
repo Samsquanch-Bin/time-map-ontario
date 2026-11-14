@@ -70,3 +70,31 @@ def test_live_overlay_validation():
         parse_overlay(base)
     with pytest.raises(OverlayError, match="url"):
         parse_overlay({**base, "bounds": [0, 0, 1, 1], "fetch": {"method": "live_tiles", "url": "https://x/a.png"}})
+
+
+def test_failed_overlay_keeps_published_pack(tmp_path):
+    release, meta, ovs = _setup(tmp_path)
+    previous = build_catalog(release, meta, ovs, load_manifests())
+    (meta / "t.json").unlink()
+    (release / "overlay-t.pmtiles").unlink()
+    cat = build_catalog(release, meta, ovs, load_manifests(), previous=previous)
+    (entry,) = cat["overlays"]
+    assert entry["file"] == "overlay-t.pmtiles" and "tiles" not in entry
+    assert "overlay-t.pmtiles" in {p["file"] for p in cat["packs"]}
+
+
+def test_failed_imageserver_overlay_falls_back_to_live(tmp_path):
+    release, meta, _ = _setup(tmp_path)
+    (meta / "t.json").unlink()
+    ov = parse_overlay({
+        "id": "t", "title": "T", "year": 1826, "source": "brock_early_niagara",
+        "fetch": {"method": "arcgis_imageserver", "url": "https://x/ImageServer/", "nodata": 255},
+        "accuracy_note": "approx", "bounds": [-79.2, 43.0, -79.0, 43.2], "minzoom": 12,
+    })
+    cat = build_catalog(release, meta, {"t": ov}, load_manifests(), previous={"overlays": [], "packs": []})
+    (entry,) = cat["overlays"]
+    assert "file" not in entry
+    assert entry["tiles"].startswith("https://x/ImageServer/exportImage?bbox={bbox-epsg-3857}")
+    assert "noData=255" in entry["tiles"]
+    assert entry["minzoom"] == 12 and entry["maxzoom"] == 18
+    assert "needs internet" in entry["description"]

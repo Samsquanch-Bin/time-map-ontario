@@ -6,6 +6,8 @@ fetch:
   method: arcgis_imageserver
   url: https://terra.library.brocku.ca/arcgis/rest/services/EarlyNiagara/StCatharinesGrantham1897/ImageServer
 minzoom: 10
+# extent from Brock's service listing; used if the map has to stream live instead
+bounds: [-79.27997, 43.10681, -79.15584, 43.24446]
 maxzoom: 15
 description: "Grantham Township around St. Catharines, 1897. Brock University Map, Data & GIS Library; licence No restrictions."
 accuracy_note: "Georeferenced by Brock University's Map, Data & GIS Library; error figures are not published. Check a few streets against today's map before trusting a spot."

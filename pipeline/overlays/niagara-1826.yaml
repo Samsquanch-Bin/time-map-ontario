@@ -8,6 +8,8 @@ fetch:
   # pure white is the scan border around the sheet; the paper itself is grey
   nodata: 255
 minzoom: 8
+# extent from Brock's service listing; used if the map has to stream live instead
+bounds: [-80.06127, 42.77387, -78.69897, 43.41277]
 description: >
   "A Plan of the Erie and Ontario Junction, or Welland Canal, for the purpose of
   uniting the great Lakes in Canada by a navigable communication round the Falls of
