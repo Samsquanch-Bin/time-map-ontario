@@ -36,7 +36,14 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("research-fetch")
     sub.add_parser("maps-discover")
     sub.add_parser("fetch-pages")
+    sub.add_parser("fip-prepare")
     args = p.parse_args(argv)
+
+    if args.cmd == "fip-prepare":
+        from .fip import prepare
+
+        prepare()
+        return 0
 
     if args.cmd == "fetch-pages":
         from .webfetch import run
