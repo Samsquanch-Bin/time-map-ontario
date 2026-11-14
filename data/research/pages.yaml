@@ -1,13 +1,14 @@
 # Pages fetched by the "Research sources" workflow (step: pages).
-# Round 5: U of T air photo indexes: every photo between Hamilton and Etobicoke, with its file link.
+# Round 6: terms of the U of T air photo collections that cover Burlington to Etobicoke.
 max_follow: 0
 pages:
-  - url: https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/air_photos_southern_ontario_1954_index_FINAL/FeatureServer/0?f=json
-  - url: https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/air_photos_southern_ontario_1954_index_FINAL/FeatureServer/0/query?where=1%3D1&geometry=-79.95%2C43.25%2C-79.45%2C43.70&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=true&outSR=4326&f=json
-  - url: https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/Southern_Ontario_1954_Index/FeatureServer/0?f=json
-  - url: https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/Southern_Ontario_1954_Index/FeatureServer/0/query?where=1%3D1&geometry=-79.95%2C43.25%2C-79.45%2C43.70&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=true&outSR=4326&f=json
-  - url: https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/Historical_Air_Photos_of_New_Toronto_and_Mississauga_Footprint/FeatureServer/0?f=json
-  - url: https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/Historical_Air_Photos_of_New_Toronto_and_Mississauga_Footprint/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&f=json
-  - url: https://www.arcgis.com/sharing/rest/content/items/1b02c11f4dbe46b79b8d9b388dc6865f?f=json
-  - url: https://www.arcgis.com/sharing/rest/content/items/a3bc6787e26143e7a4c42f321567a1af?f=json
-  - url: https://www.arcgis.com/sharing/rest/content/items/f76a60ab577f43cb9659c9084502534d?f=json
+  - url: https://mdl.library.utoronto.ca/collections/geospatial-data/digital-air-photographs-southern-ontario-1954
+  - url: https://mdl.library.utoronto.ca/collections/geospatial-data/historical-air-photos-highway-401-and-queen-elizabeth-way-qew
+  - url: https://mdl.library.utoronto.ca/collections/geospatial-data/historical-air-photos-highway-401
+  - url: https://mdl.library.utoronto.ca/collections/geospatial-data/1950-halton-hills-air-photos
+  - url: https://mdl.library.utoronto.ca/collections/geospatial-data/toronto-air-photos-1967-1968
+  - url: https://mdl.library.utoronto.ca/collections/geospatial-data/toronto-aerial-photographs-1947-black-and-white-and-colourized
+  - url: https://mdl.library.utoronto.ca/subjects-geospatial-data/air-photos?page=1
+  - url: https://mdl.library.utoronto.ca/subjects-geospatial-data/air-photos?page=2
+  - url: https://mdl.library.utoronto.ca/geography-geospatial-data/mississauga
+  - url: https://mdl.library.utoronto.ca/open-data/openut
