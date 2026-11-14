@@ -36,7 +36,8 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["id", "title", "year", "era", "accuracy_note", "file", "minzoom", "maxzoom", "bounds", "footprint", "source_id", "licence", "licence_status", "attribution", "sample"],
+        "oneOf": [{ "required": ["file"] }, { "required": ["tiles"] }],
+        "required": ["id", "title", "year", "era", "accuracy_note", "minzoom", "maxzoom", "bounds", "footprint", "source_id", "licence", "licence_status", "attribution", "sample"],
         "properties": {
           "id": { "type": "string" },
           "title": { "type": "string" },
@@ -44,6 +45,8 @@
           "era": { "type": "array", "items": { "type": "integer" }, "minItems": 2, "maxItems": 2 },
           "accuracy_note": { "type": "string", "minLength": 1 },
           "file": { "type": "string" },
+          "tiles": { "type": "string", "pattern": "^https://.*\\{z\\}" },
+          "tile_size": { "type": "integer" },
           "minzoom": { "type": "integer", "minimum": 0, "maximum": 22 },
           "maxzoom": { "type": "integer", "minimum": 0, "maximum": 22 },
           "bounds": { "$ref": "#/$defs/bbox" },

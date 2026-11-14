@@ -81,7 +81,7 @@ def main(argv: list[str] | None = None) -> int:
     elif args.cmd == "overlay":
         from .overlays import build_overlay
 
-        ids = list(overlays) if args.id == "all" else [args.id]
+        ids = [o for o in overlays if not overlays[o].live] if args.id == "all" else [args.id]
         for oid in ids:
             if oid not in overlays:
                 print(f"unknown overlay {oid}", file=sys.stderr)

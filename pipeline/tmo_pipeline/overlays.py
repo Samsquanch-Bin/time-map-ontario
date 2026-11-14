@@ -42,6 +42,13 @@ class OverlayDef:
     minzoom: int = 8
     maxzoom: int | None = None  # None = derived from source resolution
     sample: bool = False
+    bounds: tuple[float, float, float, float] | None = None  # live overlays: WGS84 extent
+
+    @property
+    def live(self) -> bool:
+        """Streamed from the holder's tile server at view time (not copied into a pack).
+        Used when a map's reuse terms are unstated, so it is only viewed, never redistributed."""
+        return self.fetch.get("method") == "live_tiles"
 
     @property
     def era(self) -> tuple[int, int]:
@@ -62,10 +69,18 @@ def parse_overlay(data: dict[str, Any], origin: str = "<overlay>") -> OverlayDef
     if year_end is not None and int(year_end) < year:
         raise OverlayError(f"{origin}: year_end before year")
     fetch = data["fetch"]
-    if fetch.get("method") not in ("arcgis_imageserver", "geotiff_url"):
+    if fetch.get("method") not in ("arcgis_imageserver", "geotiff_url", "live_tiles"):
         raise OverlayError(f"{origin}: unknown fetch.method {fetch.get('method')!r}")
     if not fetch.get("url"):
         raise OverlayError(f"{origin}: fetch.url required")
+    bounds = data.get("bounds")
+    if fetch["method"] == "live_tiles":
+        if not (isinstance(bounds, list) and len(bounds) == 4 and bounds[0] < bounds[2] and bounds[1] < bounds[3]):
+            raise OverlayError(f"{origin}: live_tiles overlays need bounds [w, s, e, n]")
+        if not all(k in fetch["url"] for k in ("{z}", "{x}", "{y}")):
+            raise OverlayError(f"{origin}: live_tiles url must contain {{z}}, {{x}} and {{y}}")
+        if data.get("maxzoom") is None:
+            raise OverlayError(f"{origin}: live_tiles overlays need maxzoom")
     return OverlayDef(
         id=str(data["id"]),
         title=str(data["title"]),
@@ -78,6 +93,7 @@ def parse_overlay(data: dict[str, Any], origin: str = "<overlay>") -> OverlayDef
         minzoom=int(data.get("minzoom", 8)),
         maxzoom=int(data["maxzoom"]) if data.get("maxzoom") is not None else None,
         sample=bool(data.get("sample", False)),
+        bounds=tuple(float(b) for b in bounds) if bounds else None,
     )
 
 

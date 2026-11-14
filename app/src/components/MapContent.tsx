@@ -56,8 +56,10 @@ export function MapContent({ labelLayerId, satelliteKey, overlay, overlayOpacity
         <RasterSource
           id={`overlay-${overlay.id}`}
           key={overlay.id}
-          url={pmtilesUrl(overlay.file)}
-          tileSize={256}
+          {...(overlay.tiles
+            ? { tiles: [overlay.tiles], minzoom: overlay.minzoom, maxzoom: overlay.maxzoom }
+            : { url: pmtilesUrl(overlay.file!) })}
+          tileSize={overlay.tile_size ?? 256}
           attribution={overlay.attribution}
         >
           <Layer

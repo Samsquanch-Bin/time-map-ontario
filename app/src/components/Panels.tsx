@@ -81,7 +81,7 @@ export function LayersPanel({ go, placeCount }: { go: (v: SheetView) => void; pl
           <List.Item
             key={o.id}
             title={o.title}
-            description={`${o.year}${o.sample ? " · SAMPLE DATA" : ""}`}
+            description={`${o.year}${o.tiles ? " · online only" : ""}${o.sample ? " · SAMPLE DATA" : ""}`}
             onPress={() => s.set({ activeOverlayId: s.activeOverlayId === o.id ? null : o.id, compare: false })}
             left={(p) => <List.Icon {...p} icon={s.activeOverlayId === o.id ? "checkbox-marked" : "checkbox-blank-outline"} color={theme.colors.primary} />}
             right={(p) => <List.Icon {...p} icon="information-outline" />}
@@ -153,6 +153,11 @@ export function OverlayPanel({ overlay, onCompare, onZoom }: { overlay: Overlay;
           Go there
         </Button>
       </View>
+      {overlay.tiles ? (
+        <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>
+          Online only: shown straight from the holder's map server, so it needs a data connection and isn't stored on the phone.
+        </Text>
+      ) : null}
       <Text variant="titleSmall">How accurate is it?</Text>
       <Text>{overlay.accuracy_note}</Text>
       <Text variant="titleSmall">Source</Text>

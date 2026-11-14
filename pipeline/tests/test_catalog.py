@@ -46,3 +46,27 @@ def test_unbuilt_overlay_skipped(tmp_path):
     (meta / "t.json").unlink()
     cat = build_catalog(release, meta, ovs, load_manifests())
     assert cat["overlays"] == []
+
+
+def test_live_overlay_has_tiles_not_file(tmp_path):
+    release, meta, ovs = _setup(tmp_path)
+    live = parse_overlay({
+        "id": "live1", "title": "L", "year": 1880, "source": "brock_early_niagara",
+        "fetch": {"method": "live_tiles", "url": "https://x/tile/{z}/{y}/{x}"}, "accuracy_note": "a",
+        "bounds": [-79.5, 43.6, -79.3, 43.7], "maxzoom": 19, "minzoom": 13,
+    })
+    cat = build_catalog(release, meta, {**ovs, "live1": live}, load_manifests())
+    entry = next(o for o in cat["overlays"] if o["id"] == "live1")
+    assert "file" not in entry and entry["tiles"].startswith("https://")
+    assert len(cat["packs"]) == 2  # live overlays add no pack
+
+
+def test_live_overlay_validation():
+    from tmo_pipeline.overlays import OverlayError
+
+    base = {"id": "l", "title": "L", "year": 1880, "source": "s", "accuracy_note": "a", "maxzoom": 19,
+            "fetch": {"method": "live_tiles", "url": "https://x/tile/{z}/{y}/{x}"}}
+    with pytest.raises(OverlayError, match="bounds"):
+        parse_overlay(base)
+    with pytest.raises(OverlayError, match="url"):
+        parse_overlay({**base, "bounds": [0, 0, 1, 1], "fetch": {"method": "live_tiles", "url": "https://x/a.png"}})

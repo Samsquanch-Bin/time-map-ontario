@@ -42,3 +42,11 @@ test("parseCatalog rejects unknown versions", () => {
   assert.throws(() => parseCatalog(JSON.stringify({ version: 2, packs: [], overlays: [] })));
   assert.equal(parseCatalog(JSON.stringify(catalog)).packs.length, 2);
 });
+
+test("online overlays are available without a pack; offline ones need theirs", async () => {
+  const { overlayAvailable } = await import("../src/logic/catalog");
+  const o = { file: "overlay-niagara-1826.pmtiles" } as any;
+  assert.equal(overlayAvailable(catalog, {}, o), false);
+  assert.equal(overlayAvailable(catalog, { "overlay-niagara-1826.pmtiles": "b".repeat(64) }, o), true);
+  assert.equal(overlayAvailable(catalog, {}, { tiles: "https://x/{z}/{y}/{x}" } as any), true);
+});

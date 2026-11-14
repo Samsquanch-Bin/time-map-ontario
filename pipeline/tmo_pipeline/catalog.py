@@ -45,15 +45,26 @@ def pack_entry(path: Path, kind: str) -> dict[str, Any]:
     }
 
 
-def overlay_entry(ov: OverlayDef, meta: dict[str, Any], src: Source) -> dict[str, Any]:
+def live_meta(ov: OverlayDef) -> dict[str, Any]:
+    w, s, e, n = ov.bounds  # type: ignore[misc]
     return {
+        "tiles": ov.fetch["url"],
+        "minzoom": ov.minzoom,
+        "maxzoom": ov.maxzoom,
+        "bounds": [w, s, e, n],
+        "footprint": {"type": "Polygon", "coordinates": [[[w, s], [e, s], [e, n], [w, n], [w, s]]]},
+        "source_url": ov.fetch.get("service", ov.fetch["url"]),
+    }
+
+
+def overlay_entry(ov: OverlayDef, meta: dict[str, Any], src: Source) -> dict[str, Any]:
+    entry = {
         "id": ov.id,
         "title": ov.title,
         "year": ov.year,
         "era": list(ov.era),
         "description": ov.description,
         "accuracy_note": ov.accuracy_note,
-        "file": meta["file"],
         "minzoom": meta["minzoom"],
         "maxzoom": meta["maxzoom"],
         "bounds": meta["bounds"],
@@ -66,6 +77,12 @@ def overlay_entry(ov: OverlayDef, meta: dict[str, Any], src: Source) -> dict[str
         "attribution": src.attribution,
         "sample": ov.sample,
     }
+    if ov.live:
+        entry["tiles"] = meta["tiles"]
+        entry["tile_size"] = int(ov.fetch.get("tile_size", 256))
+    else:
+        entry["file"] = meta["file"]
+    return entry
 
 
 def build_catalog(
@@ -87,6 +104,13 @@ def build_catalog(
 
     overlay_entries = []
     for ov in sorted(overlays.values(), key=lambda o: (o.year, o.id)):
+        if release and ov.sample:
+            raise CatalogError(f"overlay {ov.id} is marked sample: true and cannot ship in a release build")
+        if ov.live:
+            (src,) = require_sources([ov.source], sources)
+            used_sources.add(src.id)
+            overlay_entries.append(overlay_entry(ov, live_meta(ov), src))
+            continue
         meta_path = meta_dir / f"{ov.id}.json"
         if not meta_path.exists():
             print(f"skipping overlay {ov.id}: not built")
@@ -139,5 +163,5 @@ def validate_catalog(catalog: dict[str, Any]) -> None:
     if len(files) != len(set(files)):
         raise CatalogError("duplicate pack file names")
     for ov in catalog["overlays"]:
-        if ov["file"] not in files:
+        if "file" in ov and ov["file"] not in files:
             raise CatalogError(f"overlay {ov['id']} points at {ov['file']}, which is not in packs")

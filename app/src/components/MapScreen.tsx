@@ -10,7 +10,7 @@ import { pmtilesUrl } from "../data/packs";
 import { setMapStatus, startDiagnostics } from "../diagnostics";
 import { usePlaces } from "../data/usePlaces";
 import { placesToGeoJSON, visiblePlaces } from "../logic/places";
-import { hasPack } from "../logic/catalog";
+import { hasPack, overlayAvailable } from "../logic/catalog";
 import { overlaps } from "../logic/era";
 import { requestForegroundLocation } from "../location";
 import { buildBaseStyle, firstLabelLayerId, type MapTheme } from "../map/baseStyle";
@@ -43,7 +43,7 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
 
   const activeOverlay = useMemo(() => {
     const o = catalog?.overlays.find((x) => x.id === s.activeOverlayId);
-    return o && overlaps(o.era, s.era) && hasPack(catalog, s.installed, o.file) ? o : null;
+    return o && overlaps(o.era, s.era) && overlayAvailable(catalog, s.installed, o) ? o : null;
   }, [catalog, s.activeOverlayId, s.era, s.installed]);
   const coverage = useMemo(
     () => (s.coverageVisible ? (catalog?.overlays ?? []).filter((o) => overlaps(o.era, s.era)) : null),

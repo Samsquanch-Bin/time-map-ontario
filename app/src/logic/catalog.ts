@@ -12,7 +12,11 @@ export type Overlay = {
   era: [number, number];
   description?: string;
   accuracy_note: string;
-  file: string;
+  /** Offline overlays: a PMTiles pack on the phone. */
+  file?: string;
+  /** Online overlays: tiles streamed from the holder's server ({z}/{x}/{y} template). */
+  tiles?: string;
+  tile_size?: number;
   minzoom: number;
   maxzoom: number;
   bounds: [number, number, number, number];
@@ -77,6 +81,11 @@ export function formatBytes(n: number): string {
   if (n >= 1e6) return `${(n / 1e6).toFixed(0)} MB`;
   if (n >= 1e3) return `${(n / 1e3).toFixed(0)} kB`;
   return `${n} B`;
+}
+
+/** Can this overlay be shown now? Offline ones need their pack; online ones always can (with a connection). */
+export function overlayAvailable(catalog: Catalog | null, installed: Installed, o: Overlay): boolean {
+  return o.tiles ? true : !!o.file && hasPack(catalog, installed, o.file);
 }
 
 export function hasPack(catalog: Catalog | null, installed: Installed, file: string): boolean {
