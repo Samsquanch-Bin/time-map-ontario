@@ -1,8 +1,9 @@
 # Pages fetched by the "Research sources" workflow (step: pages).
 max_follow: 80
 pages:
-  - url: https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1898
-    follow: "(digitalarchive|expo)\\.mcmaster\\.ca|/maps/.*1898"
-  - url: https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1911
-    follow: "(digitalarchive|expo)\\.mcmaster\\.ca|/maps/.*1911"
-  - url: https://library.mcmaster.ca/hamilton-area-historical-research-resources
+  - url: https://expo.mcmaster.ca/s/3el3-013/item/16
+    follow: "expo\\.mcmaster\\.ca/(s/[^/]+/(item|media)|files|iiif)"
+  - url: https://expo.mcmaster.ca/s/3el3-013/item?fulltext_search=fire+insurance+Hamilton+1898
+    follow: "expo\\.mcmaster\\.ca/s/[^/]+/item/\\d+"
+  - url: https://expo.mcmaster.ca/api/items?fulltext_search=Hamilton%20fire%20insurance&per_page=100
+  - url: https://expo.mcmaster.ca/s/3el3-013
