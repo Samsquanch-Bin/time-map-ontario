@@ -1,37 +1,13 @@
 # Pages fetched by the "Research sources" workflow (step: pages).
-# Round 3: old maps between Burlington and Toronto (Oakville, Mississauga, Etobicoke).
-max_follow: 40
+# Round 4: U of T georeferenced air photos (1954 Southern Ontario; 1946 New Toronto/Port Credit):
+# the ArcGIS Online index items that list each photo's file.
+max_follow: 0
 pages:
-  # University of Toronto Map & Data Library: georeferenced 1954 air photos of Southern Ontario
-  - url: https://mdl.library.utoronto.ca/collections/geospatial-data/air-photos-southern-ontario
-    follow: "utoronto\\.ca/.*(1954|air-photo|airphoto|AP_1954|items/show)"
-  - url: https://mdl.library.utoronto.ca/air-photos/1954
-    follow: "utoronto\\.ca/.*(1954|AP_1954)"
-  - url: https://mdl.library.utoronto.ca/node/40973
-  - url: https://mdl-data.library.utoronto.ca/items/show/405
-    follow: "mdl-data\\.library\\.utoronto\\.ca/(files|items)"
-  - url: https://mdl-data.library.utoronto.ca/items/show/183
-    follow: "mdl-data\\.library\\.utoronto\\.ca/(files|items)"
-  - url: https://mdl-data.library.utoronto.ca/items/show/609
-    follow: "mdl-data\\.library\\.utoronto\\.ca/(files|items)"
-  - url: https://mdl-data.library.utoronto.ca/items/show/255
-  - url: https://maps.library.utoronto.ca/data/on/AP_1954/indexwest.html
-    follow: "AP_1954"
-  - url: https://maps.library.utoronto.ca/APS_1954_2/index.html
-    follow: "APS_1954"
-  # OCUL / Scholars Portal historical topographic maps (1:25,000 and 1:63,360, georeferenced GeoTIFF)
-  - url: https://ocul.on.ca/topomaps/about-maps/
-  - url: https://ocul.on.ca/topomaps/using-maps/
-  - url: https://ocul.on.ca/topomaps/faq
-  - url: https://ocul.on.ca/topomaps/maps/
-    follow: "topomaps/maps/"
-  - url: https://learn.scholarsportal.info/all-guides/geoportal/usinggeoportal/historical-topos/
-  # Borealis: Historical National Topographic System 1:50,000 (Canada-wide)
-  - url: https://borealisdata.ca/dataverse/topomaps
-  - url: https://borealisdata.ca/api/search?q=030M05&subtree=topomaps&per_page=100
-  - url: https://borealisdata.ca/api/search?q=030M12&subtree=topomaps&per_page=100
-  - url: https://borealisdata.ca/api/search?q=030M11&subtree=topomaps&per_page=100
-  - url: https://borealisdata.ca/api/search?q=030M05&per_page=100
-  - url: https://borealisdata.ca/api/search?q=Oakville%20topographic&per_page=50
-  # Federal National Air Photo Library temporal series (Open Government Licence – Canada)
-  - url: https://open.canada.ca/data/en/api/3/action/package_search?q=%22Temporal%20Series%22%20NAPL&rows=100
+  - url: https://www.arcgis.com/sharing/rest/content/items/6847f7c14bcb4f7cb978772a514b3f85?f=json
+  - url: https://www.arcgis.com/sharing/rest/content/items/6847f7c14bcb4f7cb978772a514b3f85/data?f=json
+  - url: https://www.arcgis.com/sharing/rest/content/items/3535f36a00bc404d8151d522c9fa8456?f=json
+  - url: https://www.arcgis.com/sharing/rest/content/items/3535f36a00bc404d8151d522c9fa8456/data?f=json
+  - url: https://www.arcgis.com/sharing/rest/content/items/40503116398447d3a170e9ad2af561a3?f=json
+  - url: https://www.arcgis.com/sharing/rest/content/items/40503116398447d3a170e9ad2af561a3/data?f=json
+  - url: https://mdl-data.library.utoronto.ca/items/show/609?output=omeka-xml
+  - url: https://mdl.library.utoronto.ca/open-data/openut

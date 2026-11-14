@@ -1,0 +1,67 @@
+# Sheets, editions and GeoTIFF links from the OCUL project's collection list
+# (scholarsportal/historical-topos, static/combined_namesort.json). Each sheet is trimmed
+# to its NTS neat line, computed from the sheet number (tmo_pipeline/nts.py).
+id: mississauga-etobicoke-topo-1962
+title: Mississauga and Etobicoke, 1962–63 (1:25,000 topographic map)
+year: 1962
+year_end: 1963
+source: ocul_historical_topos
+fetch:
+  method: geotiff_sheets
+  service: https://ocul.on.ca/topomaps/
+  sheets:
+  - label: 25k030m12a-m11d_1962
+    nts:
+    - 030M12A
+    - 030M11D
+    year: 1962
+    title: Port Credit
+    url: https://digitalarchive.mcmaster.ca/islandora/object/macrepo%3A88453/datastream/OBJ/macrepo%3A88453.tiff
+  - label: 25k030m12b_1962
+    nts:
+    - 030M12B
+    year: 1962
+    title: Streetsville
+    url: https://digitalarchive.mcmaster.ca/islandora/object/macrepo%3A88456/datastream/OBJ/macrepo%3A88456.tiff
+  - label: 25k030m12c_1963
+    nts:
+    - 030M12C
+    year: 1963
+    title: Hornby
+    url: https://digitalarchive.mcmaster.ca/islandora/object/macrepo%3A88458/datastream/OBJ/macrepo%3A88458.tiff
+  - label: 25k030m12g_1962
+    nts:
+    - 030M12G
+    year: 1962
+    title: Malton
+    url: https://digitalarchive.mcmaster.ca/islandora/object/macrepo%3A88465/datastream/OBJ/macrepo%3A88465.tiff
+  - label: 25k030m12h_1963
+    nts:
+    - 030M12H
+    year: 1963
+    title: Weston
+    url: https://digitalarchive.mcmaster.ca/islandora/object/macrepo%3A88468/datastream/OBJ/macrepo%3A88468.tiff
+  - label: 25k030m11e_1963
+    nts:
+    - 030M11E
+    year: 1963
+    title: West Toronto
+    url: https://digitalarchive.mcmaster.ca/islandora/object/macrepo%3A88444/datastream/OBJ/macrepo%3A88444.tiff
+  checks:
+  - - -79.625
+    - 43.56
+    - seam Streetsville-Port Credit sheets
+  - - -79.57
+    - 43.625
+    - seam Port Credit-Weston sheets
+  - - -79.5
+    - 43.68
+    - seam Weston-West Toronto sheets
+  - - -79.68
+    - 43.625
+    - seam Streetsville-Malton sheets
+minzoom: 11
+maxzoom: 16
+description: "Federal 1:25,000 topographic maps (Port Credit, Streetsville, Hornby, Malton, Weston and West Toronto sheets, 1962–63), detailed enough to show individual buildings, from Clarkson and Streetsville to Etobicoke and the Humber.\" Streetsville to Etobicoke and the Humber."
+accuracy_note: Georeferenced by the OCUL Historical Topographic Map Digitization Project; its error isn't published. At 1:25,000 buildings are small symbols placed where they stood, but treat a single house's
+  position as approximate (tens of metres), not exact.

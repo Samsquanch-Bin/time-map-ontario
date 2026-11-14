@@ -89,6 +89,8 @@ def overlay_entry(ov: OverlayDef, meta: dict[str, Any], src: Source) -> dict[str
         "attribution": src.attribution,
         "sample": ov.sample,
     }
+    if meta.get("def_hash"):
+        entry["def_hash"] = meta["def_hash"]
     if "tiles" in meta:
         entry["tiles"] = meta["tiles"]
         entry["tile_size"] = int(ov.fetch.get("tile_size", 256))
@@ -143,6 +145,8 @@ def build_catalog(
                 used_sources.add(src.id)
                 keep = {k: old[k] for k in ("file", "minzoom", "maxzoom", "bounds", "footprint")}
                 keep["source_item_licence"] = old.get("source_item_licence", "")
+                if old.get("def_hash"):
+                    keep["def_hash"] = old["def_hash"]
                 if old.get("source_url"):
                     keep["source_url"] = old["source_url"]
                 overlay_entries.append(overlay_entry(ov, keep, src))

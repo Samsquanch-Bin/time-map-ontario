@@ -11,6 +11,8 @@ small functions so it can be unit-tested without GDAL.
 from __future__ import annotations
 
 import json
+import re
+import time
 import math
 import shutil
 import subprocess
@@ -57,6 +59,19 @@ class OverlayDef:
 
 REQUIRED = ("id", "title", "year", "source", "fetch", "accuracy_note")
 
+# Bump when the way packs are made changes, so every overlay is rebuilt once.
+BUILD_RECIPE = "2"
+
+
+def definition_hash(ov: "OverlayDef") -> str:
+    """Fingerprint of an overlay's definition and the build recipe. A published pack
+    with the same fingerprint doesn't need rebuilding."""
+    import dataclasses
+    import hashlib
+
+    blob = json.dumps({"recipe": BUILD_RECIPE, "def": dataclasses.asdict(ov)}, sort_keys=True, default=str)
+    return hashlib.sha256(blob.encode()).hexdigest()[:16]
+
 
 def parse_overlay(data: dict[str, Any], origin: str = "<overlay>") -> OverlayDef:
     missing = [k for k in REQUIRED if data.get(k) in (None, "")]
@@ -69,9 +84,25 @@ def parse_overlay(data: dict[str, Any], origin: str = "<overlay>") -> OverlayDef
     if year_end is not None and int(year_end) < year:
         raise OverlayError(f"{origin}: year_end before year")
     fetch = data["fetch"]
-    if fetch.get("method") not in ("arcgis_imageserver", "geotiff_url", "live_tiles", "gcp_sheets"):
+    if fetch.get("method") not in ("arcgis_imageserver", "geotiff_url", "live_tiles", "gcp_sheets", "geotiff_sheets"):
         raise OverlayError(f"{origin}: unknown fetch.method {fetch.get('method')!r}")
-    if fetch["method"] == "gcp_sheets":
+    if fetch["method"] == "geotiff_sheets":
+        from .nts import sheet_bounds
+
+        sheets = fetch.get("sheets") or []
+        if not sheets:
+            raise OverlayError(f"{origin}: geotiff_sheets needs at least one sheet")
+        for sh in sheets:
+            if not sh.get("url") or not sh.get("nts"):
+                raise OverlayError(f"{origin}: sheet {sh.get('label')} needs url and nts")
+            for n in sh["nts"]:
+                try:
+                    sheet_bounds(n)
+                except ValueError as exc:
+                    raise OverlayError(f"{origin}: {exc}") from exc
+        if data.get("maxzoom") is None:
+            raise OverlayError(f"{origin}: geotiff_sheets overlays need maxzoom")
+    elif fetch["method"] == "gcp_sheets":
         sheets = fetch.get("sheets") or []
         if not sheets:
             raise OverlayError(f"{origin}: gcp_sheets needs at least one sheet")
@@ -288,6 +319,9 @@ def build_overlay(ov: OverlayDef, out_dir: Path = BUILD_DIR / "release") -> dict
     if ov.fetch["method"] == "gcp_sheets":
         warped, meta = warp_gcp_sheets(ov, work)
         return _finish_overlay(ov, warped, meta, work, out_dir)
+    if ov.fetch["method"] == "geotiff_sheets":
+        warped, meta = warp_geotiff_sheets(ov, work)
+        return _finish_overlay(ov, warped, meta, work, out_dir)
     if ov.fetch["method"] == "arcgis_imageserver":
         src, meta = fetch_arcgis_imageserver(ov, work)
     else:
@@ -337,6 +371,7 @@ def _finish_overlay(ov: OverlayDef, warped: Path, meta: dict[str, Any], work: Pa
             "maxzoom": maxzoom,
             "bounds": bounds,
             "footprint": footprint,
+            "def_hash": definition_hash(ov),
         }
     )
     (out_dir.parent / "overlay-meta").mkdir(parents=True, exist_ok=True)
@@ -514,3 +549,115 @@ def set_vrt_geotransform(vrt: Path, gt: list[float]) -> None:
     text = _re.sub(r"\s*<GCPList.*?</GCPList>", "", text, flags=_re.S)
     text = text.replace("</SRS>", "</SRS>\n  <GeoTransform>" + ", ".join(f"{v:.10f}" for v in gt) + "</GeoTransform>", 1)
     vrt.write_text(text)
+
+
+def _download(url: str, dest: Path) -> None:
+    import requests
+
+    tmp = dest.with_suffix(dest.suffix + ".part")
+    for attempt in range(4):
+        try:
+            with requests.get(url, stream=True, timeout=600, headers={"User-Agent": USER_AGENT}) as r:
+                r.raise_for_status()
+                with tmp.open("wb") as fh:
+                    shutil.copyfileobj(r.raw, fh, 1 << 20)
+            tmp.replace(dest)
+            return
+        except Exception as exc:  # noqa: BLE001
+            print(f"download attempt {attempt + 1} failed for {url}: {exc}", flush=True)
+            time.sleep(10 * (attempt + 1))
+    raise OverlayError(f"could not download {url}")
+
+
+def _overlap_share(a: tuple[float, float, float, float], b: tuple[float, float, float, float]) -> float:
+    """Share of box b covered by box a (both west, south, east, north)."""
+    w, s, e, n = max(a[0], b[0]), max(a[1], b[1]), min(a[2], b[2]), min(a[3], b[3])
+    if e <= w or n <= s:
+        return 0.0
+    return (e - w) * (n - s) / ((b[2] - b[0]) * (b[3] - b[1]))
+
+
+def warp_geotiff_sheets(ov: OverlayDef, work: Path) -> tuple[Path, dict[str, Any]]:
+    """Mosaic already-georeferenced scanned sheets (e.g. federal topographic maps),
+    each trimmed to its printed neat line, worked out from its NTS sheet number,
+    so legend margins don't cover the next sheet. A sheet whose georeferenced
+    extent doesn't cover most of its neat line is skipped as suspect."""
+    from .nts import sheet_bounds, sheets_polygon
+
+    res = WEB_MERCATOR_WORLD_M / 256 / 2 ** ov.maxzoom
+    warped_files, report = [], []
+    for sh in ov.fetch["sheets"]:
+        label = sh.get("label") or sh["nts"][0]
+        entry: dict[str, Any] = {"label": label, "nts": sh["nts"], "year": sh.get("year"), "url": sh["url"]}
+        report.append(entry)
+        out = work / f"{label}_3857.tif"
+        if not out.exists():
+            raw = work / f"{label}.tif"
+            if not raw.exists():
+                _download(sh["url"], raw)
+            info = json.loads(subprocess.run(["gdalinfo", "-json", str(raw)], check=True, capture_output=True, text=True).stdout)
+            wgs = (info.get("wgs84Extent") or {}).get("coordinates")
+            if not wgs:
+                raise OverlayError(f"{ov.id} {label}: the GeoTIFF has no georeferencing")
+            xs = [p[0] for p in wgs[0]]
+            ys = [p[1] for p in wgs[0]]
+            img_box = (min(xs), min(ys), max(xs), max(ys))
+            neat = [sheet_bounds(n) for n in sh["nts"]]
+            neat_box = (min(b[0] for b in neat), min(b[1] for b in neat), max(b[2] for b in neat), max(b[3] for b in neat))
+            share = _overlap_share(img_box, neat_box)
+            entry.update({"image_bounds": [round(v, 5) for v in img_box], "neat_line": list(neat_box), "neat_line_covered": round(share, 3),
+                          "size_px": info.get("size"), "crs": (info.get("coordinateSystem") or {}).get("wkt", "")[:60]})
+            print(f"{ov.id} {label}: image {entry['image_bounds']}, neat line {list(neat_box)}, covered {share:.0%}, {info.get('size')} px", flush=True)
+            if share < 0.9:
+                print(f"::warning::{ov.id} {label}: georeferenced image covers only {share:.0%} of its sheet's neat line; skipped", flush=True)
+                entry["skipped"] = True
+                raw.unlink(missing_ok=True)
+                continue
+            args = rgb_band_args(info.get("bands", []))
+            src = raw
+            if args is not None:
+                src = work / f"{label}_rgb.vrt"
+                _run(["gdal_translate", "-q", "-of", "VRT", *args, str(raw), str(src)])
+            cut = work / f"{label}_neatline.geojson"
+            cut.write_text(json.dumps({"type": "FeatureCollection", "features": [{"type": "Feature", "properties": {}, "geometry": sheets_polygon(sh["nts"])}]}))
+            _run(["gdalwarp", "-q", "-overwrite", "-t_srs", "EPSG:3857", "-r", "bilinear", "-dstalpha",
+                  "-cutline", str(cut), "-cutline_srs", "EPSG:4326", "-crop_to_cutline",
+                  "-tr", f"{res:.6f}", f"{res:.6f}", "-co", "COMPRESS=DEFLATE", "-co", "TILED=YES", "-co", "BIGTIFF=IF_SAFER",
+                  str(src), str(out)])
+            raw.unlink(missing_ok=True)  # scans are 100+ MB each; keep the runner's disk free
+        warped_files.append(str(out))
+    if not warped_files:
+        raise OverlayError(f"{ov.id}: no sheet could be used")
+    mosaic = work / "mosaic_3857.vrt"
+    _run(["gdalbuildvrt", "-q", str(mosaic), *warped_files])
+    _write_check_crops(ov, mosaic)
+    return mosaic, {"source_url": ov.fetch.get("service", ""), "sheets": report}
+
+
+def _write_check_crops(ov: OverlayDef, mosaic: Path) -> None:
+    """Small JPEG crops around ``fetch.checks`` points ([lon, lat, label]) with a
+    red cross at the exact spot, so alignment can be inspected by eye."""
+    checks = ov.fetch.get("checks") or []
+    if not checks:
+        return
+    from PIL import Image, ImageDraw
+
+    from .georef import lonlat_to_mercator
+
+    out_dir = BUILD_DIR / "checks"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    half = 200 * WEB_MERCATOR_WORLD_M / 256 / 2 ** ov.maxzoom
+    for lon, lat, label in checks:
+        x, y = lonlat_to_mercator(lon, lat)
+        name = re.sub(r"[^a-z0-9]+", "-", f"{ov.id}-{label}".lower()).strip("-")
+        png = out_dir / f"{name}.png"
+        try:
+            _run(["gdal_translate", "-q", "-of", "PNG", "-projwin", str(x - half), str(y + half), str(x + half), str(y - half), "-outsize", "400", "400", str(mosaic), str(png)])
+            im = Image.open(png).convert("RGB")
+            d = ImageDraw.Draw(im)
+            d.line([(185, 200), (215, 200)], fill=(255, 0, 0), width=2)
+            d.line([(200, 185), (200, 215)], fill=(255, 0, 0), width=2)
+            im.save(out_dir / f"{name}.jpg", quality=85)
+            png.unlink(missing_ok=True)
+        except Exception as exc:  # noqa: BLE001
+            print(f"::warning::check crop {name} failed: {exc}", flush=True)

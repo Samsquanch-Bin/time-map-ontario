@@ -33,6 +33,7 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("terrain")
     ov = sub.add_parser("overlay")
     ov.add_argument("id")
+    ov.add_argument("--previous", type=Path, help="the published catalog.json: with 'all', skip overlays whose published pack was built from the same definition")
     cat = sub.add_parser("catalog")
     cat.add_argument("--release", action="store_true", help="refuse sample data")
     cat.add_argument("--previous", type=Path, help="the published catalog.json: overlays that failed to build keep their pack from it")
@@ -103,9 +104,19 @@ def main(argv: list[str] | None = None) -> int:
 
         print(build_basemap())
     elif args.cmd == "overlay":
-        from .overlays import build_overlay
+        from .overlays import build_overlay, definition_hash
 
         ids = [o for o in overlays if not overlays[o].live] if args.id == "all" else [args.id]
+        if args.id == "all" and args.previous and args.previous.exists():
+            prev = json.loads(args.previous.read_text())
+            prev_files = {pk["file"] for pk in prev.get("packs", [])}
+            unchanged = {
+                o["id"] for o in prev.get("overlays", [])
+                if o.get("file") in prev_files and o["id"] in overlays and o.get("def_hash") == definition_hash(overlays[o["id"]])
+            }
+            for oid in sorted(unchanged):
+                print(f"overlay {oid}: unchanged since it was published; keeping that pack")
+            ids = [o for o in ids if o not in unchanged]
         failed: list[str] = []
         for oid in ids:
             if oid not in overlays:

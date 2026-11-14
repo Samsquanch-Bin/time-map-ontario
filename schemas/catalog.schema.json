@@ -59,7 +59,8 @@
           "licence": { "type": "string" },
           "licence_status": { "enum": ["confirmed", "unconfirmed"] },
           "attribution": { "type": "string", "minLength": 1 },
-          "sample": { "type": "boolean" }
+          "sample": { "type": "boolean" },
+          "def_hash": { "type": "string" }
         }
       }
     },

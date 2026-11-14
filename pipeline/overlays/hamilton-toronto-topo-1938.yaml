@@ -1,0 +1,48 @@
+# Sheets, editions and GeoTIFF links from the OCUL project's collection list
+# (scholarsportal/historical-topos, static/combined_namesort.json). Each sheet is trimmed
+# to its NTS neat line, computed from the sheet number (tmo_pipeline/nts.py).
+id: hamilton-toronto-topo-1938
+title: Hamilton to Toronto, 1938–42 (topographic map)
+year: 1938
+year_end: 1942
+source: ocul_historical_topos
+fetch:
+  method: geotiff_sheets
+  service: https://ocul.on.ca/topomaps/
+  sheets:
+  - label: 63360k030m05_1938
+    nts:
+    - 030M05
+    year: 1938
+    title: Hamilton
+    url: https://digitalarchive.mcmaster.ca/islandora/object/macrepo%3A87863/datastream/OBJ/macrepo%3A87863.tiff
+  - label: 63360k030m12_1938
+    nts:
+    - 030M12
+    year: 1938
+    title: Brampton
+    url: https://digitalarchive.mcmaster.ca/islandora/object/macrepo%3A87882/datastream/OBJ/macrepo%3A87882.tiff
+  - label: 63360k030m11_1942
+    nts:
+    - 030M11
+    year: 1942
+    title: Toronto
+    url: https://digitalarchive.mcmaster.ca/islandora/object/macrepo%3A87871/datastream/OBJ/macrepo%3A87871.tiff
+  checks:
+  - - -79.8787367
+    - 43.2593745
+    - King St W at Queen St N, Hamilton
+  - - -79.8690697
+    - 43.2566904
+    - King St W at James St N, Hamilton
+  - - -79.7
+    - 43.5
+    - seam Hamilton-Brampton sheets
+  - - -79.5
+    - 43.62
+    - seam Brampton-Toronto sheets
+minzoom: 10
+maxzoom: 15
+description: "Late-1930s editions of the federal one-inch-to-a-mile topographic maps (Hamilton 1938, Brampton 1938, Toronto 1942): roads, railways, villages, woods and rural houses drawn as dots, Burlington to Toronto.\" edges of the growing suburbs."
+accuracy_note: Georeferenced by the OCUL Historical Topographic Map Digitization Project; its error isn't published. One-inch-to-a-mile maps draw roads and houses as symbols, so expect them to sit within
+  a few dozen metres of the real spot, not on it.

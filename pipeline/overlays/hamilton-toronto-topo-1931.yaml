@@ -1,0 +1,47 @@
+# Sheets, editions and GeoTIFF links from the OCUL project's collection list
+# (scholarsportal/historical-topos, static/combined_namesort.json). Each sheet is trimmed
+# to its NTS neat line, computed from the sheet number (tmo_pipeline/nts.py).
+id: hamilton-toronto-topo-1931
+title: Hamilton to Toronto, 1931 (topographic map)
+year: 1931
+source: ocul_historical_topos
+fetch:
+  method: geotiff_sheets
+  service: https://ocul.on.ca/topomaps/
+  sheets:
+  - label: 63360k030m05_1931
+    nts:
+    - 030M05
+    year: 1931
+    title: Hamilton
+    url: https://digitalarchive.mcmaster.ca/islandora/object/macrepo%3A87862/datastream/OBJ/macrepo%3A87862.tiff
+  - label: 63360k030m12_1931
+    nts:
+    - 030M12
+    year: 1931
+    title: Brampton
+    url: https://digitalarchive.mcmaster.ca/islandora/object/macrepo%3A87880/datastream/OBJ/macrepo%3A87880.tiff
+  - label: 63360k030m11_1931
+    nts:
+    - 030M11
+    year: 1931
+    title: Toronto
+    url: https://digitalarchive.mcmaster.ca/islandora/object/macrepo%3A87869/datastream/OBJ/macrepo%3A87869.tiff
+  checks:
+  - - -79.8787367
+    - 43.2593745
+    - King St W at Queen St N, Hamilton
+  - - -79.8690697
+    - 43.2566904
+    - King St W at James St N, Hamilton
+  - - -79.7
+    - 43.5
+    - seam Hamilton-Brampton sheets
+  - - -79.5
+    - 43.62
+    - seam Brampton-Toronto sheets
+minzoom: 10
+maxzoom: 15
+description: "1931 editions of the federal one-inch-to-a-mile topographic maps (Hamilton, Brampton and Toronto sheets): roads, railways, villages, woods and rural houses drawn as dots, Burlington to Toronto.\" Toronto.'"
+accuracy_note: Georeferenced by the OCUL Historical Topographic Map Digitization Project; its error isn't published. One-inch-to-a-mile maps draw roads and houses as symbols, so expect them to sit within
+  a few dozen metres of the real spot, not on it.

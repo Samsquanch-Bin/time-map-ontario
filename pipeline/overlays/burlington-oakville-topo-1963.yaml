@@ -1,0 +1,65 @@
+# Sheets, editions and GeoTIFF links from the OCUL project's collection list
+# (scholarsportal/historical-topos, static/combined_namesort.json). Each sheet is trimmed
+# to its NTS neat line, computed from the sheet number (tmo_pipeline/nts.py).
+id: burlington-oakville-topo-1963
+title: Burlington and Oakville, 1963–64 (1:25,000 topographic map)
+year: 1963
+year_end: 1964
+source: ocul_historical_topos
+fetch:
+  method: geotiff_sheets
+  service: https://ocul.on.ca/topomaps/
+  sheets:
+  - label: 25k030m05c_1963
+    nts:
+    - 030M05C
+    year: 1963
+    title: Burlington
+    url: https://digitalarchive.mcmaster.ca/islandora/object/macrepo%3A88429/datastream/OBJ/macrepo%3A88429.tiff
+  - label: 25k030m05d_1963
+    nts:
+    - 030M05D
+    year: 1963
+    title: Dundas
+    url: https://digitalarchive.mcmaster.ca/islandora/object/macrepo%3A88432/datastream/OBJ/macrepo%3A88432.tiff
+  - label: 25k030m05e_1964
+    nts:
+    - 030M05E
+    year: 1964
+    title: Cedar Springs
+    url: https://digitalarchive.mcmaster.ca/islandora/object/macrepo%3A88434/datastream/OBJ/macrepo%3A88434.tiff
+  - label: 25k030m05f_1964
+    nts:
+    - 030M05F
+    year: 1964
+    title: Palermo
+    url: https://digitalarchive.mcmaster.ca/islandora/object/macrepo%3A88436/datastream/OBJ/macrepo%3A88436.tiff
+  - label: 25k030m05gbh_1964
+    nts:
+    - 030M05G
+    - 030M05B
+    - 030M05H
+    year: 1964
+    title: Oakville
+    url: https://digitalarchive.mcmaster.ca/islandora/object/macrepo%3A88438/datastream/OBJ/macrepo%3A88438.tiff
+  checks:
+  - - -79.8787367
+    - 43.2593745
+    - King St W at Queen St N, Hamilton
+  - - -79.8690697
+    - 43.2566904
+    - King St W at James St N, Hamilton
+  - - -79.75
+    - 43.4
+    - seam Palermo-Oakville sheets
+  - - -79.875
+    - 43.33
+    - seam Dundas-Burlington sheets
+  - - -79.8
+    - 43.375
+    - seam Burlington-Palermo sheets
+minzoom: 11
+maxzoom: 16
+description: "Federal 1:25,000 topographic maps (Burlington, Dundas, Cedar Springs, Palermo and Oakville sheets, 1963–64), detailed enough to show individual houses, barns, churches and schools from Hamilton's west end to the Peel border."
+accuracy_note: Georeferenced by the OCUL Historical Topographic Map Digitization Project; its error isn't published. At 1:25,000 buildings are small symbols placed where they stood, but treat a single house's
+  position as approximate (tens of metres), not exact.
