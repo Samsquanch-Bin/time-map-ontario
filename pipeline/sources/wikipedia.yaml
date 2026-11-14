@@ -1,0 +1,16 @@
+id: wikipedia
+name: English Wikipedia
+provider: Wikipedia contributors / Wikimedia Foundation
+homepage: https://en.wikipedia.org
+licence: CC BY-SA 4.0
+licence_url: https://creativecommons.org/licenses/by-sa/4.0/
+attribution: "Text adapted from Wikipedia articles (CC BY-SA 4.0); each entry links its article revision"
+used_for: [places, settlements]
+terms_notes: >
+  Place entries are short summaries written from the retrieved article text. Because
+  they adapt CC BY-SA text, the entries themselves are CC BY-SA 4.0 and each one links
+  the exact article revision it was written from.
+licence_check:
+  status: confirmed
+  method: Reusing Wikipedia content guidance (via search summary; wikipedia.org blocked from build session)
+  checked_on: "2026-11-14"

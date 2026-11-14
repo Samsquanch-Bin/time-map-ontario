@@ -6,6 +6,8 @@ Commands
   basemap           extract the Southern Ontario basemap (needs pmtiles CLI + network)
   overlay ID|all    build historical overlay(s) (needs GDAL + pmtiles CLI + network)
   catalog           write build/release/catalog.json from what has been built
+  research-discover list candidate places in the focus area from Wikidata (needs network)
+  research-fetch    retrieve sources for data/research/candidates.yaml (needs network)
 """
 from __future__ import annotations
 
@@ -29,7 +31,18 @@ def main(argv: list[str] | None = None) -> int:
     ov.add_argument("id")
     cat = sub.add_parser("catalog")
     cat.add_argument("--release", action="store_true", help="refuse sample data")
+    sub.add_parser("research-discover")
+    sub.add_parser("research-fetch")
     args = p.parse_args(argv)
+
+    if args.cmd.startswith("research-"):
+        from . import research
+
+        if args.cmd == "research-discover":
+            research.discover()
+        else:
+            research.fetch(research.load_candidates())
+        return 0
 
     sources = load_manifests()
     overlays = load_overlays()

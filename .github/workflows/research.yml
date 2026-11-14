@@ -1,0 +1,56 @@
+name: Research sources
+
+# Retrieves Wikidata / Wikipedia sources for places of interest and commits them
+# to the research-cache branch (see data/research/README.md).
+on:
+  workflow_dispatch:
+    inputs:
+      step:
+        description: "discover (list candidates) or fetch (retrieve candidates.yaml)"
+        required: true
+        default: discover
+        type: choice
+        options: [discover, fetch]
+  push:
+    branches: [main]
+    paths: ["data/research/candidates.yaml"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: research
+  cancel-in-progress: false
+
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e pipeline
+      - name: Run
+        working-directory: pipeline
+        run: |
+          STEP="${{ github.event.inputs.step }}"
+          [ -z "$STEP" ] && STEP=fetch
+          python -m tmo_pipeline research-$STEP
+      - name: Commit results to research-cache branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898299+github-actions[bot]@users.noreply.github.com"
+          cp -r data/research /tmp/research
+          git fetch origin research-cache || true
+          if git rev-parse --verify origin/research-cache >/dev/null 2>&1; then
+            git checkout -B research-cache origin/research-cache
+          else
+            git checkout --orphan research-cache && git rm -rqf .
+          fi
+          mkdir -p data && rm -rf data/research.new && cp -r /tmp/research data/research.new
+          # keep previously fetched sources, add/overwrite new ones
+          mkdir -p data/research && cp -r data/research.new/. data/research/ && rm -rf data/research.new
+          git add data/research
+          git commit -m "Research sources ($(date -u +%F))" || echo "nothing new"
+          git push origin research-cache

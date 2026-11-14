@@ -78,3 +78,14 @@ def test_repo_overlays_reference_known_sources():
     for ov in load_overlays().values():
         require_sources([ov.source], sources)
         assert ov.accuracy_note
+
+
+def test_rgb_band_args():
+    from tmo_pipeline.overlays import rgb_band_args
+
+    assert rgb_band_args([{"colorInterpretation": "Gray"}]) == ["-b", "1", "-b", "1", "-b", "1"]
+    assert rgb_band_args([{"colorInterpretation": "Palette", "colorTable": {}}]) == ["-expand", "rgb"]
+    assert rgb_band_args([{}, {}]) == ["-b", "1", "-b", "1", "-b", "1", "-b", "2"]
+    assert rgb_band_args([{}, {}, {}]) is None
+    with pytest.raises(OverlayError):
+        rgb_band_args([{}] * 5)

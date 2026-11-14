@@ -1,0 +1,13 @@
+id: wikidata
+name: Wikidata
+provider: Wikimedia Foundation and Wikidata contributors
+homepage: https://www.wikidata.org
+licence: CC0 1.0 (structured data in the main namespace)
+licence_url: https://www.wikidata.org/wiki/Wikidata:Licensing
+attribution: "Wikidata (CC0)"
+used_for: [places, settlements]
+terms_notes: Used for published coordinates and dates of places. Attribution is not required but is given anyway.
+licence_check:
+  status: confirmed
+  method: Wikidata:Licensing (via search summary; wikidata.org blocked from build session) — CC0 for main namespace is long-standing policy
+  checked_on: "2026-11-14"

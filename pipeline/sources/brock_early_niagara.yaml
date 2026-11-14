@@ -3,7 +3,7 @@ name: Brock University Map, Data & GIS Library — Early Niagara georeferenced m
 provider: Brock University Map, Data & GIS Library (scans from Library and Archives Canada National Map Collection)
 homepage: https://brocku.ca/library/collections-research-resources/maps-data-gis/
 data_url: https://terra.library.brocku.ca/arcgis/rest/services/EarlyNiagara
-licence: Public domain (per item metadata "public domain / No restrictions")
+licence: No restrictions (Brock item metadata for NMC 3005; underlying 1826 map is public domain)
 attribution: "Map scan: Library and Archives Canada; georeferencing: Brock University Map, Data & GIS Library"
 used_for: [overlays]
 terms_notes: >
@@ -11,6 +11,7 @@ terms_notes: >
   stores it next to the overlay; the build log prints it so the per-item licence can
   be confirmed.
 licence_check:
-  status: unconfirmed
-  method: Search summary of item metadata (terra.library.brocku.ca blocked from build session); re-checked per item by the data build
+  status: confirmed
+  method: Item metadata read by the GitHub data build from the ImageServer's info/iteminfo (licenseInfo "No restrictions."; accessInformation "Map, Data & GIS Library, Brock University.")
   checked_on: "2026-11-14"
+  notes: Confirmed for NiagaraPeninsula1826NMC3005 only; each further Brock item is checked by the build log.

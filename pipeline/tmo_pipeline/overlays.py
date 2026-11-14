@@ -233,6 +233,7 @@ def build_overlay(ov: OverlayDef, out_dir: Path = BUILD_DIR / "release") -> dict
                 shutil.copyfileobj(r.raw, fh)
         meta = {"source_url": ov.fetch["url"]}
 
+    src = to_rgb(src, work)
     nodata = ov.fetch.get("nodata")
     warped = work / "warped_3857.tif"
     cmd = ["gdalwarp", "-q", "-overwrite", "-t_srs", "EPSG:3857", "-r", "bilinear", "-dstalpha", "-co", "COMPRESS=DEFLATE", "-co", "TILED=YES", "-co", "BIGTIFF=IF_SAFER"]
@@ -269,6 +270,32 @@ def build_overlay(ov: OverlayDef, out_dir: Path = BUILD_DIR / "release") -> dict
     return meta
 
 
+def rgb_band_args(bands: list[dict[str, Any]]) -> list[str] | None:
+    """gdal_translate arguments that turn a source into 3-band RGB, or None if it
+    already is RGB(A). Scans are often single-band greyscale or paletted, which
+    WebP tiles can't store directly."""
+    n = len(bands)
+    if n == 1:
+        if bands[0].get("colorInterpretation") == "Palette" or "colorTable" in bands[0]:
+            return ["-expand", "rgb"]
+        return ["-b", "1", "-b", "1", "-b", "1"]
+    if n == 2:  # grey + alpha
+        return ["-b", "1", "-b", "1", "-b", "1", "-b", "2"]
+    if n in (3, 4):
+        return None
+    raise OverlayError(f"unexpected band count {n}")
+
+
+def to_rgb(src: Path, work: Path) -> Path:
+    info = json.loads(subprocess.run(["gdalinfo", "-json", str(src)], check=True, capture_output=True, text=True).stdout)
+    args = rgb_band_args(info.get("bands", []))
+    if args is None:
+        return src
+    out = work / "rgb.vrt"
+    _run(["gdal_translate", "-q", "-of", "VRT", *args, str(src), str(out)])
+    return out
+
+
 def mbtiles_zoom_range(path: Path) -> tuple[int, int]:
     """(minzoom, maxzoom) actually present in an MBTiles file."""
     import sqlite3
@@ -290,7 +317,9 @@ def compute_footprint(warped: Path, work: Path) -> dict[str, Any]:
     out = work / "footprint_4326.geojson"
     for p in (poly, out):
         p.unlink(missing_ok=True)
-    _run(["gdal_translate", "-q", "-b", "4", "-outsize", "5%", "5%", "-r", "nearest", str(warped), str(small)])
+    info = json.loads(subprocess.run(["gdalinfo", "-json", str(warped)], check=True, capture_output=True, text=True).stdout)
+    alpha_band = str(len(info["bands"]))  # gdalwarp -dstalpha puts alpha last
+    _run(["gdal_translate", "-q", "-b", alpha_band, "-outsize", "5%", "5%", "-r", "nearest", str(warped), str(small)])
     _run(["gdal_polygonize.py", "-q", str(small), "-f", "GeoJSON", str(poly), "footprint", "DN"])
     _run(["ogr2ogr", "-t_srs", "EPSG:4326", "-where", "DN > 0", "-simplify", "0.0005", "-f", "GeoJSON", str(out), str(poly)])
     fc = json.loads(out.read_text())
