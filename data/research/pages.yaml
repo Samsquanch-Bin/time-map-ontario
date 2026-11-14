@@ -1,13 +1,13 @@
 # Pages fetched by the "Research sources" workflow (step: pages).
-# Round 4: U of T georeferenced air photos (1954 Southern Ontario; 1946 New Toronto/Port Credit):
-# the ArcGIS Online index items that list each photo's file.
+# Round 5: U of T air photo indexes: every photo between Hamilton and Etobicoke, with its file link.
 max_follow: 0
 pages:
-  - url: https://www.arcgis.com/sharing/rest/content/items/6847f7c14bcb4f7cb978772a514b3f85?f=json
-  - url: https://www.arcgis.com/sharing/rest/content/items/6847f7c14bcb4f7cb978772a514b3f85/data?f=json
-  - url: https://www.arcgis.com/sharing/rest/content/items/3535f36a00bc404d8151d522c9fa8456?f=json
-  - url: https://www.arcgis.com/sharing/rest/content/items/3535f36a00bc404d8151d522c9fa8456/data?f=json
-  - url: https://www.arcgis.com/sharing/rest/content/items/40503116398447d3a170e9ad2af561a3?f=json
-  - url: https://www.arcgis.com/sharing/rest/content/items/40503116398447d3a170e9ad2af561a3/data?f=json
-  - url: https://mdl-data.library.utoronto.ca/items/show/609?output=omeka-xml
-  - url: https://mdl.library.utoronto.ca/open-data/openut
+  - url: https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/air_photos_southern_ontario_1954_index_FINAL/FeatureServer/0?f=json
+  - url: https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/air_photos_southern_ontario_1954_index_FINAL/FeatureServer/0/query?where=1%3D1&geometry=-79.95%2C43.25%2C-79.45%2C43.70&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=true&outSR=4326&f=json
+  - url: https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/Southern_Ontario_1954_Index/FeatureServer/0?f=json
+  - url: https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/Southern_Ontario_1954_Index/FeatureServer/0/query?where=1%3D1&geometry=-79.95%2C43.25%2C-79.45%2C43.70&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=true&outSR=4326&f=json
+  - url: https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/Historical_Air_Photos_of_New_Toronto_and_Mississauga_Footprint/FeatureServer/0?f=json
+  - url: https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/Historical_Air_Photos_of_New_Toronto_and_Mississauga_Footprint/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&f=json
+  - url: https://www.arcgis.com/sharing/rest/content/items/1b02c11f4dbe46b79b8d9b388dc6865f?f=json
+  - url: https://www.arcgis.com/sharing/rest/content/items/a3bc6787e26143e7a4c42f321567a1af?f=json
+  - url: https://www.arcgis.com/sharing/rest/content/items/f76a60ab577f43cb9659c9084502534d?f=json
