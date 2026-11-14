@@ -32,24 +32,24 @@ candidates:
   - {id: ratcliff-site, qid: Q7295512, category: indigenous}
   - {id: teiaiagon, wikipedia: Teiaiagon, category: indigenous}
   - {id: ganatsekwyagon, wikipedia: Ganatsekwyagon, category: indigenous}
-  - {id: parsons-site, wikipedia: Parsons Site, category: indigenous}
-  - {id: crawford-lake, wikipedia: Crawford Lake (Ontario), category: indigenous}
+  - {id: parsons-site, wikipedia: Parsons site Huron village Toronto, category: indigenous}
+  - {id: crawford-lake, wikipedia: Crawford Lake Conservation Area, category: indigenous}
   # --- mills ---
   - {id: morningstar-mill, qid: Q99978138, category: mill}
   - {id: cream-of-barley-mill, qid: Q16952566, category: mill}
   - {id: secord-mill, qid: Q113264137, category: mill}
   - {id: welland-mills, qid: Q114447930, category: mill}
   - {id: todmorden-mills, wikipedia: Todmorden Mills, category: mill}
-  - {id: old-mill-toronto, wikipedia: Old Mill (Toronto), category: mill}
-  - {id: balls-falls, wikipedia: Ball's Falls, category: mill}
+  - {id: old-mill-toronto, wikipedia: Old Mill Toronto Humber River, category: mill}
+  - {id: balls-falls, wikipedia: Ball's Falls Conservation Area, category: mill}
   # --- early settlers ---
   - {id: black-creek-pioneer-village, qid: Q4920603, category: settlers}
   - {id: westfield-heritage-centre, qid: Q7988688, category: settlers}
   - {id: scadding-cabin, wikipedia: Scadding Cabin, category: settlers}
   - {id: laura-secord-homestead, wikipedia: Laura Secord Homestead, category: settlers}
-  - {id: battlefield-house, wikipedia: Battlefield House, category: settlers}
+  - {id: battlefield-house, wikipedia: Battlefield House Museum Stoney Creek, category: settlers}
   - {id: butler-homestead-site, qid: Q113264125, category: settlers}
   # --- lost villages ---
-  - {id: crooks-hollow, wikipedia: Crooks' Hollow, category: lost-village}
+  - {id: crooks-hollow, wikipedia: Crooks Hollow Greensville Hamilton, category: lost-village}
   - {id: st-johns-ontario, wikipedia: "St. Johns, Ontario", category: lost-village}
   - {id: elmbank, qid: Q17018764, category: lost-village}

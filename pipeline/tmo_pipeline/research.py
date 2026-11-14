@@ -177,6 +177,19 @@ def fetch(candidates: list[dict[str, Any]], out_dir: Path = RESEARCH_DIR / "sour
             )
             r.raise_for_status()
             page = r.json()["query"]["pages"][0]
+            if page.get("missing"):
+                # Title didn't match: take the top search hit, and record that we did.
+                sr = s.get(WIKIPEDIA_API, params={"action": "query", "list": "search", "srsearch": title, "srlimit": 1, "format": "json"}, timeout=60).json()
+                hits = sr.get("query", {}).get("search", [])
+                if hits:
+                    record["wikipedia_search"] = {"query": title, "used_title": hits[0]["title"]}
+                    r = s.get(
+                        WIKIPEDIA_API,
+                        params={"action": "query", "prop": "extracts|revisions|coordinates", "explaintext": 1, "titles": hits[0]["title"], "redirects": 1, "rvprop": "ids|timestamp", "format": "json", "formatversion": 2},
+                        timeout=60,
+                    )
+                    r.raise_for_status()
+                    page = r.json()["query"]["pages"][0]
             if not page.get("missing"):
                 rev = page["revisions"][0]
                 record["wikipedia"] = {
