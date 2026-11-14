@@ -69,9 +69,19 @@ def parse_overlay(data: dict[str, Any], origin: str = "<overlay>") -> OverlayDef
     if year_end is not None and int(year_end) < year:
         raise OverlayError(f"{origin}: year_end before year")
     fetch = data["fetch"]
-    if fetch.get("method") not in ("arcgis_imageserver", "geotiff_url", "live_tiles"):
+    if fetch.get("method") not in ("arcgis_imageserver", "geotiff_url", "live_tiles", "gcp_sheets"):
         raise OverlayError(f"{origin}: unknown fetch.method {fetch.get('method')!r}")
-    if not fetch.get("url"):
+    if fetch["method"] == "gcp_sheets":
+        sheets = fetch.get("sheets") or []
+        if not sheets:
+            raise OverlayError(f"{origin}: gcp_sheets needs at least one sheet")
+        for sh in sheets:
+            if not sh.get("url") or len(sh.get("gcps") or []) < 3:
+                raise OverlayError(f"{origin}: sheet {sh.get('label')} needs url and at least 3 gcps")
+            for g in sh["gcps"]:
+                if not (len(g) >= 4 and -180 <= g[2] <= 180 and -90 <= g[3] <= 90):
+                    raise OverlayError(f"{origin}: sheet {sh.get('label')} has a bad gcp {g}")
+    elif not fetch.get("url"):
         raise OverlayError(f"{origin}: fetch.url required")
     bounds = data.get("bounds")
     if fetch["method"] == "live_tiles":
@@ -255,6 +265,9 @@ def build_overlay(ov: OverlayDef, out_dir: Path = BUILD_DIR / "release") -> dict
     work = CACHE_DIR / "overlays" / ov.id
     work.mkdir(parents=True, exist_ok=True)
     out_dir.mkdir(parents=True, exist_ok=True)
+    if ov.fetch["method"] == "gcp_sheets":
+        warped, meta = warp_gcp_sheets(ov, work)
+        return _finish_overlay(ov, warped, meta, work, out_dir)
     if ov.fetch["method"] == "arcgis_imageserver":
         src, meta = fetch_arcgis_imageserver(ov, work)
     else:
@@ -278,7 +291,10 @@ def build_overlay(ov: OverlayDef, out_dir: Path = BUILD_DIR / "release") -> dict
         res = WEB_MERCATOR_WORLD_M / 256 / 2**ov.maxzoom
         cmd += ["-tr", f"{res:.6f}", f"{res:.6f}"]
     _run(cmd + [str(src), str(warped)])
+    return _finish_overlay(ov, warped, meta, work, out_dir)
 
+
+def _finish_overlay(ov: OverlayDef, warped: Path, meta: dict[str, Any], work: Path, out_dir: Path) -> dict[str, Any]:
     mbtiles = work / f"{ov.id}.mbtiles"
     mbtiles.unlink(missing_ok=True)
     _run(["gdal_translate", "-q", "-of", "MBTILES", "-co", "TILE_FORMAT=WEBP", "-co", "QUALITY=85", "-co", "ZOOM_LEVEL_STRATEGY=UPPER", "-co", f"NAME={ov.title}", str(warped), str(mbtiles)])
@@ -405,3 +421,57 @@ def geojson_bounds(geom: dict[str, Any]) -> list[float]:
 
     walk(geom["coordinates"])
     return [round(min(xs), 6), round(min(ys), 6), round(max(xs), 6), round(max(ys), 6)]
+
+
+def warp_gcp_sheets(ov: OverlayDef, work: Path) -> tuple[Path, dict[str, Any]]:
+    """Download each sheet, crop to its map area, warp it with an affine fit of its
+    control points, and mosaic the results. Sheets whose control points fit worse
+    than ``max_rmse_m`` are skipped (probably a misread corner)."""
+    import requests
+
+    from .georef import ground_scale, lonlat_to_mercator, residuals_m, rmse
+
+    max_rmse = float(ov.fetch.get("max_rmse_m", 12))
+    res = WEB_MERCATOR_WORLD_M / 256 / 2 ** (ov.maxzoom or 19)
+    warped_files, report = [], []
+    for sh in ov.fetch["sheets"]:
+        label = sh.get("label", "sheet")
+        gcps = [g[:4] for g in sh["gcps"]]
+        r = residuals_m(gcps)
+        err = rmse(r)
+        entry = {"label": label, "gcps": len(gcps), "rmse_m": round(err, 2), "max_m": round(max(r), 2), "m_per_px": round(ground_scale(gcps), 3)}
+        report.append(entry)
+        if err > max_rmse:
+            print(f"::warning::{ov.id} {label}: control points fit to {err:.1f} m RMSE (> {max_rmse} m), sheet skipped", flush=True)
+            entry["skipped"] = True
+            continue
+        raw = work / f"{label}.img"
+        if not raw.exists():
+            data = requests.get(sh["url"], timeout=600).content
+            raw.write_bytes(data)
+        src = raw
+        x0, y0, x1, y1 = sh.get("crop") or [0, 0, 0, 0]
+        cmd = ["gdal_translate", "-q", "-of", "VRT", "-a_srs", "EPSG:3857"]
+        if x1 > x0 and y1 > y0:
+            cmd += ["-srcwin", str(x0), str(y0), str(x1 - x0), str(y1 - y0)]
+        for g in gcps:
+            mx, my = lonlat_to_mercator(g[2], g[3])
+            cmd += ["-gcp", str(g[0] - x0), str(g[1] - y0), f"{mx:.3f}", f"{my:.3f}"]
+        gvrt = work / f"{label}_gcp.vrt"
+        _run(cmd + [str(src), str(gvrt)])
+        out = work / f"{label}_3857.tif"
+        _run(["gdalwarp", "-q", "-overwrite", "-order", "1", "-t_srs", "EPSG:3857", "-r", "bilinear", "-dstalpha",
+              "-tr", f"{res:.6f}", f"{res:.6f}", "-co", "COMPRESS=DEFLATE", "-co", "TILED=YES", str(gvrt), str(out)])
+        warped_files.append(str(out))
+        print(f"{ov.id} {label}: {len(gcps)} gcps, RMSE {err:.1f} m, {entry['m_per_px']} m/px", flush=True)
+    if not warped_files:
+        raise OverlayError(f"{ov.id}: no sheet passed the accuracy check")
+    mosaic = work / "mosaic_3857.vrt"
+    _run(["gdalbuildvrt", "-q", str(mosaic), *warped_files])
+    kept = [e for e in report if not e.get("skipped")]
+    meta = {
+        "source_url": ov.fetch.get("service", ""),
+        "sheets": report,
+        "measured_rmse_m": round(rmse([e["rmse_m"] for e in kept]), 1),
+    }
+    return mosaic, meta

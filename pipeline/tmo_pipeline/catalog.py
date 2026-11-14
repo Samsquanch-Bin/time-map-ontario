@@ -64,7 +64,12 @@ def overlay_entry(ov: OverlayDef, meta: dict[str, Any], src: Source) -> dict[str
         "year": ov.year,
         "era": list(ov.era),
         "description": ov.description,
-        "accuracy_note": ov.accuracy_note,
+        "accuracy_note": ov.accuracy_note
+        + (
+            f" Measured: the sheets' control points fit today's street corners to within about {meta['measured_rmse_m']} m (RMSE)."
+            if meta.get("measured_rmse_m") is not None
+            else ""
+        ),
         "minzoom": meta["minzoom"],
         "maxzoom": meta["maxzoom"],
         "bounds": meta["bounds"],
