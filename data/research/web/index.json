@@ -1,0 +1,2743 @@
+{
+ "retrieved": "2026-11-14",
+ "pages": [
+  {
+   "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1898",
+   "status": 200,
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 37356,
+   "file": "library-mcmaster-ca-maps-index-fire-insurance-plan-hamilton-1898.html",
+   "links": [
+    {
+     "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1898#mcm-global-navbar",
+     "text": "Skip to McMaster Navigation"
+    },
+    {
+     "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1898#siteMenu",
+     "text": "Skip to Site Navigation"
+    },
+    {
+     "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1898#main-content",
+     "text": "Skip to main content"
+    },
+    {
+     "url": "https://library.mcmaster.ca/",
+     "text": "McMaster logo Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services",
+     "text": "Services"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/services-library-accessibility-services",
+     "text": "Accessibility Services"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/borrowing",
+     "text": "Borrow from McMaster Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/ill",
+     "text": "Borrow from Other Libraries (ILL)"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/reserves",
+     "text": "Course Reserves"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/firstyear",
+     "text": "First Year Students"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/graduate-students-library",
+     "text": "Graduate Students & the Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/collections",
+     "text": "Collections"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/archives",
+     "text": "Archives & Rare Books"
+    },
+    {
+     "url": "https://mcmaster.primo.exlibrisgroup.com/discovery/search?vid=01OCUL_MU:OMNI",
+     "text": "Catalogue"
+    },
+    {
+     "url": "https://library.mcmaster.ca/databases",
+     "text": "Databases"
+    },
+    {
+     "url": "https://library.mcmaster.ca/data-statistics-collection",
+     "text": "Data / Statistics"
+    },
+    {
+     "url": "http://digitalarchive.mcmaster.ca/",
+     "text": "Digital Archive"
+    },
+    {
+     "url": "https://macsphere.mcmaster.ca/",
+     "text": "MacSphere"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces",
+     "text": "Spaces"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/mills",
+     "text": "Mills Library (Humanities & Social Sciences)"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/innis",
+     "text": "Innis Library (Business)"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/thode",
+     "text": "H.G.Thode Library of Science & Engineering"
+    },
+    {
+     "url": "https://hsl.mcmaster.ca",
+     "text": "Health Sciences Library"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/las",
+     "text": "Accessibility Services"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/cct",
+     "text": "Campus Classroom Technologies"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/lyons",
+     "text": "Lyons New Media Centre"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research",
+     "text": "Research Help"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#planning-your-research",
+     "text": "Planning Your Research"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#tab-finding-your-resources",
+     "text": "Finding Your Resources"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#tab-evaluating-citing-sources",
+     "text": "Evaluating & Citing Sources"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#tab-data-analysis-management-and-visualization",
+     "text": "Data Analysis, Management, and Visualization"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#tab-publishing-your-research",
+     "text": "Publishing Your Research"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research/ai-and-learning",
+     "text": "AI and Learning"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about",
+     "text": "About the Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/justask",
+     "text": "Contact Us"
+    },
+    {
+     "url": "https://library.mcmaster.ca/mcmaster-university-libraries-diversity-equity-inclusion-and-accessibility-committee-mandate",
+     "text": "Diversity, Equity, Inclusion and Accessibility Committee"
+    },
+    {
+     "url": "https://library.mcmaster.ca/events",
+     "text": "Events"
+    },
+    {
+     "url": "https://library.mcmaster.ca/hours",
+     "text": "Library Hours"
+    },
+    {
+     "url": "https://library.mcmaster.ca/news",
+     "text": "News"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about/office-university-librarian",
+     "text": "Office of the University Librarian"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about/policy-and-forms",
+     "text": "Policies & Forms"
+    },
+    {
+     "url": "https://library.mcmaster.ca/contact/staff-directory",
+     "text": "Staff Directory"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about/mission-and-vision",
+     "text": "Strategic Planning"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about/support-library",
+     "text": "Support the Libraries"
+    },
+    {
+     "url": "https://mcmaster.primo.exlibrisgroup.com/discovery/account?vid=01OCUL_MU%3AOMNI§ion=overview",
+     "text": "My Library Account"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/rooms-equipment",
+     "text": "Book a Room"
+    },
+    {
+     "url": "https://optaintel.ca/Solutions/Historical-Environmental/Products--Pricing",
+     "text": "the company claiming copyright ownership"
+    },
+    {
+     "url": "https://library.mcmaster.ca/maps/FIP/images/HamFIP_1898_index.jpg",
+     "text": "<img src>"
+    },
+    {
+     "url": "https://library.mcmaster.ca/themes/mac_library/assets/img/png/logo.png",
+     "text": "<img src>"
+    },
+    {
+     "url": "https://twitter.com/maclibraries",
+     "text": "X.com Mac Libraries"
+    },
+    {
+     "url": "https://www.instagram.com/maclibraries",
+     "text": "Instagram Mac Libraries"
+    },
+    {
+     "url": "https://www.youtube.com/user/maclibraries",
+     "text": "YouTube Mac Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/service-disruptions",
+     "text": "Service Disruptions"
+    },
+    {
+     "url": "https://library.mcmaster.ca/php/suggestionbox.php",
+     "text": "Make a Suggestion"
+    },
+    {
+     "url": "mailto:library@mcmaster.ca",
+     "text": "library@mcmaster.ca"
+    },
+    {
+     "url": "tel:9055259140,22077",
+     "text": "(905) 525-9140 ext. 22077"
+    },
+    {
+     "url": "tel:9055259140,22081",
+     "text": "(905) 525-9140 ext. 22081"
+    },
+    {
+     "url": "tel:9055259140,22000",
+     "text": "(905) 525-9140 ext. 22000"
+    },
+    {
+     "url": "http://hsl.mcmaster.ca",
+     "text": "Health Sciences Library"
+    },
+    {
+     "url": "mailto:hslib@mcmaster.ca",
+     "text": "hslib@mcmaster.ca"
+    },
+    {
+     "url": "tel:9055259140,22327",
+     "text": "(905) 525-9140 ext. 22327"
+    },
+    {
+     "url": "https://library.mcmaster.ca/forms/report-accessibility-issue",
+     "text": "Report an Accessibility Issue"
+    },
+    {
+     "url": "https://forms.scholarsportal.info/form/ask-the-library-offlinesurvey",
+     "text": "Ask Chat is Offline - Send an Email"
+    }
+   ]
+  },
+  {
+   "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1898#mcm-global-navbar",
+   "status": 200,
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 37356,
+   "file": "library-mcmaster-ca-maps-index-fire-insurance-plan-hamilton-1898-mcm-global-navb.html",
+   "links": [
+    {
+     "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1898#mcm-global-navbar",
+     "text": "Skip to McMaster Navigation"
+    },
+    {
+     "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1898#siteMenu",
+     "text": "Skip to Site Navigation"
+    },
+    {
+     "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1898#main-content",
+     "text": "Skip to main content"
+    },
+    {
+     "url": "https://library.mcmaster.ca/",
+     "text": "McMaster logo Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services",
+     "text": "Services"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/services-library-accessibility-services",
+     "text": "Accessibility Services"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/borrowing",
+     "text": "Borrow from McMaster Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/ill",
+     "text": "Borrow from Other Libraries (ILL)"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/reserves",
+     "text": "Course Reserves"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/firstyear",
+     "text": "First Year Students"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/graduate-students-library",
+     "text": "Graduate Students & the Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/collections",
+     "text": "Collections"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/archives",
+     "text": "Archives & Rare Books"
+    },
+    {
+     "url": "https://mcmaster.primo.exlibrisgroup.com/discovery/search?vid=01OCUL_MU:OMNI",
+     "text": "Catalogue"
+    },
+    {
+     "url": "https://library.mcmaster.ca/databases",
+     "text": "Databases"
+    },
+    {
+     "url": "https://library.mcmaster.ca/data-statistics-collection",
+     "text": "Data / Statistics"
+    },
+    {
+     "url": "http://digitalarchive.mcmaster.ca/",
+     "text": "Digital Archive"
+    },
+    {
+     "url": "https://macsphere.mcmaster.ca/",
+     "text": "MacSphere"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces",
+     "text": "Spaces"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/mills",
+     "text": "Mills Library (Humanities & Social Sciences)"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/innis",
+     "text": "Innis Library (Business)"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/thode",
+     "text": "H.G.Thode Library of Science & Engineering"
+    },
+    {
+     "url": "https://hsl.mcmaster.ca",
+     "text": "Health Sciences Library"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/las",
+     "text": "Accessibility Services"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/cct",
+     "text": "Campus Classroom Technologies"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/lyons",
+     "text": "Lyons New Media Centre"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research",
+     "text": "Research Help"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#planning-your-research",
+     "text": "Planning Your Research"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#tab-finding-your-resources",
+     "text": "Finding Your Resources"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#tab-evaluating-citing-sources",
+     "text": "Evaluating & Citing Sources"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#tab-data-analysis-management-and-visualization",
+     "text": "Data Analysis, Management, and Visualization"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#tab-publishing-your-research",
+     "text": "Publishing Your Research"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research/ai-and-learning",
+     "text": "AI and Learning"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about",
+     "text": "About the Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/justask",
+     "text": "Contact Us"
+    },
+    {
+     "url": "https://library.mcmaster.ca/mcmaster-university-libraries-diversity-equity-inclusion-and-accessibility-committee-mandate",
+     "text": "Diversity, Equity, Inclusion and Accessibility Committee"
+    },
+    {
+     "url": "https://library.mcmaster.ca/events",
+     "text": "Events"
+    },
+    {
+     "url": "https://library.mcmaster.ca/hours",
+     "text": "Library Hours"
+    },
+    {
+     "url": "https://library.mcmaster.ca/news",
+     "text": "News"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about/office-university-librarian",
+     "text": "Office of the University Librarian"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about/policy-and-forms",
+     "text": "Policies & Forms"
+    },
+    {
+     "url": "https://library.mcmaster.ca/contact/staff-directory",
+     "text": "Staff Directory"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about/mission-and-vision",
+     "text": "Strategic Planning"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about/support-library",
+     "text": "Support the Libraries"
+    },
+    {
+     "url": "https://mcmaster.primo.exlibrisgroup.com/discovery/account?vid=01OCUL_MU%3AOMNI§ion=overview",
+     "text": "My Library Account"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/rooms-equipment",
+     "text": "Book a Room"
+    },
+    {
+     "url": "https://optaintel.ca/Solutions/Historical-Environmental/Products--Pricing",
+     "text": "the company claiming copyright ownership"
+    },
+    {
+     "url": "https://library.mcmaster.ca/maps/FIP/images/HamFIP_1898_index.jpg",
+     "text": "<img src>"
+    },
+    {
+     "url": "https://library.mcmaster.ca/themes/mac_library/assets/img/png/logo.png",
+     "text": "<img src>"
+    },
+    {
+     "url": "https://twitter.com/maclibraries",
+     "text": "X.com Mac Libraries"
+    },
+    {
+     "url": "https://www.instagram.com/maclibraries",
+     "text": "Instagram Mac Libraries"
+    },
+    {
+     "url": "https://www.youtube.com/user/maclibraries",
+     "text": "YouTube Mac Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/service-disruptions",
+     "text": "Service Disruptions"
+    },
+    {
+     "url": "https://library.mcmaster.ca/php/suggestionbox.php",
+     "text": "Make a Suggestion"
+    },
+    {
+     "url": "mailto:library@mcmaster.ca",
+     "text": "library@mcmaster.ca"
+    },
+    {
+     "url": "tel:9055259140,22077",
+     "text": "(905) 525-9140 ext. 22077"
+    },
+    {
+     "url": "tel:9055259140,22081",
+     "text": "(905) 525-9140 ext. 22081"
+    },
+    {
+     "url": "tel:9055259140,22000",
+     "text": "(905) 525-9140 ext. 22000"
+    },
+    {
+     "url": "http://hsl.mcmaster.ca",
+     "text": "Health Sciences Library"
+    },
+    {
+     "url": "mailto:hslib@mcmaster.ca",
+     "text": "hslib@mcmaster.ca"
+    },
+    {
+     "url": "tel:9055259140,22327",
+     "text": "(905) 525-9140 ext. 22327"
+    },
+    {
+     "url": "https://library.mcmaster.ca/forms/report-accessibility-issue",
+     "text": "Report an Accessibility Issue"
+    },
+    {
+     "url": "https://forms.scholarsportal.info/form/ask-the-library-offlinesurvey",
+     "text": "Ask Chat is Offline - Send an Email"
+    }
+   ]
+  },
+  {
+   "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1898#siteMenu",
+   "status": 200,
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 37356,
+   "file": "library-mcmaster-ca-maps-index-fire-insurance-plan-hamilton-1898-sitemenu.html",
+   "links": [
+    {
+     "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1898#mcm-global-navbar",
+     "text": "Skip to McMaster Navigation"
+    },
+    {
+     "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1898#siteMenu",
+     "text": "Skip to Site Navigation"
+    },
+    {
+     "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1898#main-content",
+     "text": "Skip to main content"
+    },
+    {
+     "url": "https://library.mcmaster.ca/",
+     "text": "McMaster logo Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services",
+     "text": "Services"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/services-library-accessibility-services",
+     "text": "Accessibility Services"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/borrowing",
+     "text": "Borrow from McMaster Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/ill",
+     "text": "Borrow from Other Libraries (ILL)"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/reserves",
+     "text": "Course Reserves"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/firstyear",
+     "text": "First Year Students"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/graduate-students-library",
+     "text": "Graduate Students & the Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/collections",
+     "text": "Collections"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/archives",
+     "text": "Archives & Rare Books"
+    },
+    {
+     "url": "https://mcmaster.primo.exlibrisgroup.com/discovery/search?vid=01OCUL_MU:OMNI",
+     "text": "Catalogue"
+    },
+    {
+     "url": "https://library.mcmaster.ca/databases",
+     "text": "Databases"
+    },
+    {
+     "url": "https://library.mcmaster.ca/data-statistics-collection",
+     "text": "Data / Statistics"
+    },
+    {
+     "url": "http://digitalarchive.mcmaster.ca/",
+     "text": "Digital Archive"
+    },
+    {
+     "url": "https://macsphere.mcmaster.ca/",
+     "text": "MacSphere"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces",
+     "text": "Spaces"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/mills",
+     "text": "Mills Library (Humanities & Social Sciences)"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/innis",
+     "text": "Innis Library (Business)"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/thode",
+     "text": "H.G.Thode Library of Science & Engineering"
+    },
+    {
+     "url": "https://hsl.mcmaster.ca",
+     "text": "Health Sciences Library"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/las",
+     "text": "Accessibility Services"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/cct",
+     "text": "Campus Classroom Technologies"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/lyons",
+     "text": "Lyons New Media Centre"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research",
+     "text": "Research Help"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#planning-your-research",
+     "text": "Planning Your Research"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#tab-finding-your-resources",
+     "text": "Finding Your Resources"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#tab-evaluating-citing-sources",
+     "text": "Evaluating & Citing Sources"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#tab-data-analysis-management-and-visualization",
+     "text": "Data Analysis, Management, and Visualization"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#tab-publishing-your-research",
+     "text": "Publishing Your Research"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research/ai-and-learning",
+     "text": "AI and Learning"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about",
+     "text": "About the Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/justask",
+     "text": "Contact Us"
+    },
+    {
+     "url": "https://library.mcmaster.ca/mcmaster-university-libraries-diversity-equity-inclusion-and-accessibility-committee-mandate",
+     "text": "Diversity, Equity, Inclusion and Accessibility Committee"
+    },
+    {
+     "url": "https://library.mcmaster.ca/events",
+     "text": "Events"
+    },
+    {
+     "url": "https://library.mcmaster.ca/hours",
+     "text": "Library Hours"
+    },
+    {
+     "url": "https://library.mcmaster.ca/news",
+     "text": "News"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about/office-university-librarian",
+     "text": "Office of the University Librarian"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about/policy-and-forms",
+     "text": "Policies & Forms"
+    },
+    {
+     "url": "https://library.mcmaster.ca/contact/staff-directory",
+     "text": "Staff Directory"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about/mission-and-vision",
+     "text": "Strategic Planning"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about/support-library",
+     "text": "Support the Libraries"
+    },
+    {
+     "url": "https://mcmaster.primo.exlibrisgroup.com/discovery/account?vid=01OCUL_MU%3AOMNI§ion=overview",
+     "text": "My Library Account"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/rooms-equipment",
+     "text": "Book a Room"
+    },
+    {
+     "url": "https://optaintel.ca/Solutions/Historical-Environmental/Products--Pricing",
+     "text": "the company claiming copyright ownership"
+    },
+    {
+     "url": "https://library.mcmaster.ca/maps/FIP/images/HamFIP_1898_index.jpg",
+     "text": "<img src>"
+    },
+    {
+     "url": "https://library.mcmaster.ca/themes/mac_library/assets/img/png/logo.png",
+     "text": "<img src>"
+    },
+    {
+     "url": "https://twitter.com/maclibraries",
+     "text": "X.com Mac Libraries"
+    },
+    {
+     "url": "https://www.instagram.com/maclibraries",
+     "text": "Instagram Mac Libraries"
+    },
+    {
+     "url": "https://www.youtube.com/user/maclibraries",
+     "text": "YouTube Mac Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/service-disruptions",
+     "text": "Service Disruptions"
+    },
+    {
+     "url": "https://library.mcmaster.ca/php/suggestionbox.php",
+     "text": "Make a Suggestion"
+    },
+    {
+     "url": "mailto:library@mcmaster.ca",
+     "text": "library@mcmaster.ca"
+    },
+    {
+     "url": "tel:9055259140,22077",
+     "text": "(905) 525-9140 ext. 22077"
+    },
+    {
+     "url": "tel:9055259140,22081",
+     "text": "(905) 525-9140 ext. 22081"
+    },
+    {
+     "url": "tel:9055259140,22000",
+     "text": "(905) 525-9140 ext. 22000"
+    },
+    {
+     "url": "http://hsl.mcmaster.ca",
+     "text": "Health Sciences Library"
+    },
+    {
+     "url": "mailto:hslib@mcmaster.ca",
+     "text": "hslib@mcmaster.ca"
+    },
+    {
+     "url": "tel:9055259140,22327",
+     "text": "(905) 525-9140 ext. 22327"
+    },
+    {
+     "url": "https://library.mcmaster.ca/forms/report-accessibility-issue",
+     "text": "Report an Accessibility Issue"
+    },
+    {
+     "url": "https://forms.scholarsportal.info/form/ask-the-library-offlinesurvey",
+     "text": "Ask Chat is Offline - Send an Email"
+    }
+   ]
+  },
+  {
+   "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1898#main-content",
+   "status": 200,
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 37356,
+   "file": "library-mcmaster-ca-maps-index-fire-insurance-plan-hamilton-1898-main-content.html",
+   "links": [
+    {
+     "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1898#mcm-global-navbar",
+     "text": "Skip to McMaster Navigation"
+    },
+    {
+     "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1898#siteMenu",
+     "text": "Skip to Site Navigation"
+    },
+    {
+     "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1898#main-content",
+     "text": "Skip to main content"
+    },
+    {
+     "url": "https://library.mcmaster.ca/",
+     "text": "McMaster logo Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services",
+     "text": "Services"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/services-library-accessibility-services",
+     "text": "Accessibility Services"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/borrowing",
+     "text": "Borrow from McMaster Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/ill",
+     "text": "Borrow from Other Libraries (ILL)"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/reserves",
+     "text": "Course Reserves"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/firstyear",
+     "text": "First Year Students"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/graduate-students-library",
+     "text": "Graduate Students & the Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/collections",
+     "text": "Collections"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/archives",
+     "text": "Archives & Rare Books"
+    },
+    {
+     "url": "https://mcmaster.primo.exlibrisgroup.com/discovery/search?vid=01OCUL_MU:OMNI",
+     "text": "Catalogue"
+    },
+    {
+     "url": "https://library.mcmaster.ca/databases",
+     "text": "Databases"
+    },
+    {
+     "url": "https://library.mcmaster.ca/data-statistics-collection",
+     "text": "Data / Statistics"
+    },
+    {
+     "url": "http://digitalarchive.mcmaster.ca/",
+     "text": "Digital Archive"
+    },
+    {
+     "url": "https://macsphere.mcmaster.ca/",
+     "text": "MacSphere"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces",
+     "text": "Spaces"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/mills",
+     "text": "Mills Library (Humanities & Social Sciences)"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/innis",
+     "text": "Innis Library (Business)"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/thode",
+     "text": "H.G.Thode Library of Science & Engineering"
+    },
+    {
+     "url": "https://hsl.mcmaster.ca",
+     "text": "Health Sciences Library"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/las",
+     "text": "Accessibility Services"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/cct",
+     "text": "Campus Classroom Technologies"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/lyons",
+     "text": "Lyons New Media Centre"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research",
+     "text": "Research Help"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#planning-your-research",
+     "text": "Planning Your Research"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#tab-finding-your-resources",
+     "text": "Finding Your Resources"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#tab-evaluating-citing-sources",
+     "text": "Evaluating & Citing Sources"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#tab-data-analysis-management-and-visualization",
+     "text": "Data Analysis, Management, and Visualization"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#tab-publishing-your-research",
+     "text": "Publishing Your Research"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research/ai-and-learning",
+     "text": "AI and Learning"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about",
+     "text": "About the Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/justask",
+     "text": "Contact Us"
+    },
+    {
+     "url": "https://library.mcmaster.ca/mcmaster-university-libraries-diversity-equity-inclusion-and-accessibility-committee-mandate",
+     "text": "Diversity, Equity, Inclusion and Accessibility Committee"
+    },
+    {
+     "url": "https://library.mcmaster.ca/events",
+     "text": "Events"
+    },
+    {
+     "url": "https://library.mcmaster.ca/hours",
+     "text": "Library Hours"
+    },
+    {
+     "url": "https://library.mcmaster.ca/news",
+     "text": "News"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about/office-university-librarian",
+     "text": "Office of the University Librarian"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about/policy-and-forms",
+     "text": "Policies & Forms"
+    },
+    {
+     "url": "https://library.mcmaster.ca/contact/staff-directory",
+     "text": "Staff Directory"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about/mission-and-vision",
+     "text": "Strategic Planning"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about/support-library",
+     "text": "Support the Libraries"
+    },
+    {
+     "url": "https://mcmaster.primo.exlibrisgroup.com/discovery/account?vid=01OCUL_MU%3AOMNI§ion=overview",
+     "text": "My Library Account"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/rooms-equipment",
+     "text": "Book a Room"
+    },
+    {
+     "url": "https://optaintel.ca/Solutions/Historical-Environmental/Products--Pricing",
+     "text": "the company claiming copyright ownership"
+    },
+    {
+     "url": "https://library.mcmaster.ca/maps/FIP/images/HamFIP_1898_index.jpg",
+     "text": "<img src>"
+    },
+    {
+     "url": "https://library.mcmaster.ca/themes/mac_library/assets/img/png/logo.png",
+     "text": "<img src>"
+    },
+    {
+     "url": "https://twitter.com/maclibraries",
+     "text": "X.com Mac Libraries"
+    },
+    {
+     "url": "https://www.instagram.com/maclibraries",
+     "text": "Instagram Mac Libraries"
+    },
+    {
+     "url": "https://www.youtube.com/user/maclibraries",
+     "text": "YouTube Mac Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/service-disruptions",
+     "text": "Service Disruptions"
+    },
+    {
+     "url": "https://library.mcmaster.ca/php/suggestionbox.php",
+     "text": "Make a Suggestion"
+    },
+    {
+     "url": "mailto:library@mcmaster.ca",
+     "text": "library@mcmaster.ca"
+    },
+    {
+     "url": "tel:9055259140,22077",
+     "text": "(905) 525-9140 ext. 22077"
+    },
+    {
+     "url": "tel:9055259140,22081",
+     "text": "(905) 525-9140 ext. 22081"
+    },
+    {
+     "url": "tel:9055259140,22000",
+     "text": "(905) 525-9140 ext. 22000"
+    },
+    {
+     "url": "http://hsl.mcmaster.ca",
+     "text": "Health Sciences Library"
+    },
+    {
+     "url": "mailto:hslib@mcmaster.ca",
+     "text": "hslib@mcmaster.ca"
+    },
+    {
+     "url": "tel:9055259140,22327",
+     "text": "(905) 525-9140 ext. 22327"
+    },
+    {
+     "url": "https://library.mcmaster.ca/forms/report-accessibility-issue",
+     "text": "Report an Accessibility Issue"
+    },
+    {
+     "url": "https://forms.scholarsportal.info/form/ask-the-library-offlinesurvey",
+     "text": "Ask Chat is Offline - Send an Email"
+    }
+   ]
+  },
+  {
+   "url": "http://digitalarchive.mcmaster.ca/",
+   "error": "HTTPConnectionPool(host='digitalarchive.mcmaster.ca', port=80): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPConnection(host='digitalarchive.mcmaster.ca', port=80) at 0x73587ccede50>, 'Connection to digitalarchive.mcmaster.ca timed out. (connect timeout=60)'))"
+  },
+  {
+   "url": "https://library.mcmaster.ca/maps/FIP/images/HamFIP_1898_index.jpg",
+   "status": 200,
+   "content_type": "image/jpeg",
+   "bytes": 1265295,
+   "file": null,
+   "links": []
+  },
+  {
+   "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1911",
+   "status": 200,
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 45696,
+   "file": "library-mcmaster-ca-maps-index-fire-insurance-plan-hamilton-1911.html",
+   "links": [
+    {
+     "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1911#mcm-global-navbar",
+     "text": "Skip to McMaster Navigation"
+    },
+    {
+     "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1911#siteMenu",
+     "text": "Skip to Site Navigation"
+    },
+    {
+     "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1911#main-content",
+     "text": "Skip to main content"
+    },
+    {
+     "url": "https://library.mcmaster.ca/",
+     "text": "McMaster logo Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services",
+     "text": "Services"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/services-library-accessibility-services",
+     "text": "Accessibility Services"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/borrowing",
+     "text": "Borrow from McMaster Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/ill",
+     "text": "Borrow from Other Libraries (ILL)"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/reserves",
+     "text": "Course Reserves"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/firstyear",
+     "text": "First Year Students"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/graduate-students-library",
+     "text": "Graduate Students & the Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/collections",
+     "text": "Collections"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/archives",
+     "text": "Archives & Rare Books"
+    },
+    {
+     "url": "https://mcmaster.primo.exlibrisgroup.com/discovery/search?vid=01OCUL_MU:OMNI",
+     "text": "Catalogue"
+    },
+    {
+     "url": "https://library.mcmaster.ca/databases",
+     "text": "Databases"
+    },
+    {
+     "url": "https://library.mcmaster.ca/data-statistics-collection",
+     "text": "Data / Statistics"
+    },
+    {
+     "url": "http://digitalarchive.mcmaster.ca/",
+     "text": "Digital Archive"
+    },
+    {
+     "url": "https://macsphere.mcmaster.ca/",
+     "text": "MacSphere"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces",
+     "text": "Spaces"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/mills",
+     "text": "Mills Library (Humanities & Social Sciences)"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/innis",
+     "text": "Innis Library (Business)"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/thode",
+     "text": "H.G.Thode Library of Science & Engineering"
+    },
+    {
+     "url": "https://hsl.mcmaster.ca",
+     "text": "Health Sciences Library"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/las",
+     "text": "Accessibility Services"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/cct",
+     "text": "Campus Classroom Technologies"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/lyons",
+     "text": "Lyons New Media Centre"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research",
+     "text": "Research Help"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#planning-your-research",
+     "text": "Planning Your Research"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#tab-finding-your-resources",
+     "text": "Finding Your Resources"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#tab-evaluating-citing-sources",
+     "text": "Evaluating & Citing Sources"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#tab-data-analysis-management-and-visualization",
+     "text": "Data Analysis, Management, and Visualization"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#tab-publishing-your-research",
+     "text": "Publishing Your Research"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research/ai-and-learning",
+     "text": "AI and Learning"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about",
+     "text": "About the Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/justask",
+     "text": "Contact Us"
+    },
+    {
+     "url": "https://library.mcmaster.ca/mcmaster-university-libraries-diversity-equity-inclusion-and-accessibility-committee-mandate",
+     "text": "Diversity, Equity, Inclusion and Accessibility Committee"
+    },
+    {
+     "url": "https://library.mcmaster.ca/events",
+     "text": "Events"
+    },
+    {
+     "url": "https://library.mcmaster.ca/hours",
+     "text": "Library Hours"
+    },
+    {
+     "url": "https://library.mcmaster.ca/news",
+     "text": "News"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about/office-university-librarian",
+     "text": "Office of the University Librarian"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about/policy-and-forms",
+     "text": "Policies & Forms"
+    },
+    {
+     "url": "https://library.mcmaster.ca/contact/staff-directory",
+     "text": "Staff Directory"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about/mission-and-vision",
+     "text": "Strategic Planning"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about/support-library",
+     "text": "Support the Libraries"
+    },
+    {
+     "url": "https://mcmaster.primo.exlibrisgroup.com/discovery/account?vid=01OCUL_MU%3AOMNI§ion=overview",
+     "text": "My Library Account"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/rooms-equipment",
+     "text": "Book a Room"
+    },
+    {
+     "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1911-east-half",
+     "text": "index to the eastern half of the city"
+    },
+    {
+     "url": "https://optaintel.ca/Solutions/Historical-Environmental/Products--Pricing",
+     "text": "the company claiming copyright ownership"
+    },
+    {
+     "url": "https://library.mcmaster.ca/maps/FIP/images/HamFIP_1911_index1.jpg",
+     "text": "<img src>"
+    },
+    {
+     "url": "https://library.mcmaster.ca/themes/mac_library/assets/img/png/logo.png",
+     "text": "<img src>"
+    },
+    {
+     "url": "https://twitter.com/maclibraries",
+     "text": "X.com Mac Libraries"
+    },
+    {
+     "url": "https://www.instagram.com/maclibraries",
+     "text": "Instagram Mac Libraries"
+    },
+    {
+     "url": "https://www.youtube.com/user/maclibraries",
+     "text": "YouTube Mac Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/service-disruptions",
+     "text": "Service Disruptions"
+    },
+    {
+     "url": "https://library.mcmaster.ca/php/suggestionbox.php",
+     "text": "Make a Suggestion"
+    },
+    {
+     "url": "mailto:library@mcmaster.ca",
+     "text": "library@mcmaster.ca"
+    },
+    {
+     "url": "tel:9055259140,22077",
+     "text": "(905) 525-9140 ext. 22077"
+    },
+    {
+     "url": "tel:9055259140,22081",
+     "text": "(905) 525-9140 ext. 22081"
+    },
+    {
+     "url": "tel:9055259140,22000",
+     "text": "(905) 525-9140 ext. 22000"
+    },
+    {
+     "url": "http://hsl.mcmaster.ca",
+     "text": "Health Sciences Library"
+    },
+    {
+     "url": "mailto:hslib@mcmaster.ca",
+     "text": "hslib@mcmaster.ca"
+    },
+    {
+     "url": "tel:9055259140,22327",
+     "text": "(905) 525-9140 ext. 22327"
+    },
+    {
+     "url": "https://library.mcmaster.ca/forms/report-accessibility-issue",
+     "text": "Report an Accessibility Issue"
+    },
+    {
+     "url": "https://forms.scholarsportal.info/form/ask-the-library-offlinesurvey",
+     "text": "Ask Chat is Offline - Send an Email"
+    }
+   ]
+  },
+  {
+   "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1911#mcm-global-navbar",
+   "status": 200,
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 45696,
+   "file": "library-mcmaster-ca-maps-index-fire-insurance-plan-hamilton-1911-mcm-global-navb.html",
+   "links": [
+    {
+     "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1911#mcm-global-navbar",
+     "text": "Skip to McMaster Navigation"
+    },
+    {
+     "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1911#siteMenu",
+     "text": "Skip to Site Navigation"
+    },
+    {
+     "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1911#main-content",
+     "text": "Skip to main content"
+    },
+    {
+     "url": "https://library.mcmaster.ca/",
+     "text": "McMaster logo Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services",
+     "text": "Services"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/services-library-accessibility-services",
+     "text": "Accessibility Services"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/borrowing",
+     "text": "Borrow from McMaster Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/ill",
+     "text": "Borrow from Other Libraries (ILL)"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/reserves",
+     "text": "Course Reserves"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/firstyear",
+     "text": "First Year Students"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/graduate-students-library",
+     "text": "Graduate Students & the Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/collections",
+     "text": "Collections"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/archives",
+     "text": "Archives & Rare Books"
+    },
+    {
+     "url": "https://mcmaster.primo.exlibrisgroup.com/discovery/search?vid=01OCUL_MU:OMNI",
+     "text": "Catalogue"
+    },
+    {
+     "url": "https://library.mcmaster.ca/databases",
+     "text": "Databases"
+    },
+    {
+     "url": "https://library.mcmaster.ca/data-statistics-collection",
+     "text": "Data / Statistics"
+    },
+    {
+     "url": "http://digitalarchive.mcmaster.ca/",
+     "text": "Digital Archive"
+    },
+    {
+     "url": "https://macsphere.mcmaster.ca/",
+     "text": "MacSphere"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces",
+     "text": "Spaces"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/mills",
+     "text": "Mills Library (Humanities & Social Sciences)"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/innis",
+     "text": "Innis Library (Business)"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/thode",
+     "text": "H.G.Thode Library of Science & Engineering"
+    },
+    {
+     "url": "https://hsl.mcmaster.ca",
+     "text": "Health Sciences Library"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/las",
+     "text": "Accessibility Services"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/cct",
+     "text": "Campus Classroom Technologies"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/lyons",
+     "text": "Lyons New Media Centre"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research",
+     "text": "Research Help"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#planning-your-research",
+     "text": "Planning Your Research"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#tab-finding-your-resources",
+     "text": "Finding Your Resources"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#tab-evaluating-citing-sources",
+     "text": "Evaluating & Citing Sources"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#tab-data-analysis-management-and-visualization",
+     "text": "Data Analysis, Management, and Visualization"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#tab-publishing-your-research",
+     "text": "Publishing Your Research"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research/ai-and-learning",
+     "text": "AI and Learning"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about",
+     "text": "About the Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/justask",
+     "text": "Contact Us"
+    },
+    {
+     "url": "https://library.mcmaster.ca/mcmaster-university-libraries-diversity-equity-inclusion-and-accessibility-committee-mandate",
+     "text": "Diversity, Equity, Inclusion and Accessibility Committee"
+    },
+    {
+     "url": "https://library.mcmaster.ca/events",
+     "text": "Events"
+    },
+    {
+     "url": "https://library.mcmaster.ca/hours",
+     "text": "Library Hours"
+    },
+    {
+     "url": "https://library.mcmaster.ca/news",
+     "text": "News"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about/office-university-librarian",
+     "text": "Office of the University Librarian"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about/policy-and-forms",
+     "text": "Policies & Forms"
+    },
+    {
+     "url": "https://library.mcmaster.ca/contact/staff-directory",
+     "text": "Staff Directory"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about/mission-and-vision",
+     "text": "Strategic Planning"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about/support-library",
+     "text": "Support the Libraries"
+    },
+    {
+     "url": "https://mcmaster.primo.exlibrisgroup.com/discovery/account?vid=01OCUL_MU%3AOMNI§ion=overview",
+     "text": "My Library Account"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/rooms-equipment",
+     "text": "Book a Room"
+    },
+    {
+     "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1911-east-half",
+     "text": "index to the eastern half of the city"
+    },
+    {
+     "url": "https://optaintel.ca/Solutions/Historical-Environmental/Products--Pricing",
+     "text": "the company claiming copyright ownership"
+    },
+    {
+     "url": "https://library.mcmaster.ca/maps/FIP/images/HamFIP_1911_index1.jpg",
+     "text": "<img src>"
+    },
+    {
+     "url": "https://library.mcmaster.ca/themes/mac_library/assets/img/png/logo.png",
+     "text": "<img src>"
+    },
+    {
+     "url": "https://twitter.com/maclibraries",
+     "text": "X.com Mac Libraries"
+    },
+    {
+     "url": "https://www.instagram.com/maclibraries",
+     "text": "Instagram Mac Libraries"
+    },
+    {
+     "url": "https://www.youtube.com/user/maclibraries",
+     "text": "YouTube Mac Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/service-disruptions",
+     "text": "Service Disruptions"
+    },
+    {
+     "url": "https://library.mcmaster.ca/php/suggestionbox.php",
+     "text": "Make a Suggestion"
+    },
+    {
+     "url": "mailto:library@mcmaster.ca",
+     "text": "library@mcmaster.ca"
+    },
+    {
+     "url": "tel:9055259140,22077",
+     "text": "(905) 525-9140 ext. 22077"
+    },
+    {
+     "url": "tel:9055259140,22081",
+     "text": "(905) 525-9140 ext. 22081"
+    },
+    {
+     "url": "tel:9055259140,22000",
+     "text": "(905) 525-9140 ext. 22000"
+    },
+    {
+     "url": "http://hsl.mcmaster.ca",
+     "text": "Health Sciences Library"
+    },
+    {
+     "url": "mailto:hslib@mcmaster.ca",
+     "text": "hslib@mcmaster.ca"
+    },
+    {
+     "url": "tel:9055259140,22327",
+     "text": "(905) 525-9140 ext. 22327"
+    },
+    {
+     "url": "https://library.mcmaster.ca/forms/report-accessibility-issue",
+     "text": "Report an Accessibility Issue"
+    },
+    {
+     "url": "https://forms.scholarsportal.info/form/ask-the-library-offlinesurvey",
+     "text": "Ask Chat is Offline - Send an Email"
+    }
+   ]
+  },
+  {
+   "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1911#siteMenu",
+   "status": 200,
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 45696,
+   "file": "library-mcmaster-ca-maps-index-fire-insurance-plan-hamilton-1911-sitemenu.html",
+   "links": [
+    {
+     "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1911#mcm-global-navbar",
+     "text": "Skip to McMaster Navigation"
+    },
+    {
+     "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1911#siteMenu",
+     "text": "Skip to Site Navigation"
+    },
+    {
+     "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1911#main-content",
+     "text": "Skip to main content"
+    },
+    {
+     "url": "https://library.mcmaster.ca/",
+     "text": "McMaster logo Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services",
+     "text": "Services"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/services-library-accessibility-services",
+     "text": "Accessibility Services"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/borrowing",
+     "text": "Borrow from McMaster Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/ill",
+     "text": "Borrow from Other Libraries (ILL)"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/reserves",
+     "text": "Course Reserves"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/firstyear",
+     "text": "First Year Students"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/graduate-students-library",
+     "text": "Graduate Students & the Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/collections",
+     "text": "Collections"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/archives",
+     "text": "Archives & Rare Books"
+    },
+    {
+     "url": "https://mcmaster.primo.exlibrisgroup.com/discovery/search?vid=01OCUL_MU:OMNI",
+     "text": "Catalogue"
+    },
+    {
+     "url": "https://library.mcmaster.ca/databases",
+     "text": "Databases"
+    },
+    {
+     "url": "https://library.mcmaster.ca/data-statistics-collection",
+     "text": "Data / Statistics"
+    },
+    {
+     "url": "http://digitalarchive.mcmaster.ca/",
+     "text": "Digital Archive"
+    },
+    {
+     "url": "https://macsphere.mcmaster.ca/",
+     "text": "MacSphere"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces",
+     "text": "Spaces"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/mills",
+     "text": "Mills Library (Humanities & Social Sciences)"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/innis",
+     "text": "Innis Library (Business)"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/thode",
+     "text": "H.G.Thode Library of Science & Engineering"
+    },
+    {
+     "url": "https://hsl.mcmaster.ca",
+     "text": "Health Sciences Library"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/las",
+     "text": "Accessibility Services"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/cct",
+     "text": "Campus Classroom Technologies"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/lyons",
+     "text": "Lyons New Media Centre"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research",
+     "text": "Research Help"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#planning-your-research",
+     "text": "Planning Your Research"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#tab-finding-your-resources",
+     "text": "Finding Your Resources"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#tab-evaluating-citing-sources",
+     "text": "Evaluating & Citing Sources"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#tab-data-analysis-management-and-visualization",
+     "text": "Data Analysis, Management, and Visualization"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#tab-publishing-your-research",
+     "text": "Publishing Your Research"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research/ai-and-learning",
+     "text": "AI and Learning"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about",
+     "text": "About the Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/justask",
+     "text": "Contact Us"
+    },
+    {
+     "url": "https://library.mcmaster.ca/mcmaster-university-libraries-diversity-equity-inclusion-and-accessibility-committee-mandate",
+     "text": "Diversity, Equity, Inclusion and Accessibility Committee"
+    },
+    {
+     "url": "https://library.mcmaster.ca/events",
+     "text": "Events"
+    },
+    {
+     "url": "https://library.mcmaster.ca/hours",
+     "text": "Library Hours"
+    },
+    {
+     "url": "https://library.mcmaster.ca/news",
+     "text": "News"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about/office-university-librarian",
+     "text": "Office of the University Librarian"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about/policy-and-forms",
+     "text": "Policies & Forms"
+    },
+    {
+     "url": "https://library.mcmaster.ca/contact/staff-directory",
+     "text": "Staff Directory"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about/mission-and-vision",
+     "text": "Strategic Planning"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about/support-library",
+     "text": "Support the Libraries"
+    },
+    {
+     "url": "https://mcmaster.primo.exlibrisgroup.com/discovery/account?vid=01OCUL_MU%3AOMNI§ion=overview",
+     "text": "My Library Account"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/rooms-equipment",
+     "text": "Book a Room"
+    },
+    {
+     "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1911-east-half",
+     "text": "index to the eastern half of the city"
+    },
+    {
+     "url": "https://optaintel.ca/Solutions/Historical-Environmental/Products--Pricing",
+     "text": "the company claiming copyright ownership"
+    },
+    {
+     "url": "https://library.mcmaster.ca/maps/FIP/images/HamFIP_1911_index1.jpg",
+     "text": "<img src>"
+    },
+    {
+     "url": "https://library.mcmaster.ca/themes/mac_library/assets/img/png/logo.png",
+     "text": "<img src>"
+    },
+    {
+     "url": "https://twitter.com/maclibraries",
+     "text": "X.com Mac Libraries"
+    },
+    {
+     "url": "https://www.instagram.com/maclibraries",
+     "text": "Instagram Mac Libraries"
+    },
+    {
+     "url": "https://www.youtube.com/user/maclibraries",
+     "text": "YouTube Mac Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/service-disruptions",
+     "text": "Service Disruptions"
+    },
+    {
+     "url": "https://library.mcmaster.ca/php/suggestionbox.php",
+     "text": "Make a Suggestion"
+    },
+    {
+     "url": "mailto:library@mcmaster.ca",
+     "text": "library@mcmaster.ca"
+    },
+    {
+     "url": "tel:9055259140,22077",
+     "text": "(905) 525-9140 ext. 22077"
+    },
+    {
+     "url": "tel:9055259140,22081",
+     "text": "(905) 525-9140 ext. 22081"
+    },
+    {
+     "url": "tel:9055259140,22000",
+     "text": "(905) 525-9140 ext. 22000"
+    },
+    {
+     "url": "http://hsl.mcmaster.ca",
+     "text": "Health Sciences Library"
+    },
+    {
+     "url": "mailto:hslib@mcmaster.ca",
+     "text": "hslib@mcmaster.ca"
+    },
+    {
+     "url": "tel:9055259140,22327",
+     "text": "(905) 525-9140 ext. 22327"
+    },
+    {
+     "url": "https://library.mcmaster.ca/forms/report-accessibility-issue",
+     "text": "Report an Accessibility Issue"
+    },
+    {
+     "url": "https://forms.scholarsportal.info/form/ask-the-library-offlinesurvey",
+     "text": "Ask Chat is Offline - Send an Email"
+    }
+   ]
+  },
+  {
+   "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1911#main-content",
+   "status": 200,
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 45696,
+   "file": "library-mcmaster-ca-maps-index-fire-insurance-plan-hamilton-1911-main-content.html",
+   "links": [
+    {
+     "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1911#mcm-global-navbar",
+     "text": "Skip to McMaster Navigation"
+    },
+    {
+     "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1911#siteMenu",
+     "text": "Skip to Site Navigation"
+    },
+    {
+     "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1911#main-content",
+     "text": "Skip to main content"
+    },
+    {
+     "url": "https://library.mcmaster.ca/",
+     "text": "McMaster logo Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services",
+     "text": "Services"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/services-library-accessibility-services",
+     "text": "Accessibility Services"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/borrowing",
+     "text": "Borrow from McMaster Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/ill",
+     "text": "Borrow from Other Libraries (ILL)"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/reserves",
+     "text": "Course Reserves"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/firstyear",
+     "text": "First Year Students"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/graduate-students-library",
+     "text": "Graduate Students & the Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/collections",
+     "text": "Collections"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/archives",
+     "text": "Archives & Rare Books"
+    },
+    {
+     "url": "https://mcmaster.primo.exlibrisgroup.com/discovery/search?vid=01OCUL_MU:OMNI",
+     "text": "Catalogue"
+    },
+    {
+     "url": "https://library.mcmaster.ca/databases",
+     "text": "Databases"
+    },
+    {
+     "url": "https://library.mcmaster.ca/data-statistics-collection",
+     "text": "Data / Statistics"
+    },
+    {
+     "url": "http://digitalarchive.mcmaster.ca/",
+     "text": "Digital Archive"
+    },
+    {
+     "url": "https://macsphere.mcmaster.ca/",
+     "text": "MacSphere"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces",
+     "text": "Spaces"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/mills",
+     "text": "Mills Library (Humanities & Social Sciences)"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/innis",
+     "text": "Innis Library (Business)"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/thode",
+     "text": "H.G.Thode Library of Science & Engineering"
+    },
+    {
+     "url": "https://hsl.mcmaster.ca",
+     "text": "Health Sciences Library"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/las",
+     "text": "Accessibility Services"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/cct",
+     "text": "Campus Classroom Technologies"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/lyons",
+     "text": "Lyons New Media Centre"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research",
+     "text": "Research Help"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#planning-your-research",
+     "text": "Planning Your Research"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#tab-finding-your-resources",
+     "text": "Finding Your Resources"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#tab-evaluating-citing-sources",
+     "text": "Evaluating & Citing Sources"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#tab-data-analysis-management-and-visualization",
+     "text": "Data Analysis, Management, and Visualization"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#tab-publishing-your-research",
+     "text": "Publishing Your Research"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research/ai-and-learning",
+     "text": "AI and Learning"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about",
+     "text": "About the Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/justask",
+     "text": "Contact Us"
+    },
+    {
+     "url": "https://library.mcmaster.ca/mcmaster-university-libraries-diversity-equity-inclusion-and-accessibility-committee-mandate",
+     "text": "Diversity, Equity, Inclusion and Accessibility Committee"
+    },
+    {
+     "url": "https://library.mcmaster.ca/events",
+     "text": "Events"
+    },
+    {
+     "url": "https://library.mcmaster.ca/hours",
+     "text": "Library Hours"
+    },
+    {
+     "url": "https://library.mcmaster.ca/news",
+     "text": "News"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about/office-university-librarian",
+     "text": "Office of the University Librarian"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about/policy-and-forms",
+     "text": "Policies & Forms"
+    },
+    {
+     "url": "https://library.mcmaster.ca/contact/staff-directory",
+     "text": "Staff Directory"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about/mission-and-vision",
+     "text": "Strategic Planning"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about/support-library",
+     "text": "Support the Libraries"
+    },
+    {
+     "url": "https://mcmaster.primo.exlibrisgroup.com/discovery/account?vid=01OCUL_MU%3AOMNI§ion=overview",
+     "text": "My Library Account"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/rooms-equipment",
+     "text": "Book a Room"
+    },
+    {
+     "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1911-east-half",
+     "text": "index to the eastern half of the city"
+    },
+    {
+     "url": "https://optaintel.ca/Solutions/Historical-Environmental/Products--Pricing",
+     "text": "the company claiming copyright ownership"
+    },
+    {
+     "url": "https://library.mcmaster.ca/maps/FIP/images/HamFIP_1911_index1.jpg",
+     "text": "<img src>"
+    },
+    {
+     "url": "https://library.mcmaster.ca/themes/mac_library/assets/img/png/logo.png",
+     "text": "<img src>"
+    },
+    {
+     "url": "https://twitter.com/maclibraries",
+     "text": "X.com Mac Libraries"
+    },
+    {
+     "url": "https://www.instagram.com/maclibraries",
+     "text": "Instagram Mac Libraries"
+    },
+    {
+     "url": "https://www.youtube.com/user/maclibraries",
+     "text": "YouTube Mac Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/service-disruptions",
+     "text": "Service Disruptions"
+    },
+    {
+     "url": "https://library.mcmaster.ca/php/suggestionbox.php",
+     "text": "Make a Suggestion"
+    },
+    {
+     "url": "mailto:library@mcmaster.ca",
+     "text": "library@mcmaster.ca"
+    },
+    {
+     "url": "tel:9055259140,22077",
+     "text": "(905) 525-9140 ext. 22077"
+    },
+    {
+     "url": "tel:9055259140,22081",
+     "text": "(905) 525-9140 ext. 22081"
+    },
+    {
+     "url": "tel:9055259140,22000",
+     "text": "(905) 525-9140 ext. 22000"
+    },
+    {
+     "url": "http://hsl.mcmaster.ca",
+     "text": "Health Sciences Library"
+    },
+    {
+     "url": "mailto:hslib@mcmaster.ca",
+     "text": "hslib@mcmaster.ca"
+    },
+    {
+     "url": "tel:9055259140,22327",
+     "text": "(905) 525-9140 ext. 22327"
+    },
+    {
+     "url": "https://library.mcmaster.ca/forms/report-accessibility-issue",
+     "text": "Report an Accessibility Issue"
+    },
+    {
+     "url": "https://forms.scholarsportal.info/form/ask-the-library-offlinesurvey",
+     "text": "Ask Chat is Offline - Send an Email"
+    }
+   ]
+  },
+  {
+   "url": "http://digitalarchive.mcmaster.ca/",
+   "error": "HTTPConnectionPool(host='digitalarchive.mcmaster.ca', port=80): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPConnection(host='digitalarchive.mcmaster.ca', port=80) at 0x73587cceeff0>, 'Connection to digitalarchive.mcmaster.ca timed out. (connect timeout=60)'))"
+  },
+  {
+   "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1911-east-half",
+   "status": 200,
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 46623,
+   "file": "library-mcmaster-ca-maps-index-fire-insurance-plan-hamilton-1911-east-half.html",
+   "links": [
+    {
+     "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1911-east-half#mcm-global-navbar",
+     "text": "Skip to McMaster Navigation"
+    },
+    {
+     "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1911-east-half#siteMenu",
+     "text": "Skip to Site Navigation"
+    },
+    {
+     "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1911-east-half#main-content",
+     "text": "Skip to main content"
+    },
+    {
+     "url": "https://library.mcmaster.ca/",
+     "text": "McMaster logo Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services",
+     "text": "Services"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/services-library-accessibility-services",
+     "text": "Accessibility Services"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/borrowing",
+     "text": "Borrow from McMaster Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/ill",
+     "text": "Borrow from Other Libraries (ILL)"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/reserves",
+     "text": "Course Reserves"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/firstyear",
+     "text": "First Year Students"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/graduate-students-library",
+     "text": "Graduate Students & the Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/collections",
+     "text": "Collections"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/archives",
+     "text": "Archives & Rare Books"
+    },
+    {
+     "url": "https://mcmaster.primo.exlibrisgroup.com/discovery/search?vid=01OCUL_MU:OMNI",
+     "text": "Catalogue"
+    },
+    {
+     "url": "https://library.mcmaster.ca/databases",
+     "text": "Databases"
+    },
+    {
+     "url": "https://library.mcmaster.ca/data-statistics-collection",
+     "text": "Data / Statistics"
+    },
+    {
+     "url": "http://digitalarchive.mcmaster.ca/",
+     "text": "Digital Archive"
+    },
+    {
+     "url": "https://macsphere.mcmaster.ca/",
+     "text": "MacSphere"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces",
+     "text": "Spaces"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/mills",
+     "text": "Mills Library (Humanities & Social Sciences)"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/innis",
+     "text": "Innis Library (Business)"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/thode",
+     "text": "H.G.Thode Library of Science & Engineering"
+    },
+    {
+     "url": "https://hsl.mcmaster.ca",
+     "text": "Health Sciences Library"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/las",
+     "text": "Accessibility Services"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/cct",
+     "text": "Campus Classroom Technologies"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/lyons",
+     "text": "Lyons New Media Centre"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research",
+     "text": "Research Help"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#planning-your-research",
+     "text": "Planning Your Research"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#tab-finding-your-resources",
+     "text": "Finding Your Resources"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#tab-evaluating-citing-sources",
+     "text": "Evaluating & Citing Sources"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#tab-data-analysis-management-and-visualization",
+     "text": "Data Analysis, Management, and Visualization"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#tab-publishing-your-research",
+     "text": "Publishing Your Research"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research/ai-and-learning",
+     "text": "AI and Learning"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about",
+     "text": "About the Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/justask",
+     "text": "Contact Us"
+    },
+    {
+     "url": "https://library.mcmaster.ca/mcmaster-university-libraries-diversity-equity-inclusion-and-accessibility-committee-mandate",
+     "text": "Diversity, Equity, Inclusion and Accessibility Committee"
+    },
+    {
+     "url": "https://library.mcmaster.ca/events",
+     "text": "Events"
+    },
+    {
+     "url": "https://library.mcmaster.ca/hours",
+     "text": "Library Hours"
+    },
+    {
+     "url": "https://library.mcmaster.ca/news",
+     "text": "News"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about/office-university-librarian",
+     "text": "Office of the University Librarian"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about/policy-and-forms",
+     "text": "Policies & Forms"
+    },
+    {
+     "url": "https://library.mcmaster.ca/contact/staff-directory",
+     "text": "Staff Directory"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about/mission-and-vision",
+     "text": "Strategic Planning"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about/support-library",
+     "text": "Support the Libraries"
+    },
+    {
+     "url": "https://mcmaster.primo.exlibrisgroup.com/discovery/account?vid=01OCUL_MU%3AOMNI§ion=overview",
+     "text": "My Library Account"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/rooms-equipment",
+     "text": "Book a Room"
+    },
+    {
+     "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1911",
+     "text": "western half of the city"
+    },
+    {
+     "url": "https://optaintel.ca/Solutions/Historical-Environmental/Products--Pricing",
+     "text": "the company claiming copyright ownership"
+    },
+    {
+     "url": "https://library.mcmaster.ca/maps/FIP/images/HamFIP_1911_index2.jpg",
+     "text": "<img src>"
+    },
+    {
+     "url": "https://library.mcmaster.ca/themes/mac_library/assets/img/png/logo.png",
+     "text": "<img src>"
+    },
+    {
+     "url": "https://twitter.com/maclibraries",
+     "text": "X.com Mac Libraries"
+    },
+    {
+     "url": "https://www.instagram.com/maclibraries",
+     "text": "Instagram Mac Libraries"
+    },
+    {
+     "url": "https://www.youtube.com/user/maclibraries",
+     "text": "YouTube Mac Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/service-disruptions",
+     "text": "Service Disruptions"
+    },
+    {
+     "url": "https://library.mcmaster.ca/php/suggestionbox.php",
+     "text": "Make a Suggestion"
+    },
+    {
+     "url": "mailto:library@mcmaster.ca",
+     "text": "library@mcmaster.ca"
+    },
+    {
+     "url": "tel:9055259140,22077",
+     "text": "(905) 525-9140 ext. 22077"
+    },
+    {
+     "url": "tel:9055259140,22081",
+     "text": "(905) 525-9140 ext. 22081"
+    },
+    {
+     "url": "tel:9055259140,22000",
+     "text": "(905) 525-9140 ext. 22000"
+    },
+    {
+     "url": "http://hsl.mcmaster.ca",
+     "text": "Health Sciences Library"
+    },
+    {
+     "url": "mailto:hslib@mcmaster.ca",
+     "text": "hslib@mcmaster.ca"
+    },
+    {
+     "url": "tel:9055259140,22327",
+     "text": "(905) 525-9140 ext. 22327"
+    },
+    {
+     "url": "https://library.mcmaster.ca/forms/report-accessibility-issue",
+     "text": "Report an Accessibility Issue"
+    },
+    {
+     "url": "https://forms.scholarsportal.info/form/ask-the-library-offlinesurvey",
+     "text": "Ask Chat is Offline - Send an Email"
+    }
+   ]
+  },
+  {
+   "url": "https://library.mcmaster.ca/maps/FIP/images/HamFIP_1911_index1.jpg",
+   "status": 200,
+   "content_type": "image/jpeg",
+   "bytes": 1214747,
+   "file": null,
+   "links": []
+  },
+  {
+   "url": "https://library.mcmaster.ca/hamilton-area-historical-research-resources",
+   "status": 200,
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 36939,
+   "file": "library-mcmaster-ca-hamilton-area-historical-research-resources.html",
+   "links": [
+    {
+     "url": "https://library.mcmaster.ca/hamilton-area-historical-research-resources#mcm-global-navbar",
+     "text": "Skip to McMaster Navigation"
+    },
+    {
+     "url": "https://library.mcmaster.ca/hamilton-area-historical-research-resources#siteMenu",
+     "text": "Skip to Site Navigation"
+    },
+    {
+     "url": "https://library.mcmaster.ca/hamilton-area-historical-research-resources#main-content",
+     "text": "Skip to main content"
+    },
+    {
+     "url": "https://library.mcmaster.ca/",
+     "text": "McMaster logo Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services",
+     "text": "Services"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/services-library-accessibility-services",
+     "text": "Accessibility Services"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/borrowing",
+     "text": "Borrow from McMaster Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/ill",
+     "text": "Borrow from Other Libraries (ILL)"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/reserves",
+     "text": "Course Reserves"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/firstyear",
+     "text": "First Year Students"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/graduate-students-library",
+     "text": "Graduate Students & the Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/collections",
+     "text": "Collections"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/archives",
+     "text": "Archives & Rare Books"
+    },
+    {
+     "url": "https://mcmaster.primo.exlibrisgroup.com/discovery/search?vid=01OCUL_MU:OMNI",
+     "text": "Catalogue"
+    },
+    {
+     "url": "https://library.mcmaster.ca/databases",
+     "text": "Databases"
+    },
+    {
+     "url": "https://library.mcmaster.ca/data-statistics-collection",
+     "text": "Data / Statistics"
+    },
+    {
+     "url": "http://digitalarchive.mcmaster.ca/",
+     "text": "Digital Archive"
+    },
+    {
+     "url": "https://macsphere.mcmaster.ca/",
+     "text": "MacSphere"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces",
+     "text": "Spaces"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/mills",
+     "text": "Mills Library (Humanities & Social Sciences)"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/innis",
+     "text": "Innis Library (Business)"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/thode",
+     "text": "H.G.Thode Library of Science & Engineering"
+    },
+    {
+     "url": "https://hsl.mcmaster.ca",
+     "text": "Health Sciences Library"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/las",
+     "text": "Accessibility Services"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/cct",
+     "text": "Campus Classroom Technologies"
+    },
+    {
+     "url": "https://library.mcmaster.ca/spaces/lyons",
+     "text": "Lyons New Media Centre"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research",
+     "text": "Research Help"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#planning-your-research",
+     "text": "Planning Your Research"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#tab-finding-your-resources",
+     "text": "Finding Your Resources"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#tab-evaluating-citing-sources",
+     "text": "Evaluating & Citing Sources"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#tab-data-analysis-management-and-visualization",
+     "text": "Data Analysis, Management, and Visualization"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research#tab-publishing-your-research",
+     "text": "Publishing Your Research"
+    },
+    {
+     "url": "https://library.mcmaster.ca/research/ai-and-learning",
+     "text": "AI and Learning"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about",
+     "text": "About the Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/justask",
+     "text": "Contact Us"
+    },
+    {
+     "url": "https://library.mcmaster.ca/mcmaster-university-libraries-diversity-equity-inclusion-and-accessibility-committee-mandate",
+     "text": "Diversity, Equity, Inclusion and Accessibility Committee"
+    },
+    {
+     "url": "https://library.mcmaster.ca/events",
+     "text": "Events"
+    },
+    {
+     "url": "https://library.mcmaster.ca/hours",
+     "text": "Library Hours"
+    },
+    {
+     "url": "https://library.mcmaster.ca/news",
+     "text": "News"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about/office-university-librarian",
+     "text": "Office of the University Librarian"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about/policy-and-forms",
+     "text": "Policies & Forms"
+    },
+    {
+     "url": "https://library.mcmaster.ca/contact/staff-directory",
+     "text": "Staff Directory"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about/mission-and-vision",
+     "text": "Strategic Planning"
+    },
+    {
+     "url": "https://library.mcmaster.ca/about/support-library",
+     "text": "Support the Libraries"
+    },
+    {
+     "url": "https://mcmaster.primo.exlibrisgroup.com/discovery/account?vid=01OCUL_MU%3AOMNI§ion=overview",
+     "text": "My Library Account"
+    },
+    {
+     "url": "https://library.mcmaster.ca/services/rooms-equipment",
+     "text": "Book a Room"
+    },
+    {
+     "url": "https://library.mcmaster.ca/sites/default/files/banner-imgs/hamilton_area_resources_banner.png",
+     "text": "<img src>"
+    },
+    {
+     "url": "https://library.mcmaster.ca/beck-lectures-historical-cartography",
+     "text": "the Beck Lectures on Historical Cartography"
+    },
+    {
+     "url": "http://creativecommons.org/licenses/by-nc/2.5/ca/",
+     "text": "Creative Commons License"
+    },
+    {
+     "url": "https://library.mcmaster.ca/maps/19thcmaps/index.html",
+     "text": "19th century survey plans for the City of Hamilton"
+    },
+    {
+     "url": "https://digitalarchive.mcmaster.ca/islandora/object/macrepo%3A70028",
+     "text": "1840 Bird's-Eye View of Hamilton"
+    },
+    {
+     "url": "https://digitalarchive.mcmaster.ca/islandora/object/macrepo%3A61445",
+     "text": "1851 Map of the Town of Dundas by Marcus Smith"
+    },
+    {
+     "url": "https://digitalarchive.mcmaster.ca/islandora/object/macrepo%3A70027",
+     "text": "1854 Bird's-Eye View of the City of Hamilton, Canada West, by Edwin Whitefield"
+    },
+    {
+     "url": "https://www.loc.gov/resource/g3464h.pm010712/?r=0.082,-0.017,0.927,0.822,0",
+     "text": "1859 Bird's-Eye View of Hamilton, County of Wentworth"
+    },
+    {
+     "url": "https://maps.library.utoronto.ca/hgis/countymaps/wentworth/index.html",
+     "text": "1859 map of Wentworth County"
+    },
+    {
+     "url": "https://digitalarchive.mcmaster.ca/islandora/object/macrepo%3A70031",
+     "text": "Views of the City of Hamilton in 1860"
+    },
+    {
+     "url": "https://digitalarchive.mcmaster.ca/islandora/object/macrepo%3A70029",
+     "text": "1871 View of the City of Hamilton from a photograph by R. Milne"
+    },
+    {
+     "url": "http://digital.library.mcgill.ca/countyatlas/default.htm",
+     "text": "1875 Wentworth County Atlas"
+    },
+    {
+     "url": "http://digitalarchive.mcmaster.ca/islandora/object/macrepo%3A70026",
+     "text": "1876 Bird's-Eye View of Hamilton"
+    },
+    {
+     "url": "https://digitalarchive.mcmaster.ca/islandora/object/macrepo%3A70030",
+     "text": "1880 View of Hamilton by the Belden Bros."
+    },
+    {
+     "url": "https://library.mcmaster.ca/php/raremaps.php?f=more&num=107450",
+     "text": "1891 Abrey and Tyrrell's Map of the City of Hamilton"
+    },
+    {
+     "url": "http://digitalarchive.mcmaster.ca/islandora/object/macrepo%3A82243",
+     "text": "1893 Bird's-Eye View of Hamilton"
+    },
+    {
+     "url": "https://library.mcmaster.ca/collections/fire-insurance-plans",
+     "text": "Fire Insurance Plans"
+    },
+    {
+     "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1898",
+     "text": "1898"
+    },
+    {
+     "url": "https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1911",
+     "text": "1911"
+    },
+    {
+     "url": "https://library.mcmaster.ca/collections/aerial-photos",
+     "text": "Aerial photo coverage"
+    },
+    {
+     "url": "https://library.mcmaster.ca/maps/aerialphotos/index.html",
+     "text": "Library's Historical Hamilton Portal"
+    },
+    {
+     "url": "https://digitalarchive.mcmaster.ca/islandora/object/macrepo%3A71375",
+     "text": "1927 Aerial Photo Mosaic Map of the City of Hamilton"
+    },
+    {
+     "url": "https://archive.org/details/@hamilton_public_library_-_local_history_amp_archives",
+     "text": "Hamilton Public Library"
+    },
+    {
+     "url": "https://library.mcmaster.ca/themes/mac_library/assets/img/png/logo.png",
+     "text": "<img src>"
+    },
+    {
+     "url": "https://twitter.com/maclibraries",
+     "text": "X.com Mac Libraries"
+    },
+    {
+     "url": "https://www.instagram.com/maclibraries",
+     "text": "Instagram Mac Libraries"
+    },
+    {
+     "url": "https://www.youtube.com/user/maclibraries",
+     "text": "YouTube Mac Libraries"
+    },
+    {
+     "url": "https://library.mcmaster.ca/service-disruptions",
+     "text": "Service Disruptions"
+    },
+    {
+     "url": "https://library.mcmaster.ca/php/suggestionbox.php",
+     "text": "Make a Suggestion"
+    },
+    {
+     "url": "mailto:library@mcmaster.ca",
+     "text": "library@mcmaster.ca"
+    },
+    {
+     "url": "tel:9055259140,22077",
+     "text": "(905) 525-9140 ext. 22077"
+    },
+    {
+     "url": "tel:9055259140,22081",
+     "text": "(905) 525-9140 ext. 22081"
+    },
+    {
+     "url": "tel:9055259140,22000",
+     "text": "(905) 525-9140 ext. 22000"
+    },
+    {
+     "url": "http://hsl.mcmaster.ca",
+     "text": "Health Sciences Library"
+    },
+    {
+     "url": "mailto:hslib@mcmaster.ca",
+     "text": "hslib@mcmaster.ca"
+    },
+    {
+     "url": "tel:9055259140,22327",
+     "text": "(905) 525-9140 ext. 22327"
+    },
+    {
+     "url": "https://library.mcmaster.ca/forms/report-accessibility-issue",
+     "text": "Report an Accessibility Issue"
+    },
+    {
+     "url": "https://forms.scholarsportal.info/form/ask-the-library-offlinesurvey",
+     "text": "Ask Chat is Offline - Send an Email"
+    }
+   ]
+  }
+ ]
+}
