@@ -47,3 +47,14 @@ def test_summarise_entity_extracts_coords_and_dates():
 
 def test_slugify():
     assert slugify("Battle of Stoney Creek!") == "battle-of-stoney-creek"
+
+
+def test_service_urls_and_mercator():
+    from tmo_pipeline.map_discovery import mercator_to_lonlat, service_urls
+
+    d = {"folders": ["EarlyNiagara"], "services": [{"name": "EarlyNiagara/Map1826", "type": "ImageServer"}, {"name": "X", "type": "GPServer"}]}
+    folders, services = service_urls(d, "https://h/arcgis/rest/services/EarlyNiagara")
+    assert folders == ["https://h/arcgis/rest/services/EarlyNiagara"]
+    assert services == ["https://h/arcgis/rest/services/EarlyNiagara/Map1826/ImageServer"]
+    lon, lat = mercator_to_lonlat(-8_870_000, 5_350_000)
+    assert -80 < lon < -79.5 and 43 < lat < 44

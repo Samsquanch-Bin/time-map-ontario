@@ -6,11 +6,11 @@ on:
   workflow_dispatch:
     inputs:
       step:
-        description: "discover (list candidates) or fetch (retrieve candidates.yaml)"
+        description: "discover (list candidate places), fetch (retrieve candidates.yaml), or maps (list map services)"
         required: true
         default: discover
         type: choice
-        options: [discover, fetch]
+        options: [discover, fetch, maps]
   push:
     branches: [main]
     paths: ["data/research/candidates.yaml"]
@@ -36,7 +36,7 @@ jobs:
         run: |
           STEP="${{ github.event.inputs.step }}"
           [ -z "$STEP" ] && STEP=fetch
-          python -m tmo_pipeline research-$STEP
+          if [ "$STEP" = maps ]; then python -m tmo_pipeline maps-discover; else python -m tmo_pipeline research-$STEP; fi
       - name: Commit results to research-cache branch
         run: |
           git config user.name "github-actions[bot]"

@@ -8,6 +8,7 @@ Commands
   catalog           write build/release/catalog.json from what has been built
   research-discover list candidate places in the focus area from Wikidata (needs network)
   research-fetch    retrieve sources for data/research/candidates.yaml (needs network)
+  maps-discover     list georeferenced map services on known ArcGIS servers (needs network)
 """
 from __future__ import annotations
 
@@ -33,7 +34,14 @@ def main(argv: list[str] | None = None) -> int:
     cat.add_argument("--release", action="store_true", help="refuse sample data")
     sub.add_parser("research-discover")
     sub.add_parser("research-fetch")
+    sub.add_parser("maps-discover")
     args = p.parse_args(argv)
+
+    if args.cmd == "maps-discover":
+        from .map_discovery import discover
+
+        discover()
+        return 0
 
     if args.cmd.startswith("research-"):
         from . import research
