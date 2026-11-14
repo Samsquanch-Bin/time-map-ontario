@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>index</title>
+</head>
+
+<script>
+<!-- begin script hiding
+var myWindow = new Object();
+function clicker(obj) {
+  var winname = obj.target;
+  if( (myWindow[winname] == null) || (myWindow[winname].closed == true)
+) {
+      myWindow[winname] =
+        window.open(obj.href, obj.target,
+"scrollbars,resizable,width=680,height=560" );
+  }
+  window.open(obj.href, obj.target);
+  myWindow[winname].focus();
+}
+// end script hiding -->
+</script> 
+
+<body>
+  <font face="Arial, Helvetica, sans-serif">
+
+  <p>
+      <img src="https://maps.library.utoronto.ca/images/maplibbanner.gif"
+      width="745" height="60"><br />
+
+      <a href="https://mdl.library.utoronto.ca/">
+        <font size="2">Map Library Home</font>
+      </a>
+  </p>
+  
+    <h3>
+      <font size="4">
+        Digital Aerial Photographs, Southern Ontario 1954
+      </font>
+    </h3> <br />
+  
+    <font size="3">
+    <b >Source: </b> Energy Mines and Resources Canada<tab><br />
+    <b>Scale:</b> Approx. 1.5 (Region A) and 0.6 (Regions B and C) metre
+    resolution (one pixel = 1.5m and 0.6m) <br />
+    <b>Format:</b> TIF and SID files (for more information about the MrSID file
+    format see
+    <a href="https://www.extensis.com/mrsid-file-format">Extensis</a>'s <br />
+    website).
+  
+  
+    <br /> <br />
+  
+    The images are available in their original form (click here for a
+    <a TARGET=address ONCLICK=clicker(this) href="Sample1.html">sample</a>)
+    and cropped (click here for a
+    <a TARGET=address ONCLICK=clicker(this) href="Sample2.html">sample</a>)
+
+    <p>
+      <img src="General.jpg" width="835" height="546" border="1" usemap="#Map">
+    </p>
+  
+    <center>
+      Click on the graphic above to see available photographs.
+      &copy; University of Toronto Map Library<br />
+      Last Updated: October 26, 2005
+    </center>
+  
+    <p>    
+      <map name="Map">
+        <area shape="rect" coords="251,216,570,331" href="RegionA.html">
+        <area shape="rect" coords="254,383,417,418" href="RegionB.html">
+        <area shape="rect" coords="328,426,541,469" href="RegionC.html">
+      </map>
+    </p>
+
+  </font>
+
+
+</body>
+</html>

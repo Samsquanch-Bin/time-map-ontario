@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <!-- Will build the page <title> -->
+        <title>Search Items &middot; MDL Data</title>
+    <link rel="alternate" type="application/rss+xml" title="Omeka RSS Feed" href="/items/browse?output=rss2" /><link rel="alternate" type="application/atom+xml" title="Omeka Atom Feed" href="/items/browse?output=atom" />
+    <!-- Will fire plugins that need to include their own files in <head> -->
+    
+     <!-- Need to add custom and third-party CSS files? Include them here -->
+
+
+    <link href="/application/views/scripts/css/public.css?v=3.2.2" media="screen" rel="stylesheet" type="text/css" >
+<link href="https://unpkg.com/swiper/swiper-bundle.min.css" media="all" rel="stylesheet" type="text/css" >
+<link href="/themes/UTL-omeka/css/build/style.css?v=3.2.2" media="all" rel="stylesheet" type="text/css" ><style type="text/css" media="all">
+<!--
+#item-citation {
+display:none
+}
+
+#search-by-collection {
+display:none
+}
+
+#search-by-tag {
+display:none
+}
+
+div.two {
+display:none
+}
+
+div.five {
+display:none
+}
+
+a {
+text-decoration:underline
+}
+-->
+</style>
+    <!-- Need more JavaScript files? Include them here -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script type="text/javascript">
+    //<!--
+    window.jQuery || document.write("<script type=\"text\/javascript\" src=\"\/application\/views\/scripts\/javascripts\/vendor\/jquery.js?v=3.2.2\" charset=\"utf-8\"><\/script>"); window.jQuery.uiBackCompat = true    //-->
+</script>
+<script type="text/javascript" src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js"></script>
+<script type="text/javascript">
+    //<!--
+    window.jQuery.ui || document.write("<script type=\"text\/javascript\" src=\"\/application\/views\/scripts\/javascripts\/vendor\/jquery-ui.js?v=3.2.2\" charset=\"utf-8\"><\/script>")    //-->
+</script>
+<script type="text/javascript" src="/application/views/scripts/javascripts/vendor/jquery.ui.touch-punch.js"></script>
+<script type="text/javascript">
+    //<!--
+    jQuery.noConflict();    //-->
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script type="text/javascript" src="/themes/UTL-omeka/javascripts/app.js?v=3.2.2"></script>    <!-- set the scene for config -->
+
+</head>
+<body class="items advanced-search">
+
+     
+<div class="container mx-auto">
+<div class="topbar px-6 md:px-10 lg:px-10 py-3 flex flex-col justify-between space-y-4 lg:space-y-0 lg:flex-row items-center">
+<div id="site-title" class="w-96 px-4">
+<a href="https://mdl-data.library.utoronto.ca" ><img src="/themes/UTL-omeka/images/logo.png" alt="UTL Logo"></a>
+
+</div>
+
+
+<div class="space-y-6 md:space-x-2 md:space-y-0">
+<!-- right side subnav item -->
+<div id="search-container" role="search" class="">
+
+<form id="search-form" name="search-form" action="/search" aria-label="MDL Data" method="get">    <input type="text" name="query" id="query" value="" title="Search" class="bg-gray-50 outline-none focus:outline-none pl-4 text-sm" placeholder="Search...">        <div id="advanced-form" class="hidden">
+        <fieldset id="query-types">
+            <legend class="show-for-sr">Search using this query type:</legend>
+            <label><input type="radio" name="query_type" id="query_type-keyword" value="keyword" checked="checked" class="px-1">Keyword</label><label><input type="radio" name="query_type" id="query_type-boolean" value="boolean" class="px-1">Boolean</label><label><input type="radio" name="query_type" id="query_type-exact_match" value="exact_match" class="px-1">Exact match</label>        </fieldset>
+                <fieldset id="record-types">
+            <legend class="show-for-sr">Search only these record types:</legend>
+                        <input type="checkbox" name="record_types[]" id="record_types-Item" value="Item" checked="checked"> <label for="record_types-Item">Item</label>                        <input type="checkbox" name="record_types[]" id="record_types-File" value="File" checked="checked"> <label for="record_types-File">File</label>                        <input type="checkbox" name="record_types[]" id="record_types-Collection" value="Collection" checked="checked"> <label for="record_types-Collection">Collection</label>                    </fieldset>
+                <p><a href="/items/search">Advanced Search (Items only)</a></p>
+    </div>
+    <button type="button" id="toggle-advanced-search" class="relative mr-2 expand advanced-toggle" aria-label="Toggle advanced options" title="Toggle advanced options">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 cursor-pointer">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
+            </svg>
+    </button>
+      
+    <button type="submit" aria-label="Submit search" title="Submit search" id="submit_search" class="relative search-button large-1" escape = false,>
+    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+        </svg>
+</button>
+
+
+</form>
+ </div>
+
+
+    </div>
+</div>
+</div>
+<div class="navbar bg-primary">
+<div class="menu-container container mx-auto">
+<nav id="main-menu" class="relative px-2 lg:px-2 py-6 flex justify-between items-center bg-primary text-white text-sm uppercase">
+
+		<div class="lg:hidden">
+			<button class="navbar-burger flex items-center text-gray-100 p-3">
+				<svg class="block h-4 w-4 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+					<title>Mobile menu</title>
+					<path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+				</svg>
+			</button>
+		</div>
+        <ul class="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
+    <li>
+        <a href="/about">About</a>
+    </li>
+    <li class="active">
+        <a href="/items/search">Search</a>
+    </li>
+    <li>
+        <a href="/items/browse">Browse Items</a>
+    </li>
+</ul>	</nav>
+	<div class="navbar-menu relative z-50 hidden">
+		<div class="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
+		<nav class="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto">
+			<div class="flex items-center mb-8">
+			<div id="site-title" class="w-96"><a href="https://mdl-data.library.utoronto.ca" class="">MDL Data</a>
+</div>
+
+				<button class="navbar-close">
+					<svg class="h-6 w-6 text-gray-100 cursor-pointer hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+					</svg>
+				</button>
+			</div>
+			<div> 
+                <ul>
+    <li>
+        <a href="/about">About</a>
+    </li>
+    <li class="active">
+        <a href="/items/search">Search</a>
+    </li>
+    <li>
+        <a href="/items/browse">Browse Items</a>
+    </li>
+</ul>            
+				 
+		</nav>
+
+</div>
+</div> <!-- end of menu container -->
+</div><!-- end of navbar -->
+
+<main id="content" role="main" class="content-page">
+
+
+   
+ 
+                
+
+<h1>Search Items</h1>
+
+
+
+<form id="advanced-search-form" action="/items/browse" method="GET" class="max-w-xl">
+    <div id="search-keywords" class="field py-4">
+        <label for="keyword-search">Search for Keywords</label>        <div class="inputs">
+        <input type="text" name="search" id="keyword-search" value="" size="40">        </div>
+    </div>
+    <div id="search-narrow-by-field-alerts" class="sr-only alerts" aria-atomic="true" aria-live="polite">
+        <p>Number of rows in "Narrow by Specific Fields": <span class="count">1</span></p>
+    </div>
+    <div id="search-narrow-by-fields" class="field py-4">
+        <div id="search-narrow-by-fields-label" class="label">Narrow by Specific Fields</div>
+        <div id="search-narrow-by-fields-property" class="label sr-only" aria-hidden="true">Search Field</div>
+        <div id="search-narrow-by-fields-type" class="label sr-only" aria-hidden="true">Search Type</div>
+        <div id="search-narrow-by-fields-terms" class="label sr-only" aria-hidden="true">Search Terms</div>
+        <div id="search-narrow-by-fields-joiner" class="label sr-only" aria-hidden="true">Search Joiner</div>
+        <div id="search-narrow-by-fields-remove-field" class="label" aria-hidden="true">Remove field</div>
+        <div class="inputs">
+                    <div class="search-entry py-4" id="search-row-0" aria-label="Row 1">
+                <div class="input advanced-search-joiner"> 
+                    <span aria-hidden="true" class="visible-label">Joiner</span>
+                    <select name="advanced[0][joiner]" aria-labelledby="search-narrow-by-fields-label search-row-0 search-narrow-by-fields-joiner">
+    <option value="and">AND</option>
+    <option value="or">OR</option>
+</select>                </div>
+                <div class="input advanced-search-element"> 
+                    <span aria-hidden="true" class="visible-label">Field</span>
+                    <select name="advanced[0][element_id]" aria-labelledby="search-narrow-by-fields-label search-row-0 search-narrow-by-fields-property">
+    <option value="">Select Below </option>
+    <option value="0">Title</option>
+    <option value="1">Subject</option>
+    <option value="2">Description</option>
+    <option value="3">Creator</option>
+    <option value="4">Source</option>
+    <option value="5">Publisher</option>
+    <option value="6">Date</option>
+    <option value="7">Contributor</option>
+    <option value="8">Rights</option>
+    <option value="9">Relation</option>
+    <option value="10">Format</option>
+    <option value="11">Language</option>
+    <option value="12">Type</option>
+    <option value="13">Identifier</option>
+    <option value="14">Coverage</option>
+    <option value="15">Birth Date</option>
+    <option value="16">Links</option>
+    <option value="17">Collection</option>
+    <option value="18">Alternative Title</option>
+    <option value="19">CD Number</option>
+    <option value="20">Data Collector</option>
+    <option value="21">Production Date</option>
+    <option value="22">Data Type</option>
+    <option value="23">Continent</option>
+    <option value="24">Time Period</option>
+    <option value="25">Link</option>
+    <option value="26">Edition</option>
+    <option value="27">Scale</option>
+    <option value="28">Coordinate System</option>
+    <option value="29">Broad Topic</option>
+    <option value="30">Series</option>
+    <option value="31">Notes</option>
+    <option value="32">Mode of Data Collection</option>
+    <option value="33">Geographic Keywords</option>
+    <option value="34">Distributor</option>
+    <option value="35">Collection Date</option>
+    <option value="36">Distribution Date</option>
+    <option value="37">Revision Date</option>
+    <option value="38">Keywords</option>
+    <option value="39">Compression</option>
+    <option value="40">Subject Line</option>
+    <option value="41">Email Body</option>
+    <option value="42">Time Summary</option>
+    <option value="43">Bit Rate/Frequency</option>
+    <option value="44">Director</option>
+    <option value="45">Producer</option>
+    <option value="46">Duration</option>
+    <option value="47">Physical Dimensions</option>
+    <option value="48">Original Format</option>
+    <option value="49">Local URL</option>
+    <option value="50">Transcription</option>
+    <option value="51">Location</option>
+    <option value="52">Interviewee</option>
+    <option value="53">Interviewer</option>
+    <option value="54">From</option>
+    <option value="55">To</option>
+    <option value="56">CC</option>
+    <option value="57">Bibliography</option>
+    <option value="58">Biographical Text</option>
+    <option value="59">Occupation</option>
+    <option value="60">Death Date</option>
+    <option value="61">Birthplace</option>
+    <option value="62">Participants</option>
+    <option value="63">Event Type</option>
+    <option value="64">URL</option>
+    <option value="65">Lesson Plan Text</option>
+    <option value="66">Materials</option>
+    <option value="67">Objectives</option>
+    <option value="68">Standards</option>
+    <option value="69">Number of Attachments</option>
+    <option value="70">BCC</option>
+    <option value="71">Text</option>
+</select>                </div>
+                <div class="input advanced-search-type ml"> 
+                    <span aria-hidden="true" class="visible-label">Type</span>
+                    <select name="advanced[0][type]" aria-labelledby="search-narrow-by-fields-label search-row-0 search-narrow-by-fields-type">
+    <option value="" selected="selected">Select Below </option>
+    <option value="contains">contains</option>
+    <option value="does not contain">does not contain</option>
+    <option value="is exactly">is exactly</option>
+    <option value="is empty">is empty</option>
+    <option value="is not empty">is not empty</option>
+    <option value="starts with">starts with</option>
+    <option value="ends with">ends with</option>
+</select>                </div>
+                <div class="input advanced-search-terms ml-1">
+                    <span aria-hidden="true" class="visible-label">Terms</span>
+                    <input type="text" name="advanced[0][terms]" value="" size="18" aria-labelledby="search-narrow-by-fields-label search-row-0 search-narrow-by-fields-terms" class="w-full">                </div>
+                <button type="button" class="remove_search button text-white rounded py-2 px-4 shadow-lg uppercase tracking-wider text-xs bg-utl_magenta" disabled="disabled" style="display: none;" aria-labelledby="search-narrow-by-fields-label search-row-0 search-narrow-by-fields-remove-field" title="Remove field">- Remove field</button>
+            </div>
+                </div>
+        <button type="button" class="add_search button text-white rounded py-2 px-4 shadow-lg uppercase tracking-wider text-xs bg-utl_magenta">+ Add a Field</button>
+    </div>
+
+
+
+    <div id="search-by-tag" class="field py-4">
+        <label for="tag-search">Search By Tags</label>        <div class="inputs">
+        <input type="text" name="tags" id="tag-search" value="" size="40">        </div>
+    </div>
+
+
+
+    <div id="search-by-collection" class="field py-4">
+        <label for="collection-search">Search By Collection</label>        <div class="inputs">
+        <select name="collection" id="collection-search">
+    <option value="">Select Below </option>
+    <option value="0">No Collection</option>
+</select>        </div>
+    </div>
+
+    <div id="search-by-exhibit" class="field">
+    <label for="exhibit">Search by Exhibit</label>    <div class="inputs">
+        <select name="exhibit" id="exhibit">
+    <option value="">Select Below </option>
+</select>    </div>
+</div>
+    <div>
+                <input type="submit" class="submit mt-10 text-white rounded py-3 px-8 shadow-lg uppercase tracking-wider text-sm bg-utl_magenta" name="submit_search" id="submit_search_advanced" value="Search for items">
+    </div>
+</form>
+
+<script type="text/javascript" src="/application/views/scripts/javascripts/items-search.js?v=3.2.2" charset="utf-8"></script><script type="text/javascript">
+    jQuery(document).ready(function () {
+        Omeka.Search.activateSearchButtons();
+    });
+</script>
+
+</main><!-- end content -->
+
+    </div><!-- end wrap -->
+
+
+    <footer class="bg-primary text-white w-full mt-auto">
+    <div class="container mx-auto p-4 md:flex md:items-center md:justify-between">
+   
+       
+
+ <nav id="footer-navigation" role="navigation" class="">
+    <ul class="text-sm lg:flex lg:items-center lg:w-auto lg:space-x-6 align-middle">
+    <li>
+        <a href="/about">About</a>
+    </li>
+    <li class="active">
+        <a href="/items/search">Search</a>
+    </li>
+    <li>
+        <a href="/items/browse">Browse Items</a>
+    </li>
+</ul>
+</nav>
+
+       
+  
+  
+      </div>
+ 
+        </footer>
+<!-- end footer -->
+
+
+</body>
+</html>
