@@ -66,3 +66,11 @@ def test_service_urls_tolerates_odd_directories():
     assert service_urls([], "https://h/arcgis/rest/services") == ([], [])
     d = {"folders": None, "services": [{"name": "Toronto1858", "type": "MapServer", "url": "https://t/Toronto1858/MapServer"}]}
     assert service_urls(d, "https://t/arcgis/rest/services") == ([], ["https://t/Toronto1858/MapServer"])
+
+
+def test_tile_summary():
+    from tmo_pipeline.map_discovery import tile_summary
+
+    assert tile_summary({}) == {"tiled": False}
+    info = {"tileInfo": {"rows": 256, "spatialReference": {"wkid": 102100, "latestWkid": 3857}, "lods": [{"level": 0}, {"level": 19}]}, "minLOD": 13, "maxLOD": 19, "copyrightText": "TPL"}
+    assert tile_summary(info) == {"tiled": True, "tile_wkid": 3857, "tile_size": 256, "min_lod": 13, "max_lod": 19, "copyright": "TPL"}

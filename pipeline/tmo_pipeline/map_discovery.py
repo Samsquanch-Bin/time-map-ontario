@@ -25,6 +25,7 @@ ROOTS = [
     "https://tiles.arcgis.com/tiles/jIL9msH9OI208GCb/arcgis/rest/services",
     "https://tiles.arcgis.com/tiles/wjcPoefzjpzCgffS/arcgis/rest/services",
     "https://ww2.yorkmaps.ca/arcgis/rest/services/CacheMaps",
+    "https://tiles.arcgis.com/tiles/9NvE8jKNWWlDGsUJ/arcgis/rest/services",  # U of T Ontario Historical County Maps
 ]
 # ArcGIS Online public search: finds georeferenced map layers others have published.
 AGOL_SEARCH = "https://www.arcgis.com/sharing/rest/search"
@@ -132,6 +133,7 @@ def discover(roots: list[str] = ROOTS, out: Path = RESEARCH_DIR / "map-services.
                     "bounds_wgs84": _wgs84_bounds(s, info, svc),
                     "pixel_size": [info.get("pixelSizeX"), info.get("pixelSizeY")],
                     "band_count": info.get("bandCount"),
+                    **tile_summary(info),
                     "item_title": item.get("title", ""),
                     "item_snippet": item.get("snippet", ""),
                     "item_tags": item.get("tags", []),
@@ -185,3 +187,20 @@ def search_arcgis_online(s, queries: list[str] = AGOL_QUERIES) -> list[dict[str,
             data = _get(s, f"https://www.arcgis.com/sharing/rest/content/items/{it['id']}/data")
             it["layers"] = [{"title": l.get("title"), "url": l.get("url")} for l in data.get("operationalLayers", []) if l.get("url")][:40]
     return sorted(found.values(), key=lambda x: x["title"])
+
+
+def tile_summary(info: dict[str, Any]) -> dict[str, Any]:
+    """Zoom range and tiling scheme of a cached (tiled) map service."""
+    ti = info.get("tileInfo")
+    if not ti:
+        return {"tiled": False}
+    lods = [l["level"] for l in ti.get("lods", [])]
+    sr = ti.get("spatialReference", {})
+    return {
+        "tiled": True,
+        "tile_wkid": sr.get("latestWkid") or sr.get("wkid"),
+        "tile_size": ti.get("rows"),
+        "min_lod": info.get("minLOD", min(lods) if lods else None),
+        "max_lod": info.get("maxLOD", max(lods) if lods else None),
+        "copyright": (info.get("copyrightText") or "")[:300],
+    }
