@@ -1,0 +1,3 @@
+{"label": "sheet-04", "crop": [760, 1290, 6275, 7215], "rmse_m": 3.01,
+ "gcps": [[773, 3390, -79.8787367, 43.2593745, "King Street West & Queen Street North"], [3310, 3438, -79.8773408, 43.2589882, "Hess Street North & King Street West"], [6286, 3488, -79.8756921, 43.2585196, "Caroline Street North & King Street West"], [748, 7197, -79.8794331, 43.2577012, "Main Street West & Queen Street South"], [3291, 7210, -79.8780286, 43.2574091, "Hess Street South & Main Street West"], [6260, 7225, -79.876348, 43.2569913, "Caroline Street South & Main Street West"]],
+ "notes": "Queen, Hess and Caroline crossings with King West and Main West. Market St (top) used only for crop."}

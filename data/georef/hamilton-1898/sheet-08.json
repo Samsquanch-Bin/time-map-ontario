@@ -1,0 +1,3 @@
+{"label": "sheet-08", "crop": [165, 900, 6920, 7640], "rmse_m": 1.16,
+ "gcps": [[2416, 975, -79.8633531, 43.2568211, "Mary Street & Rebecca Street"], [2332, 5332, -79.864215, 43.2550806, "King Street East & Mary Street"], [4270, 7668, -79.8635741, 43.2538501, "Main Street East & Walnut Street South"], [4477, 2915, -79.8625855, 43.2557419, "King William Street & Walnut Street North"], [2390, 2922, -79.8637635, 43.256027, "King William Street & Mary Street"]],
+ "notes": "Catharine (left) and Ferguson (right) are cut by the sheet edges, so only Mary and Walnut crossings used. Walnut St jogs at King in 1898 but OSM has a single King/Walnut node, so King & Walnut was dropped. Crop left/right are estimated street centres beyond the cut curbs."}

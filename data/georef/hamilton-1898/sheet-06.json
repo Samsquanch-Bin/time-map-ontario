@@ -1,0 +1,3 @@
+{"label": "sheet-06", "crop": [625, 250, 6355, 7550], "rmse_m": 1.82,
+ "gcps": [[3575, 4210, -79.870525, 43.2571037, "King Street West & MacNab Street South"], [6355, 4215, -79.8690697, 43.2566904, "James Street North & King Street West"], [3570, 7550, -79.8711224, 43.2557162, "MacNab Street South & Main Street West"], [6355, 7550, -79.8696629, 43.2553698, "James Street South & Main Street East"]],
+ "notes": "Park St and Charles St no longer reach King/Main (Jackson Square), so only MacNab and James corners are used."}

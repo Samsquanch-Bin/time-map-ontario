@@ -1,0 +1,3 @@
+{"label": "sheet-53", "crop": [1665, 630, 5210, 7880], "rmse_m": 2.33,
+ "gcps": [[1665, 630, -79.8775493, 43.2543312, "Bold Street & Caroline Street South"], [5205, 640, -79.875555, 43.2537981, "Bay Street South & Bold Street"], [1660, 3275, -79.8779939, 43.2532729, "Caroline Street South & Duke Street"], [5210, 3240, -79.8759761, 43.2528106, "Bay Street South & Duke Street"], [1665, 5480, -79.8783852, 43.2523549, "Caroline Street South & Robinson Street"], [5210, 5450, -79.8763656, 43.2518754, "Bay Street South & Robinson Street"]],
+ "notes": "Caroline/Bay x Bold/Duke/Robinson; centres from both curbs (Bold at Bay uses west-side curbs; Bold jogs there). Hannah St W (bottom) not in modern OSM list; bottom crop at Hannah centre (approx, by analogy with sheet 52)."}

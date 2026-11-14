@@ -1,0 +1,3 @@
+{"label": "sheet-51", "crop": [1845, 830, 5330, 7465], "rmse_m": 2.08,
+ "gcps": [[1845, 830, -79.876348, 43.2569913, "Caroline Street South & Main Street West"], [5330, 838, -79.8743957, 43.2565095, "Bay Street South & Main Street West"], [1840, 7475, -79.8775493, 43.2543312, "Bold Street & Caroline Street South"], [5330, 7460, -79.875555, 43.2537981, "Bay Street South & Bold Street"], [1845, 3075, -79.8767455, 43.2561095, "Caroline Street South & Jackson Street West"], [5335, 5280, -79.8751621, 43.2547312, "Bay Street South & Hunter Street West"]],
+ "notes": "Caroline/Bay x Main/Jackson/Hunter/Bold; centres from both curbs. Bold jogs at Bay (east side offset), west-side curbs used."}

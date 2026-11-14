@@ -1,0 +1,3 @@
+{"label": "sheet-55", "crop": [926, 670, 5912, 7716], "rmse_m": 1.28,
+ "gcps": [[926, 670, -79.8723533, 43.2529868, "Bold Street & MacNab Street South"], [926, 5332, -79.8731737, 43.2511338, "MacNab Street South & Robinson Street"], [3680, 670, -79.8708497, 43.2526211, "Bold Street & James Street South"], [3680, 5332, -79.8716706, 43.2507548, "James Street South & Robinson Street"], [5912, 1781, -79.8697684, 43.2518864, "Augusta Street & Hughson Street South"], [5912, 3912, -79.8701732, 43.2510424, "Hughson Street South & Young Street"]],
+ "notes": "MacNab/James/Hughson x Bold/Robinson/Augusta/Young. Maria St gone and Hannah St is now Charlton Ave, so not used; crop bottom at Hannah centre line. NE corner above Augusta is covered by sheet 11."}

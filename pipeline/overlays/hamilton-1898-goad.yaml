@@ -1,0 +1,501 @@
+id: hamilton-1898-goad
+title: "Hamilton, 1898 – Goad's fire insurance plan (every building)"
+year: 1898
+source: mcmaster_goad_hamilton_1898
+fetch:
+  method: gcp_sheets
+  service: https://library.mcmaster.ca/maps/index-fire-insurance-plan-hamilton-1898
+  max_rmse_m: 4.5
+  # Not included: sheets 60 and 65 (their streets were renamed or removed, too few
+  # surviving corners) and 34, 38 (waterfront; fits not trustworthy enough).
+  sheets:
+    - label: sheet-04
+      url: https://expo.mcmaster.ca/files/original/db3e8ee7b77822dfacfa2787224cfe59c626fd6d.tiff
+      crop: [760, 1290, 6275, 7215]
+      # control-point fit: 3.01 m RMSE. Queen, Hess and Caroline crossings with King West and Main West. Market St (top) used only for crop.
+      gcps:
+        - [773, 3390, -79.8787367, 43.2593745, "King Street West & Queen Street North"]
+        - [3310, 3438, -79.8773408, 43.2589882, "Hess Street North & King Street West"]
+        - [6286, 3488, -79.8756921, 43.2585196, "Caroline Street North & King Street West"]
+        - [748, 7197, -79.8794331, 43.2577012, "Main Street West & Queen Street South"]
+        - [3291, 7210, -79.8780286, 43.2574091, "Hess Street South & Main Street West"]
+        - [6260, 7225, -79.876348, 43.2569913, "Caroline Street South & Main Street West"]
+    - label: sheet-05
+      url: https://expo.mcmaster.ca/files/original/9690963e897170ec9a05ac2a2167b9bf901ed0d5.tiff
+      crop: [205, 1400, 6610, 7180]
+      # control-point fit: 1.09 m RMSE. Caroline St west curb is cut off by the sheet edge; its centre was taken as half a 66 ft street width (~150 px) west of the block line. Park St (right edge) not used: it no longer reaches King/Main.
+      gcps:
+        - [200, 3457, -79.8756921, 43.2585196, "Caroline Street North & King Street West"]
+        - [3621, 3595, -79.873737, 43.2579873, "Bay Street North & King Street West"]
+        - [215, 7165, -79.876348, 43.2569913, "Caroline Street South & Main Street West"]
+        - [3656, 7192, -79.8743957, 43.2565095, "Bay Street South & Main Street West"]
+        - [3518, 1460, -79.8733813, 43.258863, "Bay Street North & Market Street"]
+    - label: sheet-06
+      url: https://expo.mcmaster.ca/files/original/ccaf5a98c814179cfb0778cdc39734d0d6cfe0d3.tiff
+      crop: [625, 250, 6355, 7550]
+      # control-point fit: 1.82 m RMSE. Park St and Charles St no longer reach King/Main (Jackson Square), so only MacNab and James corners are used.
+      gcps:
+        - [3575, 4210, -79.870525, 43.2571037, "King Street West & MacNab Street South"]
+        - [6355, 4215, -79.8690697, 43.2566904, "James Street North & King Street West"]
+        - [3570, 7550, -79.8711224, 43.2557162, "MacNab Street South & Main Street West"]
+        - [6355, 7550, -79.8696629, 43.2553698, "James Street South & Main Street East"]
+    - label: sheet-07
+      url: https://expo.mcmaster.ca/files/original/a9a0b80c298c1d3216f3de1a21cd8770c333b3e9.tiff
+      crop: [60, 700, 6990, 7855]
+      # control-point fit: 0.57 m RMSE. Hughson and John crossings with Rebecca, King William and Main East. Catharine St (right edge) is cut by the sheet edge so its centre cannot be read; King East at Hughson avoided (Gore Park, split OSM nodes). Note the grid north of King is skewed relative to Main. Crop left/right edges are approxima
+      gcps:
+        - [2327, 7868, -79.8683402, 43.2550439, "Hughson Street South & Main Street East"]
+        - [4545, 7843, -79.867038, 43.2547311, "John Street South & Main Street East"]
+        - [2317, 616, -79.8670119, 43.2580392, "Hughson Street North & Rebecca Street"]
+        - [4508, 850, -79.8657569, 43.2576198, "John Street North & Rebecca Street"]
+        - [2333, 2665, -79.8673838, 43.257191, "Hughson Street North & King William Street"]
+        - [4525, 2870, -79.8661259, 43.2567722, "John Street North & King William Street"]
+    - label: sheet-08
+      url: https://expo.mcmaster.ca/files/original/a02f267d3f52bcf8d6379a548bb8a14892fe3ccd.tiff
+      crop: [165, 900, 6920, 7640]
+      # control-point fit: 1.16 m RMSE. Catharine (left) and Ferguson (right) are cut by the sheet edges, so only Mary and Walnut crossings used. Walnut St jogs at King in 1898 but OSM has a single King/Walnut node, so King & Walnut was dropped. Crop left/right are estimated street centres beyond the cut curbs.
+      gcps:
+        - [2416, 975, -79.8633531, 43.2568211, "Mary Street & Rebecca Street"]
+        - [2332, 5332, -79.864215, 43.2550806, "King Street East & Mary Street"]
+        - [4270, 7668, -79.8635741, 43.2538501, "Main Street East & Walnut Street South"]
+        - [4477, 2915, -79.8625855, 43.2557419, "King William Street & Walnut Street North"]
+        - [2390, 2922, -79.8637635, 43.256027, "King William Street & Mary Street"]
+    - label: sheet-09
+      url: https://expo.mcmaster.ca/files/original/69af36993de587cec617ec140c32b35f77c8e30b.tiff
+      crop: [1250, 745, 5900, 7560]
+      # control-point fit: 1.65 m RMSE. Ferguson Ave runs diagonally on the sheet (Grand Trunk track in the street); Ferguson & Main not used because the 1898 street edges there are unclear. Jarvis St (formerly Cathcart) does not meet King East today. Crop is approximate because Ferguson and Main are skewed on the sheet.
+      gcps:
+        - [1480, 700, -79.8608604, 43.2562014, "Ferguson Avenue North & Rebecca Street"]
+        - [5959, 790, -79.8583718, 43.2556074, "Rebecca Street & Wellington Street North"]
+        - [1388, 2589, -79.8612035, 43.2554198, "Ferguson Avenue North & King William Street"]
+        - [5914, 2694, -79.8587044, 43.2548186, "King William Street & Wellington Street North"]
+        - [5872, 7727, -79.8596045, 43.2527672, "Main Street East & Wellington Street South"]
+        - [1251, 5360, -79.8618052, 43.2543324, "Ferguson Avenue North & King Street East"]
+    - label: sheet-10
+      url: https://expo.mcmaster.ca/files/original/10ee07a14cba0492a847ad56118fb9b2d17240f9.tiff
+      crop: [600, 840, 6500, 7500]
+      # control-point fit: 1.36 m RMSE. Bay and MacNab corners at Main, Hunter and Bold. MacNab & Hunter read but dropped (8 m residual; modern OSM node sits on the realigned Hunter St at the GO station).
+      gcps:
+        - [576, 817, -79.8743957, 43.2565095, "Bay Street South & Main Street West"]
+        - [6489, 862, -79.8711224, 43.2557162, "MacNab Street South & Main Street West"]
+        - [618, 7474, -79.875555, 43.2537981, "Bay Street South & Bold Street"]
+        - [6526, 7537, -79.8723533, 43.2529868, "Bold Street & MacNab Street South"]
+        - [610, 5148, -79.8751621, 43.2547312, "Bay Street South & Hunter Street West"]
+    - label: sheet-11
+      url: https://expo.mcmaster.ca/files/original/dc2278b6ab771123a53882818f0ff2a7af4a6453.tiff
+      crop: [900, 480, 6090, 8200]
+      # control-point fit: 1.71 m RMSE. MacNab, James and Hughson crossings with Main, Jackson and Bold. Hunter St crossings dropped (5-12 m residuals; Hunter realigned at the TH&B/GO station). Crop bottom is Augusta St (block 53 east of James); west of James the sheet ends at Bold (~7200), so the lower-left of the crop overlaps sheet 55.
+      gcps:
+        - [889, 455, -79.8711224, 43.2557162, "MacNab Street South & Main Street West"]
+        - [3692, 493, -79.8696629, 43.2553698, "James Street South & Main Street East"]
+        - [6091, 507, -79.8683402, 43.2550439, "Hughson Street South & Main Street East"]
+        - [965, 7192, -79.8723533, 43.2529868, "Bold Street & MacNab Street South"]
+        - [3715, 7200, -79.8708497, 43.2526211, "Bold Street & James Street South"]
+        - [3696, 2682, -79.8700589, 43.2544789, "Jackson Street West & James Street South"]
+        - [879, 2678, -79.8715835, 43.2548416, "Jackson Street West & MacNab Street South"]
+        - [6090, 2693, -79.8687384, 43.2541656, "Hughson Street South & Jackson Street East"]
+    - label: sheet-12
+      url: https://expo.mcmaster.ca/files/original/49d7fe932aa71ebca58824444630db5493cceb8b.tiff
+      crop: [775, 370, 5460, 8050]
+      # control-point fit: 0.97 m RMSE. Main St north curb is cut by the top sheet edge; Main centre taken as ~205 px (half the 405 px Main width read on sheet 7) north of the south block line. Hughson & Hunter dropped (8 m residual; same OSM node failed on sheet 11). Augusta (bottom) south curb not drawn, so crop bottom is estimated.
+      gcps:
+        - [777, 2505, -79.8687384, 43.2541656, "Hughson Street South & Jackson Street East"]
+        - [3176, 2546, -79.8674222, 43.253848, "Jackson Street East & John Street South"]
+        - [3193, 4716, -79.8678033, 43.2529972, "Hunter Street East & John Street South"]
+        - [768, 338, -79.8683402, 43.2550439, "Hughson Street South & Main Street East"]
+        - [3160, 385, -79.867038, 43.2547311, "John Street South & Main Street East"]
+        - [5460, 395, -79.8657412, 43.2544348, "Catharine Street South & Main Street East"]
+    - label: sheet-13
+      url: https://expo.mcmaster.ca/files/original/e3067a6fb3cd94e231367cf7c77753a983f71a03.tiff
+      crop: [735, 600, 6245, 7950]
+      # control-point fit: 1.93 m RMSE. Queen, Hess and Caroline crossings with Market and Napier, plus Queen & Peter. Cannon/York crossings at the top not used (diagonal York and unclear curbs), so the top ~3000 px is extrapolated. Crop top (Cannon) is approximate.
+      gcps:
+        - [735, 7936, -79.8783785, 43.2602185, "Market Street & Queen Street North"]
+        - [3235, 7935, -79.8769444, 43.259854, "Hess Street North & Market Street"]
+        - [6238, 7985, -79.8753017, 43.2593934, "Caroline Street North & Market Street"]
+        - [736, 5823, -79.8780268, 43.2610382, "Napier Street & Queen Street North"]
+        - [3277, 5809, -79.8765436, 43.2607136, "Hess Street North & Napier Street"]
+        - [6255, 5870, -79.8749196, 43.2602509, "Caroline Street North & Napier Street"]
+        - [748, 3671, -79.8776567, 43.2619115, "Peter Street & Queen Street North"]
+    - label: sheet-14
+      url: https://expo.mcmaster.ca/files/original/dc7d05cda4ae0968984d6b2acfd36d11bf9c5609.tiff
+      crop: [295, 625, 6725, 7840]
+      # control-point fit: 1.87 m RMSE. Caroline (left) and Park (right) far curbs are cut by the sheet edges; their centres were taken as half the printed street width (Caroline 49 ft ~150 px, Park 68 ft ~210 px) from the block line. Merrick St gone; York crossings not used (York Blvd widened/realigned).
+      gcps:
+        - [300, 7780, -79.8753017, 43.2593934, "Caroline Street North & Market Street"]
+        - [3712, 7897, -79.8733813, 43.258863, "Bay Street North & Market Street"]
+        - [284, 5686, -79.8749196, 43.2602509, "Caroline Street North & Napier Street"]
+        - [3625, 2904, -79.8725505, 43.2609217, "Bay Street North & Vine Street"]
+        - [3560, 625, -79.8721565, 43.2618754, "Bay Street North & Cannon Street West"]
+        - [6726, 2847, -79.8708591, 43.2605273, "Park Street North & Vine Street"]
+    - label: sheet-15
+      url: https://expo.mcmaster.ca/files/original/d92be11d5d333bd69292b94b52fc9b60c76e6824.tiff
+      crop: [570, 680, 6270, 7550]
+      # control-point fit: 0.80 m RMSE. All points are on Cannon and Vine (top 40% of the sheet): Merrick St and the old Market Square/York St layout at the bottom no longer exist, so the lower half is extrapolated. James & Cannon skipped (north curb of Cannon not drawn at James). Crop bottom is the drawn edge (Market Square/York), approx
+      gcps:
+        - [595, 670, -79.870409, 43.2614684, "Cannon Street West & Park Street North"]
+        - [3450, 688, -79.8688479, 43.2611068, "Cannon Street West & MacNab Street North"]
+        - [550, 2987, -79.8708591, 43.2605273, "Park Street North & Vine Street"]
+        - [3443, 2972, -79.8692572, 43.2601534, "MacNab Street North & Vine Street"]
+        - [6258, 2946, -79.8677001, 43.2597894, "James Street North & Vine Street"]
+    - label: sheet-16
+      url: https://expo.mcmaster.ca/files/original/6a4042b340a39287d05852f908e2e81939d38cdf.tiff
+      crop: [140, 250, 6990, 7770]
+      # control-point fit: 0.41 m RMSE. Hughson and John crossings with Cannon East and Rebecca. James (left) and Catharine (right) far curbs are cut by the sheet edges, and Gore St no longer exists, so only 4 points. Crop left/right are estimated street centres beyond the edges; top is the drawn edge (blocks 87-89 run to the top margin).
+      gcps:
+        - [2441, 1878, -79.8659541, 43.26044, "Cannon Street East & Hughson Street North"]
+        - [4661, 1882, -79.8646598, 43.260129, "Cannon Street East & John Street North"]
+        - [2416, 7640, -79.8670119, 43.2580392, "Hughson Street North & Rebecca Street"]
+        - [4615, 7896, -79.8657569, 43.2576198, "John Street North & Rebecca Street"]
+    - label: sheet-18
+      url: https://expo.mcmaster.ca/files/original/aa54fc66ad4361376b0878639f71b0d5022b71ad.tiff
+      crop: [180, 1050, 6720, 7750]
+      # control-point fit: 2.31 m RMSE. Railway yard sheet; all control is along Barton/Locke/Tecumseh in the south-west, so the northern yard area is extrapolated. Tecumseh points read from curb lines (less certain). Right edge = SEE SHEET 19 match line, top = water's edge.
+      gcps:
+        - [2010, 7745, -79.8805965, 43.2675884, "Barton Street West & Locke Street North"]
+        - [3615, 7745, -79.8796246, 43.2673723, "Barton Street West & Crooks Street"]
+        - [5180, 7750, -79.8787684, 43.2671841, "Barton Street West & Magill Street"]
+        - [2010, 6458, -79.8803941, 43.268109, "Locke Street North & Tecumseh Street"]
+        - [310, 5840, -79.881197, 43.2685576, "Inchbury Street & Tecumseh Street"]
+    - label: sheet-19
+      url: https://expo.mcmaster.ca/files/original/af8d0b6bf1776764a9ce28953c397fa44f06548c.tiff
+      crop: [285, 790, 6800, 7395]
+      # control-point fit: 1.68 m RMSE. Four points lie on one line (Barton St W), so the fit hinges on Hess & Stuart: modern Stuart St is taken to follow the road marked '(Formerly Station St.)', read from its south curb plus a half width, so it is less certain and has zero residual by construction. Similarity check from the Barton point
+      gcps:
+        - [1907, 7395, -79.8770054, 43.2667774, "Barton Street West & Oxford Street"]
+        - [3092, 7395, -79.8763839, 43.266638, "Barton Street West & Greig Street"]
+        - [4180, 7395, -79.8757182, 43.2664935, "Barton Street West & Queen Street North"]
+        - [6825, 7380, -79.874199, 43.2661454, "Barton Street West & Hess Street North"]
+        - [6725, 3025, -79.8734715, 43.2679721, "Hess Street North & Stuart Street"]
+    - label: sheet-20
+      url: https://expo.mcmaster.ca/files/original/0911b1e71fa8d3b1f757355f76276c5ccd488b0c.tiff
+      crop: [500, 760, 6740, 7405]
+      # control-point fit: 1.63 m RMSE. Hess, Caroline and Tiffany crossings at Stuart St W and Barton St W. Hess west curb is not drawn (sheet edge), so the Hess centre was taken from the east curb plus a half width. Right edge = SEE SHEET 21 match line, top = water's edge.
+      gcps:
+        - [500, 2990, -79.8734715, 43.2679721, "Hess Street North & Stuart Street"]
+        - [3527, 2995, -79.87173, 43.2675898, "Caroline Street North & Stuart Street"]
+        - [5717, 2997, -79.8705199, 43.2673042, "Stuart Street & Tiffany Street"]
+        - [500, 7400, -79.874199, 43.2661454, "Barton Street West & Hess Street North"]
+        - [3552, 7405, -79.8725103, 43.2657617, "Barton Street West & Caroline Street North"]
+        - [5760, 7410, -79.8713031, 43.2654871, "Barton Street West & Tiffany Street"]
+    - label: sheet-21
+      url: https://expo.mcmaster.ca/files/original/151a9197fd6102d85093fca160ecae1e8dcab4c1.tiff
+      crop: [470, 300, 6690, 7870]
+      # control-point fit: 1.04 m RMSE. MacNab & Stuart and MacNab & Murray were dropped: leave-one-out residuals of 6-13 m in opposite directions, which points to modern realignment or offset OSM nodes rather than a misreading. MacNab east curb is off the sheet, so its centre is the west curb plus a half width; Bay at Stuart is read from
+      gcps:
+        - [3171, 1955, -79.8685347, 43.2668437, "Bay Street North & Stuart Street"]
+        - [1888, 6355, -79.8700083, 43.265185, "Barton Street West & Bay Street North"]
+        - [3970, 6365, -79.8688343, 43.2649145, "Barton Street West & Park Street North"]
+        - [6680, 6320, -79.8673098, 43.2645521, "Barton Street West & MacNab Street North"]
+        - [3965, 4205, -79.868451, 43.2658131, "Murray Street West & Park Street North"]
+    - label: sheet-22
+      url: https://expo.mcmaster.ca/files/original/4fa385648eed2ba74494b285c55943c01d2ac84c.tiff
+      crop: [990, 330, 6000, 7850]
+      # control-point fit: 1.73 m RMSE. MacNab, James and Hughson at Murray and Barton. Dropped MacNab & Stuart (leave-one-out ~17 m off, likely modern realignment) and James & Barton (Barton jogs about 15 m at James in 1898; OSM has a single node there). James & Stuart and Hughson & Stuart are not in the OSM list. No control north of Mur
+      gcps:
+        - [980, 3840, -79.8669121, 43.2654445, "MacNab Street North & Murray Street West"]
+        - [1002, 6025, -79.8673098, 43.2645521, "Barton Street West & MacNab Street North"]
+        - [3738, 3835, -79.8653955, 43.2650794, "James Street North & Murray Street West"]
+        - [6000, 3830, -79.8640539, 43.264754, "Hughson Street North & Murray Street East"]
+        - [5995, 6325, -79.8645046, 43.263738, "Barton Street East & Hughson Street North"]
+    - label: sheet-23
+      url: https://expo.mcmaster.ca/files/original/2b5bcf8f0e1caff742585ab558b61e0c4936560c.tiff
+      crop: [1205, 620, 5795, 7750]
+      # control-point fit: 1.36 m RMSE. Hughson, John and Catharine at Strachan, Murray and Barton. The John and Catharine crossings at Strachan are partly read from a single curb (less certain). Left = Hughson centre, right = Catharine centre, bottom = Barton centre, top = Strachan centre (sheets 44/45 beyond).
+      gcps:
+        - [1205, 605, -79.8632351, 43.2666377, "Hughson Street North & Strachan Street East"]
+        - [3445, 630, -79.861907, 43.2663216, "John Street North & Strachan Street East"]
+        - [5795, 670, -79.860583, 43.2660194, "Catharine Street North & Strachan Street East"]
+        - [1205, 5205, -79.8640539, 43.264754, "Hughson Street North & Murray Street East"]
+        - [5795, 4365, -79.8612492, 43.2644864, "Catharine Street North & Murray Street East"]
+        - [1205, 7745, -79.8645046, 43.263738, "Barton Street East & Hughson Street North"]
+        - [3420, 7765, -79.8632321, 43.263429, "Barton Street East & John Street North"]
+        - [5795, 7755, -79.8618507, 43.263104, "Barton Street East & Catharine Street North"]
+    - label: sheet-24
+      url: https://expo.mcmaster.ca/files/original/642c661334239c5d2aef0f0c26cec44bc1ce3e77.tiff
+      crop: [890, 95, 6450, 8240]
+      # control-point fit: 1.34 m RMSE. Queen at Patterson and Clarence, Hess at Harriet and Mill. The two Barton St W points are estimated: the street centre is just off the top of the sheet, so it was placed half the printed 66 ft width (~205 px) above the block line. They agree with the 4-point fit to within 1-2 m. Ellen St is gone. Ca
+      gcps:
+        - [890, 3870, -79.8763697, 43.2649508, "Patterson Street & Queen Street North"]
+        - [890, 5205, -79.8766161, 43.2643888, "Clarence Street & Queen Street North"]
+        - [3510, 4630, -79.8750025, 43.2642665, "Harriet Street & Hess Street North"]
+        - [3510, 6505, -79.875303, 43.263528, "Hess Street North & Mill Street"]
+        - [3510, 95, -79.874199, 43.2661454, "Barton Street West & Hess Street North"]
+        - [6450, 95, -79.8725103, 43.2657617, "Barton Street West & Caroline Street North"]
+    - label: sheet-25
+      url: https://expo.mcmaster.ca/files/original/165e626d7338fc22341619c644530d21eb9fb3eb.tiff
+      crop: [360, 950, 6800, 7815]
+      # control-point fit: 3.24 m RMSE. Weakest of my sheets, but within limits. Park's east curb and Caroline's west curb fall off the sheet, so their centres are one curb plus a half width (Park x~6800, Caroline x~360). Bay is slanted and kinks near Sheaffe; Bay & Colbourne is read from the west curb only. All 9 points kept: dropping Ba
+      gcps:
+        - [3645, 7815, -79.8721565, 43.2618754, "Bay Street North & Cannon Street West"]
+        - [3680, 4710, -79.8716032, 43.2631233, "Bay Street North & Mulberry Street"]
+        - [3840, 2730, -79.8710886, 43.2639363, "Bay Street North & Sheaffe Street"]
+        - [6800, 4985, -79.8698625, 43.2625895, "Mulberry Street & Park Street North"]
+        - [6800, 2900, -79.8694721, 43.263458, "Park Street North & Sheaffe Street"]
+        - [6800, 7840, -79.870409, 43.2614684, "Cannon Street West & Park Street North"]
+        - [360, 7810, -79.8739903, 43.2623739, "Cannon Street West & Caroline Street North"]
+        - [4340, 900, -79.8704385, 43.2646737, "Bay Street North & Colbourne Street"]
+        - [6800, 1000, -79.8691148, 43.2642761, "Colbourne Street & Park Street North"]
+    - label: sheet-26
+      url: https://expo.mcmaster.ca/files/original/e963c1ebce1efa641921e2529b2c73344cf7952a.tiff
+      crop: [720, 660, 6290, 7530]
+      # control-point fit: 1.80 m RMSE. A full 3x3 grid: Park, MacNab and James at Colborne, Mulberry and Cannon. Re-read James & Mulberry after the first pass: Mulberry is wide and skewed here, so the centre is ~5230, not the hydrant-cross row. Severn St (formerly Centre) is gone, so it was not used. Bounded by the Park, Colborne, James 
+      gcps:
+        - [740, 645, -79.8691148, 43.2642761, "Colbourne Street & Park Street North"]
+        - [3500, 865, -79.8676384, 43.263847, "Colbourne Street & MacNab Street North"]
+        - [6260, 1000, -79.8661308, 43.2633809, "Colbourne Street & James Street North"]
+        - [740, 4775, -79.8698625, 43.2625895, "Mulberry Street & Park Street North"]
+        - [3500, 5000, -79.8684078, 43.2621384, "MacNab Street North & Mulberry Street"]
+        - [6255, 5230, -79.8668801, 43.2616606, "James Street North & Mulberry Street"]
+        - [700, 7535, -79.870409, 43.2614684, "Cannon Street West & Park Street North"]
+        - [3505, 7525, -79.8688479, 43.2611068, "Cannon Street West & MacNab Street North"]
+        - [6330, 7525, -79.8672829, 43.2607497, "Cannon Street West & James Street North"]
+    - label: sheet-27
+      url: https://expo.mcmaster.ca/files/original/66a272c5df9dfe6b761f868e59abdf915ba64a68.tiff
+      crop: [300, 710, 6905, 7950]
+      # control-point fit: 1.04 m RMSE. Hughson and John at Barton and Robert, plus Catharine & Robert. Catharine's centre (x~6905) is estimated as its west curb plus a half width, because the east curb is off the sheet. James St lies in the binding gutter at the left edge, so it was not used. Bottom = edge of the drawn area (sheet 16 bey
+      gcps:
+        - [2330, 720, -79.8645046, 43.263738, "Barton Street East & Hughson Street North"]
+        - [4535, 705, -79.8632321, 43.263429, "Barton Street East & John Street North"]
+        - [2360, 4935, -79.8652699, 43.2619901, "Hughson Street North & Robert Street"]
+        - [4550, 4940, -79.863965, 43.261697, "John Street North & Robert Street"]
+        - [6905, 4945, -79.8626133, 43.2613573, "Catharine Street North & Robert Street"]
+    - label: sheet-28
+      url: https://expo.mcmaster.ca/files/original/7859fabbdf5f4cf2040e9a4b5a88d837cf3696ff.tiff
+      crop: [220, 220, 6690, 8240]
+      # control-point fit: 1.26 m RMSE. Mary and Elgin at Barton, Robert and Cannon form the core. Barton and Cannon centres are just off the drawn area, so they were placed half a street width (~205 px) beyond the block lines. Catharine & Robert (Catharine centre = east curb minus a half width) and the two Ferguson Ave points (80 ft stre
+      gcps:
+        - [2200, 230, -79.8607068, 43.2628429, "Barton Street East & Mary Street"]
+        - [4320, 210, -79.8595199, 43.262548, "Barton Street East & Elgin Street"]
+        - [2200, 4500, -79.8614831, 43.2610814, "Mary Street & Robert Street"]
+        - [4340, 4515, -79.8602691, 43.2607921, "Elgin Street & Robert Street"]
+        - [2195, 8240, -79.8621599, 43.2595346, "Cannon Street East & Mary Street"]
+        - [4330, 8230, -79.8609556, 43.259247, "Cannon Street East & Elgin Street"]
+        - [220, 4495, -79.8626133, 43.2613573, "Catharine Street North & Robert Street"]
+        - [6685, 215, -79.8582043, 43.2622326, "Barton Street East & Ferguson Avenue North"]
+        - [6705, 8235, -79.8596578, 43.2589366, "Cannon Street East & Ferguson Avenue North"]
+    - label: sheet-29
+      url: https://expo.mcmaster.ca/files/original/0c59d203754304973867f3a13d1ea05bf76fc4e9.tiff
+      crop: [150, 210, 6800, 8240]
+      # control-point fit: 2.91 m RMSE. Cathcart, Wellington and West Ave at Robert, Cannon and Barton. Barton and Cannon centres sit just off the drawn area, so they were placed half a street width (~205 px) beyond the block lines. The West Ave centre is the west curb plus a half width. The two Barton points both lean ~4 m the same way (
+      gcps:
+        - [2580, 4460, -79.8576889, 43.2601583, "Cathcart Street & Robert Street"]
+        - [4635, 4465, -79.8566236, 43.2599062, "Robert Street & Wellington Street North"]
+        - [6800, 4450, -79.8553488, 43.2595834, "Robert Street & West Avenue North"]
+        - [2570, 8240, -79.8583782, 43.258624, "Cannon Street East & Cathcart Street"]
+        - [4630, 8235, -79.8572579, 43.2583505, "Cannon Street East & Wellington Street North"]
+        - [4610, 210, -79.8558865, 43.2616479, "Barton Street East & Wellington Street North"]
+        - [6795, 215, -79.8545831, 43.2613243, "Barton Street East & West Avenue North"]
+        - [6860, 8240, -79.8560226, 43.2580523, "Cannon Street East & West Avenue North"]
+    - label: sheet-30
+      url: https://expo.mcmaster.ca/files/original/416c1793c1b3622dbf6dc14596080e0c738ff466.tiff
+      crop: [380, 1200, 6855, 7700]
+      # control-point fit: 0.60 m RMSE. Mary & Wilson omitted (modern Wilson node ~10 m off; street realigned). Cannon centre and Ferguson centre estimated from one curb + standard width (66 ft); Catharine (left crop edge) estimated likewise.
+      gcps:
+        - [2468, 7700, -79.8633531, 43.2568211, "Mary Street & Rebecca Street"]
+        - [4610, 1200, -79.8609556, 43.259247, "Cannon Street East & Elgin Street"]
+        - [6855, 5890, -79.8605277, 43.2569572, "Ferguson Avenue North & Wilson Street"]
+        - [2465, 1200, -79.8621599, 43.2595346, "Cannon Street East & Mary Street"]
+        - [6855, 3675, -79.8601316, 43.2578902, "Ferguson Avenue North & Kelly Street"]
+        - [6855, 7700, -79.8608604, 43.2562014, "Ferguson Avenue North & Rebecca Street"]
+    - label: sheet-31
+      url: https://expo.mcmaster.ca/files/original/b1f49d11e17b4b167992ef3a859f5dd94e265665.tiff
+      crop: [450, 660, 6850, 7200]
+      # control-point fit: 1.51 m RMSE. Cannon, Rebecca, West Ave and Ferguson centres estimated from one curb + street width (other curb hidden by SEE SHEET boxes / page edge). Bottom crop at Rebecca centre; the south part of block 208 east of Wellington (below Rebecca line, to ~y 7950) is cut off by the rectangular crop.
+      gcps:
+        - [2688, 655, -79.8583782, 43.258624, "Cannon Street East & Cathcart Street"]
+        - [2680, 3150, -79.8588462, 43.2575787, "Cathcart Street & Kelly Street"]
+        - [2650, 5420, -79.8592684, 43.2566525, "Cathcart Street & Wilson Street"]
+        - [2605, 7200, -79.8596163, 43.2559085, "Cathcart Street & Rebecca Street"]
+        - [4760, 670, -79.8572579, 43.2583505, "Cannon Street East & Wellington Street North"]
+        - [4770, 5450, -79.8580831, 43.2563526, "Wellington Street North & Wilson Street"]
+        - [6850, 5475, -79.8568827, 43.2560659, "West Avenue North & Wilson Street"]
+        - [450, 5430, -79.8605277, 43.2569572, "Ferguson Avenue North & Wilson Street"]
+    - label: sheet-32
+      url: https://expo.mcmaster.ca/files/original/19b46cad0175fb76091d2bf2e57d72bbea1ddf4a.tiff
+      crop: [355, 600, 6685, 7700]
+      # control-point fit: 2.68 m RMSE. Catharine centre (page edge), Strachan, Barton and Ferguson centres estimated from one curb + street width (other curb hidden by SEE SHEET boxes/binding). Elgin & Barton has the largest residual (3.5 m).
+      gcps:
+        - [2270, 600, -79.8594608, 43.2657575, "Mary Street & Strachan Street East"]
+        - [2255, 4250, -79.8601263, 43.2642244, "Mary Street & Murray Street East"]
+        - [2250, 7700, -79.8607068, 43.2628429, "Barton Street East & Mary Street"]
+        - [4470, 7700, -79.8595199, 43.262548, "Barton Street East & Elgin Street"]
+        - [6685, 7700, -79.8582043, 43.2622326, "Barton Street East & Ferguson Avenue North"]
+        - [355, 4240, -79.8612492, 43.2644864, "Catharine Street North & Murray Street East"]
+        - [355, 600, -79.860583, 43.2660194, "Catharine Street North & Strachan Street East"]
+        - [355, 7700, -79.8618507, 43.263104, "Barton Street East & Catharine Street North"]
+    - label: sheet-33
+      url: https://expo.mcmaster.ca/files/original/42945d6a41a394548ae6b66074059c0b44aec61e.tiff
+      crop: [360, 625, 6725, 7870]
+      # control-point fit: 0.59 m RMSE. Weak geometry: only Ferguson & Barton lies off the Wellington line (Strachan/Murray/Euclid crossings not in modern OSM), so the x-scale rests on one point; Ferguson centre estimated between east curb and the GTR tracks (similarity check agrees, 0.0476 m/px). Barton centre from north curb + 66 ft. To
+      gcps:
+        - [360, 7870, -79.8582043, 43.2622326, "Barton Street East & Ferguson Avenue North"]
+        - [4495, 7870, -79.8558865, 43.2616479, "Barton Street East & Wellington Street North"]
+        - [4485, 5045, -79.8553903, 43.2628284, "Copeland Avenue & Wellington Street North"]
+        - [4480, 2378, -79.8549318, 43.2639186, "Birge Street & Wellington Street North"]
+    - label: sheet-47
+      url: https://expo.mcmaster.ca/files/original/9e227b3b118cccb41da8ae516f5a19f511fb3c3c.tiff
+      crop: [280, 80, 6995, 7025]
+      # control-point fit: 0.52 m RMSE. LOW CONFIDENCE: Picton, Ferrie, Simcoe on Wellington are collinear; only Ferrie & Victoria lies off that line, so cross-axis scale rests on one point. Burton & Victoria rejected (modern Burton node ~19 m north of the 1898 Burton). Victoria centre estimated as west curb + half the Wellington width (e
+      gcps:
+        - [2325, 2280, -79.8538092, 43.2665057, "Ferrie Street East & Wellington Street North"]
+        - [2325, 4660, -79.8542245, 43.265543, "Simcoe Street East & Wellington Street North"]
+        - [6995, 2285, -79.8511499, 43.2658884, "Ferrie Street East & Victoria Avenue North"]
+        - [2325, 80, -79.8534094, 43.2674145, "Picton Street East & Wellington Street North"]
+    - label: sheet-50
+      url: https://expo.mcmaster.ca/files/original/58099ba9a33c912279d8f43470cd482c37416504.tiff
+      crop: [770, 890, 6230, 7480]
+      # control-point fit: 1.71 m RMSE. Grid of Main/Jackson/Hunter/Bold x Queen/Hess/Caroline; all centres from both curbs.
+      gcps:
+        - [740, 885, -79.8794331, 43.2577012, "Main Street West & Queen Street South"]
+        - [3270, 885, -79.8780286, 43.2574091, "Hess Street South & Main Street West"]
+        - [6250, 900, -79.876348, 43.2569913, "Caroline Street South & Main Street West"]
+        - [800, 7500, -79.880514, 43.2550115, "Bold Street & Queen Street South"]
+        - [3220, 7445, -79.8792137, 43.2547327, "Bold Street & Hess Street South"]
+        - [6210, 7485, -79.8775493, 43.2543312, "Bold Street & Caroline Street South"]
+        - [3235, 3093, -79.8784179, 43.2565011, "Hess Street South & Jackson Street West"]
+        - [3195, 5300, -79.8788208, 43.2555981, "Hess Street South & Hunter Street West"]
+    - label: sheet-51
+      url: https://expo.mcmaster.ca/files/original/c0bacaec4281b1c8e6f14f53ebb23d6ec4f8103c.tiff
+      crop: [1845, 830, 5330, 7465]
+      # control-point fit: 2.08 m RMSE. Caroline/Bay x Main/Jackson/Hunter/Bold; centres from both curbs. Bold jogs at Bay (east side offset), west-side curbs used.
+      gcps:
+        - [1845, 830, -79.876348, 43.2569913, "Caroline Street South & Main Street West"]
+        - [5330, 838, -79.8743957, 43.2565095, "Bay Street South & Main Street West"]
+        - [1840, 7475, -79.8775493, 43.2543312, "Bold Street & Caroline Street South"]
+        - [5330, 7460, -79.875555, 43.2537981, "Bay Street South & Bold Street"]
+        - [1845, 3075, -79.8767455, 43.2561095, "Caroline Street South & Jackson Street West"]
+        - [5335, 5280, -79.8751621, 43.2547312, "Bay Street South & Hunter Street West"]
+    - label: sheet-52
+      url: https://expo.mcmaster.ca/files/original/152d75fb9af6a57d724715c2c853272444799623.tiff
+      crop: [785, 735, 6150, 7960]
+      # control-point fit: 3.05 m RMSE. Queen/Hess/Caroline x Bold/Duke/Robinson; centres from both curbs. Hannah St W (bottom edge) not in modern OSM list, so no points there; bottom crop at Hannah centre.
+      gcps:
+        - [780, 720, -79.880514, 43.2550115, "Bold Street & Queen Street South"]
+        - [6160, 750, -79.8775493, 43.2543312, "Bold Street & Caroline Street South"]
+        - [785, 5515, -79.8813297, 43.2529694, "Queen Street South & Robinson Street"]
+        - [6140, 5530, -79.8783852, 43.2523549, "Caroline Street South & Robinson Street"]
+        - [3170, 3335, -79.8796652, 43.2536711, "Duke Street & Hess Street South"]
+        - [3165, 745, -79.8792137, 43.2547327, "Bold Street & Hess Street South"]
+        - [3115, 5530, -79.8800649, 43.2527577, "Hess Street South & Robinson Street"]
+    - label: sheet-53
+      url: https://expo.mcmaster.ca/files/original/5165c4509e4eedf6fa715775419d1d463e9bfe00.tiff
+      crop: [1665, 630, 5210, 7880]
+      # control-point fit: 2.33 m RMSE. Caroline/Bay x Bold/Duke/Robinson; centres from both curbs (Bold at Bay uses west-side curbs; Bold jogs there). Hannah St W (bottom) not in modern OSM list; bottom crop at Hannah centre (approx, by analogy with sheet 52).
+      gcps:
+        - [1665, 630, -79.8775493, 43.2543312, "Bold Street & Caroline Street South"]
+        - [5205, 640, -79.875555, 43.2537981, "Bay Street South & Bold Street"]
+        - [1660, 3275, -79.8779939, 43.2532729, "Caroline Street South & Duke Street"]
+        - [5210, 3240, -79.8759761, 43.2528106, "Bay Street South & Duke Street"]
+        - [1665, 5480, -79.8783852, 43.2523549, "Caroline Street South & Robinson Street"]
+        - [5210, 5450, -79.8763656, 43.2518754, "Bay Street South & Robinson Street"]
+    - label: sheet-54
+      url: https://expo.mcmaster.ca/files/original/368b155bbc62a06445d521e7e27f1412a9fe89d0.tiff
+      crop: [560, 712, 6444, 7787]
+      # control-point fit: 2.83 m RMSE. Bay/Park/MacNab x Bold/Duke/Robinson. Hannah St (bottom edge) is now Charlton Ave W, so not used as a GCP; crop bottom at Hannah centre line.
+      gcps:
+        - [560, 712, -79.875555, 43.2537981, "Bay Street South & Bold Street"]
+        - [6444, 712, -79.8723533, 43.2529868, "Bold Street & MacNab Street South"]
+        - [3618, 3091, -79.8743721, 43.2524325, "Duke Street & Park Street South"]
+        - [560, 5408, -79.8763656, 43.2518754, "Bay Street South & Robinson Street"]
+        - [6444, 5408, -79.8731737, 43.2511338, "MacNab Street South & Robinson Street"]
+        - [3618, 712, -79.8739443, 43.2533819, "Bold Street & Park Street South"]
+    - label: sheet-55
+      url: https://expo.mcmaster.ca/files/original/4cd6272d2be49bd12b1cbdfc72fea57aa2b49f2e.tiff
+      crop: [926, 670, 5912, 7716]
+      # control-point fit: 1.28 m RMSE. MacNab/James/Hughson x Bold/Robinson/Augusta/Young. Maria St gone and Hannah St is now Charlton Ave, so not used; crop bottom at Hannah centre line. NE corner above Augusta is covered by sheet 11.
+      gcps:
+        - [926, 670, -79.8723533, 43.2529868, "Bold Street & MacNab Street South"]
+        - [926, 5332, -79.8731737, 43.2511338, "MacNab Street South & Robinson Street"]
+        - [3680, 670, -79.8708497, 43.2526211, "Bold Street & James Street South"]
+        - [3680, 5332, -79.8716706, 43.2507548, "James Street South & Robinson Street"]
+        - [5912, 1781, -79.8697684, 43.2518864, "Augusta Street & Hughson Street South"]
+        - [5912, 3912, -79.8701732, 43.2510424, "Hughson Street South & Young Street"]
+    - label: sheet-56
+      url: https://expo.mcmaster.ca/files/original/0a88d3242f9517d4b4a69f27f0b36df864d58cd3.tiff
+      crop: [1040, 1285, 5824, 7330]
+      # control-point fit: 1.23 m RMSE. Hughson/John/Catharine x Augusta/Young. Maria St gone and Hannah St is now Charlton Ave, so the southern half is extrapolated (no surviving cross street there); crop bottom at Hannah centre line. John St jogs on the 1898 drawing; read at each crossing.
+      gcps:
+        - [1031, 1282, -79.8697684, 43.2518864, "Augusta Street & Hughson Street South"]
+        - [3715, 1288, -79.8683121, 43.2515431, "Augusta Street & John Street South"]
+        - [5822, 1282, -79.8671271, 43.2512679, "Augusta Street & Catharine Street South"]
+        - [1047, 3432, -79.8701732, 43.2510424, "Hughson Street South & Young Street"]
+        - [3830, 3432, -79.8686214, 43.2506789, "John Street South & Young Street"]
+        - [5826, 3432, -79.867488, 43.250405, "Catharine Street South & Young Street"]
+    - label: sheet-57
+      url: https://expo.mcmaster.ca/files/original/726f1a075766053e9ac964bf4187a080222941fc.tiff
+      crop: [435, 290, 6580, 8100]
+      # control-point fit: 1.37 m RMSE. Catharine/Walnut/Ferguson x Augusta/Young (Augusta centre taken 66 ft / ~212 px north of block line since its north side is on sheet 58; no Augusta & Ferguson in OSM). Maria gone, Hannah is now Charlton Ave, Patrick St end is ambiguous, so everything south of Young is extrapolated; crop bottom at dr
+      gcps:
+        - [438, 238, -79.8671271, 43.2512679, "Augusta Street & Catharine Street South"]
+        - [4252, 348, -79.8650161, 43.25072, "Augusta Street & Walnut Street South"]
+        - [430, 2410, -79.867488, 43.250405, "Catharine Street South & Young Street"]
+        - [4226, 2470, -79.8654054, 43.2498622, "Walnut Street South & Young Street"]
+        - [6580, 2495, -79.8641125, 43.249502, "Ferguson Avenue South & Young Street"]
+    - label: sheet-58
+      url: https://expo.mcmaster.ca/files/original/aba0465a44318be46cd69b2d061844b950fb94d1.tiff
+      crop: [462, 340, 6670, 8215]
+      # control-point fit: 2.00 m RMSE. Catharine/Walnut/Ferguson x Jackson/Hunter/Augusta. Walnut jogs at Jackson on the 1898 plan; read on the south-side alignment. Augusta centre taken 66 ft south of block line (south side is on sheet 57). Main (top) only partly drawn; crop top estimated at Main centre.
+      gcps:
+        - [466, 2612, -79.8661434, 43.2535318, "Catharine Street South & Jackson Street East"]
+        - [6660, 2746, -79.8626953, 43.2526069, "Ferguson Avenue South & Jackson Street East"]
+        - [4365, 4880, -79.8643838, 43.2521007, "Hunter Street East & Walnut Street South"]
+        - [6680, 4915, -79.8630691, 43.251739, "Ferguson Avenue South & Hunter Street East"]
+        - [457, 8212, -79.8671271, 43.2512679, "Augusta Street & Catharine Street South"]
+        - [4335, 8215, -79.8650161, 43.25072, "Augusta Street & Walnut Street South"]
+    - label: sheet-59
+      url: https://expo.mcmaster.ca/files/original/5bc49aa436ef4776152d4893847d1e6e2d020ebb.tiff
+      crop: [900, 300, 5860, 8100]
+      # control-point fit: 0.66 m RMSE. Ferguson/Spring/Liberty/Wellington x Jackson/Hunter/Grove. Ferguson read on the GTR track line (street widens south of Main). Main St crossings fit poorly (~10 m; Main centre not readable, north side on sheet 9) and were dropped. Crop top approx Main centre; bottom at drawn edge where sheet 60 conti
+      gcps:
+        - [948, 2453, -79.8626953, 43.2526069, "Ferguson Avenue South & Jackson Street East"]
+        - [3750, 2503, -79.8611738, 43.2521874, "Jackson Street East & Spring Street"]
+        - [5870, 2541, -79.8600087, 43.2518619, "Jackson Street East & Wellington Street South"]
+        - [948, 4640, -79.8630691, 43.251739, "Ferguson Avenue South & Hunter Street East"]
+        - [2590, 6555, -79.8625155, 43.2507334, "Grove Street & Liberty Street"]
+        - [5833, 6593, -79.8607395, 43.2502323, "Grove Street & Wellington Street South"]
+    - label: sheet-61
+      url: https://expo.mcmaster.ca/files/original/00d25a3b6fbcd91dd9783ff16dbe62fe6558467e.tiff
+      crop: [1032, 240, 6250, 8300]
+      # control-point fit: 1.59 m RMSE. Queen/Hess/Bruce/Caroline x Herkimer/Stanley/Markland. Herkimer jogs at Queen (west branch is further north) so Queen & Herkimer was dropped; Caroline jogs at Markland, dropped. Hannah (top) is now Charlton Ave and Aberdeen (bottom) only has its north curb on this sheet, so top and bottom thirds are
+      gcps:
+        - [3250, 2520, -79.8808767, 43.2508649, "Herkimer Street & Hess Street South"]
+        - [6280, 2600, -79.8791831, 43.2504688, "Caroline Street South & Herkimer Street"]
+        - [1033, 3952, -79.8823472, 43.2505994, "Queen Street South & Stanley Avenue"]
+        - [1032, 4712, -79.8824389, 43.250253, "Markland Street & Queen Street South"]
+        - [3186, 4748, -79.8812585, 43.2499704, "Hess Street South & Markland Street"]
+        - [4207, 4775, -79.8806761, 43.2498288, "Bruce Street & Markland Street"]
+    - label: sheet-62
+      url: https://expo.mcmaster.ca/files/original/dec44fac5a61deabd6d5da69f403ce63ddf82b2d.tiff
+      crop: [1830, 240, 5390, 8300]
+      # control-point fit: 1.62 m RMSE. Caroline/Hilton/Bay x Herkimer/Markland/Aberdeen. Caroline jogs at Markland (dropped). Aberdeen only has its north curb on this sheet; its centre was taken ~200 px (about 30 ft) south of the block line, consistent with sheet 61 (residual 0.6 m). Hannah (top) is now Charlton Ave; crop top estimated a
+      gcps:
+        - [1854, 2450, -79.8791831, 43.2504688, "Caroline Street South & Herkimer Street"]
+        - [5412, 2508, -79.8771689, 43.2499962, "Bay Street South & Herkimer Street"]
+        - [3288, 4722, -79.8787942, 43.2493693, "Hilton Street & Markland Street"]
+        - [5357, 4750, -79.8775616, 43.2490758, "Bay Street South & Markland Street"]
+        - [3228, 8300, -79.8794087, 43.2479321, "Aberdeen Avenue & Hilton Street"]
+    - label: sheet-63
+      url: https://expo.mcmaster.ca/files/original/e41007586ee2e87536c4d6155360fdcd471b32e6.tiff
+      crop: [590, 250, 6440, 8292]
+      # control-point fit: 2.36 m RMSE. Bay/Park/MacNab x Herkimer/Markland, plus Bay & Aberdeen (Aberdeen is 66 ft per the plan; centre taken 212 px south of the block line since its south side is off the sheet). Hannah (top) is now Charlton Ave; crop top estimated at Hannah centre. Ontario St here is not the modern Ontario Ave.
+      gcps:
+        - [584, 2440, -79.8771689, 43.2499962, "Bay Street South & Herkimer Street"]
+        - [3590, 2434, -79.8756096, 43.2496284, "Herkimer Street & Park Street South"]
+        - [6441, 2400, -79.8740124, 43.2492538, "Herkimer Street & MacNab Street South"]
+        - [3598, 4683, -79.8760073, 43.2487195, "Markland Street & Park Street South"]
+        - [6438, 4652, -79.8744245, 43.2483559, "MacNab Street South & Markland Street"]
+        - [613, 8292, -79.8781854, 43.2476361, "Aberdeen Avenue & Bay Street South"]
+    - label: sheet-64
+      url: https://expo.mcmaster.ca/files/original/0822707c94b8ff4a4f0ea761c047997022e8fb73.tiff
+      crop: [993, 280, 6290, 8180]
+      # control-point fit: 0.36 m RMSE. MacNab/James x Herkimer/Markland. East of James is open estate land with no streets, so the east half and the south (James curve, Aberdeen corner; no Aberdeen & James in OSM) are extrapolated. Hannah (top) is now Charlton Ave. Crop right = drawn edge at the SEE SHEET 65 line; bottom = drawn edge.
+      gcps:
+        - [997, 2330, -79.8740124, 43.2492538, "Herkimer Street & MacNab Street South"]
+        - [3725, 2345, -79.8724988, 43.2488831, "Herkimer Street & James Street South"]
+        - [988, 4577, -79.8744245, 43.2483559, "MacNab Street South & Markland Street"]
+        - [3716, 4577, -79.8729014, 43.2479791, "James Street South & Markland Street"]
+minzoom: 14
+maxzoom: 19
+description: "Chas. E. Goad's Insurance Plan of the City of Hamilton, Volume I, January 1898, at 1:600: every building with its construction (pink brick, yellow wood, blue stone), storeys, street numbers, shops, churches, hotels and factories. 44 of the 48 sheets are georeferenced here. Facsimile photographed from the British Library copy; McMaster University Library."
+accuracy_note: "Georeferenced sheet by sheet for this app from 266 street corners matched to today's OpenStreetMap intersections; each sheet's corners fit within 0.4–3.2 m (typical 1.6 m). Parts of a sheet far from its nearest surviving street corner (e.g. the waterfront and where streets were renamed) may be off by more."

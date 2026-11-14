@@ -463,6 +463,7 @@ def warp_gcp_sheets(ov: OverlayDef, work: Path) -> tuple[Path, dict[str, Any]]:
         _run(["gdalwarp", "-q", "-overwrite", "-order", "1", "-t_srs", "EPSG:3857", "-r", "bilinear", "-dstalpha",
               "-tr", f"{res:.6f}", f"{res:.6f}", "-co", "COMPRESS=DEFLATE", "-co", "TILED=YES", str(gvrt), str(out)])
         warped_files.append(str(out))
+        raw.unlink(missing_ok=True)  # originals are ~180 MB each; keep the runner's disk free
         print(f"{ov.id} {label}: {len(gcps)} gcps, RMSE {err:.1f} m, {entry['m_per_px']} m/px", flush=True)
     if not warped_files:
         raise OverlayError(f"{ov.id}: no sheet passed the accuracy check")
