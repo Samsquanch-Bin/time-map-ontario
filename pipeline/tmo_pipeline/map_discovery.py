@@ -34,6 +34,9 @@ AGOL_QUERIES = [
     "Wentworth County 1875 atlas", "Surtees Wentworth", "Barton Township historical", "Ancaster historical map",
     "Dundas Ontario historical map", "Halton County 1858 Tremaine", "Peel County 1859 Tremaine",
     "Ontario Historical County Maps", "Tremaine map", "Toronto Goad", "Hamilton Goad",
+    "Burlington historical map", "Burlington 1954", "Oakville historical map", "Oakville 1877",
+    "Mississauga historical map", "Port Credit historical", "Streetsville historical", "Etobicoke historical map",
+    "Halton atlas 1877", "Peel atlas 1877", "air photos 1954 Ontario", "Mississauga 1954",
 ]
 LAYER_TYPES = ("Map Service", "Image Service", "Tile Layer", "WMS", "WMTS")
 
