@@ -42,8 +42,14 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("maps-discover")
     sub.add_parser("fetch-pages")
     sub.add_parser("fip-prepare")
+    sub.add_parser("probe")
     args = p.parse_args(argv)
 
+    if args.cmd == "probe":
+        from .probe import run as probe
+
+        probe()
+        return 0
     if args.cmd == "fip-prepare":
         import os
 
