@@ -1,7 +1,7 @@
 import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
-import { Camera, type CameraRef, Map, type TrackUserLocation, UserLocation } from "@maplibre/maplibre-react-native";
+import { Camera, type CameraRef, GeoJSONSource, Layer, Map, type TrackUserLocation, UserLocation } from "@maplibre/maplibre-react-native";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Alert, Linking, StyleSheet, View } from "react-native";
+import { Alert, Keyboard, Linking, StyleSheet, View } from "react-native";
 import { Button, FAB, IconButton, Surface, Text, useTheme } from "react-native-paper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -17,6 +17,7 @@ import { buildBaseStyle, firstLabelLayerId, type MapTheme } from "../map/baseSty
 import { useApp } from "../state/store";
 import { MapContent } from "./MapContent";
 import { CreditsPanel, DataPanel, LayersPanel, OverlayPanel, PlacePanel, type SheetView } from "./Panels";
+import { SearchBar, type SearchTarget } from "./SearchBar";
 import { SwipeCompare } from "./SwipeCompare";
 
 const BASEMAP_FILE = "basemap-south.pmtiles";
@@ -32,6 +33,8 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
   const [view, setView] = useState<SheetView>({ name: "layers" });
   const [track, setTrack] = useState<TrackUserLocation | undefined>(undefined);
   const [initialCamera] = useState(s.camera);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [pin, setPin] = useState<SearchTarget | null>(null);
 
   const catalog = s.catalog;
   const basemapUrl = hasPack(catalog, s.installed, BASEMAP_FILE) ? pmtilesUrl(BASEMAP_FILE) : null;
@@ -95,6 +98,19 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
     else cameraRef.current?.fitBounds([w, so, e, n], { padding: { top: 40, right: 40, bottom: 200, left: 40 }, duration: 800 });
   };
 
+  const goToResult = (t: SearchTarget) => {
+    setTrack(undefined);
+    setPin(t);
+    const b = t.bbox;
+    // Fit a park or street's outline; for big areas (a whole town) or points, fly to the centre.
+    if (b && b[2] - b[0] < 0.2 && b[3] - b[1] < 0.2 && b[2] - b[0] > 0.0005) {
+      cameraRef.current?.fitBounds(b, { padding: { top: 120, right: 40, bottom: 200, left: 40 }, duration: 900 });
+    } else {
+      cameraRef.current?.flyTo({ center: t.center, zoom: t.zoom ?? 15, duration: 900 });
+    }
+    sheetRef.current?.snapToIndex(0);
+  };
+
   const onLocate = async () => {
     const ok = await requestForegroundLocation();
     if (!ok) {
@@ -120,7 +136,11 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
         attribution
         attributionPosition={{ bottom: 8, left: 8 }}
         logo={false}
-        compassPosition={{ top: insets.top + 64, right: 12 }}
+        compassPosition={{ top: insets.top + 76, right: 12 }}
+        onPress={() => {
+          setSearchOpen(false);
+          Keyboard.dismiss();
+        }}
         tintColor={theme.colors.primary}
         onWillStartLoadingMap={() => setMapStatus(`loading ${offlineStyle ? "offline basemap" : "online preview map"}`)}
         onDidFinishLoadingMap={() => setMapStatus(`${offlineStyle ? "offline basemap" : "online preview map"} loaded`)}
@@ -156,6 +176,16 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
           places={placesGeoJSON}
           onPlacePress={(id) => go({ name: "place", id })}
         />
+        {pin ? (
+          <GeoJSONSource id="search-pin" data={{ type: "Feature", properties: {}, geometry: { type: "Point", coordinates: pin.center } }}>
+            <Layer type="circle" id="search-pin-halo" paint={{ "circle-radius": 14, "circle-color": theme.colors.primary, "circle-opacity": 0.25 }} />
+            <Layer
+              type="circle"
+              id="search-pin-dot"
+              paint={{ "circle-radius": 6, "circle-color": theme.colors.primary, "circle-stroke-color": "#0E1116", "circle-stroke-width": 2 }}
+            />
+          </GeoJSONSource>
+        ) : null}
         {s.showUser ? <UserLocation accuracy heading /> : null}
       </Map>
 
@@ -164,7 +194,7 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
       ) : null}
 
       {!basemapUrl ? (
-        <Surface style={[styles.banner, { top: insets.top + 8, backgroundColor: theme.colors.surface }]} elevation={3}>
+        <Surface style={[styles.banner, { top: insets.top + 72, backgroundColor: theme.colors.surface }]} elevation={3}>
           <Text variant="titleSmall">Online preview map</Text>
           <Text variant="bodyMedium" style={{ color: theme.colors.onSurfaceVariant }}>
             Download the map data (about 1.2 GB, use Wi-Fi) to get the full map, old maps and places, working offline.
@@ -175,7 +205,7 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
         </Surface>
       ) : null}
 
-      <View style={[styles.fabs, { top: insets.top + 120 }]}>
+      <View style={[styles.fabs, { top: insets.top + 136 }]}>
         <FAB
           icon={track ? "crosshairs-gps" : "crosshairs"}
           accessibilityLabel="Show my location"
@@ -193,6 +223,16 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
           />
         ) : null}
       </View>
+
+      <SearchBar
+        top={insets.top + 8}
+        places={allPlaces}
+        overlays={catalog?.overlays ?? []}
+        onGo={goToResult}
+        onClear={() => setPin(null)}
+        open={searchOpen}
+        setOpen={setSearchOpen}
+      />
 
       <BottomSheet
         ref={sheetRef}
