@@ -1,14 +1,14 @@
 # Pages fetched by the "Research sources" workflow (step: pages).
-# Round 6: terms of the U of T air photo collections that cover Burlington to Etobicoke.
+# Round 7: U of T air photo collections along the QEW / 401 and around Mississauga,
+# followed down through their ArcGIS index maps to each photo's footprint and file.
 max_follow: 0
 pages:
-  - url: https://mdl.library.utoronto.ca/collections/geospatial-data/digital-air-photographs-southern-ontario-1954
   - url: https://mdl.library.utoronto.ca/collections/geospatial-data/historical-air-photos-highway-401-and-queen-elizabeth-way-qew
+    arcgis_index: true
   - url: https://mdl.library.utoronto.ca/collections/geospatial-data/historical-air-photos-highway-401
-  - url: https://mdl.library.utoronto.ca/collections/geospatial-data/1950-halton-hills-air-photos
-  - url: https://mdl.library.utoronto.ca/collections/geospatial-data/toronto-air-photos-1967-1968
-  - url: https://mdl.library.utoronto.ca/collections/geospatial-data/toronto-aerial-photographs-1947-black-and-white-and-colourized
-  - url: https://mdl.library.utoronto.ca/subjects-geospatial-data/air-photos?page=1
-  - url: https://mdl.library.utoronto.ca/subjects-geospatial-data/air-photos?page=2
+    arcgis_index: true
+  - url: https://mdl.library.utoronto.ca/collections/geospatial-data/digital-air-photographs-southern-ontario-1954
+    arcgis_index: true
   - url: https://mdl.library.utoronto.ca/geography-geospatial-data/mississauga
-  - url: https://mdl.library.utoronto.ca/open-data/openut
+  - url: https://mdl.library.utoronto.ca/geography-geospatial-data/oakville
+  - url: https://mdl.library.utoronto.ca/geography-geospatial-data/burlington

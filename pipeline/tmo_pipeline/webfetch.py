@@ -80,7 +80,10 @@ def run(config: Path = RESEARCH_DIR / "pages.yaml", out_dir: Path = RESEARCH_DIR
                 index["pages"].append({"url": u, "error": str(exc)[:300]})
                 print(f"error {u}: {exc}")
                 continue
-            name = slugify(u.split("://", 1)[-1])[:100]
+            import hashlib
+
+            # long URLs that share a prefix must not overwrite each other
+            name = slugify(u.split("://", 1)[-1])[:90] + "-" + hashlib.sha1(u.encode()).hexdigest()[:8]
             if body:
                 (out_dir / f"{name}.html").write_text(body)
             links = extract_links(body, u) if "html" in ctype else []
@@ -91,5 +94,34 @@ def run(config: Path = RESEARCH_DIR / "pages.yaml", out_dir: Path = RESEARCH_DIR
                     if re.search(follow, link["url"]) and followed < max_follow:
                         queue.append((link["url"], 1))
                         followed += 1
+            if entry.get("arcgis_index") and depth < 3:
+                queue.extend((x, depth + 1) for x in arcgis_index_urls(u, body, links))
             time.sleep(1)
     (out_dir / "index.json").write_text(json.dumps(index, indent=1, ensure_ascii=False))
+
+
+AGOL_ITEM = "https://www.arcgis.com/sharing/rest/content/items/{id}"
+_WEBMAP_ID = re.compile(r"(?:webmap=|[?&]id=|appid=)([0-9a-f]{32})")
+
+
+def arcgis_index_urls(url: str, body: str, links: list[dict[str, str]]) -> list[str]:
+    """Follow an ArcGIS Online index down to its features: a page linking a web map
+    -> the web map's JSON -> each feature layer's features (WGS84, all fields)."""
+    out: list[str] = []
+    if "/sharing/rest/content/items/" in url and url.split("?")[0].endswith("/data"):
+        try:
+            data = json.loads(body)
+        except ValueError:
+            return out
+        for lyr in data.get("operationalLayers", []) or []:
+            lu = lyr.get("url") or ""
+            if re.search(r"/(Feature|Map)Server/\d+$", lu):
+                out.append(lu + "?f=json")
+                out.append(lu + "/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&resultRecordCount=2000&f=json")
+        return out
+    for link in links:
+        m = _WEBMAP_ID.search(link["url"])
+        if m and "arcgis.com" in link["url"]:
+            out.append(AGOL_ITEM.format(id=m.group(1)) + "?f=json")
+            out.append(AGOL_ITEM.format(id=m.group(1)) + "/data?f=json")
+    return out
