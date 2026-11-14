@@ -6,13 +6,15 @@ import { Banner, FAB, IconButton, useTheme } from "react-native-paper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { pmtilesUrl } from "../data/packs";
+import { usePlaces } from "../data/usePlaces";
+import { placesToGeoJSON, visiblePlaces } from "../logic/places";
 import { hasPack } from "../logic/catalog";
 import { overlaps } from "../logic/era";
 import { requestForegroundLocation } from "../location";
 import { buildBaseStyle, firstLabelLayerId, type MapTheme } from "../map/baseStyle";
 import { useApp } from "../state/store";
 import { MapContent } from "./MapContent";
-import { CreditsPanel, DataPanel, LayersPanel, OverlayPanel, type SheetView } from "./Panels";
+import { CreditsPanel, DataPanel, LayersPanel, OverlayPanel, PlacePanel, type SheetView } from "./Panels";
 import { SwipeCompare } from "./SwipeCompare";
 
 const BASEMAP_FILE = "basemap-south.pmtiles";
@@ -42,6 +44,12 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
     () => (s.coverageVisible ? (catalog?.overlays ?? []).filter((o) => overlaps(o.era, s.era)) : null),
     [catalog, s.coverageVisible, s.era],
   );
+  const allPlaces = usePlaces();
+  const shownPlaces = useMemo(
+    () => (s.placesVisible ? visiblePlaces(allPlaces, s.era, s.hiddenCategories) : []),
+    [allPlaces, s.placesVisible, s.era, s.hiddenCategories],
+  );
+  const placesGeoJSON = useMemo(() => (shownPlaces.length ? placesToGeoJSON(shownPlaces) : null), [shownPlaces]);
   const satelliteKey = s.basemap === "satellite" && s.esriKey ? s.esriKey : null;
   const comparing = s.compare && !!activeOverlay;
 
@@ -65,6 +73,7 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
   };
 
   const overlayForView = view.name === "overlay" ? catalog?.overlays.find((o) => o.id === view.id) : undefined;
+  const placeForView = view.name === "place" ? allPlaces.find((p) => p.id === view.id) : undefined;
 
   return (
     <View style={[styles.fill, { backgroundColor: theme.colors.background }]}>
@@ -100,6 +109,8 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
           overlayOpacity={s.overlayOpacity}
           coverage={coverage}
           onCoveragePress={(id) => go({ name: "overlay", id })}
+          places={placesGeoJSON}
+          onPlacePress={(id) => go({ name: "place", id })}
         />
         {s.showUser ? <UserLocation accuracy heading /> : null}
       </Map>
@@ -150,7 +161,16 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
           {view.name !== "layers" ? (
             <IconButton icon="arrow-left" accessibilityLabel="Back" onPress={() => setView({ name: "layers" })} style={styles.back} />
           ) : null}
-          {view.name === "layers" ? <LayersPanel go={go} /> : null}
+          {view.name === "layers" ? <LayersPanel go={go} placeCount={shownPlaces.length} /> : null}
+          {view.name === "place" && placeForView ? (
+            <PlacePanel
+              place={placeForView}
+              onZoom={() => {
+                cameraRef.current?.flyTo({ center: [placeForView.lon, placeForView.lat], zoom: placeForView.precision === "exact" ? 15 : 13, duration: 900 });
+                sheetRef.current?.snapToIndex(0);
+              }}
+            />
+          ) : null}
           {view.name === "overlay" && overlayForView ? (
             <OverlayPanel
               overlay={overlayForView}

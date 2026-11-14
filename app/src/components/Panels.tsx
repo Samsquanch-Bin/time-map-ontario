@@ -1,19 +1,21 @@
 // Bottom-sheet panels: layers, overlay details, settings/data, attributions.
 import { useRef, useState } from "react";
 import { Linking, StyleSheet, View } from "react-native";
-import { Button, Divider, List, ProgressBar, SegmentedButtons, Switch, Text, TextInput, useTheme } from "react-native-paper";
+import { Button, Chip, Divider, List, ProgressBar, SegmentedButtons, Switch, Text, TextInput, useTheme } from "react-native-paper";
 
 import { fetchRemoteCatalog, freeSpaceBytes, type Progress, syncPacks } from "../data/packs";
 import { type Catalog, formatBytes, hasPack, type Overlay, packsToDownload, totalBytes } from "../logic/catalog";
 import { formatRange, overlaps } from "../logic/era";
+import { CATEGORIES, type Place, precisionText } from "../logic/places";
+import { ISSUES_EMAIL_SUBJECT } from "../config";
 import { useApp } from "../state/store";
 import { EraSlider } from "./EraSlider";
 import { OpacitySlider } from "./OpacitySlider";
 
 
-export type SheetView = { name: "layers" } | { name: "overlay"; id: string } | { name: "data" } | { name: "credits" };
+export type SheetView = { name: "layers" } | { name: "overlay"; id: string } | { name: "place"; id: string } | { name: "data" } | { name: "credits" };
 
-export function LayersPanel({ go }: { go: (v: SheetView) => void }) {
+export function LayersPanel({ go, placeCount }: { go: (v: SheetView) => void; placeCount: number }) {
   const theme = useTheme();
   const s = useApp();
   const catalog = s.catalog;
@@ -86,8 +88,36 @@ export function LayersPanel({ go }: { go: (v: SheetView) => void }) {
       )}
       {hidden > 0 ? <Text style={{ color: theme.colors.onSurfaceVariant }}>{hidden} more outside the selected years.</Text> : null}
 
+      <View style={styles.row}>
+        <Text variant="titleSmall" style={{ flex: 1 }}>
+          Places of interest
+        </Text>
+        <Switch value={s.placesVisible} onValueChange={(placesVisible) => s.set({ placesVisible })} />
+      </View>
+      {s.placesVisible ? (
+        <View style={styles.row}>
+          {CATEGORIES.map((c) => {
+            const on = !s.hiddenCategories.includes(c.id);
+            return (
+              <Chip
+                key={c.id}
+                icon={c.icon}
+                selected={on}
+                showSelectedCheck={false}
+                selectedColor={on ? c.color : undefined}
+                onPress={() =>
+                  s.set({ hiddenCategories: on ? [...s.hiddenCategories, c.id] : s.hiddenCategories.filter((x) => x !== c.id) })
+                }
+                style={{ minHeight: 40 }}
+              >
+                {c.label}
+              </Chip>
+            );
+          })}
+        </View>
+      ) : null}
       <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>
-        Coming next: terrain, trails, places of interest and Indigenous settlements.
+        {placeCount > 0 ? `${placeCount} place(s) shown for these years.` : "No researched places on this phone yet."} Coming next: terrain and trails.
       </Text>
 
       <Divider />
@@ -134,6 +164,44 @@ export function OverlayPanel({ overlay, onCompare, onZoom }: { overlay: Overlay;
           Open source
         </Button>
       ) : null}
+    </View>
+  );
+}
+
+export function PlacePanel({ place, onZoom }: { place: Place; onZoom: () => void }) {
+  const theme = useTheme();
+  const cat = CATEGORIES.find((c) => c.id === place.category);
+  const mail = `mailto:?subject=${encodeURIComponent(`${ISSUES_EMAIL_SUBJECT}: ${place.id}`)}&body=${encodeURIComponent(
+    `Place: ${place.title} (${place.id})\nWhat's wrong:\n`,
+  )}`;
+  return (
+    <View style={styles.gap}>
+      <Text variant="headlineSmall">{place.title}</Text>
+      <Text variant="titleMedium" style={{ color: cat?.color }}>
+        {cat?.label} · {place.date_label || formatRange([place.start, place.end])}
+        {place.sample ? "  ·  SAMPLE DATA" : ""}
+      </Text>
+      {place.nation ? <Text variant="titleSmall">{place.nation}</Text> : null}
+      <Text style={styles.story}>{place.story}</Text>
+      <View style={[styles.note, { backgroundColor: theme.colors.surfaceVariant }]}>
+        <Text variant="bodySmall">Researched by Claude from the sources below and not reviewed by a person. Check the sources before relying on it.</Text>
+      </View>
+      <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>
+        {precisionText(place)}
+      </Text>
+      <Button mode="text" icon="crosshairs" onPress={onZoom} style={{ alignSelf: "flex-start" }}>
+        Go there
+      </Button>
+      <Text variant="titleSmall">Sources</Text>
+      {place.sources.map((src, i) => (
+        <Text key={i} style={{ color: theme.colors.primary }} onPress={() => Linking.openURL(src.url)}>
+          [{i + 1}] {src.title}
+          {src.licence ? ` (${src.licence})` : ""} · retrieved {src.retrieved}
+        </Text>
+      ))}
+      <Button mode="text" icon="email-outline" onPress={() => Linking.openURL(mail)} style={{ alignSelf: "flex-start" }}>
+        Report a correction
+      </Button>
     </View>
   );
 }
@@ -305,4 +373,6 @@ const styles = StyleSheet.create({
   card: { borderWidth: 1, borderRadius: 8, padding: 10, gap: 6 },
   item: { minHeight: 52, paddingHorizontal: 0 },
   credit: { gap: 2, paddingVertical: 4 },
+  story: { fontSize: 16, lineHeight: 24 },
+  note: { borderRadius: 6, padding: 8 },
 });

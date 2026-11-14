@@ -70,6 +70,13 @@ async function downloadOne(pack: Pack, progress: (written: number, total: number
   await FS.moveAsync({ from: part, to: PACK_DIR + pack.file });
 }
 
+/** Read the downloaded places.json, or [] if there is none. */
+export async function readPlacesFile(): Promise<string | null> {
+  const path = `${PACK_DIR}places.json`;
+  const info = await FS.getInfoAsync(path);
+  return info.exists ? FS.readAsStringAsync(path) : null;
+}
+
 export async function deleteAllPacks(): Promise<void> {
   await FS.deleteAsync(PACK_DIR, { idempotent: true });
 }

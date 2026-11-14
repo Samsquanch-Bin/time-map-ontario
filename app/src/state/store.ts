@@ -6,6 +6,7 @@ import { createJSONStorage, persist } from "zustand/middleware";
 import { ERA_MAX, ERA_MIN, START_VIEW } from "../config";
 import type { Catalog, Installed } from "../logic/catalog";
 import type { Range } from "../logic/era";
+import type { Category } from "../logic/places";
 
 export type ThemePref = "system" | "dark" | "light";
 export type Basemap = "standard" | "satellite";
@@ -18,6 +19,8 @@ type Persisted = {
   activeOverlayId: string | null;
   overlayOpacity: number;
   coverageVisible: boolean;
+  placesVisible: boolean;
+  hiddenCategories: Category[];
   camera: { center: [number, number]; zoom: number };
   installed: Installed;
   catalog: Catalog | null; // the catalogue matching the installed packs
@@ -39,6 +42,8 @@ export const useApp = create<Persisted & Transient>()(
       activeOverlayId: null,
       overlayOpacity: 0.8,
       coverageVisible: false,
+      placesVisible: true,
+      hiddenCategories: [],
       camera: { center: START_VIEW.center, zoom: START_VIEW.zoom },
       installed: {},
       catalog: null,

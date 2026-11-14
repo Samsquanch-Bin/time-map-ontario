@@ -2,6 +2,7 @@
 // and the coverage outlines. Shared by the main map and the swipe-compare map.
 import { GeoJSONSource, Layer, RasterSource } from "@maplibre/maplibre-react-native";
 import type { FeatureCollection } from "geojson";
+
 import { useMemo } from "react";
 
 import { pmtilesUrl } from "../data/packs";
@@ -17,9 +18,11 @@ type Props = {
   overlayOpacity: number;
   coverage: Overlay[] | null; // overlays to outline, or null when coverage view is off
   onCoveragePress?: (overlayId: string) => void;
+  places?: FeatureCollection | null;
+  onPlacePress?: (placeId: string) => void;
 };
 
-export function MapContent({ labelLayerId, satelliteKey, overlay, overlayOpacity, coverage, onCoveragePress }: Props) {
+export function MapContent({ labelLayerId, satelliteKey, overlay, overlayOpacity, coverage, onCoveragePress, places, onPlacePress }: Props) {
   const coverageData = useMemo<FeatureCollection | null>(
     () =>
       coverage && {
@@ -94,6 +97,58 @@ export function MapContent({ labelLayerId, satelliteKey, overlay, overlayOpacity
               "symbol-placement": "point",
             }}
             paint={{ "text-color": AMBER, "text-halo-color": "#0E1116", "text-halo-width": 1.5 }}
+          />
+        </GeoJSONSource>
+      ) : null}
+
+      {places ? (
+        <GeoJSONSource
+          id="places"
+          data={places}
+          onPress={(e) => {
+            const id = e.nativeEvent.features[0]?.properties?.id;
+            if (id && onPlacePress) {
+              e.stopPropagation();
+              onPlacePress(String(id));
+            }
+          }}
+        >
+          <Layer
+            type="fill"
+            id="places-area"
+            filter={["==", ["geometry-type"], "Polygon"]}
+            paint={{ "fill-color": ["get", "color"], "fill-opacity": 0.22 }}
+          />
+          <Layer
+            type="line"
+            id="places-area-edge"
+            filter={["==", ["geometry-type"], "Polygon"]}
+            paint={{ "line-color": ["get", "color"], "line-width": 1.5, "line-opacity": 0.7, "line-dasharray": [1, 1] }}
+          />
+          <Layer
+            type="circle"
+            id="places-point"
+            filter={["==", ["geometry-type"], "Point"]}
+            paint={{
+              "circle-radius": ["interpolate", ["linear"], ["zoom"], 8, 5, 14, 9],
+              "circle-color": ["get", "color"],
+              "circle-stroke-color": "#0E1116",
+              "circle-stroke-width": 2,
+            }}
+          />
+          <Layer
+            type="symbol"
+            id="places-label"
+            minzoom={11}
+            layout={{
+              "text-field": ["get", "title"],
+              "text-font": ["NotoSansMedium"],
+              "text-size": 12,
+              "text-offset": [0, 1.2],
+              "text-anchor": "top",
+              "text-optional": true,
+            }}
+            paint={{ "text-color": ["get", "color"], "text-halo-color": "#0E1116", "text-halo-width": 1.5 }}
           />
         </GeoJSONSource>
       ) : null}
