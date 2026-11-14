@@ -142,6 +142,7 @@ def discover(roots: list[str] = ROOTS, out: Path = RESEARCH_DIR / "map-services.
                 }
             )
             print(f"{svc}: {results[-1]['item_title'] or results[-1]['name']}")
+    warpers = discover_mapwarper(s)
     online = search_arcgis_online(s)
     for it in online:
         if it.get("url") and it["url"] not in {r["url"] for r in results} and ("MapServer" in it["url"] or "ImageServer" in it["url"]):
@@ -151,7 +152,7 @@ def discover(roots: list[str] = ROOTS, out: Path = RESEARCH_DIR / "map-services.
             it["tiled"] = bool(info.get("tileInfo"))
             it["export_tiles_allowed"] = info.get("exportTilesAllowed")
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps({"retrieved": dt.date.today().isoformat(), "roots": roots, "services": results, "arcgis_online": online}, indent=1, ensure_ascii=False))
+    out.write_text(json.dumps({"retrieved": dt.date.today().isoformat(), "roots": roots, "services": results, "arcgis_online": online, "mapwarper": warpers}, indent=1, ensure_ascii=False))
     print(f"{len(results)} services")
     return results
 
@@ -204,3 +205,31 @@ def tile_summary(info: dict[str, Any]) -> dict[str, Any]:
         "max_lod": info.get("maxLOD", max(lods) if lods else None),
         "copyright": (info.get("copyrightText") or "")[:300],
     }
+
+
+MAPWARPERS = ["https://mapexplorer.mcmaster.ca"]
+
+
+def discover_mapwarper(s, hosts: list[str] = MAPWARPERS) -> list[dict[str, Any]]:
+    """Layers and maps on MapWarper sites (tile URL: /layers/tile/{id}/{z}/{x}/{y}.png)."""
+    out = []
+    for host in hosts:
+        for kind in ("layers", "maps"):
+            for path in (f"/api/v1/{kind}?per_page=100", f"/{kind}.json?per_page=100"):
+                try:
+                    r = s.get(host + path, timeout=60)
+                    data = r.json()
+                except Exception as exc:  # noqa: BLE001
+                    print(f"mapwarper {host}{path}: {exc}")
+                    continue
+                items = data.get("data", data.get("items", data)) if isinstance(data, dict) else data
+                if isinstance(items, list) and items:
+                    for it in items:
+                        attrs = it.get("attributes", it) if isinstance(it, dict) else {}
+                        out.append({"host": host, "kind": kind, "id": it.get("id") if isinstance(it, dict) else None,
+                                    "title": attrs.get("title") or attrs.get("name"), "bbox": attrs.get("bbox"),
+                                    "status": attrs.get("status"), "year": attrs.get("depicts_year") or attrs.get("year"),
+                                    "raw_keys": sorted(attrs.keys())[:30]})
+                    print(f"mapwarper {host}{path}: {len(items)} {kind}")
+                    break
+    return out

@@ -77,8 +77,9 @@ def parse_overlay(data: dict[str, Any], origin: str = "<overlay>") -> OverlayDef
     if fetch["method"] == "live_tiles":
         if not (isinstance(bounds, list) and len(bounds) == 4 and bounds[0] < bounds[2] and bounds[1] < bounds[3]):
             raise OverlayError(f"{origin}: live_tiles overlays need bounds [w, s, e, n]")
-        if not all(k in fetch["url"] for k in ("{z}", "{x}", "{y}")):
-            raise OverlayError(f"{origin}: live_tiles url must contain {{z}}, {{x}} and {{y}}")
+        xyz = all(k in fetch["url"] for k in ("{z}", "{x}", "{y}"))
+        if not (xyz or "{bbox-epsg-3857}" in fetch["url"]):
+            raise OverlayError(f"{origin}: live_tiles url must contain {{z}}/{{x}}/{{y}} or {{bbox-epsg-3857}}")
         if data.get("maxzoom") is None:
             raise OverlayError(f"{origin}: live_tiles overlays need maxzoom")
     return OverlayDef(
