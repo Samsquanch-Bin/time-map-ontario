@@ -1,0 +1,16 @@
+id: toronto_historical_maps
+name: Historical Maps of Toronto tile services (Boulton 1858, Goad atlases, 1818, 1856, 1947)
+provider: Published on ArcGIS Online; scans from Toronto Public Library, City of Toronto Archives and Library and Archives Canada
+homepage: https://www.arcgis.com/
+data_url: https://tiles.arcgis.com/tiles/jIL9msH9OI208GCb/arcgis/rest/services
+licence: No reuse licence stated (maps are pre-1950 and out of copyright); viewed online only, never copied
+attribution: "Scans: Toronto Public Library / City of Toronto Archives / Library and Archives Canada, via ArcGIS Online"
+used_for: [overlays]
+terms_notes: >
+  Each service's own copyright text is shown with the overlay. Streamed from the
+  publisher's tile server when viewed; the pipeline never downloads or redistributes
+  the tiles.
+licence_check:
+  status: unconfirmed
+  method: Service metadata (copyrightText) read by the GitHub discovery run; no licence field
+  checked_on: "2026-11-14"

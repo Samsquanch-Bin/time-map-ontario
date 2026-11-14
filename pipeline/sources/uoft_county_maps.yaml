@@ -1,0 +1,16 @@
+id: uoft_county_maps
+name: Ontario Historical County Maps Project (University of Toronto Map & Data Library)
+provider: University of Toronto Map & Data Library (scans of Tremaine and other 1850s–1870s county maps)
+homepage: https://mdl.library.utoronto.ca/collections/mdl-projects/ontario-county-map
+data_url: https://tiles.arcgis.com/tiles/9NvE8jKNWWlDGsUJ/arcgis/rest/services
+licence: No reuse licence stated (underlying 1850s–1870s maps are public domain); viewed online only, never copied
+attribution: "Historical county map georeferenced by the Ontario Historical County Maps Project, University of Toronto Map & Data Library"
+used_for: [overlays]
+terms_notes: >
+  The tiles are public ArcGIS Online services with no licence text. To respect that,
+  the app streams them from U of T's server when viewed (like the project's own web
+  viewer) and the pipeline never downloads or redistributes them.
+licence_check:
+  status: unconfirmed
+  method: Service metadata read by the GitHub discovery run (licenseInfo empty); project pages blocked from build session
+  checked_on: "2026-11-14"

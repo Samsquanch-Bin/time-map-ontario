@@ -19,6 +19,8 @@ and the attribution text the app displays. **Licence check** says how sure we ar
 | [OpenStreetMap data](https://www.openstreetmap.org) | basemap, trails | [Open Database License (ODbL) 1.0](https://www.openstreetmap.org/copyright) | confirmed (2026-11-14) | © OpenStreetMap contributors |
 | [Noto Sans glyphs and map sprites (basemaps-assets)](https://github.com/protomaps/basemaps-assets) | basemap | [Fonts SIL Open Font License 1.1; sprites derived from MIT-licensed tangrams/icons](https://github.com/protomaps/basemaps-assets#license) | confirmed (2026-11-14) | Noto Sans (SIL OFL 1.1); icons from tangrams/icons (MIT) |
 | [Protomaps Basemap (tiles schema, daily OSM builds, map style)](https://github.com/protomaps/basemaps) | basemap | [Style code BSD-3-Clause; style design CC0; tiles are an ODbL Produced Work of OpenStreetMap](https://github.com/protomaps/basemaps/blob/main/LICENSE.md) | confirmed (2026-11-14) | Protomaps |
+| [Historical Maps of Toronto tile services (Boulton 1858, Goad atlases, 1818, 1856, 1947)](https://www.arcgis.com/) | overlays | No reuse licence stated (maps are pre-1950 and out of copyright); viewed online only, never copied | unconfirmed (2026-11-14) | Scans: Toronto Public Library / City of Toronto Archives / Library and Archives Canada, via ArcGIS Online |
+| [Ontario Historical County Maps Project (University of Toronto Map & Data Library)](https://mdl.library.utoronto.ca/collections/mdl-projects/ontario-county-map) | overlays | No reuse licence stated (underlying 1850s–1870s maps are public domain); viewed online only, never copied | unconfirmed (2026-11-14) | Historical county map georeferenced by the Ontario Historical County Maps Project, University of Toronto Map & Data Library |
 | [Wikidata](https://www.wikidata.org) | places, settlements | [CC0 1.0 (structured data in the main namespace)](https://www.wikidata.org/wiki/Wikidata:Licensing) | confirmed (2026-11-14) | Wikidata (CC0) |
 | [English Wikipedia](https://en.wikipedia.org) | places, settlements | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) | confirmed (2026-11-14) | Text adapted from Wikipedia articles (CC BY-SA 4.0); each entry links its article revision |
 
@@ -64,6 +66,20 @@ and the attribution text the app displays. **Licence check** says how sure we ar
 - Data: https://build.protomaps.com/
 - Licence check: **confirmed** — Read LICENSE.md and docs in the GitHub repositories
 - Terms notes: Docs ask users not to hotlink the build bucket; we copy a regional extract once per data build into our own GitHub release.
+
+### Historical Maps of Toronto tile services (Boulton 1858, Goad atlases, 1818, 1856, 1947) (`toronto_historical_maps`)
+
+- Provider: Published on ArcGIS Online; scans from Toronto Public Library, City of Toronto Archives and Library and Archives Canada
+- Data: https://tiles.arcgis.com/tiles/jIL9msH9OI208GCb/arcgis/rest/services
+- Licence check: **unconfirmed** — Service metadata (copyrightText) read by the GitHub discovery run; no licence field
+- Terms notes: Each service's own copyright text is shown with the overlay. Streamed from the publisher's tile server when viewed; the pipeline never downloads or redistributes the tiles.
+
+### Ontario Historical County Maps Project (University of Toronto Map & Data Library) (`uoft_county_maps`)
+
+- Provider: University of Toronto Map & Data Library (scans of Tremaine and other 1850s–1870s county maps)
+- Data: https://tiles.arcgis.com/tiles/9NvE8jKNWWlDGsUJ/arcgis/rest/services
+- Licence check: **unconfirmed** — Service metadata read by the GitHub discovery run (licenseInfo empty); project pages blocked from build session
+- Terms notes: The tiles are public ArcGIS Online services with no licence text. To respect that, the app streams them from U of T's server when viewed (like the project's own web viewer) and the pipeline never downloads or redistributes them.
 
 ### Wikidata (`wikidata`)
 
