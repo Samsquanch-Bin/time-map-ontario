@@ -222,7 +222,8 @@ def fetch_arcgis_imageserver(ov: OverlayDef, workdir: Path) -> tuple[Path, dict[
     windows = plan_export_windows(
         (ext["xmin"], ext["ymin"], ext["xmax"], ext["ymax"]),
         (info["pixelSizeX"], info["pixelSizeY"]),
-        (int(info.get("maxImageWidth", 4000)), int(info.get("maxImageHeight", 4000))),
+        # the server's own maximum often times out (it returns an HTML error page), so stay small
+        (min(2048, int(info.get("maxImageWidth", 2048))), min(2048, int(info.get("maxImageHeight", 2048)))),
     )
     print(f"{ov.id}: {len(windows)} export window(s), EPSG:{wkid}")
     tiles = []
@@ -234,8 +235,9 @@ def fetch_arcgis_imageserver(ov: OverlayDef, workdir: Path) -> tuple[Path, dict[
             "bboxSR": wkid,
             "imageSR": wkid,
             "size": f"{win['size'][0]},{win['size'][1]}",
-            "format": "tiff",
-            "pixelType": "U8",
+            # the server-rendered colours (what Brock's own viewer shows); raw TIFF exports
+            # of some colour scans come back as a single, blank band
+            "format": "png32",
             "interpolation": "RSP_BilinearInterpolation",
             "f": "image",
         }
@@ -429,7 +431,7 @@ def warp_gcp_sheets(ov: OverlayDef, work: Path) -> tuple[Path, dict[str, Any]]:
     than ``max_rmse_m`` are skipped (probably a misread corner)."""
     import requests
 
-    from .georef import ground_scale, lonlat_to_mercator, residuals_m, rmse
+    from .georef import fit_affine, ground_scale, residuals_m, rmse
 
     max_rmse = float(ov.fetch.get("max_rmse_m", 12))
     res = WEB_MERCATOR_WORLD_M / 256 / 2 ** (ov.maxzoom or 19)
@@ -437,6 +439,7 @@ def warp_gcp_sheets(ov: OverlayDef, work: Path) -> tuple[Path, dict[str, Any]]:
     for sh in ov.fetch["sheets"]:
         label = sh.get("label", "sheet")
         gcps = [g[:4] for g in sh["gcps"]]
+        cx, cy = fit_affine(gcps)
         r = residuals_m(gcps)
         err = rmse(r)
         entry = {"label": label, "gcps": len(gcps), "rmse_m": round(err, 2), "max_m": round(max(r), 2), "m_per_px": round(ground_scale(gcps), 3)}
@@ -454,13 +457,14 @@ def warp_gcp_sheets(ov: OverlayDef, work: Path) -> tuple[Path, dict[str, Any]]:
         cmd = ["gdal_translate", "-q", "-of", "VRT", "-a_srs", "EPSG:3857"]
         if x1 > x0 and y1 > y0:
             cmd += ["-srcwin", str(x0), str(y0), str(x1 - x0), str(y1 - y0)]
-        for g in gcps:
-            mx, my = lonlat_to_mercator(g[2], g[3])
-            cmd += ["-gcp", str(g[0] - x0), str(g[1] - y0), f"{mx:.3f}", f"{my:.3f}"]
         gvrt = work / f"{label}_gcp.vrt"
         _run(cmd + [str(src), str(gvrt)])
+        # Write our least-squares affine straight into the VRT as its geotransform, so
+        # GDAL doesn't re-derive it from the points (its homography check rejects sheets
+        # whose corners mostly lie along one street).
+        set_vrt_geotransform(gvrt, affine_geotransform(cx, cy, x0, y0))
         out = work / f"{label}_3857.tif"
-        _run(["gdalwarp", "-q", "-overwrite", "-order", "1", "-t_srs", "EPSG:3857", "-r", "bilinear", "-dstalpha",
+        _run(["gdalwarp", "-q", "-overwrite", "-t_srs", "EPSG:3857", "-r", "bilinear", "-dstalpha",
               "-tr", f"{res:.6f}", f"{res:.6f}", "-co", "COMPRESS=DEFLATE", "-co", "TILED=YES", str(gvrt), str(out)])
         warped_files.append(str(out))
         raw.unlink(missing_ok=True)  # originals are ~180 MB each; keep the runner's disk free
@@ -476,3 +480,19 @@ def warp_gcp_sheets(ov: OverlayDef, work: Path) -> tuple[Path, dict[str, Any]]:
         "measured_rmse_m": round(rmse([e["rmse_m"] for e in kept]), 1),
     }
     return mosaic, meta
+
+
+def affine_geotransform(cx: list[float], cy: list[float], x0: int = 0, y0: int = 0) -> list[float]:
+    """GDAL geotransform for X = cx·(px, py, 1), Y = cy·(px, py, 1), with pixel (0, 0)
+    of the cropped image at original pixel (x0, y0)."""
+    return [cx[2] + cx[0] * x0 + cx[1] * y0, cx[0], cx[1], cy[2] + cy[0] * x0 + cy[1] * y0, cy[0], cy[1]]
+
+
+def set_vrt_geotransform(vrt: Path, gt: list[float]) -> None:
+    import re as _re
+
+    text = vrt.read_text()
+    text = _re.sub(r"\s*<GeoTransform>.*?</GeoTransform>", "", text, flags=_re.S)
+    text = _re.sub(r"\s*<GCPList.*?</GCPList>", "", text, flags=_re.S)
+    text = text.replace("</SRS>", "</SRS>\n  <GeoTransform>" + ", ".join(f"{v:.10f}" for v in gt) + "</GeoTransform>", 1)
+    vrt.write_text(text)

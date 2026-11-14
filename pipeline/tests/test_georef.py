@@ -38,3 +38,27 @@ def test_misread_point_shows_up_in_residuals():
 def test_needs_three_points():
     with pytest.raises(ValueError):
         fit_affine(_synthetic()[:2])
+
+
+def test_affine_geotransform_maps_pixels_like_the_fit():
+    from tmo_pipeline.overlays import affine_geotransform
+
+    g = _synthetic()
+    cx, cy = fit_affine(g)
+    x0, y0 = 50, 80
+    gt = affine_geotransform(cx, cy, x0, y0)
+    for px, py, lon, lat in g:
+        X = gt[0] + (px - x0) * gt[1] + (py - y0) * gt[2]
+        Y = gt[3] + (px - x0) * gt[4] + (py - y0) * gt[5]
+        mx, my = lonlat_to_mercator(lon, lat)
+        assert abs(X - mx) < 0.05 and abs(Y - my) < 0.05
+
+
+def test_set_vrt_geotransform(tmp_path):
+    from tmo_pipeline.overlays import set_vrt_geotransform
+
+    v = tmp_path / "a.vrt"
+    v.write_text('<VRTDataset rasterXSize="10" rasterYSize="10">\n  <SRS>EPSG:3857</SRS>\n  <GeoTransform>0,1,0,0,0,-1</GeoTransform>\n</VRTDataset>')
+    set_vrt_geotransform(v, [1, 2, 3, 4, 5, 6])
+    t = v.read_text()
+    assert t.count("<GeoTransform>") == 1 and "1.0000000000, 2.0000000000" in t
