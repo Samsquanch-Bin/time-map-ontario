@@ -51,15 +51,20 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
     const [w, so, e, n] = s.view.bounds;
     return mapsHere(usable, [(w + e) / 2, (so + n) / 2], s.view.zoom);
   }, [usable, s.view]);
-  const activeOverlay = s.oldMapOn ? chooseOverlay(here, s.activeOverlayId, s.view?.zoom ?? 0) : null;
+  // A locked map stays on wherever you go; otherwise the picked or most local map here.
+  const lockedOverlay = useMemo(() => {
+    const o = catalog?.overlays.find((x) => x.id === s.lockedOverlayId);
+    return o && overlayAvailable(catalog, s.installed, o) ? o : null;
+  }, [catalog, s.lockedOverlayId, s.installed]);
+  const activeOverlay = s.oldMapOn ? (lockedOverlay ?? chooseOverlay(here, s.activeOverlayId, s.view?.zoom ?? 0)) : null;
   // A hand-picked map is let go once you move somewhere it doesn't cover
   // (but not while the camera is still flying to it).
   const flyingTo = useRef<string | null>(null);
   useEffect(() => {
-    if (!s.view || !s.activeOverlayId) return;
+    if (!s.view || !s.activeOverlayId || s.lockedOverlayId) return;
     if (here.some((o) => o.id === s.activeOverlayId)) flyingTo.current = null;
     else if (flyingTo.current !== s.activeOverlayId) s.set({ activeOverlayId: null });
-  }, [here, s.view, s.activeOverlayId]);
+  }, [here, s.view, s.activeOverlayId, s.lockedOverlayId]);
   const coverage = useMemo(
     () => (s.coverageVisible ? (catalog?.overlays ?? []).filter((o) => overlaps(o.era, s.era)) : null),
     [catalog, s.coverageVisible, s.era],
@@ -216,12 +221,12 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
               overlay={overlayForView}
               isShown={activeOverlay?.id === overlayForView.id}
               onShow={() => {
-                s.set({ activeOverlayId: overlayForView.id, oldMapOn: true, compare: false });
+                s.set({ activeOverlayId: overlayForView.id, oldMapOn: true, compare: false, ...(s.lockedOverlayId ? { lockedOverlayId: overlayForView.id } : {}) });
                 if (!here.some((o) => o.id === overlayForView.id)) zoomTo(overlayForView);
                 sheetRef.current?.snapToIndex(0);
               }}
               onCompare={() => {
-                s.set({ activeOverlayId: overlayForView.id, oldMapOn: true, compare: true });
+                s.set({ activeOverlayId: overlayForView.id, oldMapOn: true, compare: true, ...(s.lockedOverlayId ? { lockedOverlayId: overlayForView.id } : {}) });
                 if (!here.some((o) => o.id === overlayForView.id)) zoomTo(overlayForView);
                 sheetRef.current?.snapToIndex(0);
               }}

@@ -18,6 +18,8 @@ type Persisted = {
   era: Range;
   /** A map the person picked by hand; otherwise the most local map here is shown. */
   activeOverlayId: string | null;
+  /** A map kept on screen wherever you go, until unlocked. */
+  lockedOverlayId: string | null;
   /** Old maps on or off altogether. */
   oldMapOn: boolean;
   overlayOpacity: number;
@@ -45,6 +47,7 @@ export const useApp = create<Persisted & Transient>()(
       era: [ERA_MIN, ERA_MAX],
       activeOverlayId: null,
       oldMapOn: true,
+      lockedOverlayId: null,
       overlayOpacity: 0.8,
       coverageVisible: false,
       placesVisible: true,

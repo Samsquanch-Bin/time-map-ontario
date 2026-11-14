@@ -34,10 +34,13 @@ export function LayersPanel({ go, placeCount, here, shown }: LayersProps) {
   const idx = shown ? here.findIndex((o) => o.id === shown.id) : -1;
   const allYears = s.era[0] <= ERA_MIN && s.era[1] >= ERA_MAX;
 
+  const locked = !!s.lockedOverlayId && shown?.id === s.lockedOverlayId;
+  // Picking a map while one is locked moves the lock to the new map.
+  const pick = (id: string) =>
+    s.set({ activeOverlayId: id, oldMapOn: true, compare: false, ...(s.lockedOverlayId ? { lockedOverlayId: id } : {}) });
   const step = (d: number) => {
     if (here.length === 0) return;
-    const next = here[(Math.max(idx, 0) + d + here.length) % here.length];
-    s.set({ activeOverlayId: next.id, oldMapOn: true, compare: false });
+    pick(here[(Math.max(idx, 0) + d + here.length) % here.length].id);
   };
 
   let headline: string;
@@ -52,8 +55,9 @@ export function LayersPanel({ go, placeCount, here, shown }: LayersProps) {
     headline = shown.title;
     detail = [
       `${shown.year}`,
+      locked ? "locked" : "",
       shown.tiles ? "needs internet" : "",
-      here.length > 1 ? `${idx + 1} of ${here.length} maps here` : "only map here",
+      idx < 0 ? "not on this spot" : zoom < shown.minzoom ? "zoom in to see it" : here.length > 1 ? `${idx + 1} of ${here.length} maps here` : "only map here",
     ]
       .filter(Boolean)
       .join(" · ");
@@ -78,6 +82,17 @@ export function LayersPanel({ go, placeCount, here, shown }: LayersProps) {
               {detail}
             </Text>
           </Pressable>
+          {shown && s.oldMapOn ? (
+            <IconButton
+              icon={locked ? "lock" : "lock-open-variant-outline"}
+              iconColor={locked ? theme.colors.primary : theme.colors.onSurfaceVariant}
+              mode={locked ? "contained-tonal" : undefined}
+              accessibilityLabel={locked ? "Unlock this map" : "Lock this map"}
+              onPress={() =>
+                s.set(locked ? { lockedOverlayId: null, activeOverlayId: null } : { lockedOverlayId: shown.id, activeOverlayId: shown.id })
+              }
+            />
+          ) : null}
           <IconButton icon="chevron-right" accessibilityLabel="Next map here" disabled={here.length < 2 || !s.oldMapOn} onPress={() => step(1)} />
         </View>
         {!catalog ? (
@@ -92,12 +107,29 @@ export function LayersPanel({ go, placeCount, here, shown }: LayersProps) {
           <Text variant="titleSmall" style={{ flex: 1 }}>
             Old maps
           </Text>
-          {s.activeOverlayId ? (
+          {s.activeOverlayId && !s.lockedOverlayId ? (
             <Button compact onPress={() => s.set({ activeOverlayId: null })}>
               Back to automatic
             </Button>
           ) : null}
           <Switch value={s.oldMapOn} onValueChange={(oldMapOn) => s.set({ oldMapOn, compare: false })} />
+        </View>
+      ) : null}
+      {shown && s.oldMapOn ? (
+        <View style={styles.row}>
+          <List.Icon icon={locked ? "lock" : "lock-open-variant-outline"} color={locked ? theme.colors.primary : theme.colors.onSurfaceVariant} />
+          <View style={{ flex: 1 }}>
+            <Text variant="titleSmall">Lock this map</Text>
+            <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>
+              {locked ? "Stays on wherever you move. Turn off to go back to automatic." : "Keep this map on instead of switching as you move."}
+            </Text>
+          </View>
+          <Switch
+            value={locked}
+            onValueChange={(on) =>
+              s.set(on ? { lockedOverlayId: shown.id, activeOverlayId: shown.id } : { lockedOverlayId: null, activeOverlayId: null })
+            }
+          />
         </View>
       ) : null}
       {shown ? <OpacitySlider value={s.overlayOpacity} onChange={(overlayOpacity) => s.set({ overlayOpacity })} /> : null}
@@ -183,7 +215,7 @@ export function LayersPanel({ go, placeCount, here, shown }: LayersProps) {
                   key={o.id}
                   title={o.title}
                   description={`${o.year}${o.tiles ? " · needs internet" : ""}${o.sample ? " · SAMPLE DATA" : ""}`}
-                  onPress={() => s.set({ activeOverlayId: o.id, oldMapOn: true, compare: false })}
+                  onPress={() => pick(o.id)}
                   left={(p) => (
                     <List.Icon {...p} icon={shown?.id === o.id ? "radiobox-marked" : "radiobox-blank"} color={theme.colors.primary} />
                   )}
