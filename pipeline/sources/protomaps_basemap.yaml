@@ -1,0 +1,16 @@
+id: protomaps_basemap
+name: Protomaps Basemap (tiles schema, daily OSM builds, map style)
+provider: Protomaps
+homepage: https://github.com/protomaps/basemaps
+data_url: https://build.protomaps.com/
+licence: Style code BSD-3-Clause; style design CC0; tiles are an ODbL Produced Work of OpenStreetMap
+licence_url: https://github.com/protomaps/basemaps/blob/main/LICENSE.md
+attribution: "Protomaps"
+used_for: [basemap]
+terms_notes: >
+  Docs ask users not to hotlink the build bucket; we copy a regional extract once
+  per data build into our own GitHub release.
+licence_check:
+  status: confirmed
+  method: Read LICENSE.md and docs in the GitHub repositories
+  checked_on: "2026-11-14"

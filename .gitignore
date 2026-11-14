@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+*.egg-info/
+pipeline/build/
+pipeline/cache/
+
+# Node / Expo
+node_modules/
+app/.expo/
+app/android/
+app/ios/
+app/dist/
+app/map-assets/fonts/
+app/map-assets/sprites/
+*.apk
+*.aab
+*.keystore
+*.jks
+
+# Data outputs
+*.pmtiles
+*.mbtiles
+*.tif
+*.tiff
+.DS_Store

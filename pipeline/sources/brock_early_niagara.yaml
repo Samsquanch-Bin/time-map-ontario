@@ -1,0 +1,16 @@
+id: brock_early_niagara
+name: Brock University Map, Data & GIS Library — Early Niagara georeferenced maps
+provider: Brock University Map, Data & GIS Library (scans from Library and Archives Canada National Map Collection)
+homepage: https://brocku.ca/library/collections-research-resources/maps-data-gis/
+data_url: https://terra.library.brocku.ca/arcgis/rest/services/EarlyNiagara
+licence: Public domain (per item metadata "public domain / No restrictions")
+attribution: "Map scan: Library and Archives Canada; georeferencing: Brock University Map, Data & GIS Library"
+used_for: [overlays]
+terms_notes: >
+  The pipeline downloads each item's iteminfo (licenseInfo / accessInformation) and
+  stores it next to the overlay; the build log prints it so the per-item licence can
+  be confirmed.
+licence_check:
+  status: unconfirmed
+  method: Search summary of item metadata (terra.library.brocku.ca blocked from build session); re-checked per item by the data build
+  checked_on: "2026-11-14"

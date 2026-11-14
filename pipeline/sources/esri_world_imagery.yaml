@@ -1,0 +1,18 @@
+id: esri_world_imagery
+name: Esri World Imagery (satellite / aerial basemap)
+provider: Esri, via ArcGIS Location Platform
+homepage: https://developers.arcgis.com/
+data_url: https://ibasemaps-api.arcgis.com/arcgis/rest/services/World_Imagery/MapServer
+licence: Esri ArcGIS Location Platform terms (free tier; requires the user's own API key)
+licence_url: https://www.esri.com/en-us/legal/terms/full-master-agreement
+attribution: "Powered by Esri · Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community"
+used_for: [satellite]
+terms_notes: >
+  Streamed online only, never stored in a data pack. The API key is entered by the
+  user on the phone and is never committed to the repository. Free tier reported as
+  2M basemap tiles/month (search summary).
+licence_check:
+  status: unconfirmed
+  method: Search summaries of developers.arcgis.com pricing and Esri community answers; Esri pages blocked from build session
+  checked_on: "2026-11-14"
+  notes: Confirm free tier needs no payment method before the user signs up.

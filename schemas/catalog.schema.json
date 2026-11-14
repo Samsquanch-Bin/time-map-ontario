@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Time Map Ontario data catalogue",
+  "type": "object",
+  "required": ["version", "generated_at", "focus_bbox", "basemap_bbox", "packs", "overlays", "attributions"],
+  "additionalProperties": false,
+  "$defs": {
+    "bbox": {
+      "type": "array",
+      "items": { "type": "number" },
+      "minItems": 4,
+      "maxItems": 4
+    }
+  },
+  "properties": {
+    "version": { "const": 1 },
+    "generated_at": { "type": "string" },
+    "focus_bbox": { "$ref": "#/$defs/bbox" },
+    "basemap_bbox": { "$ref": "#/$defs/bbox" },
+    "packs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["file", "kind", "bytes", "sha256", "url"],
+        "additionalProperties": false,
+        "properties": {
+          "file": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+          "kind": { "enum": ["basemap", "overlay", "terrain", "trails", "places"] },
+          "bytes": { "type": "integer", "minimum": 1 },
+          "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+          "url": { "type": "string", "pattern": "^https://" }
+        }
+      }
+    },
+    "overlays": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "year", "era", "accuracy_note", "file", "minzoom", "maxzoom", "bounds", "footprint", "source_id", "licence", "licence_status", "attribution", "sample"],
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "year": { "type": "integer" },
+          "era": { "type": "array", "items": { "type": "integer" }, "minItems": 2, "maxItems": 2 },
+          "accuracy_note": { "type": "string", "minLength": 1 },
+          "file": { "type": "string" },
+          "minzoom": { "type": "integer", "minimum": 0, "maximum": 22 },
+          "maxzoom": { "type": "integer", "minimum": 0, "maximum": 22 },
+          "bounds": { "$ref": "#/$defs/bbox" },
+          "footprint": {
+            "type": "object",
+            "required": ["type", "coordinates"],
+            "properties": { "type": { "enum": ["Polygon", "MultiPolygon"] } }
+          },
+          "source_id": { "type": "string" },
+          "licence": { "type": "string" },
+          "licence_status": { "enum": ["confirmed", "unconfirmed"] },
+          "attribution": { "type": "string", "minLength": 1 },
+          "sample": { "type": "boolean" }
+        }
+      }
+    },
+    "attributions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["source_id", "name", "text", "licence", "licence_status"],
+        "properties": {
+          "source_id": { "type": "string" },
+          "text": { "type": "string", "minLength": 1 },
+          "licence_status": { "enum": ["confirmed", "unconfirmed"] }
+        }
+      }
+    }
+  }
+}

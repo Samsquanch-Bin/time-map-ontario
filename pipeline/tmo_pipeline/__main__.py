@@ -1,0 +1,80 @@
+"""Command line: ``python -m tmo_pipeline <command>``.
+
+Commands
+  validate          check all manifests and overlay definitions
+  sources-md        regenerate SOURCES.md from the manifests
+  basemap           extract the Southern Ontario basemap (needs pmtiles CLI + network)
+  overlay ID|all    build historical overlay(s) (needs GDAL + pmtiles CLI + network)
+  catalog           write build/release/catalog.json from what has been built
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import sys
+
+from .config import BUILD_DIR, REPO_DIR
+from .manifests import load_manifests, require_sources
+from .overlays import load_overlays
+
+
+def main(argv: list[str] | None = None) -> int:
+    p = argparse.ArgumentParser(prog="tmo_pipeline")
+    sub = p.add_subparsers(dest="cmd", required=True)
+    sub.add_parser("validate")
+    sm = sub.add_parser("sources-md")
+    sm.add_argument("--check", action="store_true", help="fail if SOURCES.md is out of date")
+    sub.add_parser("basemap")
+    ov = sub.add_parser("overlay")
+    ov.add_argument("id")
+    cat = sub.add_parser("catalog")
+    cat.add_argument("--release", action="store_true", help="refuse sample data")
+    args = p.parse_args(argv)
+
+    sources = load_manifests()
+    overlays = load_overlays()
+
+    if args.cmd == "validate":
+        for o in overlays.values():
+            require_sources([o.source], sources)
+        print(f"ok: {len(sources)} sources, {len(overlays)} overlays")
+    elif args.cmd == "sources-md":
+        from .sources_md import render
+
+        text = render(sources)
+        path = REPO_DIR / "SOURCES.md"
+        if args.check:
+            if not path.exists() or path.read_text() != text:
+                print("SOURCES.md is out of date: run python -m tmo_pipeline sources-md", file=sys.stderr)
+                return 1
+            print("SOURCES.md is up to date")
+        else:
+            path.write_text(text)
+            print(f"wrote {path}")
+    elif args.cmd == "basemap":
+        from .basemap import build_basemap
+
+        print(build_basemap())
+    elif args.cmd == "overlay":
+        from .overlays import build_overlay
+
+        ids = list(overlays) if args.id == "all" else [args.id]
+        for oid in ids:
+            if oid not in overlays:
+                print(f"unknown overlay {oid}", file=sys.stderr)
+                return 2
+            require_sources([overlays[oid].source], sources)
+            build_overlay(overlays[oid])
+    elif args.cmd == "catalog":
+        from .catalog import build_catalog
+
+        release = BUILD_DIR / "release"
+        catalog = build_catalog(release, BUILD_DIR / "overlay-meta", overlays, sources, release=args.release)
+        release.mkdir(parents=True, exist_ok=True)
+        (release / "catalog.json").write_text(json.dumps(catalog, indent=1))
+        print(f"catalog: {len(catalog['packs'])} packs, {len(catalog['overlays'])} overlays")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

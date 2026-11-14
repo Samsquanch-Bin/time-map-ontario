@@ -1,0 +1,12 @@
+id: protomaps_assets
+name: Noto Sans glyphs and map sprites (basemaps-assets)
+provider: Protomaps / Noto Project Authors / tangrams icons
+homepage: https://github.com/protomaps/basemaps-assets
+licence: Fonts SIL Open Font License 1.1; sprites derived from MIT-licensed tangrams/icons
+licence_url: https://github.com/protomaps/basemaps-assets#license
+attribution: "Noto Sans (SIL OFL 1.1); icons from tangrams/icons (MIT)"
+used_for: [basemap]
+licence_check:
+  status: confirmed
+  method: Read README.md and fonts/OFL.txt in the GitHub repository
+  checked_on: "2026-11-14"

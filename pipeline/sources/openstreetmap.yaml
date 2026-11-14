@@ -1,0 +1,16 @@
+id: openstreetmap
+name: OpenStreetMap data
+provider: OpenStreetMap contributors / OpenStreetMap Foundation
+homepage: https://www.openstreetmap.org
+licence: Open Database License (ODbL) 1.0
+licence_url: https://www.openstreetmap.org/copyright
+attribution: "© OpenStreetMap contributors"
+used_for: [basemap, trails]
+terms_notes: >
+  Tiles built from OSM are treated as an ODbL "Produced Work". Attribution must be
+  visible on the map. The build recipe (pipeline/) is public so the derived data
+  can be reproduced. tile.openstreetmap.org is never used.
+licence_check:
+  status: confirmed
+  method: Licence text well established; OSMF attribution guideline read via search summary (osmfoundation.org blocked from build session)
+  checked_on: "2026-11-14"

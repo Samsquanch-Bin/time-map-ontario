@@ -1,0 +1,40 @@
+{
+  "name": "time-map-ontario",
+  "version": "0.1.0",
+  "private": true,
+  "main": "index.ts",
+  "scripts": {
+    "start": "expo start --dev-client",
+    "map-assets": "node scripts/fetch-map-assets.mjs",
+    "prebuild:android": "expo prebuild --platform android --no-install",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test test/*.test.ts"
+  },
+  "dependencies": {
+    "@expo/vector-icons": "^15.0.2",
+    "@gorhom/bottom-sheet": "5.2.14",
+    "@maplibre/maplibre-react-native": "11.5.1",
+    "@protomaps/basemaps": "5.7.2",
+    "@react-native-async-storage/async-storage": "2.2.0",
+    "expo": "~55.0.32",
+    "expo-file-system": "~55.0.26",
+    "expo-status-bar": "~55.0.6",
+    "expo-system-ui": "~55.0.22",
+    "react": "19.2.0",
+    "react-native": "0.83.10",
+    "react-native-gesture-handler": "~2.30.0",
+    "react-native-paper": "5.15.4",
+    "react-native-reanimated": "4.2.1",
+    "react-native-safe-area-context": "~5.6.2",
+    "react-native-screens": "~4.23.0",
+    "react-native-svg": "15.15.3",
+    "react-native-worklets": "0.7.4",
+    "zustand": "5.1.0"
+  },
+  "devDependencies": {
+    "@types/geojson": "^7946.0.16",
+    "@types/react": "~19.2.2",
+    "tsx": "4.23.15",
+    "typescript": "~5.9.2"
+  }
+}

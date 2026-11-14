@@ -1,0 +1,16 @@
+id: niagara-1826
+title: Niagara Peninsula, 1826
+year: 1826
+source: brock_early_niagara
+fetch:
+  method: arcgis_imageserver
+  url: https://terra.library.brocku.ca/arcgis/rest/services/EarlyNiagara/NiagaraPeninsula1826NMC3005/ImageServer
+minzoom: 8
+description: >
+  Early survey map of the Niagara Peninsula (Library and Archives Canada,
+  National Map Collection item NMC 3005), georeferenced by Brock University's
+  Map, Data & GIS Library.
+accuracy_note: >
+  Brock does not publish error figures for this georeferencing, and it has not
+  been measured here yet. Treat positions as approximate: compare shorelines
+  and river mouths with the modern map before trusting a location.

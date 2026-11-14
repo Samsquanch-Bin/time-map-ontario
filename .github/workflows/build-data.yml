@@ -1,0 +1,80 @@
+name: Build map data
+
+# Builds every data pack (basemap + historical overlays + catalog.json) and
+# attaches them to the "data-latest" GitHub release, where the app downloads them.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["pipeline/**", "schemas/**", ".github/workflows/build-data.yml"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-data
+  cancel-in-progress: false
+
+jobs:
+  data:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    defaults:
+      run:
+        working-directory: pipeline
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install GDAL and pmtiles
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq gdal-bin python3-gdal
+          gh release download -R protomaps/go-pmtiles --pattern '*Linux_x86_64.tar.gz' --dir /tmp/pmtiles
+          tar -xzf /tmp/pmtiles/*.tar.gz -C /tmp/pmtiles
+          sudo install /tmp/pmtiles/pmtiles /usr/local/bin/pmtiles
+          gdalinfo --version
+          pmtiles version || true
+          # gdal_polygonize.py runs on the system python that has the GDAL bindings
+          which gdal_polygonize.py
+
+      - run: pip install -e '.[test]'
+      - run: python -m tmo_pipeline validate
+      - run: python -m pytest -q
+
+      - name: Basemap (Southern Ontario, OpenStreetMap via Protomaps)
+        run: python -m tmo_pipeline basemap
+
+      - name: Historical overlays
+        run: python -m tmo_pipeline overlay all
+
+      - name: Catalogue
+        run: python -m tmo_pipeline catalog --release
+
+      - name: Summary
+        run: |
+          {
+            echo "### Data build"
+            echo '```'
+            ls -la build/release
+            cat build/basemap-source.txt
+            python -c "import json,glob; [print(m['id'], 'zoom', m['minzoom'], '-', m['maxzoom'], 'bounds', m['bounds'], '| item licence:', repr(m.get('source_item_licence',''))[:300], '| access:', repr(m.get('source_item_access',''))[:300]) for m in (json.load(open(f)) for f in sorted(glob.glob('build/overlay-meta/*.json')))]"
+            echo '```'
+          } | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Publish to the data-latest release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view data-latest >/dev/null 2>&1 || \
+            gh release create data-latest --title "Map data (latest)" --notes "Data packs downloaded by the app. Don't download these by hand; use Settings & data in the app." --prerelease
+          gh release upload data-latest build/release/* --clobber
+          # remove packs the new catalogue no longer lists
+          keep=$(python -c "import json;print(' '.join(p['file'] for p in json.load(open('build/release/catalog.json'))['packs'])) + ' catalog.json'")
+          for old in $(gh release view data-latest --json assets --jq '.assets[].name'); do
+            case " $keep " in *" $old "*) ;; *) gh release delete-asset data-latest "$old" --yes ;; esac
+          done
