@@ -1,0 +1,297 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+  :root { --ink:#1d1b20; --muted:#625b71; --primary:#6750a4; --paper:#efe2c4; --sepia:#7a4b22; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html,body { width:720px; height:1280px; overflow:hidden; background:#16141c; font-family: "Roboto","Segoe UI",Arial,sans-serif; }
+  #stage { position:absolute; inset:0; }
+  /* caption band */
+  #cap { position:absolute; left:0; right:0; top:0; height:200px; padding:34px 48px 0; color:#fff; }
+  #step { font-size:22px; letter-spacing:2px; color:#cdbdff; text-transform:uppercase; font-weight:600; }
+  #title { font-size:42px; font-weight:700; margin-top:8px; line-height:1.15; }
+  #sub { font-size:24px; color:#cfc9d9; margin-top:10px; line-height:1.3; }
+  /* phone */
+  #phone { position:absolute; left:110px; top:225px; width:500px; height:1020px; border-radius:56px; background:#000; padding:14px; box-shadow:0 30px 80px rgba(0,0,0,.6); }
+  #screen { position:relative; width:100%; height:100%; border-radius:44px; overflow:hidden; background:#e9e7e2; }
+  .layer { position:absolute; inset:0; }
+  #mapwrap { position:absolute; inset:0; overflow:hidden; }
+  #world { position:absolute; left:0; top:0; width:472px; height:992px; transform-origin: 236px 420px; }
+  svg { display:block; }
+  /* UI chrome */
+  #status { position:absolute; top:0; left:0; right:0; height:40px; display:flex; justify-content:space-between; padding:12px 34px 0; font-size:15px; font-weight:600; color:#222; z-index:20; }
+  #search { position:absolute; top:46px; left:16px; right:16px; height:52px; border-radius:26px; background:#f3edf7; box-shadow:0 2px 6px rgba(0,0,0,.25); display:flex; align-items:center; padding:0 18px; gap:12px; font-size:16px; color:#49454f; z-index:15; }
+  #search .q { color:#1d1b20; }
+  #results { position:absolute; top:104px; left:16px; right:16px; background:#fff; border-radius:16px; box-shadow:0 4px 14px rgba(0,0,0,.25); z-index:15; overflow:hidden; display:none; }
+  .res { padding:14px 18px; border-bottom:1px solid #eee; font-size:15px; }
+  .res b { display:block; font-size:16px; color:#1d1b20; }
+  .res span { color:#625b71; font-size:13px; }
+  .fab { position:absolute; right:16px; width:52px; height:52px; border-radius:16px; background:#eaddff; box-shadow:0 3px 8px rgba(0,0,0,.3); display:flex; align-items:center; justify-content:center; z-index:12; }
+  .fab.on { background:#6750a4; }
+  .fab.on svg path, .fab.on svg circle, .fab.on svg line { stroke:#fff; }
+  /* bottom sheet */
+  #sheet { position:absolute; left:0; right:0; bottom:0; background:#fffbfe; border-radius:28px 28px 0 0; box-shadow:0 -4px 16px rgba(0,0,0,.25); z-index:14; padding:10px 18px 18px; transition:none; }
+  #grab { width:36px; height:4px; background:#cac4d0; border-radius:2px; margin:0 auto 12px; }
+  #card { display:flex; align-items:center; gap:4px; background:#f3edf7; border-radius:16px; padding:10px 6px; }
+  .chev { width:36px; height:36px; display:flex; align-items:center; justify-content:center; font-size:30px; color:#49454f; }
+  #cardtext { flex:1; min-width:0; }
+  #cardtitle { font-size:16px; font-weight:600; color:#1d1b20; line-height:1.25; }
+  #carddetail { font-size:13px; color:#625b71; margin-top:3px; }
+  .row { display:flex; align-items:center; justify-content:space-between; padding:12px 6px; font-size:16px; color:#1d1b20; }
+  .switch { width:52px; height:32px; border-radius:16px; background:#e7e0ec; border:2px solid #79747e; position:relative; }
+  .switch::after { content:""; position:absolute; top:6px; left:6px; width:16px; height:16px; border-radius:50%; background:#79747e; }
+  .switch.on { background:#6750a4; border-color:#6750a4; }
+  .switch.on::after { left:24px; top:2px; width:24px; height:24px; background:#fff; }
+  #slider { position:relative; height:28px; margin:0 6px; }
+  #slider .track { position:absolute; left:0; right:0; top:12px; height:4px; background:#e7e0ec; border-radius:2px; }
+  #slider .fill { position:absolute; left:0; top:12px; height:4px; background:#6750a4; border-radius:2px; }
+  #slider .knob { position:absolute; top:4px; width:20px; height:20px; border-radius:50%; background:#6750a4; margin-left:-10px; }
+  .seg { display:flex; border:1px solid #79747e; border-radius:20px; overflow:hidden; margin:6px; }
+  .seg div { flex:1; text-align:center; padding:8px; font-size:14px; }
+  .seg .sel { background:#e8def8; font-weight:600; }
+  .label { font-size:13px; color:#625b71; padding:6px 6px 0; }
+  /* overlays inside screen */
+  #tap { position:absolute; width:56px; height:56px; margin:-28px 0 0 -28px; border-radius:50%; background:rgba(103,80,164,.35); border:3px solid rgba(255,255,255,.9); z-index:40; display:none; }
+  #divider { position:absolute; top:0; bottom:0; width:4px; background:#fff; box-shadow:0 0 6px rgba(0,0,0,.5); z-index:11; display:none; }
+  #divider .h { position:absolute; top:46%; left:-20px; width:44px; height:44px; border-radius:22px; background:#fff; box-shadow:0 2px 6px rgba(0,0,0,.4); display:flex; align-items:center; justify-content:center; font-size:20px; color:#49454f; }
+  .tag { position:absolute; top:112px; padding:6px 12px; border-radius:12px; background:rgba(0,0,0,.65); color:#fff; font-size:14px; z-index:12; display:none; }
+  #story { position:absolute; left:12px; right:12px; bottom:12px; background:#fffbfe; border-radius:24px; padding:20px; z-index:30; box-shadow:0 -4px 16px rgba(0,0,0,.3); display:none; }
+  #story h3 { font-size:20px; color:#1d1b20; }
+  #story .when { font-size:14px; color:#625b71; margin:4px 0 10px; }
+  #story p { font-size:14px; color:#1d1b20; line-height:1.45; }
+  #story .warn { margin-top:12px; font-size:12.5px; color:#7d5260; background:#ffd8e4; border-radius:10px; padding:8px 10px; }
+  /* settings screen */
+  #settings { position:absolute; inset:0; background:#fffbfe; z-index:25; padding:60px 22px; display:none; }
+  #settings h2 { font-size:24px; color:#1d1b20; margin:8px 0 18px; }
+  #settings .box { background:#f3edf7; border-radius:16px; padding:16px; font-size:15px; color:#1d1b20; }
+  .btn { display:inline-flex; align-items:center; gap:8px; padding:10px 20px; border-radius:20px; font-size:15px; font-weight:600; margin-top:14px; }
+  .btn.tonal { background:#e8def8; color:#1d192b; }
+  .btn.filled { background:#6750a4; color:#fff; }
+  #prog { height:6px; background:#e7e0ec; border-radius:3px; margin-top:16px; overflow:hidden; }
+  #prog div { height:100%; background:#6750a4; width:0; }
+  #progtext { font-size:13px; color:#625b71; margin-top:8px; }
+  #titlecard { position:absolute; inset:0; z-index:100; background:#16141c; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fff; text-align:center; padding:60px; }
+  #titlecard h1 { font-size:64px; line-height:1.1; }
+  #titlecard p { font-size:28px; color:#cfc9d9; margin-top:24px; line-height:1.35; }
+  #dot { position:absolute; width:22px; height:22px; margin:-11px 0 0 -11px; border-radius:50%; background:#1a73e8; border:4px solid #fff; box-shadow:0 0 0 10px rgba(26,115,232,.2); z-index:9; display:none; }
+</style></head>
+<body><div id="stage">
+  <div id="cap"><div id="step"></div><div id="title"></div><div id="sub"></div></div>
+  <div id="phone"><div id="screen">
+    <div id="mapwrap">
+      <div id="world">
+        <svg id="today" class="layer" width="472" height="992" viewBox="0 0 472 992"></svg>
+        <svg id="sat" class="layer" width="472" height="992" viewBox="0 0 472 992" style="opacity:0"></svg>
+        <div id="oldclip" class="layer" style="overflow:hidden"><svg id="old" width="472" height="992" viewBox="0 0 472 992" style="opacity:0"></svg></div>
+        <svg id="hills" class="layer" width="472" height="992" viewBox="0 0 472 992" style="opacity:0"></svg>
+        <svg id="pins" class="layer" width="472" height="992" viewBox="0 0 472 992" style="opacity:0"></svg>
+      </div>
+    </div>
+    <div id="dot"></div>
+    <div id="divider"><div class="h">⟷</div></div>
+    <div class="tag" id="tagold" style="left:16px">1898</div>
+    <div class="tag" id="tagnow" style="right:80px">Today</div>
+    <div id="status"><span>9:41</span><span>▮▮▮ ◔</span></div>
+    <div id="search"><svg width="22" height="22" viewBox="0 0 24 24"><circle cx="10" cy="10" r="6.5" fill="none" stroke="#49454f" stroke-width="2"/><line x1="15" y1="15" x2="21" y2="21" stroke="#49454f" stroke-width="2.4" stroke-linecap="round"/></svg><span id="q">Search a place or paste coordinates</span></div>
+    <div id="results"></div>
+    <div class="fab" id="fab-gps" style="top:176px"><svg width="26" height="26" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6" fill="none" stroke="#21005d" stroke-width="2"/><line x1="12" y1="1.5" x2="12" y2="5" stroke="#21005d" stroke-width="2"/><line x1="12" y1="19" x2="12" y2="22.5" stroke="#21005d" stroke-width="2"/><line x1="1.5" y1="12" x2="5" y2="12" stroke="#21005d" stroke-width="2"/><line x1="19" y1="12" x2="22.5" y2="12" stroke="#21005d" stroke-width="2"/></svg></div>
+    <div class="fab" id="fab-hills" style="top:240px"><svg width="28" height="28" viewBox="0 0 24 24"><path d="M2 19 L9 7 L13 13 L16 9 L22 19 Z" fill="none" stroke="#21005d" stroke-width="2" stroke-linejoin="round"/></svg></div>
+    <div class="fab" id="fab-compare" style="top:304px"><svg width="26" height="26" viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="22" stroke="#21005d" stroke-width="2"/><path d="M8 8 L4 12 L8 16 M16 8 L20 12 L16 16" fill="none" stroke="#21005d" stroke-width="2"/></svg></div>
+    <div id="sheet">
+      <div id="grab"></div>
+      <div id="card"><div class="chev" id="chev-prev">‹</div><div id="cardtext"><div id="cardtitle"></div><div id="carddetail"></div></div>
+        <div class="chev" id="lockicon" style="font-size:20px"></div><div class="chev" id="chev-next">›</div></div>
+      <div class="row"><span>Old maps</span><div class="switch on" id="sw-old"></div></div>
+      <div class="row" style="padding-top:2px"><span>Lock this map</span><div class="switch" id="sw-lock"></div></div>
+      <div class="label">Opacity</div>
+      <div id="slider"><div class="track"></div><div class="fill"></div><div class="knob" id="knob"></div></div>
+      <div class="label">Base map</div>
+      <div class="seg"><div id="seg-std" class="sel">Standard</div><div id="seg-sat">Satellite</div></div>
+    </div>
+    <div id="story"><h3>Battle of Stoney Creek</h3><div class="when">6 June 1813 · battle</div>
+      <p>After capturing Fort George, an American force of about 3,400 advanced west and camped at Stoney Creek on 5 June 1813. The British commander, John Vincent, had retreated to Burlington Heights…</p>
+      <div class="warn">Researched by Claude from the sources below and not reviewed by a person. Check the sources before relying on it.</div></div>
+    <div id="settings"><div style="font-size:26px;color:#49454f">←</div><h2>Settings &amp; data</h2>
+      <div class="box"><b>Map data on this phone</b><div id="setmsg" style="margin-top:8px;color:#49454f">Nothing downloaded yet. The basemap is about 1.2 GB — use Wi-Fi.</div>
+        <div><span class="btn tonal" id="btn-check">↻ Check for data</span></div>
+        <div><span class="btn filled" id="btn-dl" style="opacity:.35">⤓ Download</span></div>
+        <div id="prog"><div></div></div><div id="progtext"></div></div>
+    </div>
+    <div id="tap"></div>
+  </div></div>
+  <div id="titlecard"><h1 id="tc1">Time Map Ontario</h1><p id="tc2">How to use the app</p></div>
+</div>
+<script>
+// ---------- map drawing (illustrative, not real geography) ----------
+const W=472,H=992, NS="http://www.w3.org/2000/svg";
+function el(svg, tag, attrs){ const e=document.createElementNS(NS,tag); for(const k in attrs) e.setAttribute(k,attrs[k]); svg.appendChild(e); return e; }
+function rnd(seed){ let s=seed; return ()=>{ s=(s*16807)%2147483647; return (s-1)/2147483646; }; }
+const streetsX=[], streetsY=[];
+for(let x=-40;x<=W+40;x+=58) streetsX.push(x);
+for(let y=60;y<=H;y+=46) streetsY.push(y);
+const lakeY=760;
+// today
+(function(){ const s=document.getElementById('today');
+  el(s,'rect',{x:0,y:0,width:W,height:H,fill:'#f2efe9'});
+  el(s,'rect',{x:300,y:180,width:120,height:150,fill:'#cfe8c4'}); // park
+  el(s,'path',{d:`M0 ${lakeY} Q 120 ${lakeY-30} 236 ${lakeY-10} T 472 ${lakeY-25} L472 992 L0 992 Z`,fill:'#aad3df'});
+  for(const x of streetsX) el(s,'line',{x1:x,y1:0,x2:x+30,y2:lakeY,stroke:'#fff',"stroke-width":7});
+  for(const y of streetsY) if(y<lakeY-10) el(s,'line',{x1:0,y1:y,x2:W,y2:y-14,stroke:'#fff',"stroke-width":y%184===60?11:6});
+  el(s,'line',{x1:0,y1:336,x2:W,y2:322,stroke:'#fcd6a4',"stroke-width":12});
+  const lab=el(s,'text',{x:150,y:300,"font-size":15,fill:'#555',"font-family":'Arial'}); lab.textContent='King St';
+  const p=el(s,'text',{x:312,y:262,"font-size":13,fill:'#3c6e2f',"font-family":'Arial'}); p.textContent='Park';
+})();
+// satellite
+(function(){ const s=document.getElementById('sat');
+  const f=el(s,'filter',{id:'n'}); el(f,'feTurbulence',{type:'fractalNoise',baseFrequency:'0.9',numOctaves:3,seed:4}); el(f,'feColorMatrix',{values:'0 0 0 0 .25  0 0 0 0 .27  0 0 0 0 .22  0 0 0 .55 0'});
+  el(s,'rect',{x:0,y:0,width:W,height:H,fill:'#5b6151'});
+  el(s,'rect',{x:300,y:180,width:120,height:150,fill:'#3f5b33'});
+  const r=rnd(7);
+  for(let i=0;i<streetsX.length-1;i++) for(let j=0;j<streetsY.length-1;j++){ const x=streetsX[i]+8, y=streetsY[j]+8; if(y>lakeY-40||(x>290&&x<420&&y>170&&y<330)) continue;
+    for(let k=0;k<4;k++) el(s,'rect',{x:x+k*11+r()*3,y:y+4+r()*8,width:9,height:12+r()*6,fill:['#8a8579','#a39a8a','#6f6a61'][k%3]}); }
+  for(const x of streetsX) el(s,'line',{x1:x,y1:0,x2:x+30,y2:lakeY,stroke:'#7d7b74',"stroke-width":6});
+  for(const y of streetsY) if(y<lakeY-10) el(s,'line',{x1:0,y1:y,x2:W,y2:y-14,stroke:'#7d7b74',"stroke-width":5});
+  el(s,'path',{d:`M0 ${lakeY} Q 120 ${lakeY-30} 236 ${lakeY-10} T 472 ${lakeY-25} L472 992 L0 992 Z`,fill:'#2f4a55'});
+  el(s,'rect',{x:0,y:0,width:W,height:H,filter:'url(#n)'});
+})();
+// old map (fire-insurance-plan look)
+(function(){ const s=document.getElementById('old');
+  el(s,'rect',{x:0,y:0,width:W,height:H,fill:'#efe2c4'});
+  const r=rnd(11);
+  for(let i=0;i<streetsX.length-1;i++) for(let j=0;j<streetsY.length-1;j++){ const x=streetsX[i]+6, y=streetsY[j]+5; if(y>lakeY-40) continue;
+    for(let k=0;k<5;k++){ if(r()<0.25) continue; const c=r()<0.5?'#e7a6a0':(r()<0.6?'#f2d27a':'#a9c3d9'); el(s,'rect',{x:x+k*9.5,y:y+3,width:8,height:16+r()*10,fill:c,stroke:'#6b4a2b',"stroke-width":.8}); } }
+  for(const x of streetsX) el(s,'line',{x1:x,y1:0,x2:x+30,y2:lakeY,stroke:'#7a4b22',"stroke-width":1.5});
+  for(const y of streetsY) if(y<lakeY-10) el(s,'line',{x1:0,y1:y,x2:W,y2:y-14,stroke:'#7a4b22',"stroke-width":1.5});
+  el(s,'path',{d:`M0 ${lakeY+10} Q 120 ${lakeY-20} 236 ${lakeY} T 472 ${lakeY-15} L472 992 L0 992 Z`,fill:'#c9d6c9',stroke:'#7a4b22'});
+  const t=el(s,'text',{x:110,y:315,"font-size":13,fill:'#5a3510',"font-family":'Georgia',"font-style":'italic'}); t.textContent='KING STREET';
+})();
+// hills
+(function(){ const s=document.getElementById('hills');
+  const g=el(s,'defs',{}); const lg=el(g,'linearGradient',{id:'esc',x1:0,y1:0,x2:0,y2:1});
+  el(lg,'stop',{offset:'0',"stop-color":'#000',"stop-opacity":0}); el(lg,'stop',{offset:'.5',"stop-color":'#2b2015',"stop-opacity":.45}); el(lg,'stop',{offset:'1',"stop-color":'#fff',"stop-opacity":.25});
+  // ridges: dark on the shaded (south-east) side, light on the lit side
+  const ridges=[[260,0.9],[380,0.7],[470,1.0],[560,0.8]];
+  ridges.forEach(([y,k],i)=>{
+    const id='r'+i; const lg=el(g,'linearGradient',{id,x1:0,y1:0,x2:0,y2:1});
+    el(lg,'stop',{offset:'0',"stop-color":'#fff',"stop-opacity":0});
+    el(lg,'stop',{offset:'.35',"stop-color":'#fff',"stop-opacity":.35*k});
+    el(lg,'stop',{offset:'.5',"stop-color":'#1e140a',"stop-opacity":.5*k});
+    el(lg,'stop',{offset:'1',"stop-color":'#1e140a',"stop-opacity":0});
+    el(s,'path',{d:`M-20 ${y} C 100 ${y-50} 220 ${y+40} 300 ${y-20} S 440 ${y-40} 500 ${y} L500 ${y+70} C 380 ${y+40} 260 ${y+100} 140 ${y+60} S 20 ${y+80} -20 ${y+70} Z`,fill:`url(#${id})`});
+  });
+})();
+// pins
+(function(){ const s=document.getElementById('pins');
+  el(s,'circle',{id:'pin',cx:330,cy:470,r:13,fill:'#b3261e',stroke:'#fff',"stroke-width":3});
+  el(s,'circle',{cx:150,cy:200,r:11,fill:'#7d5260',stroke:'#fff',"stroke-width":3});
+  el(s,'circle',{cx:410,cy:640,r:11,fill:'#7d5260',stroke:'#fff',"stroke-width":3});
+})();
+
+// ---------- timeline ----------
+const $=id=>document.getElementById(id);
+const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+const ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+const ramp=(t,a,b)=>ease(clamp((t-a)/(b-a)));
+const scenes=[
+  {t:0,  d:4,  step:'', title:'', sub:''},
+  {t:4,  d:9,  step:'Step 1', title:'Download the map data', sub:'Open the panel → Settings & data → Check for data → Download. Use Wi-Fi: the base map is about 1.2 GB.'},
+  {t:13, d:8,  step:'Step 2', title:'Zoom in on a town', sub:'The most detailed old map for that spot appears by itself. The card shows which map it is.'},
+  {t:21, d:6,  step:'Step 3', title:'Flip between old maps', sub:'Use ‹ and › on the card when more than one map covers the spot.'},
+  {t:27, d:5,  step:'Step 4', title:'Fade the old map', sub:'Drag the opacity slider to see today’s streets through it.'},
+  {t:32, d:5,  step:'Step 5', title:'Lock a map', sub:'Turn on “Lock this map” to keep it on wherever you move. Turn it off to go back to automatic.'},
+  {t:37, d:8,  step:'Step 6', title:'Compare with today', sub:'Tap the split button, then drag the white line: old map on the left, satellite today on the right.'},
+  {t:45, d:7,  step:'Step 7', title:'Search', sub:'Type a place, park or street — or paste GPS coordinates — and tap a result to go there.'},
+  {t:52, d:5,  step:'Step 8', title:'Show the hills', sub:'The mountain button shades hills and the escarpment. Tap again to hide them.'},
+  {t:57, d:5,  step:'Step 9', title:'Find yourself', sub:'The target button shows where you are. Your location never leaves the phone.'},
+  {t:62, d:7,  step:'Step 10', title:'Read the stories', sub:'Tap a pin for a researched place. These were written by Claude — check the sources listed.'},
+  {t:69, d:5,  step:'', title:'', sub:''},
+];
+const TOTAL=74;
+function tapAt(t,start,x,y,dur=.5){ if(t>=start&&t<start+dur){ const k=(t-start)/dur; const tp=$('tap'); tp.style.display='block'; tp.style.left=x+'px'; tp.style.top=y+'px'; tp.style.transform=`scale(${.6+.6*k})`; tp.style.opacity=1-k; return true;} return false; }
+
+function tapEl(t,start,id,dur=.5){ if(t<start||t>=start+dur) return; const e=document.getElementById(id); if(!e) return;
+  const r=e.getBoundingClientRect(), sr=document.getElementById('screen').getBoundingClientRect();
+  tapAt(t,start,r.left-sr.left+r.width/2, r.top-sr.top+r.height/2, dur); }
+function render(t){
+  // reset
+  $('tap').style.display='none';
+  const sc=[...scenes].reverse().find(s=>t>=s.t);
+  $('step').textContent=sc.step; $('title').textContent=sc.title; $('sub').textContent=sc.sub;
+  const tc=$('titlecard');
+  if(t<4){ tc.style.display='flex'; tc.style.opacity=1-ramp(t,3.4,4); $('tc1').textContent='Time Map Ontario'; $('tc2').textContent='How to use the app — in 10 steps'; }
+  else if(t>=69){ tc.style.display='flex'; tc.style.opacity=ramp(t,69,69.6); $('tc1').textContent='That’s it'; $('tc2').innerHTML='Settings &amp; data: update maps, add your satellite key.<br>Sources &amp; credits: where every map and story comes from.'; }
+  else tc.style.display='none';
+
+  // defaults
+  let zoom=1, panX=0, panY=0, oldOp=0, opacity=.85, satOp=0, hillsOp=0, pinsOp=0, locked=false, cmp=false, divX=236;
+  let title='Zoom in on a town', detail='The best old map for that spot appears by itself.';
+  $('settings').style.display='none'; $('results').style.display='none'; $('story').style.display='none';
+  $('q').textContent='Search a place or paste coordinates'; $('q').className=''; $('dot').style.display='none';
+  $('sheet').style.transform='translateY(0)';
+  ['fab-gps','fab-hills','fab-compare'].forEach(f=>$(f).classList.remove('on'));
+  $('seg-std').className='sel'; $('seg-sat').className='';
+
+  // Step 1: settings
+  if(t>=4&&t<13){
+    $('settings').style.display=t>=5.4?'block':'none';
+    const msg=$('setmsg'), dl=$('btn-dl'), bar=$('prog').firstElementChild, pt=$('progtext');
+    if(t<7){ msg.textContent='Nothing downloaded yet. The basemap is about 1.2 GB — use Wi-Fi.'; dl.style.opacity=.35; bar.style.width='0'; pt.textContent=''; }
+    else { msg.textContent='26 file(s) to download, 1.6 GB'; dl.style.opacity=1; }
+    if(t>=8.4){ const k=clamp((t-8.4)/3.6); bar.style.width=(k*100)+'%'; pt.textContent=k<1?`Downloading… ${Math.round(k*100)}%`:'Download complete.'; }
+  }
+  // zoom phases
+  if(t>=13){ zoom=1+2.2*ramp(t,13.3,16.5); }
+  if(t>=13 && t<69){
+    oldOp=ramp(t,16.2,17.2);
+    if(t<16.2){ title='Zoom in on a town'; detail='The best old map for that spot appears by itself.'; }
+    else { title='Hamilton, 1898 – Goad’s fire insurance plan (every building)'; detail='1898 · 1 of 3 maps here'; }
+  }
+  // Step 3: flip
+  if(t>=21&&t<27){
+    if(t>=22.2&&t<24.6){ title='Hamilton, 1898 – Goad’s key plan (every block by building type)'; detail='1898 · 2 of 3 maps here'; }
+    if(t>=24.6){ title='Hamilton, 1898 – Goad’s fire insurance plan (every building)'; detail='1898 · 1 of 3 maps here'; }
+  }
+  // Step 4: opacity
+  if(t>=27) opacity = t<32 ? .85 - .6*ramp(t,27.8,29.6) + .6*ramp(t,30.4,31.6) : .85;
+  // Step 5: lock
+  if(t>=33.2 && t<69) locked=true;
+  if(t>=37) locked=false;
+  // Step 6: compare
+  if(t>=38 && t<45){ cmp=true; satOp=1; divX=236 + 120*Math.sin((t-39)*1.4)*ramp(t,39,40)*(1-ramp(t,44,45)); }
+  // Step 7: search
+  if(t>=45&&t<52){
+    const txt='Gage Park'; const k=clamp((t-46)/1.6); const n=Math.round(k*txt.length);
+    if(t>=46){ $('q').textContent=txt.slice(0,n)+(k<1?'|':''); $('q').className='q'; }
+    if(t>=47.8&&t<49.6){ const r=$('results'); r.style.display='block'; r.innerHTML='<div class="res" id="res0"><b>Gage Park</b><span>Park · Hamilton</span></div><div class="res"><b>Gage Avenue North</b><span>Street · Hamilton</span></div>'; }
+    if(t>=49.6){ $('q').textContent='Gage Park'; panX=-140*ramp(t,49.6,51); panY=40*ramp(t,49.6,51); }
+  }
+  // Step 8: hills
+  if(t>=52&&t<57){ hillsOp=ramp(t,53,54); $('fab-hills').classList.toggle('on', t>=53); zoom = 3.2 - 1.6*ramp(t,52,53.5); }
+  if(t>=57&&t<69) zoom=1.6;
+  // Step 9: gps
+  if(t>=57&&t<62){ if(t>=58){ $('fab-gps').classList.add('on'); const d=$('dot'); d.style.display='block'; d.style.left='236px'; d.style.top='430px'; } }
+  // Step 10: pins
+  if(t>=62&&t<69){ pinsOp=1; if(t>=63.8){ $('story').style.display='block'; $('sheet').style.transform='translateY(100%)'; } }
+
+  // taps on the real element positions
+  tapEl(t,4.6,'grab'); tapEl(t,6.6,'btn-check'); tapEl(t,8.0,'btn-dl');
+  tapEl(t,22,'chev-next'); tapEl(t,24.2,'chev-prev');
+  tapEl(t,28.0,'knob',.5); tapEl(t,30.4,'knob',.5); tapEl(t,32.8,'sw-lock'); tapEl(t,37.4,'fab-compare');
+  tapEl(t,45.4,'search'); tapEl(t,48.6,'res0'); tapEl(t,52.5,'fab-hills'); tapEl(t,57.5,'fab-gps'); tapEl(t,63.2,'pin');
+  // apply map
+  const w=$('world'); w.style.transform=`translate(${panX}px,${panY}px) scale(${zoom})`;
+  $('old').style.opacity = cmp ? 1 : oldOp*opacity;
+  $('sat').style.opacity = satOp;
+  $('hills').style.opacity = hillsOp;
+  $('pins').style.opacity = pinsOp;
+  // compare: old map only left of divider (in screen coords -> world coords)
+  if(cmp){ const wx=(divX-panX-236)/zoom+236; $('oldclip').style.clipPath=`inset(0 ${W-wx}px 0 0)`; $('divider').style.display='block'; $('divider').style.left=(divX-2)+'px'; $('tagold').style.display='block'; $('tagnow').style.display='block'; $('fab-compare').classList.add('on'); }
+  else { $('oldclip').style.clipPath='none'; $('divider').style.display='none'; $('tagold').style.display='none'; $('tagnow').style.display='none'; }
+  // sheet
+  $('cardtitle').textContent=title; $('carddetail').textContent=(locked?detail.replace(' · ',' · locked · '):detail);
+  $('lockicon').textContent=t>=16.2&&t<69?(locked?'🔒':'🔓'):'';
+  $('sw-lock').classList.toggle('on',locked);
+  const pct=opacity*100; $('slider').querySelector('.fill').style.width=pct+'%'; $('slider').querySelector('.knob').style.left=pct+'%';
+}
+window.render=render; window.TOTAL=TOTAL;
+render(0);
+</script></body></html>

@@ -26,3 +26,4 @@ app/map-assets/sprites/
 *.tif
 *.tiff
 .DS_Store
+docs/video-src/frames/
