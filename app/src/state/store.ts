@@ -7,6 +7,7 @@ import { ERA_MAX, ERA_MIN, START_VIEW } from "../config";
 import type { Catalog, Installed } from "../logic/catalog";
 import type { Range } from "../logic/era";
 import type { Category } from "../logic/places";
+import type { MyPin } from "../logic/pins";
 
 export type ThemePref = "system" | "dark" | "light";
 export type Basemap = "standard" | "satellite";
@@ -29,6 +30,9 @@ type Persisted = {
   plaquesVisible: boolean;
   plaquesSavedAt: string | null;
   plaquesCount: number;
+  /** Your own pins (press and hold on the map). Only on this phone. */
+  myPins: MyPin[];
+  myPinsVisible: boolean;
   hiddenCategories: Category[];
   camera: { center: [number, number]; zoom: number };
   installed: Installed;
@@ -61,6 +65,8 @@ export const useApp = create<Persisted & Transient>()(
       plaquesVisible: false,
       plaquesSavedAt: null,
       plaquesCount: 0,
+      myPins: [],
+      myPinsVisible: true,
       hiddenCategories: [],
       camera: { center: START_VIEW.center, zoom: START_VIEW.zoom },
       installed: {},

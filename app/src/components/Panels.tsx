@@ -1,6 +1,6 @@
 // Bottom-sheet panels: layers, overlay details, settings/data, attributions.
 import { useRef, useState } from "react";
-import { Linking, Pressable, StyleSheet, View } from "react-native";
+import { Alert, Linking, Pressable, Share, StyleSheet, View } from "react-native";
 import { Button, Chip, Divider, IconButton, List, ProgressBar, SegmentedButtons, Switch, Text, TextInput, useTheme } from "react-native-paper";
 
 import { fetchRemoteCatalog, freeSpaceBytes, type Progress, syncPacks } from "../data/packs";
@@ -8,6 +8,7 @@ import { useDiagnostics } from "../diagnostics";
 import { AUTO_MIN_ZOOM, type Catalog, formatBytes, hasPack, type Overlay, packsToDownload, totalBytes } from "../logic/catalog";
 import { formatRange } from "../logic/era";
 import { CATEGORIES, type Place, precisionText } from "../logic/places";
+import { editPin, formatCoords, type MyPin, newPin, pinLabel } from "../logic/pins";
 import { type Plaque, PLAQUES_CREDIT, PLAQUES_MAP_URL, PLAQUES_TERMS, plaqueWhere } from "../logic/plaques";
 import { ERA_MAX, ERA_MIN, ISSUES_EMAIL_SUBJECT } from "../config";
 import { useApp } from "../state/store";
@@ -21,6 +22,8 @@ export type SheetView =
   | { name: "overlay"; id: string }
   | { name: "place"; id: string }
   | { name: "plaque"; id: string }
+  | { name: "newpin" }
+  | { name: "pin"; id: string }
   | { name: "data" }
   | { name: "credits" };
 
@@ -188,6 +191,31 @@ export function LayersPanel({ go, placeCount, here, shown, plaques }: LayersProp
         </Button>
       ) : null}
 
+      <View style={styles.row}>
+        <View style={{ flex: 1 }}>
+          <Text variant="titleSmall">My pins</Text>
+          <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>
+            {s.myPins.length ? `${s.myPins.length} saved on this phone` : "Press and hold anywhere on the map to drop a pin."}
+          </Text>
+        </View>
+        <Switch value={s.myPinsVisible} onValueChange={(myPinsVisible) => s.set({ myPinsVisible })} />
+      </View>
+      {s.myPinsVisible
+        ? [...s.myPins]
+            .sort((a, b) => b.updated.localeCompare(a.updated))
+            .map((p) => (
+              <List.Item
+                key={p.id}
+                title={pinLabel(p)}
+                description={p.notes || formatCoords(p.lon, p.lat)}
+                descriptionNumberOfLines={1}
+                left={(lp) => <List.Icon {...lp} icon="map-marker" color="#D93025" />}
+                onPress={() => go({ name: "pin", id: p.id })}
+                style={styles.item}
+              />
+            ))
+        : null}
+
       <Divider />
       <List.Item
         title="More"
@@ -307,6 +335,118 @@ export function OverlayPanel({ overlay, isShown, onShow, onCompare, onZoom }: { 
           Open source
         </Button>
       ) : null}
+    </View>
+  );
+}
+
+/** A pin: the one just dropped (no `pin` yet) or a saved one, with name and notes. */
+export function PinPanel({
+  pin,
+  draft,
+  onSaved,
+  onDeleted,
+  onCancel,
+  onZoom,
+}: {
+  pin?: MyPin;
+  draft?: { lon: number; lat: number };
+  onSaved: (p: MyPin) => void;
+  onDeleted: () => void;
+  onCancel: () => void;
+  onZoom: (lon: number, lat: number) => void;
+}) {
+  const theme = useTheme();
+  const s = useApp();
+  const [editing, setEditing] = useState(!pin);
+  const [title, setTitle] = useState(pin?.title ?? "");
+  const [notes, setNotes] = useState(pin?.notes ?? "");
+  const at = pin ?? draft;
+  if (!at) return null;
+  const coords = formatCoords(at.lon, at.lat);
+
+  const save = () => {
+    if (pin) {
+      const p = editPin(pin, title, notes);
+      s.set({ myPins: s.myPins.map((x) => (x.id === pin.id ? p : x)) });
+      setEditing(false);
+      onSaved(p);
+    } else {
+      const p = newPin(at.lon, at.lat, title, notes);
+      s.set({ myPins: [...s.myPins, p], myPinsVisible: true });
+      onSaved(p);
+    }
+  };
+  const remove = () =>
+    Alert.alert("Delete this pin?", pin ? `"${pinLabel(pin)}" and its notes will be removed from this phone.` : "", [
+      { text: "Keep it" },
+      {
+        text: "Delete",
+        style: "destructive",
+        onPress: () => {
+          s.set({ myPins: s.myPins.filter((x) => x.id !== pin?.id) });
+          onDeleted();
+        },
+      },
+    ]);
+  const share = () => Share.share({ message: `${pin ? pinLabel(pin) + "\n" : ""}${coords}\nhttps://www.google.com/maps/search/?api=1&query=${at.lat},${at.lon}` });
+
+  return (
+    <View style={styles.gap}>
+      <Text variant="labelLarge" style={{ color: "#D93025" }}>
+        {pin ? "MY PIN" : "DROPPED PIN"}
+      </Text>
+      {editing ? (
+        <>
+          <TextInput mode="outlined" label="Name" value={title} onChangeText={setTitle} placeholder="e.g. Grandpa's farm" autoFocus={!pin} />
+          <TextInput mode="outlined" label="Notes" value={notes} onChangeText={setNotes} multiline numberOfLines={4} style={{ minHeight: 96 }} />
+          <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>
+            {coords}
+          </Text>
+          <View style={styles.row}>
+            <Button mode="contained" icon="map-marker-plus" onPress={save}>
+              {pin ? "Save changes" : "Save pin"}
+            </Button>
+            <Button
+              mode="text"
+              onPress={() => {
+                if (pin) {
+                  setTitle(pin.title);
+                  setNotes(pin.notes);
+                  setEditing(false);
+                } else onCancel();
+              }}
+            >
+              Cancel
+            </Button>
+          </View>
+        </>
+      ) : pin ? (
+        <>
+          <Text variant="headlineSmall">{pinLabel(pin)}</Text>
+          {pin.notes ? <Text style={styles.story}>{pin.notes}</Text> : <Text style={{ color: theme.colors.onSurfaceVariant }}>No notes yet.</Text>}
+          <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>
+            {coords} · saved {pin.created.slice(0, 10)}
+            {pin.updated !== pin.created ? ` · edited ${pin.updated.slice(0, 10)}` : ""}
+          </Text>
+          <View style={styles.row}>
+            <Button mode="contained-tonal" icon="pencil" onPress={() => setEditing(true)}>
+              Edit
+            </Button>
+            <Button mode="text" icon="crosshairs" onPress={() => onZoom(pin.lon, pin.lat)}>
+              Go there
+            </Button>
+            <Button mode="text" icon="share-variant" onPress={share}>
+              Share
+            </Button>
+            <Button mode="text" icon="delete-outline" textColor={theme.colors.error} onPress={remove}>
+              Delete
+            </Button>
+          </View>
+        </>
+      ) : null}
+      <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>
+        Pins and notes are kept only on this phone.
+      </Text>
     </View>
   );
 }

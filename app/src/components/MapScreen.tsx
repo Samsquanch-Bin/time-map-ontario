@@ -11,6 +11,7 @@ import { setMapStatus, startDiagnostics } from "../diagnostics";
 import { usePlaces } from "../data/usePlaces";
 import { usePlaques } from "../data/plaques";
 import { plaquesGeoJSON } from "../logic/plaques";
+import { pinsGeoJSON } from "../logic/pins";
 import { placesToGeoJSON, visiblePlaces } from "../logic/places";
 import { AUTO_MIN_ZOOM, chooseOverlay, hasPack, mapsHere, type Overlay, overlayAvailable } from "../logic/catalog";
 import { overlaps } from "../logic/era";
@@ -18,7 +19,7 @@ import { requestForegroundLocation } from "../location";
 import { buildBaseStyle, firstLabelLayerId, type MapTheme } from "../map/baseStyle";
 import { useApp } from "../state/store";
 import { MapContent } from "./MapContent";
-import { CreditsPanel, DataPanel, LayersPanel, OverlayPanel, PlacePanel, PlaquePanel, type SheetView } from "./Panels";
+import { CreditsPanel, DataPanel, LayersPanel, OverlayPanel, PinPanel, PlacePanel, PlaquePanel, type SheetView } from "./Panels";
 import { SearchBar, type SearchTarget } from "./SearchBar";
 import { SwipeCompare } from "./SwipeCompare";
 
@@ -38,6 +39,8 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
   const [initialCamera] = useState(s.camera);
   const [searchOpen, setSearchOpen] = useState(false);
   const [pin, setPin] = useState<SearchTarget | null>(null);
+  /** A pin just dropped by press-and-hold, not saved yet. */
+  const [draft, setDraft] = useState<{ lon: number; lat: number } | null>(null);
 
   const catalog = s.catalog;
   const basemapUrl = hasPack(catalog, s.installed, BASEMAP_FILE) ? pmtilesUrl(BASEMAP_FILE) : null;
@@ -82,6 +85,11 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
   );
   const placesGeoJSON = useMemo(() => (shownPlaces.length ? placesToGeoJSON(shownPlaces) : null), [shownPlaces]);
   const plaques = usePlaques();
+  // The unsaved pin only lives while its menu is open.
+  useEffect(() => {
+    if (view.name !== "newpin") setDraft(null);
+  }, [view.name]);
+  const myPinsGeo = useMemo(() => pinsGeoJSON(s.myPinsVisible ? s.myPins : [], draft), [s.myPins, s.myPinsVisible, draft]);
   const plaquesGeo = useMemo(() => (plaques.plaques.length ? plaquesGeoJSON(plaques.plaques) : null), [plaques.plaques]);
   const comparing = s.compare && !!activeOverlay;
   const terrainReady = hasPack(catalog, s.installed, TERRAIN_FILE);
@@ -135,6 +143,7 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
   const overlayForView = view.name === "overlay" ? catalog?.overlays.find((o) => o.id === view.id) : undefined;
   const placeForView = view.name === "place" ? allPlaces.find((p) => p.id === view.id) : undefined;
   const plaqueForView = view.name === "plaque" ? plaques.plaques.find((p) => p.id === view.id) : undefined;
+  const myPinForView = view.name === "pin" ? s.myPins.find((p) => p.id === view.id) : undefined;
 
   return (
     <View style={[styles.fill, { backgroundColor: theme.colors.background }]}>
@@ -148,6 +157,15 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
         onPress={() => {
           setSearchOpen(false);
           Keyboard.dismiss();
+        }}
+        onLongPress={(e) => {
+          if (comparing) return;
+          const [lon, lat] = e.nativeEvent.lngLat;
+          Keyboard.dismiss();
+          setSearchOpen(false);
+          setDraft({ lon, lat });
+          setView({ name: "newpin" });
+          sheetRef.current?.snapToIndex(1);
         }}
         tintColor={theme.colors.primary}
         onWillStartLoadingMap={() => setMapStatus(`loading ${offlineStyle ? "offline basemap" : "online preview map"}`)}
@@ -186,6 +204,8 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
           onPlacePress={(id) => go({ name: "place", id })}
           plaques={plaquesGeo}
           onPlaquePress={(id) => go({ name: "plaque", id })}
+          myPins={myPinsGeo}
+          onMyPinPress={(id) => go({ name: "pin", id })}
         />
         {pin ? (
           <GeoJSONSource id="search-pin" data={{ type: "Feature", properties: {}, geometry: { type: "Point", coordinates: pin.center } }}>
@@ -256,6 +276,7 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
         top={insets.top + 8}
         places={allPlaces}
         plaques={plaques.plaques}
+        myPins={s.myPins}
         overlays={catalog?.overlays ?? []}
         onGo={goToResult}
         onClear={() => setPin(null)}
@@ -287,6 +308,35 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
               place={placeForView}
               onZoom={() => {
                 cameraRef.current?.flyTo({ center: [placeForView.lon, placeForView.lat], zoom: placeForView.precision === "exact" ? 15 : 13, duration: 900 });
+                sheetRef.current?.snapToIndex(0);
+              }}
+            />
+          ) : null}
+          {view.name === "newpin" && draft ? (
+            <PinPanel
+              key={`draft-${draft.lon},${draft.lat}`}
+              draft={draft}
+              onSaved={(p) => setView({ name: "pin", id: p.id })}
+              onDeleted={() => setView({ name: "layers" })}
+              onCancel={() => {
+                setView({ name: "layers" });
+                sheetRef.current?.snapToIndex(0);
+              }}
+              onZoom={() => undefined}
+            />
+          ) : null}
+          {view.name === "pin" && myPinForView ? (
+            <PinPanel
+              key={myPinForView.id}
+              pin={myPinForView}
+              onSaved={() => undefined}
+              onDeleted={() => {
+                setView({ name: "layers" });
+                sheetRef.current?.snapToIndex(0);
+              }}
+              onCancel={() => undefined}
+              onZoom={(lon, lat) => {
+                cameraRef.current?.flyTo({ center: [lon, lat], zoom: 17, duration: 900 });
                 sheetRef.current?.snapToIndex(0);
               }}
             />

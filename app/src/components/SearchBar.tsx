@@ -8,6 +8,7 @@ import { type GeoResult, searchPlaces } from "../data/geocode";
 import type { Overlay } from "../logic/catalog";
 import type { Place } from "../logic/places";
 import { type Plaque, plaqueWhere } from "../logic/plaques";
+import { type MyPin, pinLabel } from "../logic/pins";
 import { type LonLat, matchNames, parseCoordinates } from "../logic/search";
 
 export type SearchTarget = { center: LonLat; zoom?: number; bbox?: [number, number, number, number]; label: string };
@@ -18,6 +19,7 @@ type Props = {
   top: number;
   places: Place[];
   plaques: Plaque[];
+  myPins: MyPin[];
   overlays: Overlay[];
   onGo: (t: SearchTarget) => void;
   onClear: () => void;
@@ -26,7 +28,7 @@ type Props = {
   setOpen: (open: boolean) => void;
 };
 
-export function SearchBar({ top, places, plaques, overlays, onGo, onClear, open, setOpen }: Props) {
+export function SearchBar({ top, places, plaques, myPins, overlays, onGo, onClear, open, setOpen }: Props) {
   const theme = useTheme();
   const [text, setText] = useState("");
   const [online, setOnline] = useState<GeoResult[] | null>(null);
@@ -50,6 +52,15 @@ export function SearchBar({ top, places, plaques, overlays, onGo, onClear, open,
         target: { center: [p.lon, p.lat], zoom: p.precision === "exact" ? 16 : 14, label: p.title },
       });
     }
+    for (const p of matchNames(myPins, text, (p) => `${pinLabel(p)} ${p.notes}`, 4)) {
+      rows.push({
+        key: `mypin-${p.id}`,
+        title: pinLabel(p),
+        detail: p.notes ? `My pin · ${p.notes.split("\n")[0].slice(0, 60)}` : "My pin",
+        icon: "map-marker",
+        target: { center: [p.lon, p.lat], zoom: 17, label: pinLabel(p) },
+      });
+    }
     for (const p of matchNames(plaques, text, (p) => p.name, 4)) {
       const where = plaqueWhere(p);
       rows.push({
@@ -71,7 +82,7 @@ export function SearchBar({ top, places, plaques, overlays, onGo, onClear, open,
       });
     }
     return rows;
-  }, [text, places, plaques, overlays]);
+  }, [text, places, plaques, myPins, overlays]);
 
   const onlineRows: Row[] = (online ?? []).map((r) => ({
     key: r.id,

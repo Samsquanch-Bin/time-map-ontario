@@ -1,6 +1,6 @@
 // Everything drawn on top of the base style: satellite, the active old map,
 // and the coverage outlines. Shared by the main map and the swipe-compare map.
-import { GeoJSONSource, Layer, RasterDEMSource, RasterSource } from "@maplibre/maplibre-react-native";
+import { GeoJSONSource, Images, Layer, RasterDEMSource, RasterSource } from "@maplibre/maplibre-react-native";
 import type { FeatureCollection } from "geojson";
 
 import { useMemo } from "react";
@@ -24,13 +24,19 @@ type Props = {
   onPlacePress?: (placeId: string) => void;
   plaques?: FeatureCollection | null;
   onPlaquePress?: (plaqueId: string) => void;
+  /** Your pins, plus the one just dropped (properties.draft) if any. */
+  myPins?: FeatureCollection | null;
+  onMyPinPress?: (pinId: string) => void;
 };
+
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const RED_PIN = require("../../assets/red-pin.png");
 
 // Ontario Heritage Trust plaques are blue and gold.
 export const PLAQUE_BLUE = "#1F3A93";
 export const PLAQUE_GOLD = "#D4A72C";
 
-export function MapContent({ labelLayerId, satelliteKey, overlay, overlayOpacity, terrainUrl, coverage, onCoveragePress, places, onPlacePress, plaques, onPlaquePress }: Props) {
+export function MapContent({ labelLayerId, satelliteKey, overlay, overlayOpacity, terrainUrl, coverage, onCoveragePress, places, onPlacePress, plaques, onPlaquePress, myPins, onMyPinPress }: Props) {
   const coverageData = useMemo<FeatureCollection | null>(
     () =>
       coverage && {
@@ -200,6 +206,45 @@ export function MapContent({ labelLayerId, satelliteKey, overlay, overlayOpacity
               "text-optional": true,
             }}
             paint={{ "text-color": ["get", "color"], "text-halo-color": "#0E1116", "text-halo-width": 1.5 }}
+          />
+        </GeoJSONSource>
+      ) : null}
+
+      <Images images={{ "red-pin": RED_PIN }} />
+      {myPins && myPins.features.length ? (
+        <GeoJSONSource
+          id="my-pins"
+          data={myPins}
+          onPress={(e) => {
+            const id = e.nativeEvent.features[0]?.properties?.id;
+            if (id && id !== "draft" && onMyPinPress) {
+              e.stopPropagation();
+              onMyPinPress(String(id));
+            }
+          }}
+        >
+          <Layer
+            type="circle"
+            id="my-pins-drop"
+            filter={["==", ["get", "draft"], true]}
+            paint={{ "circle-radius": 14, "circle-color": "#D93025", "circle-opacity": 0.25, "circle-stroke-color": "#D93025", "circle-stroke-width": 1 }}
+          />
+          <Layer
+            type="symbol"
+            id="my-pins-icon"
+            layout={{
+              "icon-image": "red-pin",
+              "icon-anchor": "bottom",
+              "icon-allow-overlap": true,
+              "icon-ignore-placement": true,
+              "text-field": ["get", "title"],
+              "text-font": ["NotoSansMedium"],
+              "text-size": 12,
+              "text-anchor": "top",
+              "text-offset": [0, 0.3],
+              "text-optional": true,
+            }}
+            paint={{ "text-color": "#FF6B5E", "text-halo-color": "#0E1116", "text-halo-width": 1.5 }}
           />
         </GeoJSONSource>
       ) : null}
