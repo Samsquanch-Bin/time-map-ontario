@@ -207,6 +207,7 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
           onPlacePress={(id) => go({ name: "place", id })}
           plaques={plaquesGeo}
           onPlaquePress={(id) => go({ name: "plaque", id })}
+          parksOpacity={s.parksVisible && basemapUrl ? s.parksOpacity : null}
           trailsUrl={trailsUrl}
           trailsOpacity={s.trailsOpacity}
           onTrailPress={(props) => go({ name: "trail", props })}
@@ -309,6 +310,7 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
               shown={activeOverlay}
               plaques={{ count: plaques.plaques.length, busy: plaques.busy, error: plaques.error, refresh: plaques.refresh }}
               trailsReady={trailsReady}
+              basemapReady={!!basemapUrl}
             /> : null}
           {view.name === "place" && placeForView ? (
             <PlacePanel

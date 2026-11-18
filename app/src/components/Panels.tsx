@@ -41,9 +41,11 @@ type LayersProps = {
   plaques: PlaquesState;
   /** Whether the trails pack is on the phone. */
   trailsReady: boolean;
+  /** Whether the offline basemap (which holds the parks) is on the phone. */
+  basemapReady: boolean;
 };
 
-export function LayersPanel({ go, placeCount, here, shown, plaques, trailsReady }: LayersProps) {
+export function LayersPanel({ go, placeCount, here, shown, plaques, trailsReady, basemapReady }: LayersProps) {
   const theme = useTheme();
   const s = useApp();
   const [more, setMore] = useState(false);
@@ -174,6 +176,20 @@ export function LayersPanel({ go, placeCount, here, shown, plaques, trailsReady 
         </Text>
         <Switch value={s.placesVisible} onValueChange={(placesVisible) => s.set({ placesVisible })} />
       </View>
+
+      <View style={styles.row}>
+        <View style={{ flex: 1 }}>
+          <Text variant="titleSmall">Parks & green spaces</Text>
+          <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>
+            {basemapReady ? "Parks, conservation areas, nature reserves and greens (OpenStreetMap)" : "Needs the map data (Settings & data)"}
+          </Text>
+        </View>
+        <Switch
+          value={s.parksVisible && basemapReady}
+          onValueChange={(parksVisible) => (basemapReady ? s.set({ parksVisible }) : go({ name: "data" }))}
+        />
+      </View>
+      {s.parksVisible && basemapReady ? <OpacitySlider value={s.parksOpacity} onChange={(parksOpacity) => s.set({ parksOpacity })} /> : null}
 
       <View style={styles.row}>
         <View style={{ flex: 1 }}>

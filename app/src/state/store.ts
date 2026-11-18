@@ -36,6 +36,9 @@ type Persisted = {
   /** Trails from the offline trails pack (OpenStreetMap). */
   trailsVisible: boolean;
   trailsOpacity: number;
+  /** Parks and green spaces highlighted in bright green. */
+  parksVisible: boolean;
+  parksOpacity: number;
   hiddenCategories: Category[];
   camera: { center: [number, number]; zoom: number };
   installed: Installed;
@@ -72,6 +75,8 @@ export const useApp = create<Persisted & Transient>()(
       myPinsVisible: true,
       trailsVisible: true,
       trailsOpacity: 0.9,
+      parksVisible: false,
+      parksOpacity: 0.8,
       hiddenCategories: [],
       camera: { center: START_VIEW.center, zoom: START_VIEW.zoom },
       installed: {},

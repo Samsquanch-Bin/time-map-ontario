@@ -25,6 +25,8 @@ type Props = {
   onPlacePress?: (placeId: string) => void;
   plaques?: FeatureCollection | null;
   onPlaquePress?: (plaqueId: string) => void;
+  /** Highlight parks and green spaces from the offline basemap at this opacity (null = off). */
+  parksOpacity?: number | null;
   /** pmtiles:// URL of the trails pack when trails are switched on. */
   trailsUrl?: string | null;
   trailsOpacity?: number;
@@ -37,11 +39,28 @@ type Props = {
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const RED_PIN = require("../../assets/red-pin.png");
 
+// Parks and green spaces (OpenStreetMap kinds in the basemap's landuse layer), in a bright green
+// that stands out on satellite and old maps.
+export const GREEN_SPACE_KINDS = [
+  "park", "national_park", "nature_reserve", "protected_area", "garden", "village_green",
+  "playground", "recreation_ground", "dog_park", "common",
+];
+export const GREEN_SPACE_COLOR = "#00E676";
+
 // Ontario Heritage Trust plaques are blue and gold.
 export const PLAQUE_BLUE = "#1F3A93";
 export const PLAQUE_GOLD = "#D4A72C";
 
-export function MapContent({ labelLayerId, satelliteKey, overlay, overlayOpacity, terrainUrl, coverage, onCoveragePress, places, onPlacePress, plaques, onPlaquePress, myPins, onMyPinPress, trailsUrl, trailsOpacity = 0.9, onTrailPress }: Props) {
+export function MapContent({ labelLayerId, satelliteKey, overlay, overlayOpacity, terrainUrl, coverage, onCoveragePress, places, onPlacePress, plaques, onPlaquePress, myPins, onMyPinPress, trailsUrl, trailsOpacity = 0.9, onTrailPress, parksOpacity }: Props) {
+  const parksBeforeId = trailsUrl
+    ? "paths-casing"
+    : plaques
+      ? "plaques-point"
+      : places
+        ? "places-area"
+        : myPins && myPins.features.length
+          ? "my-pins-drop"
+          : undefined;
   const coverageData = useMemo<FeatureCollection | null>(
     () =>
       coverage && {
@@ -122,6 +141,30 @@ export function MapContent({ labelLayerId, satelliteKey, overlay, overlayOpacity
           <Layer type="fill" id="coverage-fill" paint={{ "fill-color": AMBER, "fill-opacity": 0.04 }} />
           <Layer type="line" id="coverage-line" paint={{ "line-color": AMBER, "line-width": 1, "line-opacity": 0.6 }} />
         </GeoJSONSource>
+      ) : null}
+
+      {parksOpacity != null ? (
+        <>
+          {/* keep the green under trails, plaques, places and pins whichever is switched on first */}
+          <Layer
+            type="fill"
+            id="greenspace-fill"
+            beforeId={parksBeforeId}
+            source="protomaps"
+            source-layer="landuse"
+            filter={["in", ["get", "kind"], ["literal", GREEN_SPACE_KINDS]] as never}
+            paint={{ "fill-color": GREEN_SPACE_COLOR, "fill-opacity": 0.55 * parksOpacity }}
+          />
+          <Layer
+            type="line"
+            id="greenspace-edge"
+            beforeId={parksBeforeId}
+            source="protomaps"
+            source-layer="landuse"
+            filter={["in", ["get", "kind"], ["literal", GREEN_SPACE_KINDS]] as never}
+            paint={{ "line-color": "#00C853", "line-width": ["interpolate", ["linear"], ["zoom"], 9, 0.8, 15, 2.5], "line-opacity": parksOpacity }}
+          />
+        </>
       ) : null}
 
       {trailsUrl ? (
