@@ -8,6 +8,7 @@ import { useDiagnostics } from "../diagnostics";
 import { AUTO_MIN_ZOOM, type Catalog, formatBytes, hasPack, type Overlay, packsToDownload, totalBytes } from "../logic/catalog";
 import { formatRange } from "../logic/era";
 import { CATEGORIES, type Place, precisionText } from "../logic/places";
+import { surfaceText, TRAIL_KINDS, trailKind } from "../logic/trails";
 import { editPin, formatCoords, type MyPin, newPin, pinLabel } from "../logic/pins";
 import { type Plaque, PLAQUES_CREDIT, PLAQUES_MAP_URL, PLAQUES_TERMS, plaqueWhere } from "../logic/plaques";
 import { ERA_MAX, ERA_MIN, ISSUES_EMAIL_SUBJECT } from "../config";
@@ -23,6 +24,7 @@ export type SheetView =
   | { name: "place"; id: string }
   | { name: "plaque"; id: string }
   | { name: "newpin" }
+  | { name: "trail"; props: Record<string, unknown> }
   | { name: "pin"; id: string }
   | { name: "data" }
   | { name: "credits" };
@@ -37,9 +39,11 @@ type LayersProps = {
   /** The map being drawn now (picked by hand or chosen automatically), if any. */
   shown: Overlay | null;
   plaques: PlaquesState;
+  /** Whether the trails pack is on the phone. */
+  trailsReady: boolean;
 };
 
-export function LayersPanel({ go, placeCount, here, shown, plaques }: LayersProps) {
+export function LayersPanel({ go, placeCount, here, shown, plaques, trailsReady }: LayersProps) {
   const theme = useTheme();
   const s = useApp();
   const [more, setMore] = useState(false);
@@ -170,6 +174,32 @@ export function LayersPanel({ go, placeCount, here, shown, plaques }: LayersProp
         </Text>
         <Switch value={s.placesVisible} onValueChange={(placesVisible) => s.set({ placesVisible })} />
       </View>
+
+      <View style={styles.row}>
+        <View style={{ flex: 1 }}>
+          <Text variant="titleSmall">Trails</Text>
+          <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>
+            {trailsReady ? "Bruce Trail, side trails and other trails (OpenStreetMap)" : "Download the trails in Settings & data"}
+          </Text>
+        </View>
+        <Switch
+          value={s.trailsVisible && trailsReady}
+          onValueChange={(trailsVisible) => (trailsReady ? s.set({ trailsVisible }) : go({ name: "data" }))}
+        />
+      </View>
+      {s.trailsVisible && trailsReady ? (
+        <>
+          <OpacitySlider value={s.trailsOpacity} onChange={(trailsOpacity) => s.set({ trailsOpacity })} />
+          <View style={[styles.row, { gap: 12 }]}>
+            {TRAIL_KINDS.map((k) => (
+              <View key={k.id} style={{ flexDirection: "row", alignItems: "center", gap: 6 }}>
+                <View style={{ width: 22, height: Math.max(3, k.width), backgroundColor: k.color, borderRadius: 2, borderWidth: 1, borderColor: "#0E1116" }} />
+                <Text variant="bodySmall">{k.label}</Text>
+              </View>
+            ))}
+          </View>
+        </>
+      ) : null}
 
       <View style={styles.row}>
         <View style={{ flex: 1 }}>
@@ -447,6 +477,34 @@ export function PinPanel({
       <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>
         Pins and notes are kept only on this phone.
       </Text>
+    </View>
+  );
+}
+
+export function TrailPanel({ props }: { props: Record<string, unknown> }) {
+  const theme = useTheme();
+  const kind = trailKind(props.kind);
+  const name = typeof props.name === "string" && props.name ? props.name : "Unnamed footpath";
+  const facts = [
+    surfaceText(props.surface) && `Surface: ${surfaceText(props.surface)}`,
+    typeof props.operator === "string" && props.operator && `Looked after by: ${props.operator}`,
+    typeof props.ref === "string" && props.ref && `Ref: ${props.ref}`,
+  ].filter(Boolean) as string[];
+  return (
+    <View style={styles.gap}>
+      <Text variant="labelLarge" style={{ color: kind?.color }}>
+        {(kind?.label ?? "Trail").toUpperCase()}
+      </Text>
+      <Text variant="headlineSmall">{name}</Text>
+      {facts.map((f) => (
+        <Text key={f}>{f}</Text>
+      ))}
+      <View style={[styles.note, { backgroundColor: theme.colors.surfaceVariant }]}>
+        <Text variant="bodySmall">
+          Trail data © OpenStreetMap contributors (ODbL), mapped by volunteers. Trails can be rerouted or closed: check the trail's own signs and
+          website before you go.
+        </Text>
+      </View>
     </View>
   );
 }

@@ -127,6 +127,10 @@ def build_catalog(
         require_sources(["terrain_tiles"], sources)
         used_sources.add("terrain_tiles")
 
+    trails = release_dir / "trails-south.pmtiles"
+    if trails.exists():
+        packs.append(pack_entry(trails, "trails"))  # OpenStreetMap, already credited for the basemap
+
     overlay_entries = []
     for ov in sorted(overlays.values(), key=lambda o: (o.year, o.id)):
         if release and ov.sample:

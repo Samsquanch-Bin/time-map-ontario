@@ -1,6 +1,7 @@
 // Everything drawn on top of the base style: satellite, the active old map,
 // and the coverage outlines. Shared by the main map and the swipe-compare map.
-import { GeoJSONSource, Images, Layer, RasterDEMSource, RasterSource } from "@maplibre/maplibre-react-native";
+import { GeoJSONSource, Images, Layer, RasterDEMSource, RasterSource, VectorSource } from "@maplibre/maplibre-react-native";
+import { byKind } from "../logic/trails";
 import type { FeatureCollection } from "geojson";
 
 import { useMemo } from "react";
@@ -24,6 +25,10 @@ type Props = {
   onPlacePress?: (placeId: string) => void;
   plaques?: FeatureCollection | null;
   onPlaquePress?: (plaqueId: string) => void;
+  /** pmtiles:// URL of the trails pack when trails are switched on. */
+  trailsUrl?: string | null;
+  trailsOpacity?: number;
+  onTrailPress?: (props: Record<string, unknown>) => void;
   /** Your pins, plus the one just dropped (properties.draft) if any. */
   myPins?: FeatureCollection | null;
   onMyPinPress?: (pinId: string) => void;
@@ -36,7 +41,7 @@ const RED_PIN = require("../../assets/red-pin.png");
 export const PLAQUE_BLUE = "#1F3A93";
 export const PLAQUE_GOLD = "#D4A72C";
 
-export function MapContent({ labelLayerId, satelliteKey, overlay, overlayOpacity, terrainUrl, coverage, onCoveragePress, places, onPlacePress, plaques, onPlaquePress, myPins, onMyPinPress }: Props) {
+export function MapContent({ labelLayerId, satelliteKey, overlay, overlayOpacity, terrainUrl, coverage, onCoveragePress, places, onPlacePress, plaques, onPlaquePress, myPins, onMyPinPress, trailsUrl, trailsOpacity = 0.9, onTrailPress }: Props) {
   const coverageData = useMemo<FeatureCollection | null>(
     () =>
       coverage && {
@@ -117,6 +122,85 @@ export function MapContent({ labelLayerId, satelliteKey, overlay, overlayOpacity
           <Layer type="fill" id="coverage-fill" paint={{ "fill-color": AMBER, "fill-opacity": 0.04 }} />
           <Layer type="line" id="coverage-line" paint={{ "line-color": AMBER, "line-width": 1, "line-opacity": 0.6 }} />
         </GeoJSONSource>
+      ) : null}
+
+      {trailsUrl ? (
+        <VectorSource
+          id="trails"
+          url={trailsUrl}
+          onPress={(e) => {
+            const f = e.nativeEvent.features[0];
+            if (f && onTrailPress) {
+              e.stopPropagation();
+              onTrailPress((f.properties ?? {}) as Record<string, unknown>);
+            }
+          }}
+        >
+          <Layer
+            type="line"
+            id="paths-casing"
+            source-layer="paths"
+            layout={{ "line-cap": "round", "line-join": "round" }}
+            paint={{ "line-color": "#0E1116", "line-opacity": 0.75 * trailsOpacity, "line-width": byKind((k) => k.width + 2, 3) as never }}
+          />
+          <Layer
+            type="line"
+            id="paths-line"
+            source-layer="paths"
+            layout={{ "line-cap": "round", "line-join": "round" }}
+            paint={{
+              "line-color": byKind((k) => k.color, "#ffffff") as never,
+              "line-opacity": trailsOpacity,
+              "line-width": byKind((k) => k.width, 1.5) as never,
+              "line-dasharray": [2, 1.5],
+            }}
+          />
+          <Layer
+            type="line"
+            id="trails-casing"
+            source-layer="trails"
+            layout={{ "line-cap": "round", "line-join": "round" }}
+            paint={{
+              "line-color": "#0E1116",
+              "line-opacity": 0.8 * trailsOpacity,
+              "line-width": ["interpolate", ["linear"], ["zoom"], 7, 2.5, 12, byKind((k) => k.width + 2.5, 4), 16, byKind((k) => k.width + 4, 6)] as never,
+            }}
+          />
+          <Layer
+            type="line"
+            id="trails-line"
+            source-layer="trails"
+            layout={{ "line-cap": "round", "line-join": "round" }}
+            paint={{
+              "line-color": byKind((k) => k.color, "#FFE135") as never,
+              "line-opacity": trailsOpacity,
+              "line-width": ["interpolate", ["linear"], ["zoom"], 7, 1.2, 12, byKind((k) => k.width, 3), 16, byKind((k) => k.width + 2, 5)] as never,
+            }}
+          />
+          <Layer
+            type="symbol"
+            id="trails-label"
+            source-layer="trails"
+            minzoom={12}
+            layout={{
+              "symbol-placement": "line",
+              "text-field": ["get", "name"],
+              "text-font": ["NotoSansMedium"],
+              "text-size": 12,
+              "text-optional": true,
+            }}
+            paint={{ "text-color": byKind((k) => k.color, "#FFE135") as never, "text-halo-color": "#0E1116", "text-halo-width": 2, "text-opacity": trailsOpacity }}
+          />
+          <Layer
+            type="symbol"
+            id="paths-label"
+            source-layer="paths"
+            minzoom={14}
+            filter={["has", "name"]}
+            layout={{ "symbol-placement": "line", "text-field": ["get", "name"], "text-font": ["NotoSansMedium"], "text-size": 11, "text-optional": true }}
+            paint={{ "text-color": "#E8FFE5", "text-halo-color": "#0E1116", "text-halo-width": 2, "text-opacity": trailsOpacity }}
+          />
+        </VectorSource>
       ) : null}
 
       {plaques ? (

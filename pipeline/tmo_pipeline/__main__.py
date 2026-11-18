@@ -31,6 +31,7 @@ def main(argv: list[str] | None = None) -> int:
     sm.add_argument("--check", action="store_true", help="fail if SOURCES.md is out of date")
     sub.add_parser("basemap")
     sub.add_parser("terrain")
+    sub.add_parser("trails")
     ov = sub.add_parser("overlay")
     ov.add_argument("id")
     ov.add_argument("--previous", type=Path, help="the published catalog.json: with 'all', skip overlays whose published pack was built from the same definition")
@@ -107,6 +108,10 @@ def main(argv: list[str] | None = None) -> int:
         else:
             path.write_text(text)
             print(f"wrote {path}")
+    elif args.cmd == "trails":
+        from .trails import build_trails
+
+        print(build_trails())
     elif args.cmd == "terrain":
         from .terrain import build_terrain
 

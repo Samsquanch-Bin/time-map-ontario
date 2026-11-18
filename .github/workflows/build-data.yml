@@ -33,7 +33,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y -qq gdal-bin python3-gdal
+          sudo apt-get install -y -qq gdal-bin python3-gdal osmium-tool
           gh release download -R protomaps/go-pmtiles --pattern '*Linux_x86_64.tar.gz' --dir /tmp/pmtiles
           tar -xzf /tmp/pmtiles/*.tar.gz -C /tmp/pmtiles
           sudo install /tmp/pmtiles/pmtiles /usr/local/bin/pmtiles
@@ -51,6 +51,9 @@ jobs:
 
       - name: Terrain (elevation for hill shading)
         run: python -m tmo_pipeline terrain
+
+      - name: Trails (OpenStreetMap, Southern Ontario)
+        run: python -m tmo_pipeline trails || echo "::warning::trails pack failed and is skipped"
 
       - name: Historical overlays
         env:

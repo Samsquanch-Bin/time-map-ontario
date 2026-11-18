@@ -33,6 +33,9 @@ type Persisted = {
   /** Your own pins (press and hold on the map). Only on this phone. */
   myPins: MyPin[];
   myPinsVisible: boolean;
+  /** Trails from the offline trails pack (OpenStreetMap). */
+  trailsVisible: boolean;
+  trailsOpacity: number;
   hiddenCategories: Category[];
   camera: { center: [number, number]; zoom: number };
   installed: Installed;
@@ -67,6 +70,8 @@ export const useApp = create<Persisted & Transient>()(
       plaquesCount: 0,
       myPins: [],
       myPinsVisible: true,
+      trailsVisible: true,
+      trailsOpacity: 0.9,
       hiddenCategories: [],
       camera: { center: START_VIEW.center, zoom: START_VIEW.zoom },
       installed: {},

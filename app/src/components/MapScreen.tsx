@@ -12,6 +12,7 @@ import { usePlaces } from "../data/usePlaces";
 import { usePlaques } from "../data/plaques";
 import { plaquesGeoJSON } from "../logic/plaques";
 import { pinsGeoJSON } from "../logic/pins";
+import { TRAILS_FILE } from "../logic/trails";
 import { placesToGeoJSON, visiblePlaces } from "../logic/places";
 import { AUTO_MIN_ZOOM, chooseOverlay, hasPack, mapsHere, type Overlay, overlayAvailable } from "../logic/catalog";
 import { overlaps } from "../logic/era";
@@ -19,7 +20,7 @@ import { requestForegroundLocation } from "../location";
 import { buildBaseStyle, firstLabelLayerId, type MapTheme } from "../map/baseStyle";
 import { useApp } from "../state/store";
 import { MapContent } from "./MapContent";
-import { CreditsPanel, DataPanel, LayersPanel, OverlayPanel, PinPanel, PlacePanel, PlaquePanel, type SheetView } from "./Panels";
+import { CreditsPanel, DataPanel, LayersPanel, OverlayPanel, PinPanel, PlacePanel, PlaquePanel, type SheetView, TrailPanel } from "./Panels";
 import { SearchBar, type SearchTarget } from "./SearchBar";
 import { SwipeCompare } from "./SwipeCompare";
 
@@ -93,6 +94,8 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
   const plaquesGeo = useMemo(() => (plaques.plaques.length ? plaquesGeoJSON(plaques.plaques) : null), [plaques.plaques]);
   const comparing = s.compare && !!activeOverlay;
   const terrainReady = hasPack(catalog, s.installed, TERRAIN_FILE);
+  const trailsReady = hasPack(catalog, s.installed, TRAILS_FILE);
+  const trailsUrl = s.trailsVisible && trailsReady ? pmtilesUrl(TRAILS_FILE) : null;
   const terrainUrl = s.terrainOn && terrainReady ? pmtilesUrl(TERRAIN_FILE) : null;
   // While comparing, the "Today" side is satellite whenever there's a key for it.
   const satelliteKey = (s.basemap === "satellite" || comparing) && s.esriKey ? s.esriKey : null;
@@ -204,6 +207,9 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
           onPlacePress={(id) => go({ name: "place", id })}
           plaques={plaquesGeo}
           onPlaquePress={(id) => go({ name: "plaque", id })}
+          trailsUrl={trailsUrl}
+          trailsOpacity={s.trailsOpacity}
+          onTrailPress={(props) => go({ name: "trail", props })}
           myPins={myPinsGeo}
           onMyPinPress={(id) => go({ name: "pin", id })}
         />
@@ -302,6 +308,7 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
               here={here}
               shown={activeOverlay}
               plaques={{ count: plaques.plaques.length, busy: plaques.busy, error: plaques.error, refresh: plaques.refresh }}
+              trailsReady={trailsReady}
             /> : null}
           {view.name === "place" && placeForView ? (
             <PlacePanel
@@ -341,6 +348,7 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
               }}
             />
           ) : null}
+          {view.name === "trail" ? <TrailPanel props={view.props} /> : null}
           {view.name === "plaque" && plaqueForView ? (
             <PlaquePanel
               plaque={plaqueForView}

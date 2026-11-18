@@ -106,3 +106,14 @@ def test_terrain_pack_listed_with_attribution(tmp_path):
     cat = build_catalog(release, meta, ovs, load_manifests())
     assert "terrain" in [p["kind"] for p in cat["packs"]]
     assert "terrain_tiles" in {a["source_id"] for a in cat["attributions"]}
+
+
+def test_trails_pack_is_listed(tmp_path):
+    from tmo_pipeline.catalog import build_catalog
+
+    rel = tmp_path / "release"
+    rel.mkdir()
+    (rel / "trails-south.pmtiles").write_bytes(b"x")
+    cat = build_catalog(rel, tmp_path / "meta", {}, load_manifests())
+    assert [p["kind"] for p in cat["packs"]] == ["trails"]
+    assert any(a["source_id"] == "openstreetmap" for a in cat["attributions"])
