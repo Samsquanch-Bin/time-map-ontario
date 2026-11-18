@@ -23,3 +23,10 @@ def test_ways():
 def test_other_tags():
     assert parse_other_tags('"surface"=>"gravel","operator"=>"Bruce Trail Conservancy"') == {"surface": "gravel", "operator": "Bruce Trail Conservancy"}
     assert parse_other_tags(None) == {}
+
+
+def test_indoor_walkways_left_out():
+    assert classify({"highway": "footway", "name": "Cumberland Terrace Ground Floor"}, False) is None
+    assert classify({"highway": "footway", "indoor": "yes", "name": "PATH"}, False) is None
+    assert classify({"route": "foot", "name": "Yonge-Bloor underground path system"}, True) is None
+    assert classify({"highway": "path", "name": "Rosedale Valley Trail"}, False) == "path"

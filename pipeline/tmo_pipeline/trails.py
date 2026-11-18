@@ -37,12 +37,16 @@ PATHS = {"path", "footway", "bridleway", "cycleway", "track"}
 
 _SIDE = re.compile(r"\bside[- ]trail\b", re.I)
 _BRUCE = re.compile(r"\bbruce trail\b", re.I)
+_INDOOR = re.compile(r"\bunderground path\b|\b(ground|lower|upper|concourse) (floor|level)\b", re.I)
 
 
 def classify(tags: dict[str, str], is_route: bool) -> str | None:
     """The kind of line to draw, or None to leave it out."""
     name = (tags.get("name") or tags.get("official_name") or "").strip()
     if tags.get("access") in ("private", "no"):
+        return None
+    # indoor walkways (Toronto's PATH, mall corridors) aren't trails
+    if tags.get("indoor") not in (None, "", "no") or tags.get("tunnel") == "building_passage" or _INDOOR.search(name):
         return None
     if is_route:
         if tags.get("route") not in ROUTES:
