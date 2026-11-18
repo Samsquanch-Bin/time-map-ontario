@@ -9,7 +9,7 @@ import { AUTO_MIN_ZOOM, type Catalog, formatBytes, hasPack, type Overlay, packsT
 import { formatRange } from "../logic/era";
 import { CATEGORIES, type Place, precisionText } from "../logic/places";
 import { surfaceText, TRAIL_KINDS, trailKind } from "../logic/trails";
-import { editPin, formatCoords, type MyPin, newPin, pinLabel } from "../logic/pins";
+import { editPin, formatCoords, googleMapsUrl, type MyPin, newPin, pinLabel } from "../logic/pins";
 import { type Plaque, PLAQUES_CREDIT, PLAQUES_MAP_URL, PLAQUES_TERMS, plaqueWhere } from "../logic/plaques";
 import { ERA_MAX, ERA_MIN, ISSUES_EMAIL_SUBJECT } from "../config";
 import { useApp } from "../state/store";
@@ -418,7 +418,8 @@ export function PinPanel({
         },
       },
     ]);
-  const share = () => Share.share({ message: `${pin ? pinLabel(pin) + "\n" : ""}${coords}\nhttps://www.google.com/maps/search/?api=1&query=${at.lat},${at.lon}` });
+  const share = () => Share.share({ message: `${pin ? pinLabel(pin) + "\n" : ""}${coords}\n${googleMapsUrl(at.lon, at.lat)}` });
+  const openGoogle = () => Linking.openURL(googleMapsUrl(at.lon, at.lat));
 
   return (
     <View style={styles.gap}>
@@ -432,6 +433,9 @@ export function PinPanel({
           <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>
             {coords}
           </Text>
+          <Button mode="outlined" icon="google-maps" onPress={openGoogle} style={{ alignSelf: "flex-start" }}>
+            View in Google Maps
+          </Button>
           <View style={styles.row}>
             <Button mode="contained" icon="map-marker-plus" onPress={save}>
               {pin ? "Save changes" : "Save pin"}
@@ -464,6 +468,9 @@ export function PinPanel({
             </Button>
             <Button mode="text" icon="crosshairs" onPress={() => onZoom(pin.lon, pin.lat)}>
               Go there
+            </Button>
+            <Button mode="text" icon="google-maps" onPress={openGoogle}>
+              Google Maps
             </Button>
             <Button mode="text" icon="share-variant" onPress={share}>
               Share

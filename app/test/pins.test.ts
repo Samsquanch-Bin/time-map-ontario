@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
-import { editPin, formatCoords, newPin, pinLabel, pinsGeoJSON } from "../src/logic/pins";
+import { editPin, formatCoords, googleMapsUrl, newPin, pinLabel, pinsGeoJSON } from "../src/logic/pins";
 
 test("new and edited pins", () => {
   const p = newPin(-79.871234567891, 43.255712345678, "  Grandma's house ", " Built 1920 ", new Date("2026-11-18T00:00:00Z"));
@@ -26,4 +26,8 @@ test("geojson includes the unsaved pin last", () => {
   assert.equal(fc.features.length, 2);
   assert.equal(fc.features[1].properties?.draft, true);
   assert.equal(pinsGeoJSON([], null).features.length, 0);
+});
+
+test("google maps link puts latitude first", () => {
+  assert.equal(googleMapsUrl(-79.8711, 43.25571), "https://www.google.com/maps/search/?api=1&query=43.255710,-79.871100");
 });

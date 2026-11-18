@@ -54,3 +54,8 @@ export function pinsGeoJSON(pins: MyPin[], draft?: { lon: number; lat: number } 
   }
   return { type: "FeatureCollection", features };
 }
+
+/** Opens Google Maps (the app if installed, otherwise the website) at this spot. */
+export function googleMapsUrl(lon: number, lat: number): string {
+  return `https://www.google.com/maps/search/?api=1&query=${lat.toFixed(6)},${lon.toFixed(6)}`;
+}
