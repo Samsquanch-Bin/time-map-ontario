@@ -147,7 +147,8 @@ def main(argv: list[str] | None = None) -> int:
                     raise
                 failed.append(oid)
                 print(f"::warning::overlay {oid} failed and is skipped: {exc}", flush=True)
-        if failed and len(failed) == len(ids):
+        # Fatal only when nothing at all is usable: every overlay tried failed and none was kept unchanged.
+        if failed and len(failed) == len(ids) and len(ids) == len([o for o in overlays if not overlays[o].live]):
             print("every overlay failed", file=sys.stderr)
             return 1
     elif args.cmd == "catalog":
