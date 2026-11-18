@@ -7,6 +7,7 @@ import { ActivityIndicator, List, Searchbar, Surface, Text, useTheme } from "rea
 import { type GeoResult, searchPlaces } from "../data/geocode";
 import type { Overlay } from "../logic/catalog";
 import type { Place } from "../logic/places";
+import { type Plaque, plaqueWhere } from "../logic/plaques";
 import { type LonLat, matchNames, parseCoordinates } from "../logic/search";
 
 export type SearchTarget = { center: LonLat; zoom?: number; bbox?: [number, number, number, number]; label: string };
@@ -16,6 +17,7 @@ type Row = { key: string; title: string; detail: string; icon: string; target: S
 type Props = {
   top: number;
   places: Place[];
+  plaques: Plaque[];
   overlays: Overlay[];
   onGo: (t: SearchTarget) => void;
   onClear: () => void;
@@ -24,7 +26,7 @@ type Props = {
   setOpen: (open: boolean) => void;
 };
 
-export function SearchBar({ top, places, overlays, onGo, onClear, open, setOpen }: Props) {
+export function SearchBar({ top, places, plaques, overlays, onGo, onClear, open, setOpen }: Props) {
   const theme = useTheme();
   const [text, setText] = useState("");
   const [online, setOnline] = useState<GeoResult[] | null>(null);
@@ -48,6 +50,16 @@ export function SearchBar({ top, places, overlays, onGo, onClear, open, setOpen 
         target: { center: [p.lon, p.lat], zoom: p.precision === "exact" ? 16 : 14, label: p.title },
       });
     }
+    for (const p of matchNames(plaques, text, (p) => p.name, 4)) {
+      const where = plaqueWhere(p);
+      rows.push({
+        key: `plaque-${p.id}`,
+        title: p.name,
+        detail: `Historical plaque${where ? ` · ${where}` : ""}`,
+        icon: "sign-text",
+        target: { center: [p.lon, p.lat], zoom: 17, label: p.name },
+      });
+    }
     for (const o of matchNames(overlays, text, (o) => o.title, 3)) {
       const [w, s, e, n] = o.bounds;
       rows.push({
@@ -59,7 +71,7 @@ export function SearchBar({ top, places, overlays, onGo, onClear, open, setOpen 
       });
     }
     return rows;
-  }, [text, places, overlays]);
+  }, [text, places, plaques, overlays]);
 
   const onlineRows: Row[] = (online ?? []).map((r) => ({
     key: r.id,

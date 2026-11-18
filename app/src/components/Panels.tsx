@@ -8,13 +8,23 @@ import { useDiagnostics } from "../diagnostics";
 import { AUTO_MIN_ZOOM, type Catalog, formatBytes, hasPack, type Overlay, packsToDownload, totalBytes } from "../logic/catalog";
 import { formatRange } from "../logic/era";
 import { CATEGORIES, type Place, precisionText } from "../logic/places";
+import { type Plaque, PLAQUES_CREDIT, PLAQUES_MAP_URL, PLAQUES_TERMS, plaqueWhere } from "../logic/plaques";
 import { ERA_MAX, ERA_MIN, ISSUES_EMAIL_SUBJECT } from "../config";
 import { useApp } from "../state/store";
 import { EraSlider } from "./EraSlider";
+import { PLAQUE_GOLD } from "./MapContent";
 import { OpacitySlider } from "./OpacitySlider";
 
 
-export type SheetView = { name: "layers" } | { name: "overlay"; id: string } | { name: "place"; id: string } | { name: "data" } | { name: "credits" };
+export type SheetView =
+  | { name: "layers" }
+  | { name: "overlay"; id: string }
+  | { name: "place"; id: string }
+  | { name: "plaque"; id: string }
+  | { name: "data" }
+  | { name: "credits" };
+
+export type PlaquesState = { count: number; busy: boolean; error: string; refresh: () => void };
 
 type LayersProps = {
   go: (v: SheetView) => void;
@@ -23,9 +33,10 @@ type LayersProps = {
   here: Overlay[];
   /** The map being drawn now (picked by hand or chosen automatically), if any. */
   shown: Overlay | null;
+  plaques: PlaquesState;
 };
 
-export function LayersPanel({ go, placeCount, here, shown }: LayersProps) {
+export function LayersPanel({ go, placeCount, here, shown, plaques }: LayersProps) {
   const theme = useTheme();
   const s = useApp();
   const [more, setMore] = useState(false);
@@ -157,6 +168,26 @@ export function LayersPanel({ go, placeCount, here, shown }: LayersProps) {
         <Switch value={s.placesVisible} onValueChange={(placesVisible) => s.set({ placesVisible })} />
       </View>
 
+      <View style={styles.row}>
+        <View style={{ flex: 1 }}>
+          <Text variant="titleSmall">Historical plaques</Text>
+          <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>
+            {plaques.busy
+              ? "Getting plaques from the Ontario Heritage Trust…"
+              : s.plaquesVisible && plaques.count
+                ? `${plaques.count} Ontario Heritage Trust plaques on this phone`
+                : "Ontario Heritage Trust provincial plaques (needs internet the first time)"}
+          </Text>
+        </View>
+        <Switch value={s.plaquesVisible} onValueChange={(plaquesVisible) => s.set({ plaquesVisible })} />
+      </View>
+      {plaques.error ? <Text style={{ color: theme.colors.error }}>{plaques.error}</Text> : null}
+      {s.plaquesVisible && !plaques.busy ? (
+        <Button mode="text" icon="refresh" onPress={plaques.refresh} style={{ alignSelf: "flex-start", marginTop: -8 }}>
+          {plaques.count ? `Update plaques${s.plaquesSavedAt ? ` (saved ${s.plaquesSavedAt.slice(0, 10)})` : ""}` : "Get plaques"}
+        </Button>
+      ) : null}
+
       <Divider />
       <List.Item
         title="More"
@@ -276,6 +307,78 @@ export function OverlayPanel({ overlay, isShown, onShow, onCompare, onZoom }: { 
           Open source
         </Button>
       ) : null}
+    </View>
+  );
+}
+
+export function PlaquePanel({ plaque, onZoom }: { plaque: Plaque; onZoom: () => void }) {
+  const theme = useTheme();
+  const [fr, setFr] = useState(false);
+  const hasFr = !!(plaque.frTitle || plaque.frText);
+  const title = fr && plaque.frTitle ? plaque.frTitle : plaque.name;
+  const text = fr && plaque.frText ? plaque.frText : plaque.text;
+  const location = fr && plaque.frLocation ? plaque.frLocation : plaque.location;
+  const where = plaqueWhere(plaque);
+  const address = [plaque.address, plaque.postalCode].filter(Boolean).join(" ");
+  return (
+    <View style={styles.gap}>
+      <Text variant="labelLarge" style={{ color: PLAQUE_GOLD }}>
+        ONTARIO HERITAGE TRUST PLAQUE
+      </Text>
+      <Text variant="headlineSmall">{title}</Text>
+      {where ? (
+        <Text variant="titleSmall" style={{ color: theme.colors.onSurfaceVariant }}>
+          {where}
+        </Text>
+      ) : null}
+      {hasFr ? (
+        <SegmentedButtons
+          value={fr ? "fr" : "en"}
+          onValueChange={(v) => setFr(v === "fr")}
+          buttons={[
+            { value: "en", label: "English" },
+            { value: "fr", label: "Français" },
+          ]}
+          style={{ alignSelf: "flex-start" }}
+        />
+      ) : null}
+      {text ? <Text style={styles.story}>{text}</Text> : <Text style={{ color: theme.colors.onSurfaceVariant }}>No plaque text in the Trust's data.</Text>}
+      {location ? (
+        <>
+          <Text variant="titleSmall">{fr ? "Emplacement" : "Location"}</Text>
+          <Text>{location}</Text>
+        </>
+      ) : null}
+      {address ? (
+        <>
+          <Text variant="titleSmall">Address</Text>
+          <Text>{address}</Text>
+        </>
+      ) : null}
+      {plaque.themes ? (
+        <>
+          <Text variant="titleSmall">Themes</Text>
+          <Text>{plaque.themes}</Text>
+        </>
+      ) : null}
+      <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 4 }}>
+        <Button mode="text" icon="crosshairs" onPress={onZoom}>
+          Go there
+        </Button>
+        {plaque.webUrl ? (
+          <Button mode="text" icon="open-in-new" onPress={() => Linking.openURL(plaque.webUrl)}>
+            Website
+          </Button>
+        ) : null}
+        {plaque.streetViewUrl ? (
+          <Button mode="text" icon="google-street-view" onPress={() => Linking.openURL(plaque.streetViewUrl)}>
+            Street View
+          </Button>
+        ) : null}
+      </View>
+      <View style={[styles.note, { backgroundColor: theme.colors.surfaceVariant }]}>
+        <Text variant="bodySmall">Source: {PLAQUES_CREDIT}. {PLAQUES_TERMS}</Text>
+      </View>
     </View>
   );
 }
@@ -495,6 +598,16 @@ export function CreditsPanel() {
           ) : null}
         </View>
       ))}
+      <View style={styles.credit}>
+        <Text variant="titleSmall">Ontario Provincial Plaques (Ontario Heritage Trust)</Text>
+        <Text>Plaque names, text, locations and links: {PLAQUES_CREDIT}.</Text>
+        <Text style={{ color: theme.colors.onSurfaceVariant }}>
+          Trust's terms: personal, non-commercial use with credit; no redistribution. The app fetches the plaques from the Trust's own map service onto this phone only.
+        </Text>
+        <Text style={{ color: theme.colors.primary }} onPress={() => Linking.openURL(PLAQUES_MAP_URL)}>
+          {PLAQUES_MAP_URL}
+        </Text>
+      </View>
     </View>
   );
 }

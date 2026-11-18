@@ -9,6 +9,8 @@ import { ONLINE_STYLE } from "../config";
 import { pmtilesUrl } from "../data/packs";
 import { setMapStatus, startDiagnostics } from "../diagnostics";
 import { usePlaces } from "../data/usePlaces";
+import { usePlaques } from "../data/plaques";
+import { plaquesGeoJSON } from "../logic/plaques";
 import { placesToGeoJSON, visiblePlaces } from "../logic/places";
 import { AUTO_MIN_ZOOM, chooseOverlay, hasPack, mapsHere, type Overlay, overlayAvailable } from "../logic/catalog";
 import { overlaps } from "../logic/era";
@@ -16,7 +18,7 @@ import { requestForegroundLocation } from "../location";
 import { buildBaseStyle, firstLabelLayerId, type MapTheme } from "../map/baseStyle";
 import { useApp } from "../state/store";
 import { MapContent } from "./MapContent";
-import { CreditsPanel, DataPanel, LayersPanel, OverlayPanel, PlacePanel, type SheetView } from "./Panels";
+import { CreditsPanel, DataPanel, LayersPanel, OverlayPanel, PlacePanel, PlaquePanel, type SheetView } from "./Panels";
 import { SearchBar, type SearchTarget } from "./SearchBar";
 import { SwipeCompare } from "./SwipeCompare";
 
@@ -79,6 +81,8 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
     [allPlaces, s.placesVisible, s.era, s.hiddenCategories],
   );
   const placesGeoJSON = useMemo(() => (shownPlaces.length ? placesToGeoJSON(shownPlaces) : null), [shownPlaces]);
+  const plaques = usePlaques();
+  const plaquesGeo = useMemo(() => (plaques.plaques.length ? plaquesGeoJSON(plaques.plaques) : null), [plaques.plaques]);
   const comparing = s.compare && !!activeOverlay;
   const terrainReady = hasPack(catalog, s.installed, TERRAIN_FILE);
   const terrainUrl = s.terrainOn && terrainReady ? pmtilesUrl(TERRAIN_FILE) : null;
@@ -130,6 +134,7 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
 
   const overlayForView = view.name === "overlay" ? catalog?.overlays.find((o) => o.id === view.id) : undefined;
   const placeForView = view.name === "place" ? allPlaces.find((p) => p.id === view.id) : undefined;
+  const plaqueForView = view.name === "plaque" ? plaques.plaques.find((p) => p.id === view.id) : undefined;
 
   return (
     <View style={[styles.fill, { backgroundColor: theme.colors.background }]}>
@@ -179,6 +184,8 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
           onCoveragePress={(id) => go({ name: "overlay", id })}
           places={placesGeoJSON}
           onPlacePress={(id) => go({ name: "place", id })}
+          plaques={plaquesGeo}
+          onPlaquePress={(id) => go({ name: "plaque", id })}
         />
         {pin ? (
           <GeoJSONSource id="search-pin" data={{ type: "Feature", properties: {}, geometry: { type: "Point", coordinates: pin.center } }}>
@@ -248,6 +255,7 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
       <SearchBar
         top={insets.top + 8}
         places={allPlaces}
+        plaques={plaques.plaques}
         overlays={catalog?.overlays ?? []}
         onGo={goToResult}
         onClear={() => setPin(null)}
@@ -267,12 +275,27 @@ export function MapScreen({ mapTheme }: { mapTheme: MapTheme }) {
           {view.name !== "layers" ? (
             <IconButton icon="arrow-left" accessibilityLabel="Back" onPress={() => setView({ name: "layers" })} style={styles.back} />
           ) : null}
-          {view.name === "layers" ? <LayersPanel go={go} placeCount={shownPlaces.length} here={here} shown={activeOverlay} /> : null}
+          {view.name === "layers" ? <LayersPanel
+              go={go}
+              placeCount={shownPlaces.length}
+              here={here}
+              shown={activeOverlay}
+              plaques={{ count: plaques.plaques.length, busy: plaques.busy, error: plaques.error, refresh: plaques.refresh }}
+            /> : null}
           {view.name === "place" && placeForView ? (
             <PlacePanel
               place={placeForView}
               onZoom={() => {
                 cameraRef.current?.flyTo({ center: [placeForView.lon, placeForView.lat], zoom: placeForView.precision === "exact" ? 15 : 13, duration: 900 });
+                sheetRef.current?.snapToIndex(0);
+              }}
+            />
+          ) : null}
+          {view.name === "plaque" && plaqueForView ? (
+            <PlaquePanel
+              plaque={plaqueForView}
+              onZoom={() => {
+                cameraRef.current?.flyTo({ center: [plaqueForView.lon, plaqueForView.lat], zoom: 17, duration: 900 });
                 sheetRef.current?.snapToIndex(0);
               }}
             />

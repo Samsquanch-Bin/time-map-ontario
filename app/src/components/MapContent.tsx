@@ -22,9 +22,15 @@ type Props = {
   onCoveragePress?: (overlayId: string) => void;
   places?: FeatureCollection | null;
   onPlacePress?: (placeId: string) => void;
+  plaques?: FeatureCollection | null;
+  onPlaquePress?: (plaqueId: string) => void;
 };
 
-export function MapContent({ labelLayerId, satelliteKey, overlay, overlayOpacity, terrainUrl, coverage, onCoveragePress, places, onPlacePress }: Props) {
+// Ontario Heritage Trust plaques are blue and gold.
+export const PLAQUE_BLUE = "#1F3A93";
+export const PLAQUE_GOLD = "#D4A72C";
+
+export function MapContent({ labelLayerId, satelliteKey, overlay, overlayOpacity, terrainUrl, coverage, onCoveragePress, places, onPlacePress, plaques, onPlaquePress }: Props) {
   const coverageData = useMemo<FeatureCollection | null>(
     () =>
       coverage && {
@@ -104,6 +110,45 @@ export function MapContent({ labelLayerId, satelliteKey, overlay, overlayOpacity
         >
           <Layer type="fill" id="coverage-fill" paint={{ "fill-color": AMBER, "fill-opacity": 0.04 }} />
           <Layer type="line" id="coverage-line" paint={{ "line-color": AMBER, "line-width": 1, "line-opacity": 0.6 }} />
+        </GeoJSONSource>
+      ) : null}
+
+      {plaques ? (
+        <GeoJSONSource
+          id="plaques"
+          data={plaques}
+          onPress={(e) => {
+            const id = e.nativeEvent.features[0]?.properties?.id;
+            if (id && onPlaquePress) {
+              e.stopPropagation();
+              onPlaquePress(String(id));
+            }
+          }}
+        >
+          <Layer
+            type="circle"
+            id="plaques-point"
+            paint={{
+              "circle-radius": ["interpolate", ["linear"], ["zoom"], 6, 3, 10, 5, 15, 8],
+              "circle-color": PLAQUE_BLUE,
+              "circle-stroke-color": PLAQUE_GOLD,
+              "circle-stroke-width": ["interpolate", ["linear"], ["zoom"], 6, 1, 14, 2.5],
+            }}
+          />
+          <Layer
+            type="symbol"
+            id="plaques-label"
+            minzoom={13}
+            layout={{
+              "text-field": ["get", "title"],
+              "text-font": ["NotoSansMedium"],
+              "text-size": 11,
+              "text-offset": [0, 1.1],
+              "text-anchor": "top",
+              "text-optional": true,
+            }}
+            paint={{ "text-color": "#F2C94C", "text-halo-color": "#0E1116", "text-halo-width": 1.5 }}
+          />
         </GeoJSONSource>
       ) : null}
 

@@ -25,6 +25,10 @@ type Persisted = {
   overlayOpacity: number;
   coverageVisible: boolean;
   placesVisible: boolean;
+  /** Ontario Heritage Trust plaques on the map (fetched from the Trust onto this phone). */
+  plaquesVisible: boolean;
+  plaquesSavedAt: string | null;
+  plaquesCount: number;
   hiddenCategories: Category[];
   camera: { center: [number, number]; zoom: number };
   installed: Installed;
@@ -54,6 +58,9 @@ export const useApp = create<Persisted & Transient>()(
       coverageVisible: false,
       terrainOn: false,
       placesVisible: true,
+      plaquesVisible: false,
+      plaquesSavedAt: null,
+      plaquesCount: 0,
       hiddenCategories: [],
       camera: { center: START_VIEW.center, zoom: START_VIEW.zoom },
       installed: {},
