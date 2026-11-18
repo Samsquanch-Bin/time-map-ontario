@@ -43,8 +43,14 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("fetch-pages")
     sub.add_parser("fip-prepare")
     sub.add_parser("probe")
+    sub.add_parser("plaques-check")
     args = p.parse_args(argv)
 
+    if args.cmd == "plaques-check":
+        from .plaques_check import run as check
+
+        check()
+        return 0
     if args.cmd == "probe":
         from .probe import run as probe
 

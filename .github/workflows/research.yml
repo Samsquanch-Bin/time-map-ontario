@@ -14,7 +14,7 @@ on:
         required: true
         default: discover
         type: choice
-        options: [discover, fetch, maps, pages, fip, probe]
+        options: [discover, fetch, maps, pages, fip, probe, plaques-check]
   push:
     branches: [main]
     paths: ["data/research/candidates.yaml"]
@@ -47,6 +47,7 @@ jobs:
           case "$STEP" in
             maps) python -m tmo_pipeline maps-discover ;;
             pages) python -m tmo_pipeline fetch-pages ;;
+            plaques-check) python -m tmo_pipeline plaques-check ;;
             probe) sudo apt-get update -qq && sudo apt-get install -y -qq gdal-bin && python -m tmo_pipeline probe ;;
             fip) pip install -q pillow shapely && FIP_HALF="${{ github.event.inputs.half }}" python -m tmo_pipeline fip-prepare ;;
             *) python -m tmo_pipeline research-$STEP ;;
