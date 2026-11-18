@@ -109,16 +109,20 @@ def arcgis_index_urls(url: str, body: str, links: list[dict[str, str]]) -> list[
     -> the web map's JSON -> each feature layer's features (WGS84, all fields)."""
     out: list[str] = []
     if "/sharing/rest/content/items/" in url and url.split("?")[0].endswith("/data"):
-        try:
-            data = json.loads(body)
-        except ValueError:
-            return out
-        for lyr in data.get("operationalLayers", []) or []:
-            lu = lyr.get("url") or ""
-            if re.search(r"/(Feature|Map)Server/\d+$", lu):
+        # any item's data (web map, Experience Builder app, ...): every layer URL and item id in it
+        seen: set[str] = set()
+        for lu in re.findall(r"https://[^\"'\s]+?/(?:Feature|Map)Server/\d+", body):
+            if lu not in seen:
+                seen.add(lu)
                 out.append(lu + "?f=json")
-                out.append(lu + "/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&resultRecordCount=2000&f=json")
-        return out
+                for off in (0, 2000, 4000):
+                    out.append(lu + f"/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&resultOffset={off}&resultRecordCount=2000&orderByFields=OBJECTID&f=json")
+        own = url.split("/items/")[1][:32]
+        for iid in dict.fromkeys(re.findall(r"\b([0-9a-f]{32})\b", body)):
+            if iid != own:
+                out.append(AGOL_ITEM.format(id=iid) + "?f=json")
+                out.append(AGOL_ITEM.format(id=iid) + "/data?f=json")
+        return out[:60]
     for link in links:
         m = _WEBMAP_ID.search(link["url"])
         if m and "arcgis.com" in link["url"]:
