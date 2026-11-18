@@ -1,14 +1,8 @@
 # Pages fetched by the "Research sources" workflow (step: pages).
-# Round 7: U of T air photo collections along the QEW / 401 and around Mississauga,
-# followed down through their ArcGIS index maps to each photo's footprint and file.
+# Round 8: the Ontario historical plaques map (ArcGIS Experience Builder app) the user linked,
+# followed down to its data layers, their features and their licence fields.
 max_follow: 0
 pages:
-  - url: https://mdl.library.utoronto.ca/collections/geospatial-data/historical-air-photos-highway-401-and-queen-elizabeth-way-qew
+  - url: https://www.arcgis.com/sharing/rest/content/items/6be55747ebb947b789f37e34f633b705?f=json
+  - url: https://www.arcgis.com/sharing/rest/content/items/6be55747ebb947b789f37e34f633b705/data?f=json
     arcgis_index: true
-  - url: https://mdl.library.utoronto.ca/collections/geospatial-data/historical-air-photos-highway-401
-    arcgis_index: true
-  - url: https://mdl.library.utoronto.ca/collections/geospatial-data/digital-air-photographs-southern-ontario-1954
-    arcgis_index: true
-  - url: https://mdl.library.utoronto.ca/geography-geospatial-data/mississauga
-  - url: https://mdl.library.utoronto.ca/geography-geospatial-data/oakville
-  - url: https://mdl.library.utoronto.ca/geography-geospatial-data/burlington
