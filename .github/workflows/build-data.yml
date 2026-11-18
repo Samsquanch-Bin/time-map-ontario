@@ -55,6 +55,9 @@ jobs:
       - name: Trails (OpenStreetMap, Southern Ontario)
         run: python -m tmo_pipeline trails || echo "::warning::trails pack failed and is skipped"
 
+      - name: Monuments and battlefields (OpenStreetMap, Southern Ontario)
+        run: python -m tmo_pipeline monuments || echo "::warning::monuments pack failed and is skipped"
+
       - name: Historical overlays
         env:
           GH_TOKEN: ${{ github.token }}

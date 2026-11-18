@@ -9,6 +9,7 @@ import { AUTO_MIN_ZOOM, type Catalog, formatBytes, hasPack, type Overlay, packsT
 import { formatRange } from "../logic/era";
 import { CATEGORIES, type Place, precisionText } from "../logic/places";
 import { surfaceText, TRAIL_KINDS, trailKind } from "../logic/trails";
+import { MONUMENT_KINDS, monumentKind, wikipediaUrl } from "../logic/monuments";
 import { editPin, formatCoords, googleMapsUrl, type MyPin, newPin, pinLabel } from "../logic/pins";
 import { type Plaque, PLAQUES_CREDIT, PLAQUES_MAP_URL, PLAQUES_TERMS, plaqueWhere } from "../logic/plaques";
 import { ERA_MAX, ERA_MIN, ISSUES_EMAIL_SUBJECT } from "../config";
@@ -25,6 +26,7 @@ export type SheetView =
   | { name: "plaque"; id: string }
   | { name: "newpin" }
   | { name: "trail"; props: Record<string, unknown> }
+  | { name: "monument"; props: Record<string, unknown>; at: [number, number] }
   | { name: "pin"; id: string }
   | { name: "data" }
   | { name: "credits" };
@@ -43,9 +45,10 @@ type LayersProps = {
   trailsReady: boolean;
   /** Whether the offline basemap (which holds the parks) is on the phone. */
   basemapReady: boolean;
+  monumentsReady: boolean;
 };
 
-export function LayersPanel({ go, placeCount, here, shown, plaques, trailsReady, basemapReady }: LayersProps) {
+export function LayersPanel({ go, placeCount, here, shown, plaques, trailsReady, basemapReady, monumentsReady }: LayersProps) {
   const theme = useTheme();
   const s = useApp();
   const [more, setMore] = useState(false);
@@ -215,6 +218,29 @@ export function LayersPanel({ go, placeCount, here, shown, plaques, trailsReady,
             ))}
           </View>
         </>
+      ) : null}
+
+      <View style={styles.row}>
+        <View style={{ flex: 1 }}>
+          <Text variant="titleSmall">Monuments & battlefields</Text>
+          <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>
+            {monumentsReady ? "Cairns, monuments, war memorials and battlefields (OpenStreetMap)" : "Download them in Settings & data"}
+          </Text>
+        </View>
+        <Switch
+          value={s.monumentsVisible && monumentsReady}
+          onValueChange={(monumentsVisible) => (monumentsReady ? s.set({ monumentsVisible }) : go({ name: "data" }))}
+        />
+      </View>
+      {s.monumentsVisible && monumentsReady ? (
+        <View style={[styles.row, { gap: 12 }]}>
+          {MONUMENT_KINDS.map((k) => (
+            <View key={k.id} style={{ flexDirection: "row", alignItems: "center", gap: 6 }}>
+              <View style={{ width: 12, height: 12, borderRadius: 6, backgroundColor: k.color, borderWidth: 2, borderColor: k.stroke }} />
+              <Text variant="bodySmall">{k.label}</Text>
+            </View>
+          ))}
+        </View>
       ) : null}
 
       <View style={styles.row}>
@@ -500,6 +526,56 @@ export function PinPanel({
       <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>
         Pins and notes are kept only on this phone.
       </Text>
+    </View>
+  );
+}
+
+export function MonumentPanel({ props, stories, onStory }: { props: Record<string, unknown>; stories: Place[]; onStory: (id: string) => void }) {
+  const theme = useTheme();
+  const kind = monumentKind(props.kind);
+  const str = (k: string) => (typeof props[k] === "string" ? (props[k] as string) : "");
+  const wiki = wikipediaUrl(props.wikipedia);
+  const web = /^https?:\/\//i.test(str("website")) ? str("website") : "";
+  const type = str("memorial") && str("memorial") !== "war_memorial" ? str("memorial").replace(/_/g, " ") : "";
+  return (
+    <View style={styles.gap}>
+      <Text variant="labelLarge" style={{ color: kind?.id === "battlefield" ? "#E53935" : theme.colors.primary }}>
+        {(kind?.label ?? "Monument").toUpperCase()}
+      </Text>
+      <Text variant="headlineSmall">{str("name") || (type ? type[0].toUpperCase() + type.slice(1) : "Unnamed memorial")}</Text>
+      {type || str("start_date") ? (
+        <Text variant="titleSmall" style={{ color: theme.colors.onSurfaceVariant }}>
+          {[type, str("start_date") && `erected ${str("start_date")}`].filter(Boolean).join(" · ")}
+        </Text>
+      ) : null}
+      {str("subject") ? <Text>Commemorates: {str("subject")}</Text> : null}
+      {str("inscription") ? (
+        <>
+          <Text variant="titleSmall">Inscription</Text>
+          <Text style={[styles.story, { fontStyle: "italic" }]}>{str("inscription")}</Text>
+        </>
+      ) : null}
+      {str("description") ? <Text>{str("description")}</Text> : null}
+      {stories.map((p) => (
+        <Button key={p.id} mode="contained-tonal" icon="book-open-variant" onPress={() => onStory(p.id)} style={{ alignSelf: "flex-start" }}>
+          Read the story: {p.title}
+        </Button>
+      ))}
+      <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 4 }}>
+        {wiki ? (
+          <Button mode="text" icon="wikipedia" onPress={() => Linking.openURL(wiki)}>
+            Wikipedia
+          </Button>
+        ) : null}
+        {web ? (
+          <Button mode="text" icon="open-in-new" onPress={() => Linking.openURL(web)}>
+            Website
+          </Button>
+        ) : null}
+      </View>
+      <View style={[styles.note, { backgroundColor: theme.colors.surfaceVariant }]}>
+        <Text variant="bodySmall">From OpenStreetMap (© OpenStreetMap contributors, ODbL), mapped by volunteers. Inscriptions are as volunteers typed them.</Text>
+      </View>
     </View>
   );
 }

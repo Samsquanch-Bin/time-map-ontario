@@ -130,6 +130,9 @@ def build_catalog(
     trails = release_dir / "trails-south.pmtiles"
     if trails.exists():
         packs.append(pack_entry(trails, "trails"))  # OpenStreetMap, already credited for the basemap
+    monuments = release_dir / "monuments-south.pmtiles"
+    if monuments.exists():
+        packs.append(pack_entry(monuments, "monuments"))  # OpenStreetMap too
 
     overlay_entries = []
     for ov in sorted(overlays.values(), key=lambda o: (o.year, o.id)):

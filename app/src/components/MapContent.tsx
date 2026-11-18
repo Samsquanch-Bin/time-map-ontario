@@ -2,6 +2,7 @@
 // and the coverage outlines. Shared by the main map and the swipe-compare map.
 import { GeoJSONSource, Images, Layer, RasterDEMSource, RasterSource, VectorSource } from "@maplibre/maplibre-react-native";
 import { byKind } from "../logic/trails";
+import { MONUMENT_KINDS } from "../logic/monuments";
 import type { FeatureCollection } from "geojson";
 
 import { useMemo } from "react";
@@ -27,6 +28,9 @@ type Props = {
   onPlaquePress?: (plaqueId: string) => void;
   /** Highlight parks and green spaces from the offline basemap at this opacity (null = off). */
   parksOpacity?: number | null;
+  /** pmtiles:// URL of the monuments & battlefields pack when switched on. */
+  monumentsUrl?: string | null;
+  onMonumentPress?: (props: Record<string, unknown>, at: [number, number]) => void;
   /** pmtiles:// URL of the trails pack when trails are switched on. */
   trailsUrl?: string | null;
   trailsOpacity?: number;
@@ -51,7 +55,7 @@ export const GREEN_SPACE_COLOR = "#00E676";
 export const PLAQUE_BLUE = "#1F3A93";
 export const PLAQUE_GOLD = "#D4A72C";
 
-export function MapContent({ labelLayerId, satelliteKey, overlay, overlayOpacity, terrainUrl, coverage, onCoveragePress, places, onPlacePress, plaques, onPlaquePress, myPins, onMyPinPress, trailsUrl, trailsOpacity = 0.9, onTrailPress, parksOpacity }: Props) {
+export function MapContent({ labelLayerId, satelliteKey, overlay, overlayOpacity, terrainUrl, coverage, onCoveragePress, places, onPlacePress, plaques, onPlaquePress, myPins, onMyPinPress, trailsUrl, trailsOpacity = 0.9, onTrailPress, parksOpacity, monumentsUrl, onMonumentPress }: Props) {
   const parksBeforeId = trailsUrl
     ? "paths-casing"
     : plaques
@@ -242,6 +246,54 @@ export function MapContent({ labelLayerId, satelliteKey, overlay, overlayOpacity
             filter={["has", "name"]}
             layout={{ "symbol-placement": "line", "text-field": ["get", "name"], "text-font": ["NotoSansMedium"], "text-size": 11, "text-optional": true }}
             paint={{ "text-color": "#E8FFE5", "text-halo-color": "#0E1116", "text-halo-width": 2, "text-opacity": trailsOpacity }}
+          />
+        </VectorSource>
+      ) : null}
+
+      {monumentsUrl ? (
+        <VectorSource
+          id="monuments"
+          url={monumentsUrl}
+          onPress={(e) => {
+            const f = e.nativeEvent.features.find((x) => x.geometry?.type === "Point") ?? e.nativeEvent.features[0];
+            if (f && onMonumentPress) {
+              e.stopPropagation();
+              const at = (f.geometry?.type === "Point" ? f.geometry.coordinates : e.nativeEvent.lngLat) as [number, number];
+              onMonumentPress((f.properties ?? {}) as Record<string, unknown>, at);
+            }
+          }}
+        >
+          <Layer
+            type="fill"
+            id="battlefields-fill"
+            source-layer="battlefields"
+            paint={{ "fill-color": "#E53935", "fill-opacity": 0.16 }}
+          />
+          <Layer
+            type="line"
+            id="battlefields-edge"
+            source-layer="battlefields"
+            paint={{ "line-color": "#E53935", "line-width": 2.5, "line-dasharray": [3, 2] }}
+          />
+          <Layer
+            type="circle"
+            id="monuments-point"
+            source-layer="monuments"
+            paint={{
+              "circle-radius": ["interpolate", ["linear"], ["zoom"], 7, 3, 11, 5.5, 15, 8],
+              "circle-color": ["match", ["get", "kind"], ...MONUMENT_KINDS.flatMap((k) => [k.id, k.color]), "#E9DCC0"] as never,
+              "circle-stroke-color": ["match", ["get", "kind"], ...MONUMENT_KINDS.flatMap((k) => [k.id, k.stroke]), "#3B2A14"] as never,
+              "circle-stroke-width": 2.5,
+            }}
+          />
+          <Layer
+            type="symbol"
+            id="monuments-label"
+            source-layer="monuments"
+            minzoom={12}
+            filter={["has", "name"]}
+            layout={{ "text-field": ["get", "name"], "text-font": ["NotoSansMedium"], "text-size": 11, "text-offset": [0, 1.1], "text-anchor": "top", "text-optional": true }}
+            paint={{ "text-color": "#F3E6C8", "text-halo-color": "#0E1116", "text-halo-width": 1.5 }}
           />
         </VectorSource>
       ) : null}

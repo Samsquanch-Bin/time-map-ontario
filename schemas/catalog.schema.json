@@ -25,7 +25,7 @@
         "additionalProperties": false,
         "properties": {
           "file": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" },
-          "kind": { "enum": ["basemap", "overlay", "terrain", "trails", "places"] },
+          "kind": { "enum": ["basemap", "overlay", "terrain", "trails", "monuments", "places"] },
           "bytes": { "type": "integer", "minimum": 1 },
           "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
           "url": { "type": "string", "pattern": "^https://" }

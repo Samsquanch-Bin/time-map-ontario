@@ -88,6 +88,21 @@ def parse_other_tags(s: str | None) -> dict[str, str]:
     return {m.group(1): m.group(2) for m in re.finditer(r'"((?:[^"\\]|\\.)*)"=>"((?:[^"\\]|\\.)*)"', s)}
 
 
+def features_raw(path: Path) -> Iterator[tuple[dict[str, Any], dict[str, str]]]:
+    """(geometry, tags) for each feature GDAL's OSM driver wrote as GeoJSONSeq."""
+    with path.open(encoding="utf-8") as fh:
+        for line in fh:
+            line = line.strip().lstrip("\x1e")
+            if not line:
+                continue
+            f = json.loads(line)
+            p = f.get("properties") or {}
+            tags = {k: str(v) for k, v in p.items() if v not in (None, "") and k != "other_tags"}
+            tags.update(parse_other_tags(p.get("other_tags")))
+            if f.get("geometry"):
+                yield f["geometry"], tags
+
+
 def features(path: Path, is_route: bool) -> Iterator[dict[str, Any]]:
     with path.open(encoding="utf-8") as fh:
         for line in fh:
@@ -103,17 +118,17 @@ def features(path: Path, is_route: bool) -> Iterator[dict[str, Any]]:
                 yield {"type": "Feature", "geometry": f["geometry"], "properties": _props(tags, kind)}
 
 
-def _osmconf(work: Path) -> Path:
+def _osmconf(work: Path, sections: tuple[str, ...] = ("lines", "multilinestrings"), tags: list[str] | None = None) -> Path:
     """GDAL's OSM config with the tags we need as columns (others go to other_tags)."""
     src = next(p for p in (Path("/usr/share/gdal/osmconf.ini"), Path("/usr/local/share/gdal/osmconf.ini")) if p.exists())
     text = src.read_text()
-    attrs = ",".join(TAGS)
+    attrs = ",".join(tags or TAGS)
     out = []
     section = ""
     for line in text.splitlines():
         if line.startswith("["):
             section = line.strip("[] ")
-        if section in ("lines", "multilinestrings") and line.startswith("attributes="):
+        if section in sections and line.startswith("attributes="):
             line = f"attributes={attrs}"
         out.append(line)
     conf = work / "osmconf.ini"
@@ -128,16 +143,12 @@ def _run(cmd: list[str], env: dict[str, str] | None = None) -> None:
     subprocess.run(cmd, check=True, env={**os.environ, **(env or {})})
 
 
-def build_trails(out_dir: Path = BUILD_DIR / "release") -> Path:
+def ontario_pbf() -> Path:
+    """Geofabrik's Ontario extract, downloaded once per build and shared by the OSM packs."""
     import requests
 
-    for tool in ("osmium", "ogr2ogr"):
-        if not shutil.which(tool):
-            raise RuntimeError(f"{tool} is not installed")
-    work = CACHE_DIR / "trails"
+    work = CACHE_DIR / "osm"
     work.mkdir(parents=True, exist_ok=True)
-    out_dir.mkdir(parents=True, exist_ok=True)
-
     pbf = work / "ontario-latest.osm.pbf"
     if not pbf.exists():
         with requests.get(PBF_URL, stream=True, timeout=1200, headers={"User-Agent": "TimeMapOntario-personal-map-build/0.2"}) as r:
@@ -145,6 +156,18 @@ def build_trails(out_dir: Path = BUILD_DIR / "release") -> Path:
             with (work / "dl.part").open("wb") as fh:
                 shutil.copyfileobj(r.raw, fh, 1 << 22)
         (work / "dl.part").replace(pbf)
+    return pbf
+
+
+def build_trails(out_dir: Path = BUILD_DIR / "release") -> Path:
+    for tool in ("osmium", "ogr2ogr"):
+        if not shutil.which(tool):
+            raise RuntimeError(f"{tool} is not installed")
+    work = CACHE_DIR / "trails"
+    work.mkdir(parents=True, exist_ok=True)
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    pbf = ontario_pbf()
     print(f"trails: Ontario extract {pbf.stat().st_size / 1e6:.0f} MB", flush=True)
 
     filtered = work / "filtered.osm.pbf"

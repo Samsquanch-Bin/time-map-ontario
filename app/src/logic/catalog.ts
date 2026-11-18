@@ -1,7 +1,7 @@
 // Types for catalog.json (see schemas/catalog.schema.json) and pure helpers.
 import type { MultiPolygon, Polygon } from "geojson";
 
-export type PackKind = "basemap" | "overlay" | "terrain" | "trails" | "places";
+export type PackKind = "basemap" | "overlay" | "terrain" | "trails" | "monuments" | "places";
 
 export type Pack = { file: string; kind: PackKind; bytes: number; sha256: string; url: string };
 

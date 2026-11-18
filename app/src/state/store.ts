@@ -39,6 +39,8 @@ type Persisted = {
   /** Parks and green spaces highlighted in bright green. */
   parksVisible: boolean;
   parksOpacity: number;
+  /** Monuments, cairns, war memorials and battlefields (OpenStreetMap). */
+  monumentsVisible: boolean;
   hiddenCategories: Category[];
   camera: { center: [number, number]; zoom: number };
   installed: Installed;
@@ -77,6 +79,7 @@ export const useApp = create<Persisted & Transient>()(
       trailsOpacity: 0.9,
       parksVisible: false,
       parksOpacity: 0.8,
+      monumentsVisible: true,
       hiddenCategories: [],
       camera: { center: START_VIEW.center, zoom: START_VIEW.zoom },
       installed: {},

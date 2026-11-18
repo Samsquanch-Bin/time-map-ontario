@@ -32,6 +32,7 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("basemap")
     sub.add_parser("terrain")
     sub.add_parser("trails")
+    sub.add_parser("monuments")
     ov = sub.add_parser("overlay")
     ov.add_argument("id")
     ov.add_argument("--previous", type=Path, help="the published catalog.json: with 'all', skip overlays whose published pack was built from the same definition")
@@ -108,6 +109,10 @@ def main(argv: list[str] | None = None) -> int:
         else:
             path.write_text(text)
             print(f"wrote {path}")
+    elif args.cmd == "monuments":
+        from .monuments import build_monuments
+
+        print(build_monuments())
     elif args.cmd == "trails":
         from .trails import build_trails
 
