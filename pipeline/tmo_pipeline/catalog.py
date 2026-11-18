@@ -122,17 +122,18 @@ def build_catalog(
     if basemap.exists():
         packs.append(pack_entry(basemap, "basemap"))
     terrain = release_dir / "terrain-focus.pmtiles"
-    if terrain.exists():
-        packs.append(pack_entry(terrain, "terrain"))
+    if terrain.exists() or "terrain-focus.pmtiles" in prev_packs:
+        packs.append(pack_entry(terrain, "terrain") if terrain.exists() else dict(prev_packs["terrain-focus.pmtiles"]))
         require_sources(["terrain_tiles"], sources)
         used_sources.add("terrain_tiles")
 
-    trails = release_dir / "trails-south.pmtiles"
-    if trails.exists():
-        packs.append(pack_entry(trails, "trails"))  # OpenStreetMap, already credited for the basemap
-    monuments = release_dir / "monuments-south.pmtiles"
-    if monuments.exists():
-        packs.append(pack_entry(monuments, "monuments"))  # OpenStreetMap too
+    # Trails and monuments are OpenStreetMap, already credited for the basemap.
+    for file, kind in (("trails-south.pmtiles", "trails"), ("monuments-south.pmtiles", "monuments")):
+        if (release_dir / file).exists():
+            packs.append(pack_entry(release_dir / file, kind))
+        elif file in prev_packs:
+            print(f"{kind} pack not built this time; keeping the published {file}")
+            packs.append(dict(prev_packs[file]))
 
     overlay_entries = []
     for ov in sorted(overlays.values(), key=lambda o: (o.year, o.id)):

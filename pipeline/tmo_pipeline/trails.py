@@ -151,11 +151,17 @@ def ontario_pbf() -> Path:
     work.mkdir(parents=True, exist_ok=True)
     pbf = work / "ontario-latest.osm.pbf"
     if not pbf.exists():
-        with requests.get(PBF_URL, stream=True, timeout=1200, headers={"User-Agent": "TimeMapOntario-personal-map-build/0.2"}) as r:
-            r.raise_for_status()
-            with (work / "dl.part").open("wb") as fh:
-                shutil.copyfileobj(r.raw, fh, 1 << 22)
-        (work / "dl.part").replace(pbf)
+        part = work / "dl.part"
+        # curl over IPv4 with retries: the runner sometimes has no IPv6 route ("Network is unreachable")
+        if shutil.which("curl"):
+            _run(["curl", "-4", "-fL", "--retry", "6", "--retry-delay", "20", "--retry-all-errors", "--connect-timeout", "60",
+                  "-A", "TimeMapOntario-personal-map-build/0.2", "-o", str(part), PBF_URL])
+        else:
+            with requests.get(PBF_URL, stream=True, timeout=1200, headers={"User-Agent": "TimeMapOntario-personal-map-build/0.2"}) as r:
+                r.raise_for_status()
+                with part.open("wb") as fh:
+                    shutil.copyfileobj(r.raw, fh, 1 << 22)
+        part.replace(pbf)
     return pbf
 
 

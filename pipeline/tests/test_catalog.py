@@ -117,3 +117,13 @@ def test_trails_pack_is_listed(tmp_path):
     cat = build_catalog(rel, tmp_path / "meta", {}, load_manifests())
     assert [p["kind"] for p in cat["packs"]] == ["trails"]
     assert any(a["source_id"] == "openstreetmap" for a in cat["attributions"])
+
+
+def test_unbuilt_trails_keep_the_published_pack(tmp_path):
+    from tmo_pipeline.catalog import build_catalog
+
+    rel = tmp_path / "release"
+    rel.mkdir()
+    prev_pack = {"file": "trails-south.pmtiles", "kind": "trails", "bytes": 5, "sha256": "ab" * 32, "url": "https://example.org/t"}
+    cat = build_catalog(rel, tmp_path / "meta", {}, load_manifests(), previous={"packs": [prev_pack], "overlays": []})
+    assert cat["packs"] == [prev_pack]
